@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>훅 - 프레임워크 코어 확장 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="일반 주제" href="index.html"/>
+        <link rel="next" title="리소스 자동 로드" href="autoloader.html"/>
+        <link rel="prev" title="보조 클래스 만들기" href="ancillary_classes.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">일반 주제</a> &raquo;</li>
+      
+    <li>훅 - 프레임워크 코어 확장</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="id1">
+<h1>훅 - 프레임워크 코어 확장<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>CodeIgniter의 훅 기능은 코어 파일을 해킹하지 않고도 프레임워크의 내부 작동에 개입하고
+수정할 수 있는 수단을 제공합니다. CodeIgniter가 실행되면 <a class="reference internal" href="../overview/appflow.html"><span class="doc">애플리케이션 흐름</span></a> 페이지에 다이어그램으로 표시된 특정 실행 프로세스를 따릅니다.
+그러나 실행 프로세스의 특정 단계에서 어떤 액션을 수행하게 하고 싶은 경우가 있을 수
+있습니다. 예를 들어 컨트롤러가 로드되기 직전이나 직후에 스크립트를 실행하거나, 다른
+위치에서 자신만의 스크립트 중 하나를 트리거하고 싶을 수 있습니다.</p>
+<section id="id2">
+<h2>훅 활성화<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>훅 기능은 <strong>application/config/config.php</strong> 파일에서 다음 항목을 설정하여 전역적으로
+활성화/비활성화할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;enable_hooks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>훅 정의<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>훅은 <strong>application/config/hooks.php</strong> 파일에 정의됩니다. 각 훅은 다음 프로토타입을
+가진 배열로 지정됩니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$hook</span><span class="p">[</span><span class="s1">&#39;pre_controller&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;class&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;MyClass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Myfunction&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filename&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Myclass.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filepath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;hooks&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;params&#39;</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;beer&#39;</span><span class="p">,</span> <span class="s1">&#39;wine&#39;</span><span class="p">,</span> <span class="s1">&#39;snacks&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>참고:</strong></p>
+<p>배열 인덱스는 사용하려는 특정 훅 포인트의 이름과 연관됩니다. 위의 예시에서 훅 포인트는
+pre_controller입니다. 훅 포인트 목록은 아래에 있습니다. 연관 훅 배열에는 다음 항목을
+정의해야 합니다:</p>
+<ul class="simple">
+<li><p><strong>class</strong> 호출하려는 클래스의 이름. 클래스 대신 절차적 함수를 사용하려면 이 항목을
+비워두세요.</p></li>
+<li><p><strong>function</strong> 호출하려는 함수(또는 메소드) 이름.</p></li>
+<li><p><strong>filename</strong> 클래스/함수가 포함된 파일 이름.</p></li>
+<li><p><strong>filepath</strong> 스크립트가 포함된 디렉터리 이름.
+참고:
+스크립트는 <em>application/</em> 디렉터리 <em>내부</em>의 디렉터리에 있어야 하므로 파일 경로는
+해당 디렉터리에 상대적입니다. 예를 들어 스크립트가 <em>application/hooks/</em>에 있는
+경우 단순히 ‘hooks’를 filepath로 사용합니다. 스크립트가 <em>application/hooks/utilities/</em>에
+있는 경우 ‘hooks/utilities’를 filepath로 사용합니다. 후행 슬래시 없음.</p></li>
+<li><p><strong>params</strong> 스크립트에 전달하려는 매개변수. 이 항목은 선택 사항입니다.</p></li>
+</ul>
+<p>람다/익명 함수(또는 클로저)를 훅으로 사용할 수도 있으며, 더 간단한 구문을 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$hook</span><span class="p">[</span><span class="s1">&#39;post_controller&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+<span class="p">{</span>
+        <span class="cm">/* 여기서 무언가를 합니다 */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>동일한 훅에 여러 번 호출<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>동일한 훅 포인트에 하나 이상의 스크립트를 사용하려면 다음과 같이 배열 선언을 다차원으로
+만들면 됩니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$hook</span><span class="p">[</span><span class="s1">&#39;pre_controller&#39;</span><span class="p">][]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;class&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;MyClass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyMethod&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filename&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Myclass.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filepath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;hooks&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;params&#39;</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;beer&#39;</span><span class="p">,</span> <span class="s1">&#39;wine&#39;</span><span class="p">,</span> <span class="s1">&#39;snacks&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$hook</span><span class="p">[</span><span class="s1">&#39;pre_controller&#39;</span><span class="p">][]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;class&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;MyOtherClass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyOtherMethod&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filename&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Myotherclass.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;filepath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;hooks&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;params&#39;</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>각 배열 인덱스 뒤의 괄호에 주목하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$hook</span><span class="p">[</span><span class="s1">&#39;pre_controller&#39;</span><span class="p">][]</span>
+</pre></div>
+</div>
+<p>이를 통해 여러 스크립트로 동일한 훅 포인트를 가질 수 있습니다. 배열을 정의하는 순서가
+실행 순서가 됩니다.</p>
+</section>
+<section id="id5">
+<h2>훅 포인트<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>다음은 사용 가능한 훅 포인트 목록입니다.</p>
+<ul class="simple">
+<li><p><strong>pre_system</strong>
+시스템 실행 초기에 호출됩니다. 이 시점에서는 벤치마크와 훅 클래스만 로드되어
+있습니다. 라우팅이나 다른 프로세스는 아직 실행되지 않았습니다.</p></li>
+<li><p><strong>pre_controller</strong>
+컨트롤러가 호출되기 직전에 호출됩니다. 모든 기본 클래스, 라우팅, 보안 검사가
+완료된 상태입니다.</p></li>
+<li><p><strong>post_controller_constructor</strong>
+컨트롤러가 인스턴스화된 직후, 메소드 호출이 발생하기 전에 호출됩니다.</p></li>
+<li><p><strong>post_controller</strong>
+컨트롤러가 완전히 실행된 직후에 호출됩니다.</p></li>
+<li><p><strong>display_override</strong>
+시스템 실행이 끝날 때 최종 페이지를 웹 브라우저에 전송하는 데 사용되는
+<code class="docutils literal notranslate"><span class="pre">_display()</span></code> 메소드를 재정의합니다. 이를 통해 자신만의 디스플레이 방법을 사용할
+수 있습니다. CI 슈퍼 오브젝트를 <code class="docutils literal notranslate"><span class="pre">$this-&gt;CI</span> <span class="pre">=&amp;</span> <span class="pre">get_instance()</span></code>로 참조해야 하며,
+최종 데이터는 <code class="docutils literal notranslate"><span class="pre">$this-&gt;CI-&gt;output-&gt;get_output()</span></code>을 호출하여 사용할 수 있습니다.</p></li>
+<li><p><strong>cache_override</strong>
+<a class="reference internal" href="../libraries/output.html"><span class="doc">Output 라이브러리</span></a>의 <code class="docutils literal notranslate"><span class="pre">_display_cache()</span></code> 메소드 대신
+자신만의 메소드를 호출할 수 있습니다. 이를 통해 자신만의 캐시 디스플레이 메커니즘을
+사용할 수 있습니다.</p></li>
+<li><p><strong>post_system</strong>
+최종 렌더링된 페이지가 브라우저에 전송된 후, 최종 데이터가 브라우저에 전송된 후
+시스템 실행이 끝날 때 호출됩니다.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="autoloader.html" class="btn btn-neutral float-right" title="리소스 자동 로드">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ancillary_classes.html" class="btn btn-neutral" title="보조 클래스 만들기"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

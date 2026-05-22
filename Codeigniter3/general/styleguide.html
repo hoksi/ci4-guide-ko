@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PHP 스타일 가이드 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="일반 주제" href="index.html"/>
+        <link rel="next" title="라이브러리" href="../libraries/index.html"/>
+        <link rel="prev" title="보안" href="security.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">일반 주제</a> &raquo;</li>
+      
+    <li>PHP 스타일 가이드</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="php">
+<h1><a class="toc-backref" href="#id26" role="doc-backlink">PHP 스타일 가이드</a><a class="headerlink" href="#php" title="Link to this heading">¶</a></h1>
+<p>다음 페이지에서는 CodeIgniter 개발에 기여할 때 준수하는 코딩 스타일을 설명합니다.
+자신만의 CodeIgniter 애플리케이션에서 이 스타일을 사용할 필요는 없지만 권장됩니다.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#php" id="id26">PHP 스타일 가이드</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id27">파일 형식</a></p>
+<ul>
+<li><p><a class="reference internal" href="#textmate" id="id28">TextMate</a></p></li>
+<li><p><a class="reference internal" href="#bbedit" id="id29">BBEdit</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id2" id="id30">PHP 닫기 태그</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id31">파일 이름 지정</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id32">클래스 및 메소드 이름 지정</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id33">변수 이름</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id34">주석</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id35">상수</a></p></li>
+<li><p><a class="reference internal" href="#true-false-null" id="id36">TRUE, FALSE, NULL</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id37">논리 연산자</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id38">반환 값 비교 및 형 변환</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id39">디버깅 코드</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id40">파일의 공백</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id41">호환성</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id42">클래스당 하나의 파일</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id43">공백</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id44">줄 바꿈</a></p></li>
+<li><p><a class="reference internal" href="#id17" id="id45">코드 들여쓰기</a></p></li>
+<li><p><a class="reference internal" href="#id18" id="id46">괄호 및 괄호 내 공백</a></p></li>
+<li><p><a class="reference internal" href="#id19" id="id47">지역화 텍스트</a></p></li>
+<li><p><a class="reference internal" href="#id20" id="id48">프라이빗 메소드 및 변수</a></p></li>
+<li><p><a class="reference internal" href="#id21" id="id49">PHP 에러</a></p></li>
+<li><p><a class="reference internal" href="#id22" id="id50">짧은 여는 태그</a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id51">줄당 하나의 구문</a></p></li>
+<li><p><a class="reference internal" href="#id24" id="id52">문자열</a></p></li>
+<li><p><a class="reference internal" href="#sql" id="id53">SQL 쿼리</a></p></li>
+<li><p><a class="reference internal" href="#id25" id="id54">기본 함수 인수</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="id1">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">파일 형식</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>파일은 유니코드(UTF-8) 인코딩으로 저장해야 합니다. BOM은 사용하지 <em>않아야</em> 합니다.
+UTF-16 및 UTF-32와 달리 UTF-8 인코딩 파일에서는 바이트 순서를 나타낼 필요가 없으며,
+BOM은 PHP에서 출력을 전송하는 부정적인 부작용을 일으켜 애플리케이션이 자체 헤더를
+설정할 수 없게 할 수 있습니다. Unix 줄 바꿈(LF)을 사용해야 합니다.</p>
+<p>다음은 일반적인 텍스트 편집기 중 일부에서 이러한 설정을 적용하는 방법입니다.
+텍스트 편집기에 대한 지침은 다를 수 있습니다. 텍스트 편집기의 문서를 확인하세요.</p>
+<section id="textmate">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">TextMate</a><a class="headerlink" href="#textmate" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>애플리케이션 환경 설정 열기</p></li>
+<li><p>고급을 클릭한 다음 “저장” 탭 클릭</p></li>
+<li><p>“파일 인코딩”에서 “UTF-8 (권장)” 선택</p></li>
+<li><p>“줄 끝”에서 “LF (권장)” 선택</p></li>
+<li><p><em>선택 사항:</em> 열려있는 파일의 줄 끝을 새 기본 설정으로 수정하려면 “기존 파일에도 사용”을 선택하세요.</p></li>
+</ol>
+</section>
+<section id="bbedit">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">BBEdit</a><a class="headerlink" href="#bbedit" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>애플리케이션 환경 설정 열기</p></li>
+<li><p>왼쪽에서 “텍스트 인코딩” 선택</p></li>
+<li><p>“새 문서의 기본 텍스트 인코딩”에서 “유니코드 (UTF-8, BOM 없음)” 선택</p></li>
+<li><p><em>선택 사항:</em> “파일 인코딩을 추측할 수 없는 경우 다음 사용”에서 “유니코드 (UTF-8, BOM 없음)” 선택</p></li>
+<li><p>왼쪽에서 “텍스트 파일” 선택</p></li>
+<li><p>“기본 줄 바꿈”에서 “Mac OS X and Unix (LF)” 선택</p></li>
+</ol>
+</section>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">PHP 닫기 태그</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>PHP 문서의 PHP 닫기 태그 <strong>?&gt;</strong>는 PHP 파서에게 선택 사항입니다. 하지만 사용하는 경우
+닫기 태그 뒤에 오는 공백(개발자, 사용자, FTP 애플리케이션이 추가한 것)이 원하지 않는
+출력, PHP 에러를 일으키거나, 후자가 억제되면 빈 페이지가 될 수 있습니다. 이 때문에
+모든 PHP 파일은 PHP 닫기 태그를 <em>반드시 생략하고</em> 대신 단일 빈 줄로 끝내야 합니다.</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id31" role="doc-backlink">파일 이름 지정</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>클래스 파일은 Ucfirst 방식으로 이름을 지정해야 하며, 다른 파일 이름(설정, 뷰, 일반
+스크립트 등)은 모두 소문자여야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">somelibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">someLibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">SOMELIBRARY</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Some_Library</span><span class="o">.</span><span class="nx">php</span>
+
+<span class="nx">Application_config</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Application_Config</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">applicationConfig</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">Somelibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Some_library</span><span class="o">.</span><span class="nx">php</span>
+
+<span class="nx">applicationconfig</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">application_config</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p>또한 클래스 파일 이름은 클래스 이름과 일치해야 합니다. 예를 들어 <cite>Myclass</cite>라는
+클래스가 있다면 파일 이름은 <strong>Myclass.php</strong>이어야 합니다.</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id32" role="doc-backlink">클래스 및 메소드 이름 지정</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>클래스 이름은 항상 대문자로 시작해야 합니다. 여러 단어는 밑줄로 구분해야 하며
+CamelCase를 사용하지 않습니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">superclass</span>
+<span class="k">class</span> <span class="nc">SuperClass</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Super_class</span>
+</pre></div>
+</div>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Super_class</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>클래스 메소드는 완전히 소문자이어야 하며 기능을 명확하게 나타내는 이름을 가져야
+하며, 가능하면 동사를 포함하는 것이 좋습니다. 지나치게 길고 장황한 이름은 피하세요.
+여러 단어는 밑줄로 구분해야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">fileproperties</span><span class="p">()</span>               <span class="c1">// 설명적이지 않고 밑줄 구분자가 필요합니다</span>
+<span class="k">function</span> <span class="nf">fileProperties</span><span class="p">()</span>               <span class="c1">// 설명적이지 않고 CamelCase를 사용합니다</span>
+<span class="k">function</span> <span class="nf">getfileproperties</span><span class="p">()</span>            <span class="c1">// 더 좋습니다! 하지만 밑줄 구분자가 없습니다</span>
+<span class="k">function</span> <span class="nf">getFileProperties</span><span class="p">()</span>            <span class="c1">// CamelCase를 사용합니다</span>
+<span class="k">function</span> <span class="nf">get_the_file_properties_from_the_file</span><span class="p">()</span>        <span class="c1">// 너무 깁니다</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">get_file_properties</span><span class="p">()</span>  <span class="c1">// 설명적이고, 밑줄 구분자가 있으며, 모두 소문자입니다</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">변수 이름</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>변수 이름 지정 지침은 클래스 메소드에 사용되는 것과 매우 유사합니다. 변수는 소문자만
+포함하고, 밑줄 구분자를 사용하며, 목적과 내용을 나타내는 합리적인 이름을 가져야
+합니다. 매우 짧은 단어가 아닌 변수는 for() 루프의 반복자로만 사용해야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$j</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>             <span class="c1">// 단일 문자 변수는 for() 루프에서만 사용해야 합니다</span>
+<span class="nv">$Str</span>                    <span class="c1">// 대문자를 포함합니다</span>
+<span class="nv">$bufferedText</span>           <span class="c1">// CamelCasing을 사용하며, 의미를 잃지 않고 줄일 수 있습니다</span>
+<span class="nv">$groupid</span>                <span class="c1">// 여러 단어, 밑줄 구분자가 필요합니다</span>
+<span class="nv">$name_of_last_city_used</span> <span class="c1">// 너무 깁니다</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+<span class="nv">$str</span>
+<span class="nv">$buffer</span>
+<span class="nv">$group_id</span>
+<span class="nv">$last_city</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">주석</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>일반적으로 코드는 풍부하게 주석 처리해야 합니다. 이것은 경험이 적은 프로그래머를
+위해 코드의 흐름과 의도를 설명하는 데 도움이 될 뿐만 아니라 수개월 후 자신의 코드로
+돌아올 때 매우 귀중할 수 있습니다. 주석에 대한 필수 형식은 없지만 다음을 권장합니다.</p>
+<p><a class="reference external" href="https://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock">DocBlock</a>
+스타일 주석은 IDE에서 수집할 수 있도록 클래스, 메소드, 프로퍼티 선언 앞에 옵니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Super Class</span>
+<span class="sd"> *</span>
+<span class="sd"> * @package     Package Name</span>
+<span class="sd"> * @subpackage  Subpackage</span>
+<span class="sd"> * @category    Category</span>
+<span class="sd"> * @author      Author Name</span>
+<span class="sd"> * @link        http://example.com</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Super_class</span> <span class="p">{</span>
+</pre></div>
+</div>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Encodes string for use in XML</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param       string  $str    Input string</span>
+<span class="sd"> * @return      string</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">xml_encode</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Data for class manipulation</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var array</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>코드 내에서 단일 행 주석을 사용하고, 큰 주석 블록과 코드 사이에 빈 줄을 남기세요.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// 문자열을 줄 바꿈으로 분리합니다</span>
+<span class="nv">$parts</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+
+<span class="c1">// 발생하는 것과 이유에 대해 더 많은 세부 사항을 제공해야 하는 긴 주석은</span>
+<span class="c1">// 여러 단일 행 주석을 사용할 수 있습니다. 너비를 합리적으로 유지하려고</span>
+<span class="c1">// 하세요, 약 70자가 읽기 가장 쉽습니다. 더 많은 세부 사항을 제공할 수 있는</span>
+<span class="c1">// 영구적인 외부 리소스에 링크하는 것을 주저하지 마세요:</span>
+<span class="c1">//</span>
+<span class="c1">// http://example.com/information_about_something/in_particular/</span>
+
+<span class="nv">$parts</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span><span class="p">(</span><span class="nv">$parts</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id35" role="doc-backlink">상수</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<p>상수는 변수와 동일한 지침을 따르지만 상수는 항상 완전히 대문자여야 합니다.
+<em>적절한 경우 항상 CodeIgniter 상수를 사용하세요. 예: SLASH, LD, RD, PATH_CACHE 등.</em></p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">myConstant</span>      <span class="c1">// 밑줄 구분자가 없고 완전히 대문자가 아닙니다</span>
+<span class="nx">N</span>               <span class="c1">// 단일 문자 상수 없음</span>
+<span class="nx">S_C_VER</span>         <span class="c1">// 설명적이지 않습니다</span>
+<span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s1">&#39;{foo}&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>       <span class="c1">// LD와 RD 상수를 사용해야 합니다</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">MY_CONSTANT</span>
+<span class="nx">NEWLINE</span>
+<span class="nx">SUPER_CLASS_VERSION</span>
+<span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nx">LD</span><span class="o">.</span><span class="s1">&#39;foo&#39;</span><span class="o">.</span><span class="nx">RD</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="true-false-null">
+<h2><a class="toc-backref" href="#id36" role="doc-backlink">TRUE, FALSE, NULL</a><a class="headerlink" href="#true-false-null" title="Link to this heading">¶</a></h2>
+<p><strong>TRUE</strong>, <strong>FALSE</strong>, <strong>NULL</strong> 키워드는 항상 완전히 대문자여야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="k">true</span><span class="p">)</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">;</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id37" role="doc-backlink">논리 연산자</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<p>일부 출력 장치에서 명확하지 않을 수 있으므로(예: 숫자 11처럼 보임) <code class="docutils literal notranslate"><span class="pre">||</span></code> “or” 비교
+연산자 사용은 권장하지 않습니다. <code class="docutils literal notranslate"><span class="pre">AND</span></code>보다 <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>가 선호되지만 둘 다 허용되며,
+<code class="docutils literal notranslate"><span class="pre">!</span></code> 앞뒤에는 항상 공백이 있어야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">||</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="k">AND</span> <span class="nv">$bar</span><span class="p">)</span>  <span class="c1">// 괜찮지만 일반적인 구문 강조 애플리케이션에는 권장하지 않음</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$foo</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$foo</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="k">OR</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">&amp;&amp;</span> <span class="nv">$bar</span><span class="p">)</span> <span class="c1">// 권장</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$foo</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$foo</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id38" role="doc-backlink">반환 값 비교 및 형 변환</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<p>일부 PHP 함수는 실패 시 FALSE를 반환하지만 느슨한 비교에서 FALSE로 평가되는 “”
+또는 0의 유효한 반환 값을 가질 수도 있습니다. 반환 값이 기대하는 것이 맞고 동등한
+느슨한 형 평가 값이 아닌지 확인하기 위해 조건문에서 이러한 반환 값을 사용할 때
+변수 형을 명시적으로 비교하세요.</p>
+<p>자신의 변수를 반환하고 확인할 때도 동일한 엄격함을 사용하세요. 필요에 따라
+<strong>===</strong>와 <strong>!==</strong>을 사용하세요.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// &#39;foo&#39;가 문자열 시작 부분에 있으면 strpos는 0을 반환하여</span>
+<span class="c1">// 이 조건문이 TRUE로 평가됩니다</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">build_string</span><span class="p">(</span><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="c1">// 이런! FALSE나 정수 0이 인수로 전달되면 어떻게 됩니까?</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">build_string</span><span class="p">(</span><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>꽤 유용할 수 있는 <a class="reference external" href="https://secure.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">형 변환</a>에
+관한 정보도 참조하세요. 형 변환은 약간 다른 효과가 있어 유용할 수 있습니다. 예를 들어
+변수를 문자열로 형 변환할 때 NULL과 불리언 FALSE 변수는 빈 문자열이 되고, 0(및 다른
+숫자)은 숫자 문자열이 되며, 불리언 TRUE는 “1”이 됩니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$str</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$str</span><span class="p">;</span> <span class="c1">// $str을 문자열로 형 변환</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id39" role="doc-backlink">디버깅 코드</a><a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<p>주석 처리된 경우에도 제출물에 디버깅 코드를 남기지 마세요. <code class="docutils literal notranslate"><span class="pre">var_dump()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">print_r()</span></code>, <code class="docutils literal notranslate"><span class="pre">die()</span></code>/<code class="docutils literal notranslate"><span class="pre">exit()</span></code>와 같은 것은 디버깅 이외의 특정 목적이 아닌 한
+코드에 포함해서는 안 됩니다.</p>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id40" role="doc-backlink">파일의 공백</a><a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
+<p>PHP 여는 태그 앞이나 PHP 닫기 태그 뒤에 공백이 있으면 안 됩니다. 출력이 버퍼링되므로
+파일의 공백은 CodeIgniter가 콘텐츠를 출력하기 전에 출력이 시작되어 에러 및 CodeIgniter가
+적절한 헤더를 보낼 수 없게 만들 수 있습니다.</p>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id41" role="doc-backlink">호환성</a><a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
+<p>CodeIgniter는 PHP 5.6 이상을 권장하지만 PHP 5.4.8과 호환되어야 합니다. 코드는 이
+요구 사항과 호환되거나, 적절한 폴백을 제공하거나, 사용자 애플리케이션에 영향을 주지
+않고 조용히 종료되는 선택적 기능이어야 합니다.</p>
+<p>또한 함수를 사용할 수 없을 때 대안적인 방법을 포함하지 않는 한 기본이 아닌 라이브러리가
+설치되어야 하는 PHP 함수를 사용하지 마세요.</p>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id42" role="doc-backlink">클래스당 하나의 파일</a><a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<p><em>밀접하게 관련된</em> 경우를 제외하고 각 클래스에 별도의 파일을 사용하세요. 여러 클래스를
+포함하는 CodeIgniter 파일의 예는 Xmlrpc 라이브러리 파일입니다.</p>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id43" role="doc-backlink">공백</a><a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
+<p>공백이 아닌 탭을 코드의 공백으로 사용하세요. 이것은 사소한 것처럼 보일 수 있지만
+공백 대신 탭을 사용하면 코드를 보는 개발자가 자신이 사용하는 애플리케이션에서
+선호하고 커스터마이즈할 수 있는 수준의 들여쓰기를 가질 수 있습니다. 그리고 부수적인
+이점으로 4개의 공백 문자 대신 탭 문자 하나를 저장하므로 (약간) 더 작은 파일이 됩니다.</p>
+</section>
+<section id="id16">
+<h2><a class="toc-backref" href="#id44" role="doc-backlink">줄 바꿈</a><a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
+<p>파일은 Unix 줄 바꿈으로 저장해야 합니다. 이것은 Windows에서 작업하는 개발자에게
+더 문제가 되지만 어쨌든 텍스트 편집기가 Unix 줄 바꿈으로 파일을 저장하도록 설정되어
+있는지 확인하세요.</p>
+</section>
+<section id="id17">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">코드 들여쓰기</a><a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
+<p>Allman 스타일 들여쓰기를 사용하세요. 클래스 선언을 제외하고 중괄호는 항상 자체
+줄에 배치되며, 그것을 “소유하는” 제어 구문과 동일한 수준으로 들여쓰기됩니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="nv">$bar</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                <span class="c1">// ...</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="c1">// ...</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">try</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">()</span>
+<span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h2><a class="toc-backref" href="#id46" role="doc-backlink">괄호 및 괄호 내 공백</a><a class="headerlink" href="#id18" title="Link to this heading">¶</a></h2>
+<p>일반적으로 괄호와 대괄호에는 추가 공백을 사용하지 않아야 합니다. 예외는 인수가 있는
+괄호를 허용하는 PHP 제어 구조(declare, do-while, elseif, for, foreach, if, switch,
+while)와 함수를 구분하고 가독성을 높이는 데 도움이 되도록 항상 공백이 따라와야
+한다는 것입니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$arr</span><span class="p">[</span> <span class="nv">$foo</span> <span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$arr</span><span class="p">[</span><span class="nv">$foo</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span> <span class="c1">// 배열 키 주변에 공백 없음</span>
+</pre></div>
+</div>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">foo</span> <span class="p">(</span> <span class="nv">$bar</span> <span class="p">)</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span> <span class="c1">// 함수 선언의 괄호 주변에 공백 없음</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">foreach</span><span class="p">(</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="c1">// PHP 제어 구조 뒤에 단일 공백, 내부 괄호에는 없음</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h2><a class="toc-backref" href="#id47" role="doc-backlink">지역화 텍스트</a><a class="headerlink" href="#id19" title="Link to this heading">¶</a></h2>
+<p>CodeIgniter 라이브러리는 가능하면 해당 언어 파일을 활용해야 합니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="s2">&quot;Invalid Selection&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;invalid_selection&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h2><a class="toc-backref" href="#id48" role="doc-backlink">프라이빗 메소드 및 변수</a><a class="headerlink" href="#id20" title="Link to this heading">¶</a></h2>
+<p>코드 추상화를 위해 공개 메소드가 사용하는 유틸리티 및 헬퍼 함수와 같이 내부적으로만
+접근되는 메소드와 변수에는 밑줄 접두사를 붙여야 합니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">convert_text</span><span class="p">()</span>
+<span class="k">private</span> <span class="k">function</span> <span class="nf">_convert_text</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h2><a class="toc-backref" href="#id49" role="doc-backlink">PHP 에러</a><a class="headerlink" href="#id21" title="Link to this heading">¶</a></h2>
+<p>코드는 에러 없이 실행되어야 하며 이 요구 사항을 충족하기 위해 경고와 알림이 숨겨지는
+것에 의존해서는 안 됩니다. 예를 들어 자신이 설정하지 않은 변수(예: <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> 배열 키)에
+먼저 <code class="docutils literal notranslate"><span class="pre">isset()</span></code>로 확인하지 않고 접근하지 마세요.</p>
+<p>모든 사용자에 대해 에러 보고가 활성화된 개발 환경을 사용하고 PHP 환경에서
+display_errors가 활성화되어 있는지 확인하세요. 이 설정을 다음으로 확인할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nb">ini_get</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">exit</span> <span class="s2">&quot;Enabled&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>display_errors</em>가 비활성화된 일부 서버에서 php.ini에서 이를 변경할 수 없는 경우
+종종 다음으로 활성화할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>런타임에 <code class="docutils literal notranslate"><span class="pre">ini_set()</span></code>으로 <a class="reference external" href="https://secure.php.net/manual/en/errorfunc.configuration.php#ini.display-errors">display_errors</a>
+설정을 지정하는 것은 PHP 환경에서 활성화된 것과 동일하지 않습니다. 즉, 스크립트에
+치명적인 에러가 있는 경우 아무런 효과가 없습니다.</p>
+</div>
+</section>
+<section id="id22">
+<h2><a class="toc-backref" href="#id50" role="doc-backlink">짧은 여는 태그</a><a class="headerlink" href="#id22" title="Link to this heading">¶</a></h2>
+<p>서버에 <em>short_open_tag</em>가 활성화되어 있지 않을 수 있으므로 항상 전체 PHP 여는 태그를
+사용하세요.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span> <span class="k">echo</span> <span class="nv">$foo</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?</span><span class="o">=</span><span class="nv">$foo</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$foo</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>PHP 5.4에서는 항상 <strong>&lt;?=</strong> 태그를 사용할 수 있습니다.</p>
+</div>
+</section>
+<section id="id23">
+<h2><a class="toc-backref" href="#id51" role="doc-backlink">줄당 하나의 구문</a><a class="headerlink" href="#id23" title="Link to this heading">¶</a></h2>
+<p>여러 구문을 한 줄에 결합하지 마세요.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;this&#39;</span><span class="p">;</span> <span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;that&#39;</span><span class="p">;</span> <span class="nv">$bat</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$bag</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;this&#39;</span><span class="p">;</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;that&#39;</span><span class="p">;</span>
+<span class="nv">$bat</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$bag</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h2><a class="toc-backref" href="#id52" role="doc-backlink">문자열</a><a class="headerlink" href="#id24" title="Link to this heading">¶</a></h2>
+<p>변수를 파싱해야 하는 경우를 제외하고 항상 작은따옴표 문자열을 사용하세요. 변수를
+파싱해야 하는 경우 욕심 많은 토큰 파싱을 방지하기 위해 중괄호를 사용하세요. 이스케이프
+문자를 사용하지 않아도 되도록 문자열에 작은따옴표가 포함된 경우 큰따옴표 문자열을
+사용할 수도 있습니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;My String&quot;</span>                                     <span class="c1">// 변수 파싱 없음, 큰따옴표 사용 불필요</span>
+<span class="s2">&quot;My string </span><span class="si">$foo</span><span class="s2">&quot;</span>                                <span class="c1">// 중괄호가 필요합니다</span>
+<span class="s1">&#39;SELECT foo FROM bar WHERE baz = \&#39;bag\&#39;&#39;</span>       <span class="c1">// 보기 안 좋음</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;My String&#39;</span>
+<span class="s2">&quot;My string </span><span class="si">{</span><span class="nv">$foo</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">&quot;SELECT foo FROM bar WHERE baz = &#39;bag&#39;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="sql">
+<h2><a class="toc-backref" href="#id53" role="doc-backlink">SQL 쿼리</a><a class="headerlink" href="#sql" title="Link to this heading">¶</a></h2>
+<p>SQL 키워드는 항상 대문자로 작성합니다: SELECT, INSERT, UPDATE, WHERE, AS, JOIN, ON,
+IN 등.</p>
+<p>가독성을 위해 긴 쿼리를 여러 줄로 나누세요. 각 절에서 나누는 것이 좋습니다.</p>
+<p><strong>잘못된 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// 키워드가 소문자이고 쿼리가 한 줄에 너무 깁니다</span>
+<span class="c1">// (... 는 행의 연속을 나타냄)</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;select foo, bar, baz, foofoo, foobar as raboof, foobaz from exp_pre_email_addresses</span>
+<span class="s2">...where foo != &#39;oof&#39; and baz != &#39;zab&#39; order by foobaz limit 5, 100&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>올바른 예</strong>:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT foo, bar, baz, foofoo, foobar AS raboof, foobaz</span>
+<span class="s2">                                FROM exp_pre_email_addresses</span>
+<span class="s2">                                WHERE foo != &#39;oof&#39;</span>
+<span class="s2">                                AND baz != &#39;zab&#39;</span>
+<span class="s2">                                ORDER BY foobaz</span>
+<span class="s2">                                LIMIT 5, 100&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h2><a class="toc-backref" href="#id54" role="doc-backlink">기본 함수 인수</a><a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
+<p>적절한 경우 함수 인수 기본값을 제공하면 실수로 함수를 호출할 때 PHP 에러를 방지하고
+몇 줄의 코드를 절약할 수 있는 공통 폴백 값을 제공하는 데 도움이 됩니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$baz</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../libraries/index.html" class="btn btn-neutral float-right" title="라이브러리">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="security.html" class="btn btn-neutral" title="보안"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

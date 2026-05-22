@@ -1,0 +1,1432 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Form 헬퍼 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="헬퍼" href="index.html"/>
+        <link rel="next" title="HTML 헬퍼" href="html_helper.html"/>
+        <link rel="prev" title="파일 헬퍼" href="file_helper.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">헬퍼</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">헬퍼</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">헬퍼</a> &raquo;</li>
+      
+    <li>Form 헬퍼</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="form">
+<h1>Form 헬퍼<a class="headerlink" href="#form" title="Link to this heading">¶</a></h1>
+<p>Form 헬퍼 파일에는 폼 작업을 도와주는 함수가 포함되어 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id2" id="id5">헬퍼 로드</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">필드 값 이스케이프</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id7">사용 가능한 함수</a></p></li>
+</ul>
+</nav>
+<div class="custom-index container"></div><section id="id2">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">헬퍼 로드</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>이 헬퍼는 다음 코드를 사용하여 로드합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">필드 값 이스케이프</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>폼 요소 내에서 HTML 및 따옴표와 같은 문자를 사용해야 할 수도 있습니다. 이를 안전하게
+처리하려면 <a class="reference internal" href="../general/common_functions.html"><span class="doc">공통 함수</span></a>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">html_escape()</span></code>를 사용해야 합니다.</p>
+<p>다음 예시를 고려하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="s1">&#39;Here is a string containing &quot;quoted&quot; text.&#39;</span><span class="p">;</span>
+
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;myfield&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo </span><span class="si">$string</span><span class="s2">; ?&gt;&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>위 문자열에는 따옴표가 포함되어 있어 폼이 깨질 수 있습니다.
+<a class="reference internal" href="../general/common_functions.html#html_escape" title="html_escape"><code class="xref php php-func docutils literal notranslate"><span class="pre">html_escape()</span></code></a> 함수는 HTML 특수 문자를 변환하여 안전하게 사용할 수
+있도록 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;myfield&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo html_escape(</span><span class="si">$string</span><span class="s2">); ?&gt;&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 페이지에 나열된 Form 헬퍼 함수를 사용하면 폼 값이 자동으로 이스케이프
+되므로 이 함수를 호출할 필요가 없습니다. 직접 폼 요소를 생성하는 경우에만
+사용하세요.</p>
+</div>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">사용 가능한 함수</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>사용 가능한 함수는 다음과 같습니다:</p>
+<dl class="php function">
+<dt class="sig sig-object php" id="form_open">
+<span class="sig-name descname"><span class="pre">form_open</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$action</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$hidden</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_open" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$action</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 폼 액션/타겟 URI 문자열</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+<li><p><strong>$hidden</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 숨겨진 필드 정의 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 폼 여는 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p><strong>설정 환경 설정에서 구성된 기본 URL</strong>로 폼 여는 태그를 생성합니다.
+선택적으로 폼 속성과 숨겨진 입력 필드를 추가할 수 있으며, 항상 설정
+파일의 문자셋 값을 기반으로 <cite>accept-charset</cite> 속성을 추가합니다.</p>
+<p>직접 HTML을 하드코딩하는 것보다 이 태그를 사용하는 주요 장점은 URL이
+변경되더라도 사이트 이식성이 높아진다는 점입니다.</p>
+<p>간단한 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;email/send&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 예시는 기본 URL에 “email/send” URI 세그먼트를 추가한 폼을 생성합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="nx">accept</span><span class="o">-</span><span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://example.com/index.php/email/send&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>속성 추가</strong></p>
+<blockquote>
+<div><p>두 번째 매개변수에 연관 배열을 전달하여 속성을 추가할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$attributes</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;email/send&#39;</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 두 번째 매개변수를 문자열로 지정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;email/send&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;email&quot; id=&quot;myform&quot;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 예시는 다음과 유사한 폼을 생성합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="nx">accept</span><span class="o">-</span><span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://example.com/index.php/email/send&quot;</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;email&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;myform&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>숨겨진 입력 필드 추가</strong></p>
+<blockquote>
+<div><p>세 번째 매개변수에 연관 배열을 전달하여 숨겨진 필드를 추가할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$hidden</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;member_id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;234&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;email/send&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$hidden</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>두 번째 매개변수에 거짓 값을 전달하여 건너뛸 수 있습니다.</p>
+<p>위 예시는 다음과 유사한 폼을 생성합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="nx">accept</span><span class="o">-</span><span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://example.com/index.php/email/send&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Joe&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;member_id&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;234&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_open_multipart">
+<span class="sig-name descname"><span class="pre">form_open_multipart</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$action</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$hidden</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_open_multipart" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$action</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 폼 액션/타겟 URI 문자열</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+<li><p><strong>$hidden</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 숨겨진 필드 정의 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 멀티파트 폼 여는 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>이 함수는 위의 <a class="reference internal" href="#form_open" title="form_open"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_open()</span></code></a> 함수와 동일하지만,
+파일 업로드에 필요한 <em>multipart</em> 속성을 추가합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_hidden">
+<span class="sig-name descname"><span class="pre">form_hidden</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_hidden" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 숨겨진 입력 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>숨겨진 입력 필드를 생성할 수 있습니다. 이름/값 문자열을 전달하여 하나의
+필드를 생성할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">form_hidden</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">);</span>
+<span class="c1">// Would produce: &lt;input type=&quot;hidden&quot; name=&quot;username&quot; value=&quot;johndoe&quot; /&gt;</span>
+</pre></div>
+</div>
+<p>… 또는 연관 배열을 전달하여 여러 필드를 생성할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;john@example.com&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;http://example.com&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_hidden</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;John Doe&quot; /&gt;</span>
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;john@example.com&quot; /&gt;</span>
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;url&quot; value=&quot;http://example.com&quot; /&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>값 필드에 연관 배열을 전달할 수도 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;john@example.com&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;http://example.com&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_hidden</span><span class="p">(</span><span class="s1">&#39;my_array&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;my_array[name]&quot; value=&quot;John Doe&quot; /&gt;</span>
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;my_array[email]&quot; value=&quot;john@example.com&quot; /&gt;</span>
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;my_array[url]&quot; value=&quot;http://example.com&quot; /&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>추가 속성이 있는 숨겨진 입력 필드를 생성하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;type&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;hiddenemail&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;john@example.com&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;hiddenemail&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_input</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+
+<span class="cm">        &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;john@example.com&quot; id=&quot;hiddenemail&quot; class=&quot;hiddenemail&quot; /&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_input">
+<span class="sig-name descname"><span class="pre">form_input</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_input" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 텍스트 입력 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 텍스트 입력 필드를 생성할 수 있습니다. 첫 번째와 두 번째 매개변수에
+필드 이름과 값을 최소한으로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_input</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 폼에 포함할 데이터를 담은 연관 배열을 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;name&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span>            <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;maxlength&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;size&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;50&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;width:50%&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_input</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+
+<span class="cm">        &lt;input type=&quot;text&quot; name=&quot;username&quot; value=&quot;johndoe&quot; id=&quot;username&quot; maxlength=&quot;100&quot; size=&quot;50&quot; style=&quot;width:50%&quot;  /&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>JavaScript와 같은 추가 데이터를 포함하려면 세 번째 매개변수에 문자열로
+전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="s1">&#39;onClick=&quot;some_function()&quot;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_input</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 배열로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;onClick&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;some_function();&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_input</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_password">
+<span class="sig-name descname"><span class="pre">form_password</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_password" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 비밀번호 입력 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>이 함수는 “password” 입력 타입을 사용한다는 점을 제외하면 위의
+<a class="reference internal" href="#form_input" title="form_input"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_input()</span></code></a> 함수와 동일합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_upload">
+<span class="sig-name descname"><span class="pre">form_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">[$data</span> <span class="pre">=</span> <span class="pre">'',</span> <span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">'']]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#form_upload" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 파일 업로드 입력 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>이 함수는 “file” 입력 타입을 사용하여 파일 업로드에 사용할 수 있다는
+점을 제외하면 위의 <a class="reference internal" href="#form_input" title="form_input"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_input()</span></code></a> 함수와 동일합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_textarea">
+<span class="sig-name descname"><span class="pre">form_textarea</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_textarea" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML textarea 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>이 함수는 “textarea” 타입을 생성한다는 점을 제외하면 위의
+<a class="reference internal" href="#form_input" title="form_input"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_input()</span></code></a> 함수와 동일합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>위 예시의 <em>maxlength</em> 및 <em>size</em> 속성 대신 <em>rows</em> 및 <em>cols</em>를
+지정합니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_dropdown">
+<span class="sig-name descname"><span class="pre">form_dropdown</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$name</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$selected</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_dropdown" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 나열할 옵션의 연관 배열</p></li>
+<li><p><strong>$selected</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – <em>selected</em> 속성으로 표시할 필드 목록</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 드롭다운 선택 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 드롭다운 필드를 생성할 수 있습니다. 첫 번째 매개변수에 필드 이름,
+두 번째 매개변수에 옵션의 연관 배열, 세 번째 매개변수에 선택할 값을
+전달합니다. 세 번째 매개변수에 여러 항목의 배열을 전달하면 CodeIgniter가
+다중 선택을 생성합니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$options</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;small&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Small Shirt&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;med&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;Medium Shirt&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;large&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Large Shirt&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;xlarge&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;Extra Large Shirt&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$shirts_on_sale</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_dropdown</span><span class="p">(</span><span class="s1">&#39;shirts&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+
+<span class="cm">        &lt;select name=&quot;shirts&quot;&gt;</span>
+<span class="cm">                &lt;option value=&quot;small&quot;&gt;Small Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;med&quot;&gt;Medium  Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;large&quot; selected=&quot;selected&quot;&gt;Large Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;xlarge&quot;&gt;Extra Large Shirt&lt;/option&gt;</span>
+<span class="cm">        &lt;/select&gt;</span>
+<span class="cm">*/</span>
+
+<span class="k">echo</span> <span class="nx">form_dropdown</span><span class="p">(</span><span class="s1">&#39;shirts&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="nv">$shirts_on_sale</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce:</span>
+
+<span class="cm">        &lt;select name=&quot;shirts&quot; multiple=&quot;multiple&quot;&gt;</span>
+<span class="cm">                &lt;option value=&quot;small&quot; selected=&quot;selected&quot;&gt;Small Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;med&quot;&gt;Medium  Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;large&quot; selected=&quot;selected&quot;&gt;Large Shirt&lt;/option&gt;</span>
+<span class="cm">                &lt;option value=&quot;xlarge&quot;&gt;Extra Large Shirt&lt;/option&gt;</span>
+<span class="cm">        &lt;/select&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>여는 &lt;select&gt;에 id 속성이나 JavaScript와 같은 추가 데이터를 포함하려면
+네 번째 매개변수에 문자열로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="s1">&#39;id=&quot;shirts&quot; onChange=&quot;some_function();&quot;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_dropdown</span><span class="p">(</span><span class="s1">&#39;shirts&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 배열로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;shirts&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;onChange&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;some_function();&#39;</span>
+<span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_dropdown</span><span class="p">(</span><span class="s1">&#39;shirts&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$options</span></code>로 전달된 배열이 다차원 배열이면 <code class="docutils literal notranslate"><span class="pre">form_dropdown()</span></code>은
+배열 키를 레이블로 사용하여 &lt;optgroup&gt;을 생성합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_multiselect">
+<span class="sig-name descname"><span class="pre">form_multiselect</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$name</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$selected</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_multiselect" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 나열할 옵션의 연관 배열</p></li>
+<li><p><strong>$selected</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – <em>selected</em> 속성으로 표시할 필드 목록</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 드롭다운 다중 선택 필드 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 다중 선택 필드를 생성할 수 있습니다. 첫 번째 매개변수에 필드 이름,
+두 번째 매개변수에 옵션의 연관 배열, 세 번째 매개변수에 선택할 값 또는
+값들을 전달합니다.</p>
+<p>매개변수 사용법은 위의 <a class="reference internal" href="#form_dropdown" title="form_dropdown"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_dropdown()</span></code></a> 사용법과 동일하지만,
+필드 이름에 POST 배열 구문(예: foo[])을 사용해야 합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_fieldset">
+<span class="sig-name descname"><span class="pre">form_fieldset</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$legend_text</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_fieldset" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$legend_text</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – &lt;legend&gt; 태그에 넣을 텍스트</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – &lt;fieldset&gt; 태그에 설정할 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML fieldset 여는 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>fieldset/legend 필드를 생성할 수 있습니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_fieldset</span><span class="p">(</span><span class="s1">&#39;Address Information&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;fieldset content here&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_fieldset_close</span><span class="p">();</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Produces:</span>
+
+<span class="cm">                &lt;fieldset&gt;</span>
+<span class="cm">                        &lt;legend&gt;Address Information&lt;/legend&gt;</span>
+<span class="cm">                                &lt;p&gt;fieldset content here&lt;/p&gt;</span>
+<span class="cm">                &lt;/fieldset&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>다른 함수와 마찬가지로 두 번째 매개변수에 연관 배열을 전달하여 추가
+속성을 설정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$attributes</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;address_info&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;address_info&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_fieldset</span><span class="p">(</span><span class="s1">&#39;Address Information&#39;</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;fieldset content here&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_fieldset_close</span><span class="p">();</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Produces:</span>
+
+<span class="cm">        &lt;fieldset id=&quot;address_info&quot; class=&quot;address_info&quot;&gt;</span>
+<span class="cm">                &lt;legend&gt;Address Information&lt;/legend&gt;</span>
+<span class="cm">                &lt;p&gt;fieldset content here&lt;/p&gt;</span>
+<span class="cm">        &lt;/fieldset&gt;</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_fieldset_close">
+<span class="sig-name descname"><span class="pre">form_fieldset_close</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_fieldset_close" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 닫는 태그 뒤에 추가할 내용 (<em>그대로</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML fieldset 닫는 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>닫는 &lt;/fieldset&gt; 태그를 생성합니다. 이 함수를 사용하는 유일한 장점은
+태그 아래에 추가될 데이터를 전달할 수 있다는 것입니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="s1">&#39;&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_fieldset_close</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+<span class="c1">// Would produce: &lt;/fieldset&gt;&lt;/div&gt;&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_checkbox">
+<span class="sig-name descname"><span class="pre">form_checkbox</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$checked</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_checkbox" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+<li><p><strong>$checked</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 체크박스를 <em>checked</em> 상태로 표시할지 여부</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 체크박스 입력 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>체크박스 필드를 생성할 수 있습니다. 간단한 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_checkbox</span><span class="p">(</span><span class="s1">&#39;newsletter&#39;</span><span class="p">,</span> <span class="s1">&#39;accept&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="c1">// Would produce:  &lt;input type=&quot;checkbox&quot; name=&quot;newsletter&quot; value=&quot;accept&quot; checked=&quot;checked&quot; /&gt;</span>
+</pre></div>
+</div>
+<p>세 번째 매개변수는 박스를 체크할지 여부를 결정하는 불리언 TRUE/FALSE
+값을 포함합니다.</p>
+<p>이 헬퍼의 다른 폼 함수와 마찬가지로 속성 배열을 함수에 전달할 수도 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;name&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;newsletter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span>            <span class="o">=&gt;</span> <span class="s1">&#39;newsletter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;accept&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;checked&#39;</span>       <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;margin:10px&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_checkbox</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="c1">// Would produce: &lt;input type=&quot;checkbox&quot; name=&quot;newsletter&quot; id=&quot;newsletter&quot; value=&quot;accept&quot; checked=&quot;checked&quot; style=&quot;margin:10px&quot; /&gt;</span>
+</pre></div>
+</div>
+<p>다른 함수와 마찬가지로 태그에 JavaScript와 같은 추가 데이터를 포함하려면
+네 번째 매개변수에 문자열로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="s1">&#39;onClick=&quot;some_function()&quot;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_checkbox</span><span class="p">(</span><span class="s1">&#39;newsletter&#39;</span><span class="p">,</span> <span class="s1">&#39;accept&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 배열로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;onClick&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;some_function();&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nx">form_checkbox</span><span class="p">(</span><span class="s1">&#39;newsletter&#39;</span><span class="p">,</span> <span class="s1">&#39;accept&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_radio">
+<span class="sig-name descname"><span class="pre">form_radio</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$checked</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_radio" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 필드 속성 데이터</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 값</p></li>
+<li><p><strong>$checked</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 라디오 버튼을 <em>checked</em> 상태로 표시할지 여부</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 라디오 입력 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>이 함수는 “radio” 입력 타입을 사용한다는 점을 제외하면 위의
+<a class="reference internal" href="#form_checkbox" title="form_checkbox"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_checkbox()</span></code></a> 함수와 동일합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_label">
+<span class="sig-name descname"><span class="pre">form_label</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$label_text</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$id</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_label" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$label_text</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – &lt;label&gt; 태그에 넣을 텍스트</p></li>
+<li><p><strong>$id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 레이블을 만들 폼 요소의 ID</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 필드 레이블 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>&lt;label&gt;을 생성할 수 있습니다. 간단한 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_label</span><span class="p">(</span><span class="s1">&#39;What is your Name&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">);</span>
+<span class="c1">// Would produce:  &lt;label for=&quot;username&quot;&gt;What is your Name&lt;/label&gt;</span>
+</pre></div>
+</div>
+<p>다른 함수와 마찬가지로 세 번째 매개변수에 연관 배열을 전달하여 추가
+속성을 설정할 수 있습니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$attributes</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mycustomclass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;color: #000;&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_label</span><span class="p">(</span><span class="s1">&#39;What is your Name&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+<span class="c1">// Would produce:  &lt;label for=&quot;username&quot; class=&quot;mycustomclass&quot; style=&quot;color: #000;&quot;&gt;What is your Name&lt;/label&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_submit">
+<span class="sig-name descname"><span class="pre">form_submit</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_submit" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 값</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML input submit 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 제출 버튼을 생성할 수 있습니다. 간단한 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_submit</span><span class="p">(</span><span class="s1">&#39;mysubmit&#39;</span><span class="p">,</span> <span class="s1">&#39;Submit Post!&#39;</span><span class="p">);</span>
+<span class="c1">// Would produce:  &lt;input type=&quot;submit&quot; name=&quot;mysubmit&quot; value=&quot;Submit Post!&quot; /&gt;</span>
+</pre></div>
+</div>
+<p>다른 함수와 마찬가지로 첫 번째 매개변수에 연관 배열을 전달하여 속성을
+설정할 수 있습니다. 세 번째 매개변수를 사용하여 JavaScript와 같은 추가
+데이터를 추가할 수 있습니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_reset">
+<span class="sig-name descname"><span class="pre">form_reset</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_reset" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 값</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML input reset 버튼 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 초기화 버튼을 생성할 수 있습니다. 사용법은
+<code class="xref py py-func docutils literal notranslate"><span class="pre">form_submit()</span></code>과 동일합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_button">
+<span class="sig-name descname"><span class="pre">form_button</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$content</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_button" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 이름</p></li>
+<li><p><strong>$content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 버튼 레이블</p></li>
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 태그에 추가할 추가 속성 (배열 또는 리터럴 문자열)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 버튼 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>표준 버튼 요소를 생성할 수 있습니다. 첫 번째와 두 번째 매개변수에 버튼
+이름과 내용을 최소한으로 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_button</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;content&#39;</span><span class="p">);</span>
+<span class="c1">// Would produce: &lt;button name=&quot;name&quot; type=&quot;button&quot;&gt;Content&lt;/button&gt;</span>
+</pre></div>
+</div>
+<p>또는 폼에 포함할 데이터를 담은 연관 배열을 전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;name&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span>            <span class="o">=&gt;</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;reset&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;Reset&#39;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">form_button</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="c1">// Would produce: &lt;button name=&quot;button&quot; id=&quot;button&quot; value=&quot;true&quot; type=&quot;reset&quot;&gt;Reset&lt;/button&gt;</span>
+</pre></div>
+</div>
+<p>JavaScript와 같은 추가 데이터를 포함하려면 세 번째 매개변수에 문자열로
+전달할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$js</span> <span class="o">=</span> <span class="s1">&#39;onClick=&quot;some_function()&quot;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_button</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">,</span> <span class="s1">&#39;Click Me&#39;</span><span class="p">,</span> <span class="nv">$js</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_close">
+<span class="sig-name descname"><span class="pre">form_close</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$extra</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_close" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$extra</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 닫는 태그 뒤에 추가할 내용 (<em>그대로</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 폼 닫는 태그</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>닫는 &lt;/form&gt; 태그를 생성합니다. 이 함수를 사용하는 유일한 장점은
+태그 아래에 추가될 데이터를 전달할 수 있다는 것입니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$string</span> <span class="o">=</span> <span class="s1">&#39;&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">form_close</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+<span class="c1">// Would produce:  &lt;/form&gt; &lt;/div&gt;&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$default</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$html_escape</span> <span class="pre">=</span> <span class="pre">TRUE</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_value" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 기본값</p></li>
+<li><p><strong>$html_escape</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 값의 HTML 이스케이프를 끌지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>필드 값</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>입력 폼 또는 textarea의 값을 설정할 수 있습니다. 함수의 첫 번째 매개변수로
+필드 이름을 제공해야 합니다. 두 번째 (선택적) 매개변수는 폼의 기본값을
+설정할 수 있습니다. 세 번째 (선택적) 매개변수는 값의 HTML 이스케이프를
+끌 수 있으며, 예를 들어 <a class="reference internal" href="#form_input" title="form_input"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_input()</span></code></a>과 함께 사용하여
+이중 이스케이프를 피해야 하는 경우에 유용합니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo set_value(&#39;quantity&#39;, &#39;0&#39;); ?&gt;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>위 폼은 처음 로드될 때 “0”을 표시합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a class="reference internal" href="../libraries/form_validation.html"><span class="doc">폼 유효성 검사 라이브러리</span></a>를
+로드하고 이 헬퍼와 함께 사용하는 필드 이름에 대한 유효성 검사 규칙을
+설정한 경우, 호출이 <a class="reference internal" href="../libraries/form_validation.html"><span class="doc">폼 유효성 검사 라이브러리</span></a>의 <code class="docutils literal notranslate"><span class="pre">set_value()</span></code> 메서드로 전달됩니다.
+그렇지 않으면 이 함수는 <code class="docutils literal notranslate"><span class="pre">$_POST</span></code>에서 필드 값을 찾습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="set_select">
+<span class="sig-name descname"><span class="pre">set_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$default</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_select" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 확인할 값</p></li>
+<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 값이 기본값인지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘selected’ 속성 또는 빈 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>&lt;select&gt; 메뉴를 사용하는 경우 이 함수를 사용하면 선택된 메뉴 항목을
+표시할 수 있습니다.</p>
+<p>첫 번째 매개변수에는 선택 메뉴 이름, 두 번째 매개변수에는 각 항목의
+값, 세 번째 (선택적) 매개변수는 항목을 기본값으로 설정할 수 있습니다
+(불리언 TRUE/FALSE 사용).</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">select</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;myselect&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;one&quot;</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span>  <span class="nx">set_select</span><span class="p">(</span><span class="s1">&#39;myselect&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="cp">?&gt;</span> &gt;One<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;two&quot;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span>  <span class="nx">set_select</span><span class="p">(</span><span class="s1">&#39;myselect&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span> <span class="p">&gt;</span>Two<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;three&quot;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span>  <span class="nx">set_select</span><span class="p">(</span><span class="s1">&#39;myselect&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span> <span class="p">&gt;</span>Three<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="set_checkbox">
+<span class="sig-name descname"><span class="pre">set_checkbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$default</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_checkbox" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 확인할 값</p></li>
+<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 값이 기본값인지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘checked’ 속성 또는 빈 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>제출된 상태로 체크박스를 표시할 수 있습니다.</p>
+<p>첫 번째 매개변수에는 체크박스 이름, 두 번째 매개변수에는 값, 세 번째
+(선택적) 매개변수는 항목을 기본값으로 설정할 수 있습니다 (불리언
+TRUE/FALSE 사용).</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;mycheck&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">set_checkbox</span><span class="p">(</span><span class="s1">&#39;mycheck&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span> /&gt;
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mycheck&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_checkbox</span><span class="p">(</span><span class="s1">&#39;mycheck&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="set_radio">
+<span class="sig-name descname"><span class="pre">set_radio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$default</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#set_radio" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 확인할 값</p></li>
+<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 값이 기본값인지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>‘checked’ 속성 또는 빈 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>제출된 상태로 라디오 버튼을 표시할 수 있습니다. 이 함수는 위의
+<a class="reference internal" href="#set_checkbox" title="set_checkbox"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_checkbox()</span></code></a> 함수와 동일합니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;radio&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;myradio&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span>  <span class="nx">set_radio</span><span class="p">(</span><span class="s1">&#39;myradio&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="cp">?&gt;</span> /&gt;
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;myradio&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span>  <span class="nx">set_radio</span><span class="p">(</span><span class="s1">&#39;myradio&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>폼 유효성 검사 클래스를 사용하는 경우 <code class="docutils literal notranslate"><span class="pre">set_*()</span></code> 함수가 작동하려면
+필드에 빈 규칙이라도 항상 규칙을 지정해야 합니다. 폼 유효성 검사 객체가
+정의된 경우 <code class="docutils literal notranslate"><span class="pre">set_*()</span></code>의 제어가 일반 헬퍼 함수 대신 클래스의 메서드로
+넘어가기 때문입니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="form_error">
+<span class="sig-name descname"><span class="pre">form_error</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$field</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$prefix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$suffix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_error" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$prefix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 여는 태그</p></li>
+<li><p><strong>$suffix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 닫는 태그</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 형식의 폼 유효성 검사 오류 메시지</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>지정된 필드 이름과 관련된 <a class="reference internal" href="../libraries/form_validation.html"><span class="doc">폼 유효성 검사 라이브러리</span></a>의 유효성 검사 오류 메시지를 반환합니다.
+오류 메시지 주위에 감쌀 여는 태그와 닫는 태그를 선택적으로 지정할 수 있습니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// Assuming that the &#39;username&#39; field value was incorrect:</span>
+<span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;myfield&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
+
+<span class="c1">// Would produce: &lt;div class=&quot;error&quot;&gt;Error message associated with the &quot;username&quot; field.&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="validation_errors">
+<span class="sig-name descname"><span class="pre">validation_errors</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$prefix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$suffix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#validation_errors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$prefix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 여는 태그</p></li>
+<li><p><strong>$suffix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 닫는 태그</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 형식의 폼 유효성 검사 오류 메시지</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="#form_error" title="form_error"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_error()</span></code></a> 함수와 마찬가지로 <a class="reference internal" href="../libraries/form_validation.html"><span class="doc">폼 유효성 검사 라이브러리</span></a>에서 생성된 모든 유효성 검사 오류 메시지를
+각 메시지 주위에 선택적인 여는 태그와 닫는 태그와 함께 반환합니다.</p>
+<p>예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">(</span><span class="s1">&#39;&lt;span class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">        Would produce, e.g.:</span>
+
+<span class="cm">        &lt;span class=&quot;error&quot;&gt;The &quot;email&quot; field doesn&#39;t contain a valid e-mail address!&lt;/span&gt;</span>
+<span class="cm">        &lt;span class=&quot;error&quot;&gt;The &quot;password&quot; field doesn&#39;t match the &quot;repeat_password&quot; field!&lt;/span&gt;</span>
+
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="html_helper.html" class="btn btn-neutral float-right" title="HTML 헬퍼">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file_helper.html" class="btn btn-neutral" title="파일 헬퍼"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

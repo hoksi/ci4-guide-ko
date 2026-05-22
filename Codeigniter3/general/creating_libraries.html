@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>라이브러리 만들기 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="일반 주제" href="index.html"/>
+        <link rel="next" title="CodeIgniter 드라이버 사용" href="drivers.html"/>
+        <link rel="prev" title="CodeIgniter 라이브러리 사용" href="libraries.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">일반 주제</a> &raquo;</li>
+      
+    <li>라이브러리 만들기</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="id1">
+<h1>라이브러리 만들기<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>“라이브러리”라는 용어를 사용할 때 일반적으로 libraries 디렉터리에 있고 이 사용자 가이드의
+클래스 레퍼런스에 설명된 클래스를 말합니다. 하지만 여기서는 로컬 리소스와 전역 프레임워크
+리소스를 분리하기 위해 application/libraries 디렉터리 내에 자신만의 라이브러리를 만드는
+방법을 설명합니다.</p>
+<p>추가 보너스로 CodeIgniter는 기존 라이브러리에 일부 기능만 추가해야 하는 경우 기본 클래스를
+확장할 수 있습니다. 또는 <em>application/libraries</em> 디렉터리에 동일한 이름의 버전을 배치하여
+기본 라이브러리를 교체할 수도 있습니다.</p>
+<p>요약하면:</p>
+<ul class="simple">
+<li><p>완전히 새로운 라이브러리를 만들 수 있습니다.</p></li>
+<li><p>기본 라이브러리를 확장할 수 있습니다.</p></li>
+<li><p>기본 라이브러리를 교체할 수 있습니다.</p></li>
+</ul>
+<p>아래 페이지에서 이 세 가지 개념을 자세히 설명합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>데이터베이스 클래스는 자신만의 클래스로 확장하거나 교체할 수 없습니다.
+다른 모든 클래스는 교체/확장이 가능합니다.</p>
+</div>
+<section id="id2">
+<h2>저장소<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>라이브러리 클래스는 <em>application/libraries</em> 디렉터리에 저장해야 합니다. CodeIgniter가
+초기화될 때 이 디렉터리에서 찾습니다.</p>
+</section>
+<section id="id3">
+<h2>명명 규칙<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>파일 이름은 대문자로 시작해야 합니다. 예: Myclass.php</p></li>
+<li><p>클래스 선언은 대문자로 시작해야 합니다. 예: class Myclass</p></li>
+<li><p>클래스 이름과 파일 이름은 일치해야 합니다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>클래스 파일<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>클래스는 다음과 같은 기본 프로토타입을 가져야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nb">defined</span><span class="p">(</span><span class="s1">&#39;BASEPATH&#39;</span><span class="p">)</span> <span class="k">OR</span> <span class="k">exit</span><span class="p">(</span><span class="s1">&#39;No direct script access allowed&#39;</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">Someclass</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">some_method</span><span class="p">()</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>Someclass라는 이름은 순전히 예시로 사용합니다.</p>
+</div>
+</section>
+<section id="id5">
+<h2>클래스 사용<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="controllers.html"><span class="doc">컨트롤러</span></a> 메소드 내에서 표준 방법으로 클래스를 초기화할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;someclass&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>여기서 <em>someclass</em>는 “.php” 파일 확장자 없이 파일 이름입니다. 파일 이름을 대문자 또는
+소문자로 지정할 수 있습니다. CodeIgniter는 상관하지 않습니다.</p>
+<p>로드되면 소문자 버전을 사용하여 클래스에 접근할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">someclass</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">();</span>  <span class="c1">// 오브젝트 인스턴스는 항상 소문자입니다</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>클래스 초기화 시 매개변수 전달<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>라이브러리 로딩 메소드에서 두 번째 매개변수를 통해 배열로 동적으로 데이터를 전달할 수
+있으며, 이 데이터는 클래스 생성자로 전달됩니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;red&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;someclass&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 기능을 사용하는 경우 클래스 생성자가 데이터를 받을 수 있도록 설정해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="nb">defined</span><span class="p">(</span><span class="s1">&#39;BASEPATH&#39;</span><span class="p">)</span> <span class="k">OR</span> <span class="k">exit</span><span class="p">(</span><span class="s1">&#39;No direct script access allowed&#39;</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">Someclass</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="c1">// $params로 무언가를 합니다</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>config 파일에 저장된 매개변수도 전달할 수 있습니다. 클래스 파일 이름과 동일한 이름의
+config 파일을 만들고 <em>application/config/</em> 디렉터리에 저장하면 됩니다. 위에서 설명한 것처럼
+동적으로 매개변수를 전달하면 config 파일 옵션을 사용할 수 없습니다.</p>
+</section>
+<section id="codeigniter">
+<h2>라이브러리 내에서 CodeIgniter 리소스 활용<a class="headerlink" href="#codeigniter" title="Link to this heading">¶</a></h2>
+<p>라이브러리 내에서 CodeIgniter의 기본 리소스에 접근하려면 <code class="docutils literal notranslate"><span class="pre">get_instance()</span></code> 메소드를
+사용하세요. 이 메소드는 CodeIgniter 슈퍼 오브젝트를 반환합니다.</p>
+<p>일반적으로 컨트롤러 메소드 내에서 <code class="docutils literal notranslate"><span class="pre">$this</span></code> 구문을 사용하여 사용 가능한 CodeIgniter
+메소드를 호출합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">item</span><span class="p">(</span><span class="s1">&#39;base_url&#39;</span><span class="p">);</span>
+<span class="c1">// 등</span>
+</pre></div>
+</div>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">$this</span></code>는 컨트롤러, 모델, 뷰 내에서만 직접 작동합니다. 자신만의 커스텀 클래스
+내에서 CodeIgniter의 클래스를 사용하려면 다음과 같이 할 수 있습니다:</p>
+<p>먼저 CodeIgniter 오브젝트를 변수에 할당합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$CI</span> <span class="o">=&amp;</span> <span class="nx">get_instance</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>오브젝트를 변수에 할당하면 <code class="docutils literal notranslate"><span class="pre">$this</span></code> <em>대신</em> 해당 변수를 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$CI</span> <span class="o">=&amp;</span> <span class="nx">get_instance</span><span class="p">();</span>
+
+<span class="nv">$CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+<span class="nv">$CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">);</span>
+<span class="nv">$CI</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">item</span><span class="p">(</span><span class="s1">&#39;base_url&#39;</span><span class="p">);</span>
+<span class="c1">// 등</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>위의 <code class="docutils literal notranslate"><span class="pre">get_instance()</span></code> 함수가 참조로 전달되고 있음을 알 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$CI</span> <span class="o">=&amp;</span> <span class="nx">get_instance</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>이것은 매우 중요합니다. 참조로 할당하면 복사본을 만드는 대신 원래 CodeIgniter
+오브젝트를 사용할 수 있습니다.</p>
+</div>
+<p>하지만 라이브러리는 클래스이므로 OOP 원칙을 최대한 활용하는 것이 좋습니다. 따라서
+모든 클래스 메소드에서 CodeIgniter 슈퍼 오브젝트를 사용할 수 있도록 프로퍼티에
+할당하는 것을 권장합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Example_library</span> <span class="p">{</span>
+
+        <span class="k">protected</span> <span class="nv">$CI</span><span class="p">;</span>
+
+        <span class="c1">// 프로퍼티 정의에서 함수를 직접 호출할 수 없으므로 생성자를 사용합니다.</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="c1">// CodeIgniter 슈퍼 오브젝트 할당</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span> <span class="o">=&amp;</span> <span class="nx">get_instance</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+                <span class="nx">redirect</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">CI</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">item</span><span class="p">(</span><span class="s1">&#39;base_url&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>자신만의 버전으로 기본 라이브러리 교체<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<p>클래스 파일 이름을 기본 라이브러리와 동일하게 지정하면 CodeIgniter가 기본 라이브러리
+대신 해당 파일을 사용합니다. 이 기능을 사용하려면 파일 이름과 클래스 선언을 기본
+라이브러리와 정확히 동일하게 해야 합니다. 예를 들어 기본 Email 라이브러리를 교체하려면
+<em>application/libraries/Email.php</em> 파일을 만들고 다음과 같이 클래스를 선언합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CI_Email</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>대부분의 기본 클래스에는 CI_ 접두사가 붙어있습니다.</p>
+<p>라이브러리를 로드하려면 표준 로딩 메소드를 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>현재 데이터베이스 클래스는 자신만의 버전으로 교체할 수 없습니다.</p>
+</div>
+</section>
+<section id="id8">
+<h2>기본 라이브러리 확장<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<p>기존 라이브러리에 일부 기능만 추가하면 되는 경우, 즉 메소드를 하나 또는 두 개 추가하는
+경우라면 전체 라이브러리를 자신만의 버전으로 교체하는 것은 과도합니다. 이 경우 단순히
+클래스를 확장하는 것이 좋습니다. 클래스 확장은 몇 가지 예외를 제외하면 클래스 교체와
+거의 동일합니다:</p>
+<ul class="simple">
+<li><p>클래스 선언은 부모 클래스를 확장해야 합니다.</p></li>
+<li><p>새 클래스 이름과 파일 이름에는 MY_ 접두사를 붙여야 합니다 (이 항목은 구성
+가능합니다. 아래 참조).</p></li>
+</ul>
+<p>예를 들어 기본 Email 클래스를 확장하려면 <em>application/libraries/MY_Email.php</em>라는
+파일을 만들고 다음과 같이 클래스를 선언합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MY_Email</span> <span class="k">extends</span> <span class="nx">CI_Email</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>클래스에서 생성자를 사용해야 하는 경우 부모 생성자를 반드시 확장하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MY_Email</span> <span class="k">extends</span> <span class="nx">CI_Email</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">())</span>
+        <span class="p">{</span>
+                <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+                <span class="c1">// 자신만의 생성자 코드</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 라이브러리가 생성자에 동일한 (또는 어떤) 매개변수를 가지고 있지는
+않습니다. 먼저 확장하려는 라이브러리를 살펴보고 어떻게 구현해야 하는지 확인하세요.</p>
+</div>
+<section id="id9">
+<h3>서브클래스 로드<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>서브클래스를 로드하려면 일반적으로 사용하는 표준 구문을 사용합니다. 접두사를 포함하지
+마세요. 예를 들어 Email 클래스를 확장하는 위의 예시를 로드하려면 다음을 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>로드되면 확장하는 클래스에 대해 일반적으로 사용하는 것처럼 클래스 변수를 사용합니다.
+email 클래스의 경우 모든 호출은 다음을 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">email</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">();</span>
+</pre></div>
+</div>
+<section id="id10">
+<h4>자신만의 접두사 설정<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<p>자신만의 서브클래스 접두사를 설정하려면 <em>application/config/config.php</em> 파일을 열고
+다음 항목을 찾으세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;subclass_prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MY_&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>모든 기본 CodeIgniter 라이브러리에는 CI_ 접두사가 붙으므로 그것을 접두사로 사용하지
+마세요.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="drivers.html" class="btn btn-neutral float-right" title="CodeIgniter 드라이버 사용">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libraries.html" class="btn btn-neutral" title="CodeIgniter 라이브러리 사용"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

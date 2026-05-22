@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>데이터베이스 유틸리티 클래스 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="데이터베이스 레퍼런스" href="index.html"/>
+        <link rel="next" title="데이터베이스 드라이버 레퍼런스" href="db_driver_reference.html"/>
+        <link rel="prev" title="Database Forge 클래스" href="forge.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터베이스 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터베이스 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">데이터베이스 레퍼런스</a> &raquo;</li>
+      
+    <li>데이터베이스 유틸리티 클래스</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="id1">
+<h1>데이터베이스 유틸리티 클래스<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>데이터베이스 유틸리티 클래스는 데이터베이스를 관리하는 데 도움이 되는 메소드를
+포함하고 있습니다.</p>
+<nav class="contents local" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id3" id="id16">유틸리티 클래스 초기화</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id17">데이터베이스 유틸리티 사용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id18">데이터베이스 이름 목록 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id19">데이터베이스 존재 여부 확인</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id20">테이블 최적화</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id21">테이블 복구</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id22">데이터베이스 최적화</a></p></li>
+<li><p><a class="reference internal" href="#csv" id="id23">쿼리 결과를 CSV 파일로 내보내기</a></p></li>
+<li><p><a class="reference internal" href="#xml" id="id24">쿼리 결과를 XML 문서로 내보내기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id10" id="id25">데이터베이스 백업</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id26">데이터베이스 백업 참고</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id27">사용 예시</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id28">백업 설정</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id29">백업 설정 설명</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id15" id="id30">클래스 레퍼런스</a></p></li>
+</ul>
+</nav>
+<section id="id3">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">유틸리티 클래스 초기화</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>유틸리티 클래스를 초기화하려면 데이터베이스 드라이버가 이미 실행
+중이어야 합니다. 유틸리티 클래스가 이에 의존하기 때문입니다.</p>
+</div>
+<p>유틸리티 클래스는 다음과 같이 로드합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>관리하려는 데이터베이스가 기본 데이터베이스가 아닌 경우 DB 유틸리티 로더에 다른
+데이터베이스 오브젝트를 전달할 수도 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">myutil</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">other_db</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 예에서 커스텀 데이터베이스 오브젝트를 첫 번째 매개변수로 전달하고 dbutil
+오브젝트를 <code class="docutils literal notranslate"><span class="pre">$this-&gt;dbutil</span></code>에 직접 할당하는 대신 반환하도록 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>두 매개변수 모두 개별적으로 사용할 수 있습니다. 건너뛰려면 첫 번째
+매개변수에 빈 값을 전달하세요.</p>
+</div>
+<p>초기화되면 <code class="docutils literal notranslate"><span class="pre">$this-&gt;dbutil</span></code> 오브젝트를 사용하여 메소드에 접근합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">데이터베이스 유틸리티 사용</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<section id="id5">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">데이터베이스 이름 목록 가져오기</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p>데이터베이스 이름의 배열을 반환합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$dbs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">list_databases</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$dbs</span> <span class="k">as</span> <span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$db</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">데이터베이스 존재 여부 확인</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p>특정 데이터베이스가 존재하는지 확인하는 것이 도움이 될 때가 있습니다. 불리언
+TRUE/FALSE를 반환합니다. 사용 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">database_exists</span><span class="p">(</span><span class="s1">&#39;database_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+        <span class="c1">// some code...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><em>database_name</em>을 찾고 있는 데이터베이스 이름으로 변경하세요. 이 메소드는
+대소문자를 구분합니다.</p>
+</div>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">테이블 최적화</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>첫 번째 매개변수에 지정된 테이블 이름을 사용하여 테이블을 최적화할 수 있습니다.
+성공 또는 실패에 따라 TRUE/FALSE를 반환합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">optimize_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 데이터베이스 플랫폼이 테이블 최적화를 지원하는 것은 아닙니다. 주로
+MySQL에서 사용됩니다.</p>
+</div>
+</section>
+<section id="id8">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">테이블 복구</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p>첫 번째 매개변수에 지정된 테이블 이름을 사용하여 테이블을 복구할 수 있습니다.
+성공 또는 실패에 따라 TRUE/FALSE를 반환합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">repair_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 데이터베이스 플랫폼이 테이블 복구를 지원하는 것은 아닙니다.</p>
+</div>
+</section>
+<section id="id9">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">데이터베이스 최적화</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>DB 클래스가 현재 연결된 데이터베이스를 최적화할 수 있습니다. DB 상태 메시지를
+포함하는 배열 또는 실패 시 FALSE를 반환합니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">optimize_database</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 데이터베이스 플랫폼이 데이터베이스 최적화를 지원하는 것은 아닙니다.
+주로 MySQL에서 사용됩니다.</p>
+</div>
+</section>
+<section id="csv">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">쿼리 결과를 CSV 파일로 내보내기</a><a class="headerlink" href="#csv" title="Link to this heading">¶</a></h3>
+<p>쿼리 결과에서 CSV 파일을 생성할 수 있습니다. 메소드의 첫 번째 매개변수에는 쿼리의
+결과 오브젝트가 포함되어야 합니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM mytable&quot;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">csv_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>두 번째, 세 번째, 네 번째 매개변수를 사용하여 각각 구분자, 개행, 둘러싸기 문자를
+설정할 수 있습니다. 기본적으로 쉼표가 구분자로 사용되고, “n”이 새 줄로 사용되며,
+큰따옴표가 둘러싸기로 사용됩니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$delimiter</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">;</span>
+<span class="nv">$newline</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="nv">$enclosure</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">csv_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$delimiter</span><span class="p">,</span> <span class="nv">$newline</span><span class="p">,</span> <span class="nv">$enclosure</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 메소드는 CSV 파일을 작성하지 <strong>않습니다</strong>. 단순히 CSV 레이아웃을
+만듭니다. 파일을 작성해야 하는 경우 <a class="reference internal" href="../helpers/file_helper.html"><span class="doc">File 헬퍼</span></a>를
+사용하세요.</p>
+</div>
+</section>
+<section id="xml">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">쿼리 결과를 XML 문서로 내보내기</a><a class="headerlink" href="#xml" title="Link to this heading">¶</a></h3>
+<p>쿼리 결과에서 XML 파일을 생성할 수 있습니다. 첫 번째 매개변수는 쿼리 결과 오브젝트를
+예상하고, 두 번째는 선택적인 설정 매개변수 배열을 포함할 수 있습니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM mytable&quot;</span><span class="p">);</span>
+
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+        <span class="s1">&#39;root&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;element&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;element&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;newline&#39;</span>       <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;tab&#39;</span>           <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">xml_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 메소드는 XML 파일을 작성하지 <strong>않습니다</strong>. 단순히 XML 레이아웃을
+만듭니다. 파일을 작성해야 하는 경우 <a class="reference internal" href="../helpers/file_helper.html"><span class="doc">File 헬퍼</span></a>를
+사용하세요.</p>
+</div>
+</section>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">데이터베이스 백업</a><a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<section id="id11">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">데이터베이스 백업 참고</a><a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<p>전체 데이터베이스 또는 개별 테이블을 백업할 수 있습니다. 백업 데이터는 Zip 또는
+Gzip 형식으로 압축될 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 기능은 MySQL 및 Interbase/Firebird 데이터베이스에서만 사용 가능합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>Interbase/Firebird 데이터베이스의 경우 백업 파일 이름이 유일한 매개변수입니다.</p>
+<p>$this-&gt;dbutil-&gt;backup(‘db_backup_filename’);</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>PHP에서 사용 가능한 제한된 실행 시간과 메모리로 인해 매우 큰 데이터베이스를
+백업하는 것이 불가능할 수 있습니다. 데이터베이스가 매우 큰 경우 명령행을 통해
+SQL 서버에서 직접 백업하거나, 루트 권한이 없는 경우 서버 관리자에게 요청하세요.</p>
+</div>
+</section>
+<section id="id12">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">사용 예시</a><a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="c1">// DB 유틸리티 클래스 로드</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="c1">// 전체 데이터베이스를 백업하고 변수에 할당</span>
+<span class="nv">$backup</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">();</span>
+
+<span class="c1">// file 헬퍼를 로드하고 서버에 파일 작성</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
+<span class="nx">write_file</span><span class="p">(</span><span class="s1">&#39;/path/to/mybackup.gz&#39;</span><span class="p">,</span> <span class="nv">$backup</span><span class="p">);</span>
+
+<span class="c1">// download 헬퍼를 로드하고 파일을 데스크탑으로 전송</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">);</span>
+<span class="nx">force_download</span><span class="p">(</span><span class="s1">&#39;mybackup.gz&#39;</span><span class="p">,</span> <span class="nv">$backup</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">백업 설정</a><a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<p>백업 설정은 <code class="docutils literal notranslate"><span class="pre">backup()</span></code> 메소드의 첫 번째 매개변수에 값 배열을 제출하여 설정합니다.
+예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$prefs</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;tables&#39;</span>        <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;table1&#39;</span><span class="p">,</span> <span class="s1">&#39;table2&#39;</span><span class="p">),</span>   <span class="c1">// 백업할 테이블 배열</span>
+        <span class="s1">&#39;ignore&#39;</span>        <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>                     <span class="c1">// 백업에서 제외할 테이블 목록</span>
+        <span class="s1">&#39;format&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;txt&#39;</span><span class="p">,</span>                       <span class="c1">// gzip, zip, txt</span>
+        <span class="s1">&#39;filename&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;mybackup.sql&#39;</span><span class="p">,</span>              <span class="c1">// 파일 이름 - ZIP 파일에만 필요</span>
+        <span class="s1">&#39;add_drop&#39;</span>      <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>                        <span class="c1">// 백업 파일에 DROP TABLE 문 포함 여부</span>
+        <span class="s1">&#39;add_insert&#39;</span>    <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>                        <span class="c1">// 백업 파일에 INSERT 데이터 포함 여부</span>
+        <span class="s1">&#39;newline&#39;</span>       <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>                         <span class="c1">// 백업 파일에 사용되는 개행 문자</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">(</span><span class="nv">$prefs</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">백업 설정 설명</a><a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>설정</p></th>
+<th class="head"><p>기본값</p></th>
+<th class="head"><p>옵션</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>tables</strong></p></td>
+<td><p>빈 배열</p></td>
+<td><p>없음</p></td>
+<td><p>백업할 테이블 배열. 비워두면 모든 테이블이 내보내집니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ignore</strong></p></td>
+<td><p>빈 배열</p></td>
+<td><p>없음</p></td>
+<td><p>백업 루틴이 무시할 테이블 배열.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>format</strong></p></td>
+<td><p>gzip</p></td>
+<td><p>gzip, zip, txt</p></td>
+<td><p>내보내기 파일의 파일 형식.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>filename</strong></p></td>
+<td><p>현재 날짜/시간</p></td>
+<td><p>없음</p></td>
+<td><p>백업 파일의 이름. zip 압축을 사용하는 경우에만 이름이 필요합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>add_drop</strong></p></td>
+<td><p>TRUE</p></td>
+<td><p>TRUE/FALSE</p></td>
+<td><p>SQL 내보내기 파일에 DROP TABLE 문 포함 여부.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>add_insert</strong></p></td>
+<td><p>TRUE</p></td>
+<td><p>TRUE/FALSE</p></td>
+<td><p>SQL 내보내기 파일에 INSERT 문 포함 여부.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>newline</strong></p></td>
+<td><p>“\n”</p></td>
+<td><p>“\n”, “\r”, “\r\n”</p></td>
+<td><p>SQL 내보내기 파일에 사용할 개행 문자 유형.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>foreign_key_checks</strong></p></td>
+<td><p>TRUE</p></td>
+<td><p>TRUE/FALSE</p></td>
+<td><p>출력 시 외래 키 검사를 활성화 상태로 유지할지 여부.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
+<dl class="php class">
+<dt class="sig sig-object php" id="CI_DB_utility">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CI_DB_utility</span></span><a class="headerlink" href="#CI_DB_utility" title="Link to this definition">¶</a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::backup">
+<span class="sig-name descname"><span class="pre">backup</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$params</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::backup" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 옵션의 연관 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>원시/(g)zip 압축된 SQL 쿼리 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>사용자 설정에 따라 데이터베이스 백업을 수행합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::database_exists">
+<span class="sig-name descname"><span class="pre">database_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$database_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::database_exists" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$database_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 데이터베이스 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>데이터베이스가 존재하면 TRUE, 그렇지 않으면 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스의 존재를 확인합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::list_databases">
+<span class="sig-name descname"><span class="pre">list_databases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::list_databases" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>찾은 데이터베이스 이름 배열</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>모든 데이터베이스 이름 목록을 검색합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::optimize_database">
+<span class="sig-name descname"><span class="pre">optimize_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::optimize_database" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>최적화 메시지 배열 또는 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스를 최적화합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::optimize_table">
+<span class="sig-name descname"><span class="pre">optimize_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::optimize_table" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 최적화할 테이블 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>최적화 메시지 배열 또는 실패 시 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스 테이블을 최적화합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::repair_table">
+<span class="sig-name descname"><span class="pre">repair_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::repair_table" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 복구할 테이블 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>복구 메시지 배열 또는 실패 시 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스 테이블을 복구합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::csv_from_result">
+<span class="sig-name descname"><span class="pre">csv_from_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$query</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$delim</span> <span class="pre">=</span> <span class="pre">'</span></em>, <em class="sig-param"><span class="pre">'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$newline</span> <span class="pre">=</span> <span class="pre">&quot;\n&quot;</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$enclosure</span> <span class="pre">=</span> <span class="pre">'&quot;'</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::csv_from_result" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$query</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – 데이터베이스 결과 오브젝트</p></li>
+<li><p><strong>$delim</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 사용할 CSV 필드 구분자</p></li>
+<li><p><strong>$newline</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 사용할 개행 문자</p></li>
+<li><p><strong>$enclosure</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 사용할 둘러싸기 구분자</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>문자열로 생성된 CSV 파일</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스 결과 오브젝트를 CSV 문서로 변환합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_DB_utility::xml_from_result">
+<span class="sig-name descname"><span class="pre">xml_from_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$query</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$params</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_DB_utility::xml_from_result" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$query</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – 데이터베이스 결과 오브젝트</p></li>
+<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 설정의 연관 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>문자열로 생성된 XML 문서</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스 결과 오브젝트를 XML 문서로 변환합니다.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="db_driver_reference.html" class="btn btn-neutral float-right" title="데이터베이스 드라이버 레퍼런스">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="forge.html" class="btn btn-neutral" title="Database Forge 클래스"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
