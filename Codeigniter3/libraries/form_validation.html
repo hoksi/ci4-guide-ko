@@ -1,0 +1,1834 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>폼 유효성 검사 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="라이브러리" href="index.html"/>
+        <link rel="next" title="FTP 클래스" href="ftp.html"/>
+        <link rel="prev" title="파일 업로드 클래스" href="file_uploading.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">라이브러리</a> &raquo;</li>
+      
+    <li>폼 유효성 검사</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="id1">
+<h1><a class="toc-backref" href="#id31" role="doc-backlink">폼 유효성 검사</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>CodeIgniter는 작성해야 하는 코드의 양을 최소화하는 데 도움이 되는 포괄적인 폼
+유효성 검사 및 데이터 준비 클래스를 제공합니다.</p>
+<nav class="contents" id="id2">
+<p class="topic-title">페이지 목차</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id31">폼 유효성 검사</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id32">개요</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id33">폼 유효성 검사 튜토리얼</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id34">폼</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id35">성공 페이지</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id36">컨트롤러</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id37">테스트!</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id38">설명</a></p></li>
+<li><p><a class="reference internal" href="#setting-validation-rules" id="id39">유효성 검사 규칙 설정</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id40">배열을 사용하여 규칙 설정</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id41">연결 규칙</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id42">데이터 준비</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id43">폼 재채우기</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id44">콜백: 자체 유효성 검사 메소드</a></p></li>
+<li><p><a class="reference internal" href="#callable" id="id45">Callable: 무엇이든 규칙으로 사용</a></p></li>
+<li><p><a class="reference internal" href="#setting-error-messages" id="id46">오류 메시지 설정</a></p></li>
+<li><p><a class="reference internal" href="#translating-field-names" id="id47">필드 이름 번역</a></p></li>
+<li><p><a class="reference internal" href="#changing-delimiters" id="id48">오류 구분자 변경</a></p></li>
+<li><p><a class="reference internal" href="#id19" id="id49">오류 개별 표시</a></p></li>
+<li><p><a class="reference internal" href="#post" id="id50">$_POST 이외의 배열 유효성 검사</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#saving-groups" id="id51">설정 파일에 유효성 검사 규칙 저장</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id21" id="id52">규칙 저장 방법</a></p></li>
+<li><p><a class="reference internal" href="#id22" id="id53">규칙 세트 만들기</a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id54">특정 규칙 그룹 호출</a></p></li>
+<li><p><a class="reference internal" href="#id24" id="id55">규칙 그룹과 컨트롤러 메소드 연결</a></p></li>
+<li><p><a class="reference internal" href="#id25" id="id56">유효성 검사/처리된 데이터 접근</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#using-arrays-as-field-names" id="id57">필드 이름으로 배열 사용</a></p></li>
+<li><p><a class="reference internal" href="#id27" id="id58">규칙 레퍼런스</a></p></li>
+<li><p><a class="reference internal" href="#id28" id="id59">전처리 레퍼런스</a></p></li>
+<li><p><a class="reference internal" href="#class-reference" id="id60">클래스 레퍼런스</a></p></li>
+<li><p><a class="reference internal" href="#helper-functions" id="id61">헬퍼 레퍼런스</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="id3">
+<h2><a class="toc-backref" href="#id32" role="doc-backlink">개요</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>CodeIgniter의 데이터 유효성 검사 접근 방식을 설명하기 전에 이상적인 시나리오를
+설명합니다:</p>
+<ol class="arabic simple">
+<li><p>폼이 표시됩니다.</p></li>
+<li><p>폼을 작성하고 제출합니다.</p></li>
+<li><p>잘못된 것을 제출하거나 필수 항목을 놓친 경우 데이터와 함께 문제를 설명하는
+오류 메시지가 포함된 폼이 다시 표시됩니다.</p></li>
+<li><p>이 과정은 유효한 폼을 제출할 때까지 계속됩니다.</p></li>
+</ol>
+<p>수신 측에서 스크립트는:</p>
+<ol class="arabic simple">
+<li><p>필수 데이터를 확인해야 합니다.</p></li>
+<li><p>데이터가 올바른 유형인지, 올바른 기준을 충족하는지 확인합니다. 예를 들어
+사용자 이름이 제출된 경우 허용된 문자만 포함되도록 유효성을 검사해야 합니다.
+최소 길이여야 하고 최대 길이를 초과해서는 안 됩니다. 사용자 이름은 다른
+사람의 기존 사용자 이름이거나 예약어가 될 수 없습니다. 등.</p></li>
+<li><p>보안을 위해 데이터를 정리합니다.</p></li>
+<li><p>필요한 경우 데이터를 미리 포맷합니다(데이터를 trim해야 하나요? HTML 인코딩? 등)</p></li>
+<li><p>데이터베이스 삽입을 위해 데이터를 준비합니다.</p></li>
+</ol>
+<p>위 과정이 특별히 복잡하지는 않지만 일반적으로 상당한 양의 코드가 필요하며,
+오류 메시지를 표시하려면 폼 HTML 내에 다양한 제어 구조가 배치됩니다. 폼 유효성
+검사는 만들기는 간단하지만 일반적으로 구현하기가 매우 번거롭고 지루합니다.</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">폼 유효성 검사 튜토리얼</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>다음은 CodeIgniter의 폼 유효성 검사를 구현하기 위한 “실습” 튜토리얼입니다.</p>
+<p>폼 유효성 검사를 구현하려면 세 가지가 필요합니다:</p>
+<ol class="arabic simple">
+<li><p>폼을 포함하는 <a class="reference internal" href="../general/views.html"><span class="doc">뷰</span></a> 파일.</p></li>
+<li><p>성공적인 제출 시 표시될 “성공” 메시지를 포함하는 뷰 파일.</p></li>
+<li><p>제출된 데이터를 수신하고 처리하는 <a class="reference internal" href="../general/controllers.html"><span class="doc">컨트롤러</span></a> 메소드.</p></li>
+</ol>
+<p>회원 가입 폼을 예시로 이 세 가지를 만들어 보겠습니다.</p>
+<section id="id5">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">폼</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p>텍스트 편집기를 사용하여 myform.php라는 폼을 만드세요. 다음 코드를 입력하고
+application/views/ 폴더에 저장하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Username<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password Confirm<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Email Address<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">성공 페이지</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p>텍스트 편집기를 사용하여 formsuccess.php라는 폼을 만드세요. 다음 코드를 입력하고
+application/views/ 폴더에 저장하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Your</span> <span class="nx">form</span> <span class="nx">was</span> <span class="nx">successfully</span> <span class="nx">submitted</span><span class="o">!&lt;/</span><span class="nx">h3</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">anchor</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;Try it again!&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id36" role="doc-backlink">컨트롤러</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>텍스트 편집기를 사용하여 Form.php라는 컨트롤러를 만드세요. 다음 코드를 입력하고
+application/controllers/ 폴더에 저장하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">테스트!</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p>폼을 테스트하려면 다음과 유사한 URL로 사이트를 방문하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">form</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>폼을 제출하면 폼이 다시 로드될 것입니다. 아직 유효성 검사 규칙을 설정하지
+않았기 때문입니다.</p>
+<p><strong>폼 유효성 검사 클래스에 아무것도 검사하도록 지시하지 않았으므로 기본적으로
+FALSE(불리언 false)를 반환합니다. ``run()`` 메소드는 어떤 규칙도 실패하지 않고
+규칙을 성공적으로 적용한 경우에만 TRUE를 반환합니다.</strong></p>
+</section>
+<section id="id9">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">설명</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>위 페이지들에서 몇 가지를 알 수 있습니다:</p>
+<p>폼(myform.php)은 몇 가지 예외를 제외하고는 표준 웹 폼입니다:</p>
+<ol class="arabic">
+<li><p>폼 헬퍼를 사용하여 폼 오프닝 태그를 만듭니다. 기술적으로 이것이 필수는 아닙니다.
+표준 HTML을 사용하여 폼을 만들 수 있습니다. 그러나 헬퍼를 사용하면 설정 파일의
+URL을 기반으로 액션 URL이 자동으로 생성됩니다. 이렇게 하면 URL이 변경될 때
+애플리케이션의 이식성이 높아집니다.</p></li>
+<li><p>폼 상단에 다음 함수 호출이 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>이 함수는 유효성 검사기가 반환한 오류 메시지를 반환합니다. 메시지가 없으면
+빈 문자열을 반환합니다.</p>
+</li>
+</ol>
+<p>컨트롤러(Form.php)에는 <code class="docutils literal notranslate"><span class="pre">index()</span></code>라는 하나의 메소드가 있습니다. 이 메소드는
+유효성 검사 클래스를 초기화하고 뷰 파일에서 사용하는 폼 헬퍼와 URL 헬퍼를 로드합니다.
+또한 유효성 검사 루틴을 실행합니다. 유효성 검사가 성공했는지 여부에 따라 폼 또는
+성공 페이지를 표시합니다.</p>
+</section>
+<section id="setting-validation-rules">
+<span id="id10"></span><h3><a class="toc-backref" href="#id39" role="doc-backlink">유효성 검사 규칙 설정</a><a class="headerlink" href="#setting-validation-rules" title="Link to this heading">¶</a></h3>
+<p>CodeIgniter를 사용하면 주어진 필드에 필요한 만큼 많은 유효성 검사 규칙을 설정하고,
+순서대로 연결하며, 동시에 필드 데이터를 준비하고 전처리할 수도 있습니다.
+유효성 검사 규칙을 설정하려면 <code class="docutils literal notranslate"><span class="pre">set_rules()</span></code> 메소드를 사용하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>위 메소드는 입력으로 <strong>세</strong> 개의 매개변수를 받습니다:</p>
+<ol class="arabic simple">
+<li><p>필드 이름 - 폼 필드에 지정한 정확한 이름.</p></li>
+<li><p>이 필드의 “사람이 읽을 수 있는” 이름. 오류 메시지에 삽입됩니다. 예를 들어
+필드 이름이 “user”인 경우 “Username”과 같이 사람이 읽을 수 있는 이름을 부여할
+수 있습니다.</p></li>
+<li><p>이 폼 필드에 대한 유효성 검사 규칙.</p></li>
+<li><p>(선택 사항) 현재 필드에 주어진 규칙에 대한 커스텀 오류 메시지 설정.
+제공하지 않으면 기본값을 사용합니다.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>필드 이름을 언어 파일에 저장하려면 <a class="reference internal" href="#translating-field-names"><span class="std std-ref">필드 이름 번역</span></a>를
+참조하세요.</p>
+</div>
+<p>예시를 들겠습니다. 컨트롤러(Form.php)에서 유효성 검사 초기화 메소드 바로 아래에
+다음 코드를 추가하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>컨트롤러는 이제 다음과 같이 보여야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;You must provide a %s.&#39;</span><span class="p">)</span>
+                <span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 필드를 비워두고 폼을 제출하면 오류 메시지가 표시됩니다. 모든 필드를 채워
+제출하면 성공 페이지가 표시됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>오류가 있을 때 폼 필드가 아직 데이터로 다시 채워지지 않습니다. 곧
+다룰 예정입니다.</p>
+</div>
+</section>
+<section id="id11">
+<h3><a class="toc-backref" href="#id40" role="doc-backlink">배열을 사용하여 규칙 설정</a><a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<p>계속 진행하기 전에 규칙 설정 메소드에 모든 규칙을 한 번에 설정하려는 경우 배열을
+전달할 수 있음을 알아야 합니다. 이 접근 방식을 사용하는 경우 배열 키 이름을
+다음과 같이 지정해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;You must provide a %s.&#39;</span><span class="p">,</span>
+                <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">연결 규칙</a><a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<p>CodeIgniter를 사용하면 여러 규칙을 파이프로 연결할 수 있습니다. 시도해 보겠습니다.
+규칙 설정 메소드의 세 번째 매개변수에서 규칙을 다음과 같이 변경하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;required|min_length[5]|max_length[12]|is_unique[users.username]&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;required&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;You have not provided %s.&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;is_unique&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;This %s already exists.&#39;</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required|matches[password]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required|valid_email|is_unique[users.email]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 코드는 다음 규칙을 설정합니다:</p>
+<ol class="arabic simple">
+<li><p>사용자 이름 필드는 5자 미만이 될 수 없고 12자를 초과할 수 없습니다.</p></li>
+<li><p>비밀번호 필드는 비밀번호 확인 필드와 일치해야 합니다.</p></li>
+<li><p>이메일 필드는 유효한 이메일 주소를 포함해야 합니다.</p></li>
+</ol>
+<p>시도해 보세요! 적절한 데이터 없이 폼을 제출하면 새 규칙에 해당하는 새 오류 메시지가
+표시됩니다. 유효성 검사 레퍼런스에서 확인할 수 있는 수많은 규칙이 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">set_rules()</span></code>에 문자열 대신 규칙 배열을 전달할 수도 있습니다.
+예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;min_length[5]&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id13">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink">데이터 준비</a><a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<p>위에서 사용한 것과 같은 유효성 검사 메소드 외에도 다양한 방법으로 데이터를 준비할
+수 있습니다. 예를 들어 다음과 같이 규칙을 설정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|min_length[5]|max_length[12]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|min_length[8]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|matches[password]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|valid_email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 예시에서 필드를 “trim”하고, 필요한 경우 길이를 확인하며, 두 비밀번호 필드가
+일치하는지 확인합니다.</p>
+<p><strong>하나의 매개변수를 허용하는 모든 기본 PHP 함수를 ``htmlspecialchars()``, ``trim()``
+등과 같이 규칙으로 사용할 수 있습니다.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>일반적으로 유효성 검사 규칙 <strong>후에</strong> 전처리 함수를 사용합니다. 오류가
+있는 경우 원본 데이터가 폼에 표시되도록 하기 위해서입니다.</p>
+</div>
+</section>
+<section id="id14">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink">폼 재채우기</a><a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<p>지금까지 오류만 다뤘습니다. 이제 폼 필드를 제출된 데이터로 다시 채울 때입니다.
+CodeIgniter는 이를 수행할 수 있는 여러 헬퍼 함수를 제공합니다. 가장 일반적으로
+사용하는 것은:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;field name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>myform.php 뷰 파일을 열고 <a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_value()</span></code></a> 함수를 사용하여 각 필드의
+<strong>value</strong>를 업데이트하세요:</p>
+<p><strong>:php:func:`set_value()` 함수 호출에 각 필드 이름을 포함하는 것을 잊지 마세요!</strong></p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Username<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password Confirm<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Email Address<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>이제 페이지를 다시 로드하고 폼을 제출하여 오류가 발생하도록 합니다. 폼 필드가
+이제 다시 채워져야 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>아래의 <a class="reference internal" href="#class-reference"><span class="std std-ref">클래스 레퍼런스</span></a> 섹션에는 &lt;select&gt; 메뉴, 라디오 버튼 및
+체크박스를 다시 채울 수 있는 메소드가 있습니다.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>폼 필드 이름으로 배열을 사용하는 경우 함수에 배열로 전달해야 합니다.
+예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;colors[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo set_value(&#39;colors[]&#39;); ?&gt;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>자세한 내용은 아래의 <a class="reference internal" href="#using-arrays-as-field-names"><span class="std std-ref">필드 이름으로 배열 사용</span></a> 섹션을 참조하세요.</p>
+</section>
+<section id="id15">
+<h3><a class="toc-backref" href="#id44" role="doc-backlink">콜백: 자체 유효성 검사 메소드</a><a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<p>유효성 검사 시스템은 자체 유효성 검사 메소드에 대한 콜백을 지원합니다. 이를 통해
+필요에 맞게 유효성 검사 클래스를 확장할 수 있습니다. 예를 들어 사용자가 고유한
+사용자 이름을 선택하는지 확인하기 위해 데이터베이스 쿼리를 실행해야 하는 경우,
+이를 수행하는 콜백 메소드를 만들 수 있습니다. 예시를 만들어 보겠습니다.</p>
+<p>컨트롤러에서 “username” 규칙을 다음과 같이 변경하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;callback_username_check&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>그런 다음 컨트롤러에 <code class="docutils literal notranslate"><span class="pre">username_check()</span></code>라는 새 메소드를 추가하세요.
+컨트롤러가 이제 어떻게 보여야 하는지:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;callback_username_check&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required|is_unique[users.email]&#39;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">username_check</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">==</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;username_check&#39;</span><span class="p">,</span> <span class="s1">&#39;The {field} field can not be the word &quot;test&quot;&#39;</span><span class="p">);</span>
+                        <span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="k">return</span> <span class="k">TRUE</span><span class="p">;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>폼을 다시 로드하고 사용자 이름으로 “test”를 입력하여 제출하세요. 폼 필드 데이터가
+처리를 위해 콜백 메소드에 전달된 것을 확인할 수 있습니다.</p>
+<p>콜백을 호출하려면 메소드 이름을 규칙으로 설정하고 “callback_”을 규칙 <strong>접두사</strong>로
+사용하세요. 콜백 메소드에서 추가 매개변수를 받아야 하는 경우 메소드 이름 뒤에
+대괄호 사이에 일반적으로 추가하세요: <code class="docutils literal notranslate"><span class="pre">callback_foo[bar]</span></code>, 그러면 콜백 메소드의
+두 번째 인수로 전달됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>콜백에 전달된 폼 데이터를 처리하고 반환할 수도 있습니다. 콜백이 불리언
+TRUE/FALSE 이외의 것을 반환하면 해당 데이터가 새로 처리된 폼 데이터로 간주됩니다.</p>
+</div>
+</section>
+<section id="callable">
+<h3><a class="toc-backref" href="#id45" role="doc-backlink">Callable: 무엇이든 규칙으로 사용</a><a class="headerlink" href="#callable" title="Link to this heading">¶</a></h3>
+<p>콜백 규칙이 충분하지 않은 경우(예: 컨트롤러로 제한되기 때문에), 커스텀 규칙을
+만드는 방법이 하나 더 있습니다: <code class="docutils literal notranslate"><span class="pre">is_callable()</span></code>이 TRUE를 반환하는 모든 것.</p>
+<p>다음 예시를 참고하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                <span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">users_model</span><span class="p">,</span> <span class="s1">&#39;valid_username&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>위 코드는 <code class="docutils literal notranslate"><span class="pre">Users_model</span></code> 오브젝트의 <code class="docutils literal notranslate"><span class="pre">valid_username()</span></code> 메소드를 사용합니다.</p>
+<p>물론 이것은 단지 예시이며 콜백이 모델로 제한되지는 않습니다. 필드 값을 첫 번째
+매개변수로 허용하는 오브젝트/메소드를 사용할 수 있습니다. 익명 함수도 사용할
+수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                <span class="k">function</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="c1">// $value 확인</span>
+                <span class="p">}</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>물론, Callable 규칙 자체는 문자열이 아니므로 규칙 이름도 아닙니다. 오류 메시지를
+설정하려는 경우 이것이 문제입니다. 이 문제를 해결하기 위해 이러한 규칙을 배열의
+두 번째 요소로, 첫 번째 요소는 규칙 이름으로 배치할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;username_callable&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">users_model</span><span class="p">,</span> <span class="s1">&#39;valid_username&#39;</span><span class="p">))</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>익명 함수 버전:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;username_callable&#39;</span><span class="p">,</span>
+                        <span class="k">function</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+                        <span class="p">{</span>
+                                <span class="c1">// $str의 유효성을 확인하고 TRUE 또는 FALSE 반환</span>
+                        <span class="p">}</span>
+                <span class="p">)</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-error-messages">
+<span id="id16"></span><h3><a class="toc-backref" href="#id46" role="doc-backlink">오류 메시지 설정</a><a class="headerlink" href="#setting-error-messages" title="Link to this heading">¶</a></h3>
+<p>모든 기본 오류 메시지는 다음 언어 파일에 있습니다:
+<strong>system/language/english/form_validation_lang.php</strong></p>
+<p>규칙에 대한 전역 커스텀 메시지를 설정하려면 <strong>application/language/english/form_validation_lang.php</strong>에
+자체 파일을 만들어 언어 파일을 확장/재정의하거나(<a class="reference internal" href="language.html"><span class="doc">언어 클래스</span></a>
+문서에서 자세히 읽어보세요), 다음 메소드를 사용하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;rule&#39;</span><span class="p">,</span> <span class="s1">&#39;Error Message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>특정 필드의 특정 규칙에 대한 커스텀 오류 메시지를 설정해야 하는 경우 set_rules()
+메소드를 사용하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;field_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Field Label&#39;</span><span class="p">,</span> <span class="s1">&#39;rule1|rule2|rule3&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;rule2&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Error Message on rule2 for this field_name&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>여기서 rule은 특정 규칙의 이름에 해당하고, Error Message는 표시할 텍스트입니다.</p>
+<p>필드의 “사람이 읽을 수 있는” 이름이나 일부 규칙이 허용하는 선택적 매개변수(예:
+max_length)를 포함하려면 메시지에 <strong>{field}</strong>와 <strong>{param}</strong> 태그를 각각 추가할
+수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;min_length&#39;</span><span class="p">,</span> <span class="s1">&#39;{field} must have at least {param} characters.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Username의 사람이 읽을 수 있는 이름과 min_length[5] 규칙이 있는 필드에서 오류가
+표시됩니다: “Username must have at least 5 characters.”</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>오류 메시지에 <strong>%s</strong>를 사용하는 이전 <cite>sprintf()</cite> 방법은 여전히
+작동하지만 위의 태그를 재정의합니다. 둘 중 하나를 사용해야 합니다.</p>
+</div>
+<p>위의 콜백 규칙 예시에서 오류 메시지는 메소드 이름(“callback_” 접두사 없이)을
+전달하여 설정했습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;username_check&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="translating-field-names">
+<span id="id17"></span><h3><a class="toc-backref" href="#id47" role="doc-backlink">필드 이름 번역</a><a class="headerlink" href="#translating-field-names" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">set_rules()</span></code> 메소드에 전달한 “사람이 읽을 수 있는” 이름을 언어 파일에 저장하여
+번역할 수 있게 하려면 다음과 같이 하세요:</p>
+<p>먼저 “사람이 읽을 수 있는” 이름 앞에 <strong>lang:</strong>을 붙이세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lang:first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>그런 다음 이름을 언어 파일 배열 중 하나에 저장하세요(접두사 없이):</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;First Name&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>CI에서 자동으로 로드하지 않는 언어 파일에 배열 항목을 저장하는 경우
+컨트롤러에서 다음을 사용하여 로드하는 것을 기억하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;file_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>언어 파일에 대한 자세한 내용은 <a class="reference internal" href="language.html"><span class="doc">언어 클래스</span></a> 페이지를 참조하세요.</p>
+</section>
+<section id="changing-delimiters">
+<span id="id18"></span><h3><a class="toc-backref" href="#id48" role="doc-backlink">오류 구분자 변경</a><a class="headerlink" href="#changing-delimiters" title="Link to this heading">¶</a></h3>
+<p>기본적으로 폼 유효성 검사 클래스는 표시된 각 오류 메시지 주위에 단락 태그(&lt;p&gt;)를
+추가합니다. 이러한 구분자를 전역적으로, 개별적으로 또는 설정 파일에서 기본값을
+변경할 수 있습니다.</p>
+<ol class="arabic">
+<li><p><strong>전역적으로 구분자 변경</strong>
+컨트롤러 메소드에서 폼 유효성 검사 클래스를 로드한 직후 다음을 추가하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_error_delimiters</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 예시에서는 div 태그를 사용하도록 전환했습니다.</p>
+</li>
+<li><p><strong>개별적으로 구분자 변경</strong>
+이 튜토리얼에 표시된 두 오류 생성 함수 각각에 다음과 같이 자체 구분자를
+제공할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;field name&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>또는:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>설정 파일에서 구분자 설정</strong>
+application/config/form_validation.php에서 다음과 같이 오류 구분자를 추가할
+수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;error_prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;error_prefix&quot;&gt;&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;error_suffix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id19">
+<h3><a class="toc-backref" href="#id49" role="doc-backlink">오류 개별 표시</a><a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<p>목록으로 표시하는 대신 각 폼 필드 옆에 오류 메시지를 표시하려면
+<a class="reference internal" href="../helpers/form_helper.html#form_error" title="form_error"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_error()</span></code></a> 함수를 사용할 수 있습니다.</p>
+<p>시도해 보세요! 폼을 다음과 같이 변경하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h5</span><span class="o">&gt;</span><span class="nx">Username</span><span class="o">&lt;/</span><span class="nx">h5</span><span class="o">&gt;</span>
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Password Confirm<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Email Address<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>오류가 없으면 아무것도 표시되지 않습니다. 오류가 있으면 메시지가 표시됩니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>폼 필드 이름으로 배열을 사용하는 경우 함수에 배열로 전달해야 합니다.
+예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[size]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;options[size]&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s2">&quot;options[size]&quot;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>자세한 내용은 아래의 <a class="reference internal" href="#using-arrays-as-field-names"><span class="std std-ref">필드 이름으로 배열 사용</span></a> 섹션을 참조하세요.</p>
+</section>
+<section id="post">
+<h3><a class="toc-backref" href="#id50" role="doc-backlink">$_POST 이외의 배열 유효성 검사</a><a class="headerlink" href="#post" title="Link to this heading">¶</a></h3>
+<p>때로는 <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> 데이터에서 시작하지 않는 배열의 유효성을 검사해야 할 수도
+있습니다.</p>
+<p>이 경우 유효성을 검사할 배열을 지정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mypassword&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;passconf&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mypassword&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_data</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>유효성 검사 규칙 만들기, 유효성 검사 실행, 오류 메시지 검색은 <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> 데이터
+또는 다른 배열의 유효성을 검사하든 동일하게 작동합니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>유효성 검사 규칙을 정의하기 <em>전에</em> <code class="docutils literal notranslate"><span class="pre">set_data()</span></code> 메소드를 호출해야
+합니다.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>단일 실행 중에 두 개 이상의 배열의 유효성을 검사하려면 새 배열의
+규칙을 설정하고 유효성을 검사하기 전에 <code class="docutils literal notranslate"><span class="pre">reset_validation()</span></code> 메소드를 호출해야
+합니다.</p>
+</div>
+<p>자세한 내용은 아래의 <a class="reference internal" href="#class-reference"><span class="std std-ref">클래스 레퍼런스</span></a> 섹션을 참조하세요.</p>
+</section>
+</section>
+<section id="saving-groups">
+<span id="id20"></span><h2><a class="toc-backref" href="#id51" role="doc-backlink">설정 파일에 유효성 검사 규칙 저장</a><a class="headerlink" href="#saving-groups" title="Link to this heading">¶</a></h2>
+<p>폼 유효성 검사 클래스의 훌륭한 기능은 전체 애플리케이션에 대한 모든 유효성 검사
+규칙을 설정 파일에 저장할 수 있다는 것입니다. 이러한 규칙을 “그룹”으로 구성할 수
+있습니다. 이러한 그룹은 일치하는 컨트롤러/메소드가 호출될 때 자동으로 로드되거나
+필요에 따라 각 세트를 수동으로 호출할 수 있습니다.</p>
+<section id="id21">
+<h3><a class="toc-backref" href="#id52" role="doc-backlink">규칙 저장 방법</a><a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<p>유효성 검사 규칙을 저장하려면 application/config/ 폴더에 form_validation.php라는
+파일을 만드세요. 해당 파일에 규칙이 포함된 $config라는 배열을 배치합니다. 이전에
+표시된 것처럼 유효성 검사 배열은 다음 프로토타입을 가집니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>유효성 검사 규칙 파일은 자동으로 로드되고 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 메소드를 호출할 때 사용됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$config</span></code> 배열의 이름을 반드시 지정해야 합니다.</p>
+</section>
+<section id="id22">
+<h3><a class="toc-backref" href="#id53" role="doc-backlink">규칙 세트 만들기</a><a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<p>규칙을 “세트”로 구성하려면 “하위 배열”에 배치해야 합니다. 다음 예시에서 “signup”과
+“email”이라는 두 규칙 세트를 보여줍니다. 규칙 이름은 원하는 대로 지정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;signup&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;emailaddress&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;EmailAddress&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|valid_email&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|alpha&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MessageBody&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">)</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3><a class="toc-backref" href="#id54" role="doc-backlink">특정 규칙 그룹 호출</a><a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<p>특정 그룹을 호출하려면 해당 이름을 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 메소드에 전달하세요. 예를 들어
+signup 규칙을 호출하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="s1">&#39;signup&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h3><a class="toc-backref" href="#id55" role="doc-backlink">규칙 그룹과 컨트롤러 메소드 연결</a><a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<p>규칙 그룹을 호출하는 대체(및 더 자동적인) 방법은 함께 사용할 컨트롤러 클래스/메소드에
+따라 이름을 지정하는 것입니다. 예를 들어 Member라는 컨트롤러와 signup이라는 메소드가
+있다고 가정합니다. 클래스는 다음과 같이 보일 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Member</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">signup</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>유효성 검사 설정 파일에서 규칙 그룹 이름을 member/signup으로 지정합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;member/signup&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;PasswordConfirmation&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+                <span class="p">)</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>규칙 그룹이 컨트롤러 클래스/메소드와 동일하게 이름이 지정되면 해당 클래스/메소드에서
+<code class="docutils literal notranslate"><span class="pre">run()</span></code> 메소드가 호출될 때 자동으로 사용됩니다.</p>
+</section>
+<section id="id25">
+<h3><a class="toc-backref" href="#id56" role="doc-backlink">유효성 검사/처리된 데이터 접근</a><a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<p>기본적으로 유효성 검사는 <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> 배열에서 직접 수행되며, 가능한 수정 사항(예:
+공백 trim)은 다시 쓰여집니다. 그러나 원본 입력 데이터를 그대로 유지하거나
+<code class="docutils literal notranslate"><span class="pre">set_data()</span></code>를 사용하여 커스텀 입력 세트를 전달한 경우, 이제 수정된 데이터를
+가져오려고 할 것입니다. 이를 위해 <code class="docutils literal notranslate"><span class="pre">run()</span></code>의 두 번째 매개변수로 변수를 전달할
+수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$input</span>  <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;   White Space  &#39;</span><span class="p">);</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;required|trim&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="nv">$output</span><span class="p">);</span>
+<span class="c1">// $output은 이제 다음을 포함합니다: array(&#39;name&#39; =&gt; &#39;White Space&#39;);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-arrays-as-field-names">
+<span id="id26"></span><h2><a class="toc-backref" href="#id57" role="doc-backlink">필드 이름으로 배열 사용</a><a class="headerlink" href="#using-arrays-as-field-names" title="Link to this heading">¶</a></h2>
+<p>폼 유효성 검사 클래스는 필드 이름으로 배열 사용을 지원합니다. 다음 예시를
+참고하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>필드 이름으로 배열을 사용하는 경우 필드 이름을 요구하는 <a class="reference internal" href="#helper-functions"><span class="std std-ref">헬퍼 함수</span></a>
+와 유효성 검사 규칙 필드 이름에서 EXACT 배열 이름을 사용해야 합니다.</p>
+<p>예를 들어 위 필드에 대한 규칙을 설정하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;options[]&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 위 필드에 대한 오류를 표시하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>또는 필드를 다시 채우려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo set_value(&#39;options[]&#39;); ?&gt;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>다차원 배열을 필드 이름으로 사용할 수도 있습니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[size]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>또는:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;sports[nba][basketball]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>첫 번째 예시와 마찬가지로 헬퍼 함수에서 정확한 배열 이름을 사용해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;sports[nba][basketball]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>여러 옵션이 있는 체크박스(또는 기타 필드)를 사용하는 경우 모든 선택이 POST 배열에
+추가될 수 있도록 각 옵션 뒤에 빈 괄호를 남기는 것을 잊지 마세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;red&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;green&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>또는 다차원 배열을 사용하는 경우:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;red&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;green&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>헬퍼 함수를 사용할 때 괄호도 포함하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[color][]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h2><a class="toc-backref" href="#id58" role="doc-backlink">규칙 레퍼런스</a><a class="headerlink" href="#id27" title="Link to this heading">¶</a></h2>
+<p>다음은 사용 가능한 모든 기본 규칙 목록입니다:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>규칙</p></th>
+<th class="head"><p>매개변수</p></th>
+<th class="head"><p>설명</p></th>
+<th class="head"><p>예시</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>required</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소가 비어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>matches</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수의 요소와 일치하지 않으면 FALSE를 반환합니다.</p></td>
+<td><p>matches[form_item]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>regex_match</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 정규 표현식과 일치하지 않으면 FALSE를 반환합니다.</p></td>
+<td><p>regex_match[/regex/]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>differs</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수의 요소와 다르지 않으면 FALSE를 반환합니다.</p></td>
+<td><p>differs[form_item]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_unique</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수의 테이블과 필드 이름에서 고유하지 않으면 FALSE를 반환합니다. 참고: 이 규칙은 작동하기 위해 <a class="reference internal" href="../database/query_builder.html"><span class="doc">Query Builder</span></a>가 활성화되어야 합니다.</p></td>
+<td><p>is_unique[table.field]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>min_length</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 짧으면 FALSE를 반환합니다.</p></td>
+<td><p>min_length[3]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>max_length</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 길면 FALSE를 반환합니다.</p></td>
+<td><p>max_length[12]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>exact_length</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값과 정확히 일치하지 않으면 FALSE를 반환합니다.</p></td>
+<td><p>exact_length[8]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>greater_than</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 작거나 같거나 숫자가 아니면 FALSE를 반환합니다.</p></td>
+<td><p>greater_than[8]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>greater_than_equal_to</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 작거나 숫자가 아니면 FALSE를 반환합니다.</p></td>
+<td><p>greater_than_equal_to[8]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>less_than</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 크거나 같거나 숫자가 아니면 FALSE를 반환합니다.</p></td>
+<td><p>less_than[8]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>less_than_equal_to</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 매개변수 값보다 크거나 숫자가 아니면 FALSE를 반환합니다.</p></td>
+<td><p>less_than_equal_to[8]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>in_list</strong></p></td>
+<td><p>예</p></td>
+<td><p>폼 요소가 미리 정해진 목록에 없으면 FALSE를 반환합니다.</p></td>
+<td><p>in_list[red,blue,green]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>alpha</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 알파벳 문자 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>alpha_numeric</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 알파뉴메릭 문자 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>alpha_numeric_spaces</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 알파뉴메릭 문자나 공백 이외의 것이 포함되어 있으면 FALSE를 반환합니다. 처음이나 끝의 공백을 방지하기 위해 trim 후에 사용해야 합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>alpha_dash</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 알파뉴메릭 문자, 밑줄 또는 대시 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>numeric</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 숫자 문자 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>integer</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 정수 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>decimal</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 소수 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>is_natural</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 자연수(0, 1, 2, 3 등) 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>is_natural_no_zero</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 0이 아닌 자연수(1, 2, 3 등) 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>valid_url</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 유효한 URL이 포함되어 있지 않으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>valid_email</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>폼 요소에 유효한 이메일 주소가 포함되어 있지 않으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>valid_emails</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>쉼표로 구분된 목록에서 제공된 값이 유효한 이메일이 아니면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>valid_ip</strong></p></td>
+<td><p>예</p></td>
+<td><p>제공된 IP 주소가 유효하지 않으면 FALSE를 반환합니다. IP 형식을 지정하기 위한 선택적 ‘ipv4’ 또는 ‘ipv6’ 매개변수를 허용합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>valid_mac</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>제공된 MAC 주소가 유효하지 않으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>valid_base64</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>제공된 문자열에 유효한 Base64 문자 이외의 것이 포함되어 있으면 FALSE를 반환합니다.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이러한 규칙은 개별 메소드로도 호출할 수 있습니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">required</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>최소 하나가 필요한(필드 데이터를 전달하기 위해) 최대 두 개의 매개변수를
+허용하는 모든 기본 PHP 함수를 사용할 수도 있습니다.</p>
+</div>
+</section>
+<section id="id28">
+<h2><a class="toc-backref" href="#id59" role="doc-backlink">전처리 레퍼런스</a><a class="headerlink" href="#id28" title="Link to this heading">¶</a></h2>
+<p>다음은 사용 가능한 모든 전처리 메소드 목록입니다:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>이름</p></th>
+<th class="head"><p>매개변수</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>prep_url</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>URL에 “\http://”가 없으면 추가합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>strip_image_tags</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>이미지 태그에서 HTML을 제거하고 원시 URL만 남깁니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>encode_php_tags</strong></p></td>
+<td><p>아니오</p></td>
+<td><p>PHP 태그를 엔티티로 변환합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>하나의 매개변수를 허용하는 모든 기본 PHP 함수(<code class="docutils literal notranslate"><span class="pre">trim()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">htmlspecialchars()</span></code>, <code class="docutils literal notranslate"><span class="pre">urldecode()</span></code> 등)를 사용할 수도 있습니다.</p>
+</div>
+</section>
+<section id="class-reference">
+<span id="id29"></span><h2><a class="toc-backref" href="#id60" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#class-reference" title="Link to this heading">¶</a></h2>
+<dl class="php class">
+<dt class="sig sig-object php" id="CI_Form_validation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CI_Form_validation</span></span><a class="headerlink" href="#CI_Form_validation" title="Link to this definition">¶</a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::set_rules">
+<span class="sig-name descname"><span class="pre">set_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$label</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$rules</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$errors</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::set_rules" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$label</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 레이블</p></li>
+<li><p><strong>$rules</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 파이프 “|”로 구분된 문자열 목록 또는 규칙 배열로 된 유효성 검사 규칙</p></li>
+<li><p><strong>$errors</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 커스텀 오류 메시지 목록</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>CI_Form_validation 인스턴스 (메소드 체이닝)</p>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BadMethodCallException  $field가 배열이 아니고 $rules가 사용되지 않은 경우</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><a class="reference internal" href="#CI_Form_validation" title="CI_Form_validation"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CI_Form_validation</span></code></a></span></p>
+</dd>
+</dl>
+<p>위의 튜토리얼 섹션에 설명된 대로 유효성 검사 규칙을 설정할 수 있습니다:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#setting-validation-rules"><span class="std std-ref">유효성 검사 규칙 설정</span></a></p></li>
+<li><p><a class="reference internal" href="#saving-groups"><span class="std std-ref">설정 파일에 유효성 검사 규칙 저장</span></a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$config</span> <span class="pre">=</span> <span class="pre">NULL</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$data</span> <span class="pre">=</span> <span class="pre">NULL</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::run" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$group</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 실행할 유효성 검사 그룹 이름</p></li>
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 유효성 검사된 데이터를 할당할 선택적 변수</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 TRUE, 유효성 검사 실패 시 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>유효성 검사 루틴을 실행합니다. 성공 시 불리언 TRUE, 실패 시 FALSE를 반환합니다.
+<a class="reference internal" href="#saving-groups"><span class="std std-ref">설정 파일에 유효성 검사 규칙 저장</span></a>에 설명된 대로 선택적으로 메소드를 통해 유효성 검사
+그룹 이름을 전달할 수 있습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::set_message">
+<span class="sig-name descname"><span class="pre">set_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$lang</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$val</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::set_message" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$lang</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 메시지에 해당하는 규칙</p></li>
+<li><p><strong>$val</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 메시지</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>CI_Form_validation 인스턴스 (메소드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CI_Form_validation" title="CI_Form_validation"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CI_Form_validation</span></code></a></span></p>
+</dd>
+</dl>
+<p>커스텀 오류 메시지를 설정할 수 있습니다. <a class="reference internal" href="#setting-error-messages"><span class="std std-ref">오류 메시지 설정</span></a> 참조.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::set_error_delimiters">
+<span class="sig-name descname"><span class="pre">set_error_delimiters</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$prefix</span> <span class="pre">=</span> <span class="pre">'&lt;p&gt;'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$suffix</span> <span class="pre">=</span> <span class="pre">'&lt;/p&gt;'</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::set_error_delimiters" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$prefix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 접두사</p></li>
+<li><p><strong>$suffix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 접미사</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>CI_Form_validation 인스턴스 (메소드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CI_Form_validation" title="CI_Form_validation"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CI_Form_validation</span></code></a></span></p>
+</dd>
+</dl>
+<p>오류 메시지의 기본 접두사와 접미사를 설정합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::set_data">
+<span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::set_data" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 유효성 검사할 데이터 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>CI_Form_validation 인스턴스 (메소드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CI_Form_validation" title="CI_Form_validation"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CI_Form_validation</span></code></a></span></p>
+</dd>
+</dl>
+<p>기본 <code class="docutils literal notranslate"><span class="pre">$_POST</span></code> 배열 대신 유효성을 검사할 배열을 설정할 수 있습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::reset_validation">
+<span class="sig-name descname"><span class="pre">reset_validation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::reset_validation" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CI_Form_validation 인스턴스 (메소드 체이닝)</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><a class="reference internal" href="#CI_Form_validation" title="CI_Form_validation"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CI_Form_validation</span></code></a></span></p>
+</dd>
+</dl>
+<p>두 개 이상의 배열의 유효성을 검사할 때 유효성 검사를 재설정할 수 있습니다.
+이 메소드는 각 새 배열의 유효성을 검사하기 전에 호출해야 합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::error_array">
+<span class="sig-name descname"><span class="pre">error_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::error_array" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>오류 메시지 배열</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>오류 메시지를 배열로 반환합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::error_string">
+<span class="sig-name descname"><span class="pre">error_string</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$prefix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$suffix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::error_string" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$prefix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 접두사</p></li>
+<li><p><strong>$suffix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 접미사</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>문자열로 된 오류 메시지</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>모든 오류 메시지(error_array()에서 반환된)를 문자열로 형식화하고 개행 문자로
+구분하여 반환합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$prefix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$suffix</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::error" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+<li><p><strong>$prefix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 선택적 접두사</p></li>
+<li><p><strong>$suffix</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 선택적 접미사</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>오류 메시지 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>특정 필드에 대한 오류 메시지를 반환하며, 선택적으로 접두사 및/또는 접미사를
+추가합니다(일반적으로 HTML 태그).</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Form_validation::has_rule">
+<span class="sig-name descname"><span class="pre">has_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Form_validation::has_rule" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 필드 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>필드에 규칙이 설정되어 있으면 TRUE, 그렇지 않으면 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>지정된 필드에 규칙이 설정되어 있는지 확인합니다.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="helper-functions">
+<span id="id30"></span><h2><a class="toc-backref" href="#id61" role="doc-backlink">헬퍼 레퍼런스</a><a class="headerlink" href="#helper-functions" title="Link to this heading">¶</a></h2>
+<p>다음 함수에 대한 <a class="reference internal" href="../helpers/form_helper.html"><span class="doc">폼 헬퍼</span></a> 매뉴얼을 참조하세요:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../helpers/form_helper.html#form_error" title="form_error"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_error()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../helpers/form_helper.html#validation_errors" title="validation_errors"><code class="xref php php-func docutils literal notranslate"><span class="pre">validation_errors()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_value()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../helpers/form_helper.html#set_select" title="set_select"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_select()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../helpers/form_helper.html#set_checkbox" title="set_checkbox"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_checkbox()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../helpers/form_helper.html#set_radio" title="set_radio"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_radio()</span></code></a></p></li>
+</ul>
+<p>이것들은 절차적 함수이므로 <code class="docutils literal notranslate"><span class="pre">$this-&gt;form_validation</span></code>을 앞에 붙일 필요가
+<strong>없습니다</strong>.</p>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ftp.html" class="btn btn-neutral float-right" title="FTP 클래스">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file_uploading.html" class="btn btn-neutral" title="파일 업로드 클래스"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

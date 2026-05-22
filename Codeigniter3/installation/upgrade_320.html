@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.x 에서 3.2.x 로 업그레이드 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="이전 버전에서 업그레이드" href="upgrading.html"/>
+        <link rel="next" title="3.1.13 에서 3.1.14 로 업그레이드" href="upgrade_3114.html"/>
+        <link rel="prev" title="이전 버전에서 업그레이드" href="upgrading.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">설치 방법</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">설치 방법</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">설치 방법</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">설치 방법</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">설치 방법</a> &raquo;</li>
+      
+        <li><a href="upgrading.html">이전 버전에서 업그레이드</a> &raquo;</li>
+      
+    <li>3.1.x 에서 3.2.x 로 업그레이드</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="x-3-2-x">
+<h1>3.1.x 에서 3.2.x 로 업그레이드<a class="headerlink" href="#x-3-2-x" title="Link to this heading">¶</a></h1>
+<p>업데이트를 수행하기 전에 index.php 파일을 정적 파일로 교체하여 사이트를 오프라인 상태로 만들어야 합니다.</p>
+<section id="step-1-codeigniter">
+<h2>Step 1: CodeIgniter 파일 업데이트<a class="headerlink" href="#step-1-codeigniter" title="Link to this heading">¶</a></h2>
+<p><em>system/</em> 디렉토리의 모든 파일과 폴더를 교체합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 디렉토리에 사용자 정의 파일이 있는 경우, 먼저 복사본을 만들어 두세요.</p>
+</div>
+</section>
+<section id="step-2-php">
+<h2>Step 2: PHP 버전 확인<a class="headerlink" href="#step-2-php" title="Link to this heading">¶</a></h2>
+<p>항상 <a class="reference external" href="https://secure.php.net/supported-versions.php">현재 지원되는</a> 버전을 사용하길 권장하며, 현재는 최소 PHP 5.6입니다.</p>
+<p>PHP 5.3.x 버전은 이제 CodeIgniter에서 공식적으로 지원되지 않으며, 5.4.8+ 버전이 실행은 될 수 있지만
+<a class="reference external" href="https://secure.php.net/supported-versions.php">PHP.net 지원 버전</a> 페이지에 나열된 버전 미만의 PHP를
+사용하지 않도록 강력히 권고합니다.</p>
+</section>
+<section id="step-3-ci-model-construct">
+<h2>Step 3: <code class="docutils literal notranslate"><span class="pre">CI_Model::__construct()</span></code> 호출 제거<a class="headerlink" href="#step-3-ci-model-construct" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">CI_Model</span></code> 의 클래스 생성자에는 중요한 코드나 유용한 로직이 없었으며, 메시지를 로그에 기록하는 한 줄만 있었습니다.
+CodeIgniter 3.1.7의 변경으로 이 로그 메시지가 다른 곳으로 이동되어 생성자가 완전히 불필요해졌습니다.
+그러나 마이너 릴리즈에서 즉각적인 하위 호환성 문제를 피하기 위해 유지되었습니다.</p>
+<p>버전 3.2.0에서 해당 생성자가 완전히 제거되어, 이를 호출하면 치명적 오류가 발생합니다. 특히 다음과 같은 코드에서:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Some_model</span> <span class="k">extends</span> <span class="nx">CI_Model</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span> <span class="c1">// CI_Model::__construct() 호출</span>
+
+                <span class="nx">do_some_other_thing</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">parent::__construct()</span></code> 호출을 제거하기만 하면 됩니다. 덧붙여, 다음 패턴은 매우 흔하게 볼 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Some_class</span> <span class="k">extends</span> <span class="nx">CI_Something</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이렇게 하지 마세요! 무의미하며 아무 목적도 없습니다. 부모 클래스에 <code class="docutils literal notranslate"><span class="pre">__construct()</span></code> 메서드가 있으면 모든 자식
+클래스에 상속되어 잘 실행됩니다. 로직을 확장하려는 경우가 아니라면 명시적으로 호출할 필요가 없습니다.</p>
+</section>
+<section id="step-4">
+<h2>Step 4: 데이터베이스 연결 처리 변경<a class="headerlink" href="#step-4" title="Link to this heading">¶</a></h2>
+<p><em>config/autoload.php</em> 설정을 사용하거나 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load-&gt;database()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">DB()</span></code> 함수를 통해
+데이터베이스를 “로드”하면, 실패 시 <code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code> 이 발생합니다.</p>
+<p>또한, 설정된 문자 집합을 지정할 수 없는 경우도 이제 연결 실패로 간주됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이는 과거 대부분의 데이터베이스 드라이버(‘mysql’, ‘mysqli’, ‘postgre’ 드라이버 제외)에서도 마찬가지였습니다.</p>
+</div>
+<p>이는 데이터베이스에 연결할 수 없거나 잘못된 문자 집합이 설정된 경우, CodeIgniter가 더 이상 조용히 실패하지 않고
+예외를 발생시킨다는 것을 의미합니다.</p>
+<p>명시적으로 예외를 처리할 수 있습니다 (이 경우 <a class="reference internal" href="../database/index.html"><span class="doc">데이터베이스 클래스</span></a> 를 로드하는 데
+<em>config/autoload.php</em> 를 사용할 수 없음):</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
+<span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">database</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">RuntimeException</span> <span class="nv">$e</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="c1">// 실패 처리</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>또는 CodeIgniter의 기본 예외 핸들러에 맡겨, 오류 메시지를 로그에 기록하고 개발 모드에서 오류 화면을 표시하도록
+할 수 있습니다.</p>
+<section id="db-set-charset">
+<h3>db_set_charset() 호출 제거<a class="headerlink" href="#db-set-charset" title="Link to this heading">¶</a></h3>
+<p>위의 변경으로 인해 <code class="docutils literal notranslate"><span class="pre">db_set_charset()</span></code> 메서드의 목적은 이제 런타임에 연결 문자 집합을 변경하는 것뿐입니다.
+이는 의미가 없으며, 대부분의 데이터베이스 드라이버가 지원하지 않는 이유이기도 합니다.
+따라서 <code class="docutils literal notranslate"><span class="pre">db_set_charset()</span></code> 은 더 이상 필요하지 않으며 제거되었습니다.</p>
+</section>
+</section>
+<section id="step-5-cli-uri">
+<h2>Step 5: CLI 요청의 URI 파싱 관련 로직 확인<a class="headerlink" href="#step-5-cli-uri" title="Link to this heading">¶</a></h2>
+<p>CLI에서 CodeIgniter 애플리케이션을 실행할 때, <a class="reference internal" href="../libraries/uri.html"><span class="doc">URI 라이브러리</span></a> 는 이제
+<code class="docutils literal notranslate"><span class="pre">$config['url_suffix']</span></code> 와 <code class="docutils literal notranslate"><span class="pre">$config['permitted_uri_chars']</span></code> 설정을 무시합니다.</p>
+<p>이 두 옵션은 커맨드 라인에서 의미가 없으므로 영향을 받지 않아야 하지만, 어떤 이유로 이에 의존했다면
+코드를 변경해야 할 수도 있습니다.</p>
+</section>
+<section id="step-6-redis-memcache-d">
+<h2>Step 6: Redis, Memcache(d) 캐시 라이브러리 설정 확인<a class="headerlink" href="#step-6-redis-memcache-d" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../libraries/caching.html"><span class="doc">캐시 라이브러리</span></a> 의 ‘redis’ 및 ‘memcached’ 드라이버의 개선으로
+설정값을 약간 조정해야 할 수 있습니다…</p>
+<section id="redis">
+<h3>Redis<a class="headerlink" href="#redis" title="Link to this heading">¶</a></h3>
+<p>UNIX 소켓 연결과 함께 ‘redis’ 드라이버를 사용하는 경우, 소켓 경로를 <code class="docutils literal notranslate"><span class="pre">$config['socket']</span></code> 에서
+<code class="docutils literal notranslate"><span class="pre">$config['host']</span></code> 로 이동해야 합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$config['socket_type']</span></code> 옵션도 제거되었지만 애플리케이션에는 영향을 주지 않습니다.
+연결 유형은 <code class="docutils literal notranslate"><span class="pre">$config['host']</span></code> 에 사용된 형식으로 결정됩니다.</p>
+</section>
+<section id="memcache-d">
+<h3>Memcache(d)<a class="headerlink" href="#memcache-d" title="Link to this heading">¶</a></h3>
+<p>‘memcached’ 는 이제 <code class="docutils literal notranslate"><span class="pre">host</span></code> 값을 지정하지 않는 설정을 무시합니다
+(이전에는 호스트를 기본값 ‘127.0.0.1’로 설정했음).</p>
+<p>따라서 예를 들어 <code class="docutils literal notranslate"><span class="pre">port</span></code> 만 설정한 구성을 추가한 경우, 이제 <code class="docutils literal notranslate"><span class="pre">host</span></code> 도 명시적으로 ‘127.0.0.1’로 설정해야 합니다.</p>
+</section>
+</section>
+<section id="step-7-email">
+<h2>Step 7: Email 라이브러리 사용 확인<a class="headerlink" href="#step-7-email" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../libraries/email.html"><span class="doc">Email 라이브러리</span></a> 는 이제 기본적으로 전달된 모든 이메일 주소의 유효성을 검사합니다.
+이 검사는 기본적으로 꺼져 있었으며, 활성화하려면 <strong>validate</strong> 옵션을 <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> 로 명시적으로 설정해야 했습니다.</p>
+<p>유효성 검사는 문제를 일으키지 않아야 하지만, 기술적으로 하위 호환성 변경이므로 모든 것이 정상 동작하는지
+확인하세요. 문제가 발생하면 버그로 보고해 주시고, <strong>validate</strong> 옵션을 비활성화하여 이전 동작으로 되돌릴 수 있습니다.</p>
+</section>
+<section id="step-8-doctype-html">
+<h2>Step 8: doctype() HTML 헬퍼 사용 확인<a class="headerlink" href="#step-8-doctype-html" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../helpers/html_helper.html"><span class="doc">HTML 헬퍼</span></a> 의 <a class="reference internal" href="../helpers/html_helper.html#doctype" title="doctype"><code class="xref php php-func docutils literal notranslate"><span class="pre">doctype()</span></code></a> 함수는 문서 유형이 지정되지 않은 경우
+기본값으로 ‘xhtml1-strict’ (XHTML 1.0 Strict)를 사용했습니다. 이 기본값이 이제 ‘html5’로 변경되었습니다.</p>
+<p>이 변경으로 실제로 문제가 발생하지는 않지만, 애플리케이션이 기본값에 의존하는 경우 원하는 형식을 명시적으로
+설정하거나 HTML 5 형식에 맞게 프론트엔드를 수정하세요.</p>
+</section>
+<section id="step-9-form-upload-form">
+<h2>Step 9: form_upload() Form 헬퍼 사용 확인<a class="headerlink" href="#step-9-form-upload-form" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../helpers/form_helper.html"><span class="doc">Form 헬퍼</span></a> 의 <a class="reference internal" href="../helpers/form_helper.html#form_upload" title="form_upload"><code class="xref php php-func docutils literal notranslate"><span class="pre">form_upload()</span></code></a> 함수에는 3개의 파라미터가 있었는데,
+“file” 유형의 HTML <code class="docutils literal notranslate"><span class="pre">input</span></code> 태그에서는 의미가 없으므로 두 번째 파라미터 (<code class="docutils literal notranslate"><span class="pre">$value</span></code>)는 사용되지 않았습니다.</p>
+<p>이 불필요한 파라미터가 이제 제거되었으므로, 세 번째 파라미터 (<code class="docutils literal notranslate"><span class="pre">$extra</span></code>)를 사용한 경우:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">form_upload</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;irrelevant value&#39;</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>다음과 같이 변경해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">form_upload</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$extra</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="step-10">
+<h2>Step 10: 이전 버전에서 더 이상 사용되지 않는 기능 제거<a class="headerlink" href="#step-10" title="Link to this heading">¶</a></h2>
+<p>다음은 이전 CodeIgniter 버전에서 더 이상 사용되지 않아 3.2.0에서 제거된 기능 목록입니다:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$config['allow_get_array']</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">$_GET</span> <span class="pre">=</span> <span class="pre">array();</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$config['standardize_newlines']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$config['rewrite_short_tags']</span></code> (PHP 5.4+에서는 영향 없음)</p></li>
+<li><p>‘sqlite’ 데이터베이스 드라이버 (PHP 5.4+에서 더 이상 제공되지 않음; ‘sqlite3’는 계속 사용 가능)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Input::is_cli_request()</span></code> (대신 <a class="reference internal" href="../general/common_functions.html#is_cli" title="is_cli"><code class="xref php php-func docutils literal notranslate"><span class="pre">is_cli()</span></code></a> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Router::fetch_directory()</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">CI_Router::$directory</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Router::fetch_class()</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">CI_Router::$class</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Router::fetch_method()</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">CI_Router::$method</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Config::system_url()</span></code> (보안에 취약한 방식을 권장함)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CI_Form_validation::prep_for_form()</span></code> (<em>prep_for_form</em> 규칙)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">standard_date()</span></code> <a class="reference internal" href="../helpers/date_helper.html"><span class="doc">날짜 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">date()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nice_date()</span></code> <a class="reference internal" href="../helpers/date_helper.html"><span class="doc">날짜 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">DateTime::format()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">do_hash()</span></code> <a class="reference internal" href="../helpers/security_helper.html"><span class="doc">보안 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">hash()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">br()</span></code> <a class="reference internal" href="../helpers/html_helper.html"><span class="doc">HTML 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">str_repeat()</span></code> 에 <code class="docutils literal notranslate"><span class="pre">'&lt;br</span> <span class="pre">/&gt;'</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbs()</span></code> <a class="reference internal" href="../helpers/html_helper.html"><span class="doc">HTML 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">str_repeat()</span></code> 에 <code class="docutils literal notranslate"><span class="pre">'&amp;nbsp;'</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trim_slashes()</span></code> <a class="reference internal" href="../helpers/string_helper.html"><span class="doc">문자열 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">'/'</span></code> 와 함께 <code class="docutils literal notranslate"><span class="pre">trim()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">repeater()</span></code> <a class="reference internal" href="../helpers/string_helper.html"><span class="doc">문자열 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">str_repeat()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_file()</span></code> <a class="reference internal" href="../helpers/file_helper.html"><span class="doc">파일 헬퍼</span></a> 함수 (대신 <code class="docutils literal notranslate"><span class="pre">file_get_contents()</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">form_prep()</span></code> <a class="reference internal" href="../helpers/form_helper.html"><span class="doc">Form 헬퍼</span></a> 함수 (대신 <a class="reference internal" href="../general/common_functions.html#html_escape" title="html_escape"><code class="xref php php-func docutils literal notranslate"><span class="pre">html_escape()</span></code></a> 사용)</p></li>
+<li><p><em>Encrypt 라이브러리</em> 전체 (최신 <a class="reference internal" href="../libraries/encryption.html"><span class="doc">Encryption 라이브러리</span></a> 는 계속 사용 가능)</p></li>
+<li><p><em>Cart 라이브러리</em> 전체 (아카이브 버전: <a class="reference external" href="https://github.com/bcit-ci/ci3-cart-library">bcit-ci/ci3-cart-library</a>)</p></li>
+<li><p><em>Javascript 라이브러리</em> 전체 (원래부터 실험적이었음)</p></li>
+<li><p><em>Email 헬퍼</em> 전체 (두 함수만 있었음):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_email()</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">filter_var($email,</span> <span class="pre">FILTER_VALIDATE_EMAIL)</span></code> 사용)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">send_email()</span></code> (대신 <code class="docutils literal notranslate"><span class="pre">mail()</span></code> 사용)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><em>Smiley 헬퍼</em> 전체 (아카이브 버전: <a class="reference external" href="https://github.com/bcit-ci/ci3-smiley-helper">bcit-ci/ci3-smiley-helper</a>)</p></li>
+<li><p><a class="reference internal" href="../database/forge.html"><span class="doc">데이터베이스 Forge</span></a> 메서드 <code class="docutils literal notranslate"><span class="pre">add_column()</span></code> 의 <code class="docutils literal notranslate"><span class="pre">$_after</span></code> 파라미터</p></li>
+<li><p><a class="reference internal" href="../libraries/pagination.html"><span class="doc">Pagination 라이브러리</span></a> 의 <code class="docutils literal notranslate"><span class="pre">anchor_class</span></code> 옵션 (대신 <code class="docutils literal notranslate"><span class="pre">class</span></code> 사용)</p></li>
+<li><p><a class="reference internal" href="../helpers/string_helper.html"><span class="doc">문자열 헬퍼</span></a> 함수 <code class="docutils literal notranslate"><span class="pre">random_string()</span></code> 의 <code class="docutils literal notranslate"><span class="pre">unique</span></code> 및 <code class="docutils literal notranslate"><span class="pre">encrypt</span></code> 옵션</p></li>
+<li><p><a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL 헬퍼</span></a> 함수 <a class="reference internal" href="../helpers/url_helper.html#url_title" title="url_title"><code class="xref php php-func docutils literal notranslate"><span class="pre">url_title()</span></code></a> 의 <code class="docutils literal notranslate"><span class="pre">underscore</span></code> 및 <code class="docutils literal notranslate"><span class="pre">dash</span></code> 옵션</p></li>
+<li><p><a class="reference internal" href="../helpers/captcha_helper.html"><span class="doc">CAPTCHA 헬퍼</span></a> 함수 <a class="reference internal" href="../helpers/captcha_helper.html#create_captcha" title="create_captcha"><code class="xref php php-func docutils literal notranslate"><span class="pre">create_captcha()</span></code></a> 의 <code class="docutils literal notranslate"><span class="pre">$img_path</span></code>, <code class="docutils literal notranslate"><span class="pre">$img_url</span></code>, <code class="docutils literal notranslate"><span class="pre">$font_path</span></code> 파라미터 (대신 배열 옵션으로 전달)</p></li>
+</ul>
+</section>
+<section id="step-11">
+<h2>Step 11: 모든 사용자 입력을 검증하고 있는지 확인<a class="headerlink" href="#step-11" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../libraries/input.html"><span class="doc">Input 라이브러리</span></a> 는 <code class="docutils literal notranslate"><span class="pre">$_GET</span></code>, <code class="docutils literal notranslate"><span class="pre">$_POST</span></code>, <code class="docutils literal notranslate"><span class="pre">$_COOKIE</span></code> 수퍼글로벌의 사용자 입력을
+(종종 무조건적으로) 필터링 및/또는 정제했습니다.</p>
+<p>이는 <a class="reference external" href="https://secure.php.net/register_globals">register_globals</a> 와
+<a class="reference external" href="https://secure.php.net/magic_quotes_gpc">magic_quotes_gpc</a> 가 PHP에 존재하던 과거의 레거시 기능이었습니다.
+당시에는 필수였지만, 이제는 그렇지 않으며 전역 필터에 의존하는 것은 잘못된 보안 의식을 줄 수 있는 나쁜 방식입니다.</p>
+<p>이 기능이 제거되었으므로, 어떤 이유로든 이에 의존했다면 애플리케이션의 모든 사용자 입력을 제대로 검증하고 있는지
+다시 확인해야 합니다 (항상 그렇게 해야 합니다).</p>
+</section>
+<section id="step-12">
+<h2>Step 12: 출력 캐시 지우기 (선택 사항)<a class="headerlink" href="#step-12" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="../libraries/output.html"><span class="doc">Output 클래스</span></a> 의 내부 변경으로 인해 <a class="reference internal" href="../general/caching.html"><span class="doc">웹 페이지 캐싱</span></a>
+기능을 사용하는 경우 오래된 캐시 파일이 남을 수 있습니다.</p>
+<p>문제가 되지는 않지만, 지우는 것이 좋습니다.</p>
+</section>
+<section id="step-13-oci8-get-cursor-stored-procedure">
+<h2>Step 13: OCI8 get_cursor() 및 stored_procedure() 메서드 사용 제거<a class="headerlink" href="#step-13-oci8-get-cursor-stored-procedure" title="Link to this heading">¶</a></h2>
+<p>OCI8 <a class="reference internal" href="../database/index.html"><span class="doc">데이터베이스</span></a> 드라이버는 더 이상 다른 드라이버에는 없는 두 메서드를 지원하지 않습니다.
+<code class="docutils literal notranslate"><span class="pre">$curs_id</span></code> 속성도 제거되었습니다.</p>
+<p>이를 사용했다면 <code class="docutils literal notranslate"><span class="pre">oci_new_cursor()</span></code> 와 공개 접근 가능한 <code class="docutils literal notranslate"><span class="pre">$conn_id</span></code> 를 통해 직접 커서를 생성할 수 있습니다.</p>
+</section>
+<section id="step-14-config-log-file-extension-config-log-filename">
+<h2>Step 14: $config[‘log_file_extension’] 을 $config[‘log_filename’] 으로 변경<a class="headerlink" href="#step-14-config-log-file-extension-config-log-filename" title="Link to this heading">¶</a></h2>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">$config['log_filename']</span></code> 을 통해 전체 로그 파일명을 지정할 수 있습니다.
+새 파일을 복사하지 않은 경우 <strong>application/config/config.php</strong> 에 이 설정 옵션을 추가하세요.</p>
+<p>기존의 <code class="docutils literal notranslate"><span class="pre">$config['log_file_extension']</span></code> 옵션은 제거되어 더 이상 작동하지 않습니다.
+그러나 기능은 파일명 확장자를 포함하는 새 <code class="docutils literal notranslate"><span class="pre">$config['log_filename']</span></code> 에 통합되어 있습니다.</p>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="upgrade_3114.html" class="btn btn-neutral float-right" title="3.1.13 에서 3.1.14 로 업그레이드">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="upgrading.html" class="btn btn-neutral" title="이전 버전에서 업그레이드"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
