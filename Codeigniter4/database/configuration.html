@@ -95,10 +95,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">설정</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수와 상수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
@@ -563,7 +563,7 @@
 <span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">database</span> <span class="o">=</span> <span class="s1">&#39;ci4&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>그러나 환경 변수를 설정하여 새 속성을 추가하거나 스칼라 값을 배열로 변경할 수는 없습니다. 자세한 내용은 <a class="reference internal" href="../general/configuration.html#env-var-replacements-for-data"><span class="std std-ref">데이터를 대체하는 환경 변수</span></a>를 참조하세요.</p>
+<p>그러나 환경 변수를 설정하여 새 속성을 추가하거나 스칼라 값을 배열로 변경할 수는 없습니다. 자세한 내용은 <a class="reference internal" href="../general/configuration.html#env-var-replacements-for-data"><span class="std std-ref">데이터 값 대체용으로서의 환경 변수</span></a>를 참조하세요.</p>
 <p>따라서 MySQL에서 SSL을 사용하려면 해킹이 필요합니다. 예를 들어 <strong>.env</strong> 파일에서 배열 값을 JSON 문자열로 설정합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">database</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nx">encrypt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ssl_verify&quot;</span><span class="o">:</span><span class="k">true</span><span class="p">,</span><span class="s2">&quot;ssl_ca&quot;</span><span class="o">:</span><span class="s2">&quot;/var/www/html/BaltimoreCyberTrustRoot.crt.pem&quot;</span><span class="p">}</span>
 </pre></div>

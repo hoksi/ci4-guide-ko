@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>전역 함수 및 상수 &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>전역 함수와 상수 &mdash; CodeIgniter 4.7.2 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -95,10 +95,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">설정</a></li>
 <li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼 함수</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">전역 함수 및 상수</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">전역 함수와 상수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">로깅 정보</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errors.html">오류 처리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">웹 페이지 캐싱</a></li>
@@ -280,7 +280,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">일반 주제</a></li>
-      <li class="breadcrumb-item active">전역 함수 및 상수</li>
+      <li class="breadcrumb-item active">전역 함수와 상수</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -290,46 +290,46 @@
            <div itemprop="articleBody">
              
   <section id="global-functions-and-constants">
-<h1>전역 함수 및 상수<a class="headerlink" href="#global-functions-and-constants" title="Link to this heading"></a></h1>
-<p>CodeIgniter는 전역적으로 정의되고 언제든지 사용할 수 있는 몇 가지 함수와 변수를 제공합니다. 추가 라이브러리나 도우미를 로드할 필요가 없습니다.</p>
+<h1>전역 함수와 상수<a class="headerlink" href="#global-functions-and-constants" title="Link to this heading"></a></h1>
+<p>CodeIgniter는 전역적으로 정의되어 언제든지 사용할 수 있는 몇 가지 함수와 변수를 제공합니다. 추가 라이브러리나 헬퍼를 로드할 필요가 없습니다.</p>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#global-functions" id="id2">글로벌 기능</a></p>
+<li><p><a class="reference internal" href="#global-functions" id="id2">전역 함수</a></p>
 <ul>
-<li><p><a class="reference internal" href="#service-accessors" id="id3">서비스 접근자</a></p></li>
-<li><p><a class="reference internal" href="#miscellaneous-functions" id="id4">기타 기능</a></p></li>
+<li><p><a class="reference internal" href="#service-accessors" id="id3">서비스 액세서</a></p></li>
+<li><p><a class="reference internal" href="#miscellaneous-functions" id="id4">기타 함수</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#global-constants" id="id5">전역 상수</a></p>
 <ul>
 <li><p><a class="reference internal" href="#core-constants" id="id6">핵심 상수</a></p></li>
-<li><p><a class="reference internal" href="#time-constants" id="id7">시상수</a></p></li>
+<li><p><a class="reference internal" href="#time-constants" id="id7">시간 상수</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="global-functions">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">글로벌 기능</a><a class="headerlink" href="#global-functions" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">전역 함수</a><a class="headerlink" href="#global-functions" title="Link to this heading"></a></h2>
 <section id="service-accessors">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">서비스 접근자</a><a class="headerlink" href="#service-accessors" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">서비스 액세서</a><a class="headerlink" href="#service-accessors" title="Link to this heading"></a></h3>
 <dl class="php function">
 <dt class="sig sig-object php" id="cache">
 <span class="sig-name descname"><span class="pre">cache</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$key</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#cache" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 캐시에서 검색할 항목의 캐시 이름(선택 사항)</p></li>
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 캐시에서 가져올 항목의 캐시 이름(선택 사항)</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
-<dd class="field-even"><p>캐시 객체 또는 캐시에서 검색된 항목</p>
+<dd class="field-even"><p>캐시 객체 또는 캐시에서 가져온 항목</p>
 </dd>
 <dt class="field-odd">반환 형식<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
 </dd>
 </dl>
-<p>$key이 제공되지 않으면 캐시 엔진 인스턴스를 반환합니다. $key이 제공되면 현재 캐시에 저장된 $key 값을 반환하거나, 값이 없으면 null을 반환합니다.</p>
-<p>예:</p>
+<p>$key가 제공되지 않으면 캐시 엔진 인스턴스를 반환합니다. $key가 제공되면 현재 캐시에 저장된 $key 값을 반환하고, 값이 없으면 null을 반환합니다.</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="nv">$foo</span>   <span class="o">=</span> <span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
@@ -344,20 +344,20 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 구성 클래스 이름입니다.</p></li>
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 설정 클래스 이름입니다.</p></li>
 <li><p><strong>$getShared</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 공유 인스턴스를 반환할지 여부입니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
-<dd class="field-even"><p>구성 인스턴스.</p>
+<dd class="field-even"><p>설정 인스턴스.</p>
 </dd>
 <dt class="field-odd">반환 형식<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object|null</span></code></span></p>
 </dd>
 </dl>
-<p>팩토리에서 구성 인스턴스를 가져오는 더 간단한 방법입니다.</p>
-<p>자세한 내용은 <a class="reference internal" href="configuration.html#configuration-config"><span class="std std-ref">Configuration</span></a> 및 <a class="reference internal" href="../concepts/factories.html#factories-config"><span class="std std-ref">Factories</span></a>을 참조하세요.</p>
-<p><code class="docutils literal notranslate"><span class="pre">config()</span></code>은 내부적으로 <code class="docutils literal notranslate"><span class="pre">Factories::config()</span></code>을 사용합니다. 첫 번째 매개변수 <code class="docutils literal notranslate"><span class="pre">$name</span></code>에 대한 자세한 내용은 <a class="reference internal" href="../concepts/factories.html#factories-loading-class"><span class="std std-ref">클래스 로딩</span></a>을 참조하세요.</p>
+<p>Factories에서 설정 인스턴스를 가져오는 더 간단한 방법입니다.</p>
+<p>자세한 내용은 <a class="reference internal" href="configuration.html#configuration-config"><span class="std std-ref">Configuration</span></a> 및 <a class="reference internal" href="../concepts/factories.html#factories-config"><span class="std std-ref">Factories</span></a>를 참조하세요.</p>
+<p><code class="docutils literal notranslate"><span class="pre">config()</span></code>는 내부적으로 <code class="docutils literal notranslate"><span class="pre">Factories::config()</span></code>를 사용합니다. 첫 번째 매개변수 <code class="docutils literal notranslate"><span class="pre">$name</span></code>에 대한 자세한 내용은 <a class="reference internal" href="../concepts/factories.html#factories-loading-class"><span class="std std-ref">클래스 로딩</span></a>를 참조하세요.</p>
 </dd></dl>
 
 <dl class="php function">
@@ -377,11 +377,11 @@
 <dt class="field-odd">반환<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 인스턴스</p>
 </dd>
-<dt class="field-even">던진다<span class="colon">:</span></dt>
+<dt class="field-even">예외 발생<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">CookieException</span></code></p>
 </dd>
 </dl>
-<p>새 쿠키 인스턴스를 생성하는 더 간단한 방법입니다.</p>
+<p>새 Cookie 인스턴스를 생성하는 더 간단한 방법입니다.</p>
 </dd></dl>
 
 <dl class="php function">
@@ -401,7 +401,7 @@
 <dd class="field-odd"><p>현재 <code class="docutils literal notranslate"><span class="pre">Response</span></code>에 저장된 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code>의 인스턴스 또는 새 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 인스턴스.</p>
 </dd>
 </dl>
-<p><code class="docutils literal notranslate"><span class="pre">Response</span></code>이 보유한 전역 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 인스턴스를 가져옵니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Response</span></code>가 보유한 전역 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 인스턴스를 가져옵니다.</p>
 </dd></dl>
 
 <dl class="php function">
@@ -410,8 +410,8 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 검색할 환경 변수의 이름</p></li>
-<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 값이 없을 경우 반환할 기본값입니다.</p></li>
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 가져올 환경 변수의 이름</p></li>
+<li><p><strong>$default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 값을 찾을 수 없을 때 반환할 기본값입니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
@@ -421,7 +421,7 @@
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
 </dd>
 </dl>
-<p>이전에 환경에 설정된 값을 검색하거나, 찾을 수 없는 경우 기본값을 반환하는 데 사용됩니다. 문자열 표현 대신 부울 값을 실제 부울로 형식화합니다.</p>
+<p>이전에 환경에 설정된 값을 가져오거나, 찾을 수 없는 경우 기본값을 반환하는 데 사용됩니다. 불리언 값은 문자열 표현 대신 실제 불리언으로 변환됩니다.</p>
 <p>데이터베이스 설정, API 키 등과 같이 환경 자체에 특정한 값을 설정하기 위해 <strong>.env</strong> 파일과 함께 사용할 때 특히 유용합니다.</p>
 </dd></dl>
 
@@ -443,8 +443,8 @@
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
 </dd>
 </dl>
-<p>XSS 공격을 방지하기 위해 웹 페이지에 포함할 데이터를 이스케이프합니다. 이는 Laminas Escaper 라이브러리를 사용하여 데이터의 실제 필터링을 처리합니다.</p>
-<p>$data이 문자열이면 단순히 이스케이프하여 반환합니다. $data이 배열인 경우 키/값 쌍의 각 ‘값’을 이스케이프하여 반복합니다.</p>
+<p>XSS 공격을 방지하기 위해 웹 페이지에 포함될 데이터를 이스케이프합니다. 실제 데이터 필터링은 Laminas Escaper 라이브러리를 사용하여 처리합니다.</p>
+<p>$data가 문자열이면 단순히 이스케이프하여 반환합니다. $data가 배열이면 이를 순회하면서 키/값 쌍의 각 ‘값’을 이스케이프합니다.</p>
 <p>유효한 컨텍스트 값: <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">js</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">attr</span></code>, <code class="docutils literal notranslate"><span class="pre">raw</span></code></p>
 </dd></dl>
 
@@ -454,11 +454,11 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$filename</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|array</span></code></span>) – 로드할 도우미 파일의 이름 또는 이름 배열입니다.</p></li>
+<li><p><strong>$filename</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|array</span></code></span>) – 로드할 헬퍼 파일의 이름 또는 이름의 배열입니다.</p></li>
 </ul>
 </dd>
 </dl>
-<p>도우미 파일을 로드합니다.</p>
+<p>헬퍼 파일을 로드합니다.</p>
 <p>자세한 내용은 <a class="reference internal" href="helpers.html"><span class="doc">헬퍼 함수</span></a> 페이지를 참조하세요.</p>
 </dd></dl>
 
@@ -548,7 +548,7 @@
 
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p><a class="reference internal" href="../helpers/form_helper.html"><span class="doc">form helper</span></a>에서 <a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_value()</span></code></a>, <a class="reference internal" href="../helpers/form_helper.html#set_select" title="set_select"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_select()</span></code></a>, <a class="reference internal" href="../helpers/form_helper.html#set_checkbox" title="set_checkbox"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_checkbox()</span></code></a> 및 <a class="reference internal" href="../helpers/form_helper.html#set_radio" title="set_radio"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_radio()</span></code></a> 함수를 사용하는 경우 이 기능이 내장되어 있습니다. 양식 도우미를 사용하지 않을 때만 이 기능을 사용해야 합니다.</p>
+<p><a class="reference internal" href="../helpers/form_helper.html"><span class="doc">form helper</span></a>에서 <a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_value()</span></code></a>, <a class="reference internal" href="../helpers/form_helper.html#set_select" title="set_select"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_select()</span></code></a>, <a class="reference internal" href="../helpers/form_helper.html#set_checkbox" title="set_checkbox"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_checkbox()</span></code></a> 및 <a class="reference internal" href="../helpers/form_helper.html#set_radio" title="set_radio"><code class="xref php php-func docutils literal notranslate"><span class="pre">set_radio()</span></code></a> 함수를 사용하는 경우 이 기능이 내장되어 있습니다. 양식 헬퍼를 사용하지 않을 때만 이 기능을 사용해야 합니다.</p>
 </div>
 <dl class="php function">
 <dt class="sig sig-object php" id="session">
@@ -585,7 +585,7 @@
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniterDebugTimer</span></code></span></p>
 </dd>
 </dl>
-<p>Timer 클래스에 대한 빠른 액세스를 제공하는 편리한 메서드입니다. 벤치마크 포인트의 이름을 유일한 매개변수로 전달할 수 있습니다. 이 시점부터 타이밍이 시작되거나, 이 이름의 타이머가 이미 실행 중인 경우 타이밍이 중지됩니다.</p>
+<p>Timer 클래스에 대한 빠른 액세스를 제공하는 편리한 메서드입니다. 벤치마크 포인트의 이름을 유일한 매개변수로 전달할 수 있습니다. 이 시점부터 타이머가 시작되거나, 이 이름의 타이머가 이미 실행 중인 경우 타이머가 중지됩니다.</p>
 <p>예:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -618,14 +618,14 @@
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
-<p>현재 RendererInterface 호환 클래스(기본적으로 <a class="reference internal" href="../outgoing/view_renderer.html"><span class="doc">View</span></a> 클래스)를 잡고 지정된 뷰를 렌더링하도록 지시합니다. 컨트롤러, 라이브러리, 라우팅 클로저에서 사용할 수 있는 편리한 메소드를 간단히 제공합니다.</p>
+<p>현재 RendererInterface 호환 클래스(기본적으로 <a class="reference internal" href="../outgoing/view_renderer.html"><span class="doc">View</span></a> 클래스)를 잡고 지정된 뷰를 렌더링하도록 지시합니다. 컨트롤러, 라이브러리, 라우트 클로저에서 사용할 수 있는 편리한 메서드를 간단히 제공합니다.</p>
 <p>현재 <code class="docutils literal notranslate"><span class="pre">$options</span></code> 배열 내에서 다음 옵션을 사용할 수 있습니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">saveData</span></code>은 동일한 요청 내에서 <code class="docutils literal notranslate"><span class="pre">view()</span></code>에 대한 여러 호출 간에 데이터가 지속되도록 지정합니다. 데이터를 유지하지 않으려면 false를 지정하십시오.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code>은 뷰를 캐시할 시간(초)을 지정합니다. 자세한 내용은 <a class="reference internal" href="../outgoing/views.html#caching-views"><span class="std std-ref">뷰 캐싱</span></a>을 참조하세요.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>을 false로 설정하면 <a class="reference internal" href="../testing/debugging.html#the-debug-toolbar"><span class="std std-ref">Debug Toolbar</span></a>에 대한 디버그 코드 추가를 비활성화할 수 있습니다.</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">$option</span></code> 배열은 주로 Twig와 같은 라이브러리와의 타사 통합을 용이하게 하기 위해 제공됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$option</span></code> 배열은 주로 Twig와 같은 라이브러리와의 서드파티 통합을 용이하게 하기 위해 제공됩니다.</p>
 <p>예:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -661,7 +661,7 @@
 
 </section>
 <section id="miscellaneous-functions">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">기타 기능</a><a class="headerlink" href="#miscellaneous-functions" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">기타 함수</a><a class="headerlink" href="#miscellaneous-functions" title="Link to this heading"></a></h3>
 <dl class="php function">
 <dt class="sig sig-object php" id="app_timezone">
 <span class="sig-name descname"><span class="pre">app_timezone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app_timezone" title="Link to this definition"></a></dt>
@@ -805,7 +805,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$functionName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 확인하는 기능</p></li>
+<li><p><strong>$functionName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 확인할 함수</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
@@ -893,7 +893,7 @@
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
-<dd class="field-even"><p>무효의</p>
+<dd class="field-even"><p>void</p>
 </dd>
 <dt class="field-odd">반환 형식<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
@@ -904,7 +904,7 @@
 <p>v4.5.0부터 반환 값이 PSR Log와 호환되도록 수정되었습니다. 이전 버전에서는 성공적으로 기록되면 <code class="docutils literal notranslate"><span class="pre">true</span></code>을 반환하고, 기록에 문제가 있으면 <code class="docutils literal notranslate"><span class="pre">false</span></code>을 반환했습니다.</p>
 </div>
 <p><strong>app/Config/Logger.php</strong>에 정의된 로그 처리기를 사용하여 메시지를 기록합니다.</p>
-<p>레벨은 <code class="docutils literal notranslate"><span class="pre">emergency</span></code>, <code class="docutils literal notranslate"><span class="pre">alert</span></code>, <code class="docutils literal notranslate"><span class="pre">critical</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>, <code class="docutils literal notranslate"><span class="pre">warning</span></code>, <code class="docutils literal notranslate"><span class="pre">notice</span></code>, <code class="docutils literal notranslate"><span class="pre">info</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">debug</span></code> 값 중 하나일 수 있습니다.</p>
+<p>수준은 <code class="docutils literal notranslate"><span class="pre">emergency</span></code>, <code class="docutils literal notranslate"><span class="pre">alert</span></code>, <code class="docutils literal notranslate"><span class="pre">critical</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>, <code class="docutils literal notranslate"><span class="pre">warning</span></code>, <code class="docutils literal notranslate"><span class="pre">notice</span></code>, <code class="docutils literal notranslate"><span class="pre">info</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">debug</span></code> 값 중 하나일 수 있습니다.</p>
 <p>컨텍스트를 사용하여 메시지 문자열의 값을 대체할 수 있습니다. 자세한 내용은 <a class="reference internal" href="logging.html"><span class="doc">Logging Information</span></a> 페이지를 참조하세요.</p>
 </dd></dl>
 
@@ -914,7 +914,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$route</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 사용자를 리디렉션할 경로 이름 또는 Controller::method입니다.</p></li>
+<li><p><strong>$route</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 사용자를 리디렉션할 라우트 이름 또는 Controller::메서드입니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환 형식<span class="colon">:</span></dt>
@@ -991,12 +991,12 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$method</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 경로 이름 또는 Controller::method</p></li>
-<li><p><strong>...$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int|string</span></code></span>) – 경로에 전달될 하나 이상의 매개변수입니다. 마지막 매개변수를 사용하면 로케일을 설정할 수 있습니다.</p></li>
+<li><p><strong>$method</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 라우트 이름 또는 Controller::메서드</p></li>
+<li><p><strong>...$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int|string</span></code></span>) – 라우트에 전달될 하나 이상의 매개변수입니다. 마지막 매개변수를 사용하면 로케일을 설정할 수 있습니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
-<dd class="field-even"><p>경로 경로(baseURL에 상대적인 URI 경로)</p>
+<dd class="field-even"><p>라우트 경로(baseURL에 상대적인 URI 경로)</p>
 </dd>
 <dt class="field-odd">반환 형식<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
@@ -1004,13 +1004,13 @@
 </dl>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>이 기능을 사용하려면 컨트롤러/메소드에 <strong>app/Config/Routes.php</strong>에 경로가 정의되어 있어야 합니다.</p>
+<p>이 기능을 사용하려면 컨트롤러/메서드에 <strong>app/Config/Routes.php</strong>에 라우트가 정의되어 있어야 합니다.</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p><code class="docutils literal notranslate"><span class="pre">route_to()</span></code>은 사이트의 전체 URI 경로가 아닌 <em>route</em> 경로를 반환합니다. <strong>baseURL</strong>에 하위 폴더가 포함된 경우 반환 값은 연결할 URI와 동일하지 않습니다. 이 경우 대신 <a class="reference internal" href="../helpers/url_helper.html#url_to" title="url_to"><code class="xref php php-func docutils literal notranslate"><span class="pre">url_to()</span></code></a>을 사용하세요. <a class="reference internal" href="urls.html#urls-url-structure"><span class="std std-ref">URL 구조</span></a>도 참조하세요.</p>
+<p><code class="docutils literal notranslate"><span class="pre">route_to()</span></code>은 사이트의 전체 URI 경로가 아닌 <em>라우트</em> 경로를 반환합니다. <strong>baseURL</strong>에 하위 폴더가 포함된 경우 반환 값은 연결할 URI와 동일하지 않습니다. 이 경우 대신 <a class="reference internal" href="../helpers/url_helper.html#url_to" title="url_to"><code class="xref php php-func docutils literal notranslate"><span class="pre">url_to()</span></code></a>을 사용하세요. <a class="reference internal" href="urls.html#urls-url-structure"><span class="std std-ref">URL 구조</span></a>도 참조하세요.</p>
 </div>
-<p>컨트롤러::메소드 조합을 기반으로 경로를 생성합니다. 제공된 경우 매개변수를 적용합니다.</p>
+<p>컨트롤러::메서드 조합을 기반으로 라우트를 생성합니다. 제공된 경우 매개변수를 적용합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="c1">// The route is defined as:</span>
@@ -1025,7 +1025,7 @@
 <span class="c1">// Result: &#39;/users/15/gallery/12&#39;</span>
 </pre></div>
 </div>
-<p>경로 이름을 기반으로 경로를 생성합니다.</p>
+<p>라우트 이름을 기반으로 라우트를 생성합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="c1">// The route is defined as:</span>
@@ -1068,7 +1068,7 @@
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 로드할 서비스의 이름</p></li>
-<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 서비스 메소드에 전달할 하나 이상의 매개변수입니다.</p></li>
+<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 서비스 메서드에 전달할 하나 이상의 매개변수입니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
@@ -1095,7 +1095,7 @@
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 로드할 서비스의 이름</p></li>
-<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 서비스 메소드에 전달할 하나 이상의 매개변수입니다.</p></li>
+<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 서비스 메서드에 전달할 하나 이상의 매개변수입니다.</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
@@ -1114,17 +1114,17 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$item</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 구성 항목 이름</p></li>
+<li><p><strong>$item</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 설정 항목 이름</p></li>
 </ul>
 </dd>
 <dt class="field-even">반환<span class="colon">:</span></dt>
-<dd class="field-even"><p>구성 항목 또는 항목이 존재하지 않는 경우 null</p>
+<dd class="field-even"><p>설정 항목 또는 항목이 존재하지 않는 경우 null</p>
 </dd>
 <dt class="field-odd">반환 형식<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|null</span></code></span></p>
 </dd>
 </dl>
-<p>슬래시가 추가된 구성 파일 항목 가져오기(비어 있지 않은 경우)</p>
+<p>슬래시가 추가된 설정 파일 항목 가져오기(비어 있지 않은 경우)</p>
 </dd></dl>
 
 <dl class="php function">
@@ -1144,7 +1144,7 @@
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
-<p>문자열, 배열 또는 속성 개체를 문자열로 변환하는 데 사용되는 도우미 함수입니다.</p>
+<p>문자열, 배열 또는 속성 개체를 문자열로 변환하는 데 사용되는 헬퍼 함수입니다.</p>
 </dd></dl>
 
 </section>
@@ -1175,7 +1175,7 @@
 <dl class="php const">
 <dt class="sig sig-object php" id="FCPATH">
 <em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">FCPATH</span></span><a class="headerlink" href="#FCPATH" title="Link to this definition"></a></dt>
-<dd><p>전면 컨트롤러가 있는 디렉터리의 경로입니다.</p>
+<dd><p>프론트 컨트롤러가 있는 디렉터리의 경로입니다.</p>
 </dd></dl>
 
 <dl class="php const">
@@ -1186,7 +1186,7 @@
 
 </section>
 <section id="time-constants">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">시상수</a><a class="headerlink" href="#time-constants" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">시간 상수</a><a class="headerlink" href="#time-constants" title="Link to this heading"></a></h3>
 <dl class="php const">
 <dt class="sig sig-object php" id="SECOND">
 <em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">SECOND</span></span><a class="headerlink" href="#SECOND" title="Link to this definition"></a></dt>

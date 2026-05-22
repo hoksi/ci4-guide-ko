@@ -95,10 +95,10 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">설정</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수와 상수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
@@ -457,7 +457,7 @@
 </section>
 <section id="registrars-with-dirty-hack">
 <span id="upgrade-460-registrars-with-dirty-hack"></span><h3><a class="toc-backref" href="#id7" role="doc-backlink">비정상적인 방법을 사용하는 Registrar</a><a class="headerlink" href="#registrars-with-dirty-hack" title="Link to this heading"></a></h3>
-<p><a class="reference internal" href="../general/configuration.html#registrars"><span class="std std-ref">등록기관</span></a>의 자동 탐색이 두 번 실행되는 것을 방지하기 위해 registrar 클래스가 로드되거나 인스턴스화될 때 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Config\BaseConfig</span></code>를 확장하는 설정 클래스를 인스턴스화하면 <code class="docutils literal notranslate"><span class="pre">ConfigException</span></code>이 발생합니다.</p>
+<p><a class="reference internal" href="../general/configuration.html#registrars"><span class="std std-ref">Registrar</span></a>의 자동 탐색이 두 번 실행되는 것을 방지하기 위해 registrar 클래스가 로드되거나 인스턴스화될 때 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Config\BaseConfig</span></code>를 확장하는 설정 클래스를 인스턴스화하면 <code class="docutils literal notranslate"><span class="pre">ConfigException</span></code>이 발생합니다.</p>
 <p>Registrar의 자동 탐색이 두 번 수행되면 설정 클래스의 속성에 중복 값이 추가될 수 있기 때문입니다.</p>
 <p>모든 registrar 클래스(모든 네임스페이스의 <strong>Config/Registrar.php</strong>)는 로드되거나 인스턴스화될 때 어떤 설정 클래스도 인스턴스화하지 않도록 수정해야 합니다.</p>
 <p>사용 중인 패키지/모듈에 이런 registrar 클래스가 포함된 경우 해당 패키지/모듈의 registrar 클래스를 수정해야 합니다.</p>
