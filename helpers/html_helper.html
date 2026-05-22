@@ -1,0 +1,1054 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML 헬퍼(HTML Helper) &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="인플렉터(Inflector) 헬퍼" href="inflector_helper.html" />
+    <link rel="prev" title="폼 헬퍼(Form Helper)" href="form_helper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">헬퍼(Helpers)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">헬퍼(Helpers)</a></li>
+      <li class="breadcrumb-item active">HTML 헬퍼(HTML Helper)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="html-helper">
+<h1>HTML 헬퍼(HTML Helper)<a class="headerlink" href="#html-helper" title="Link to this heading"></a></h1>
+<p>HTML 헬퍼 파일은 HTML 작업을 돕는 함수들을 포함하고 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#configuration" id="id2">설정</a></p></li>
+<li><p><a class="reference internal" href="#loading-this-helper" id="id3">헬퍼 로드하기</a></p></li>
+<li><p><a class="reference internal" href="#available-functions" id="id4">사용 가능한 함수</a></p></li>
+</ul>
+</nav>
+<section id="configuration">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">설정</a><a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">v4.3.0</span></code>부터 <code class="docutils literal notranslate"><span class="pre">html_helper</span></code> 함수의 void HTML 요소(예: <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code>)는 기본적으로 HTML5 호환으로 변경되었습니다. XHTML과 호환되어야 하는 경우 <strong>app/Config/DocTypes.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$html5</span></code> 속성을 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정해야 합니다.</p>
+</section>
+<section id="loading-this-helper">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">헬퍼 로드하기</a><a class="headerlink" href="#loading-this-helper" title="Link to this heading"></a></h2>
+<p>이 헬퍼는 다음 코드를 사용하여 로드합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="available-functions">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">사용 가능한 함수</a><a class="headerlink" href="#available-functions" title="Link to this heading"></a></h2>
+<p>다음 함수들을 사용할 수 있습니다:</p>
+<dl class="php function">
+<dt class="sig sig-object php" id="img">
+<span class="sig-name descname"><span class="pre">img</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$src</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#img" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|array</span></code></span>) – 이미지 소스 URI, 또는 속성과 값의 배열</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 소스 경로에 <code class="docutils literal notranslate"><span class="pre">Config\App::$indexPage</span></code>를 추가할지 여부</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 추가 HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 이미지 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> 요소를 생성할 수 있습니다. 첫 번째 매개변수에는 이미지 소스가 들어갑니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">img</span><span class="p">(</span><span class="s1">&#39;images/picture.jpg&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;img src=&quot;http://site.com/images/picture.jpg&quot;&gt;</span>
+</pre></div>
+</div>
+<p>선택적 두 번째 매개변수로 true/false 값을 사용하여 생성되는 주소에 <code class="docutils literal notranslate"><span class="pre">Config\App::$indexPage</span></code>를 <em>src</em>에 추가할지 여부를 지정할 수 있습니다. 미디어 컨트롤러를 사용하는 경우에 해당합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">img</span><span class="p">(</span><span class="s1">&#39;images/picture.jpg&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// &lt;img src=&quot;http://site.com/index.php/images/picture.jpg&quot; alt=&quot;&quot;&gt;</span>
+</pre></div>
+</div>
+<p>또한 첫 번째 매개변수로 연관 배열을 전달하면 모든 속성과 값을 완전히 제어할 수 있습니다. <em>alt</em> 속성이 제공되지 않으면 CodeIgniter가 빈 문자열로 자동 생성합니다.</p>
+<p>예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$imageProperties</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;src&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;images/picture.jpg&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;alt&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Me, demonstrating how to eat 4 slices of pizza at one time&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;class&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;post_images&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;width&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;200&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;height&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;200&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;That was quite a night&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rel&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;lightbox&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nx">img</span><span class="p">(</span><span class="nv">$imageProperties</span><span class="p">);</span>
+<span class="c1">// &lt;img src=&quot;http://site.com/index.php/images/picture.jpg&quot; alt=&quot;Me, demonstrating how to eat 4 slices of pizza at one time&quot; class=&quot;post_images&quot; width=&quot;200&quot; height=&quot;200&quot; title=&quot;That was quite a night&quot; rel=&quot;lightbox&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="img_data">
+<span class="sig-name descname"><span class="pre">img_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$path</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$mime</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#img_data" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 이미지 파일 경로</p></li>
+<li><p><strong>$mime</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|null</span></code></span>) – 사용할 MIME 타입, 또는 자동 감지를 위한 null</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>base64 인코딩된 바이너리 이미지 문자열</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>“data:” 프로토콜을 사용하여 이미지로부터 src에 사용 가능한 문자열을 생성합니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$src</span> <span class="o">=</span> <span class="nx">img_data</span><span class="p">(</span><span class="s1">&#39;public/images/picture.jpg&#39;</span><span class="p">);</span> <span class="c1">// data:image/jpg;base64,R0lGODl...</span>
+<span class="k">echo</span> <span class="nx">img</span><span class="p">(</span><span class="nv">$src</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>선택적 두 번째 매개변수로 MIME 타입을 지정할 수 있으며, 지정하지 않으면 함수가 Mimes 설정을 사용하여 추측합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$src</span> <span class="o">=</span> <span class="nx">img_data</span><span class="p">(</span><span class="s1">&#39;path/img_without_extension&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">);</span> <span class="c1">// data:image/png;base64,HT5A822...</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$path</span></code>는 존재해야 하며 <code class="docutils literal notranslate"><span class="pre">data:</span></code> 프로토콜이 지원하는 읽기 가능한 이미지 형식이어야 합니다. 이 함수는 매우 큰 파일에는 권장되지 않지만, 웹에서 직접 접근할 수 없는 이미지(예: <strong>public/</strong> 외부)를 앱에서 제공하는 편리한 방법을 제공합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="link_tag">
+<span class="sig-name descname"><span class="pre">link_tag</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$href</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$rel</span> <span class="pre">=</span> <span class="pre">'stylesheet'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">'text/css'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$title</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$media</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$hreflang</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#link_tag" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$href</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 링크 파일의 소스</p></li>
+<li><p><strong>$rel</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 관계 타입</p></li>
+<li><p><strong>$type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 연결된 문서의 타입</p></li>
+<li><p><strong>$title</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 링크 제목</p></li>
+<li><p><strong>$media</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 미디어 타입</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 링크 경로에 indexPage를 추가할지 여부</p></li>
+<li><p><strong>$hreflang</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Hreflang 타입</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML link 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;link&gt;</span></code> 요소를 생성할 수 있습니다. 스타일시트 링크 및 다른 링크에 유용합니다. 매개변수는 <em>href</em>이며, 선택적으로 <em>rel</em>, <em>type</em>, <em>title</em>, <em>media</em>, <em>indexPage</em>, <em>hreflang</em>을 사용할 수 있습니다.</p>
+<p><em>indexPage</em>는 생성되는 주소에 <code class="docutils literal notranslate"><span class="pre">$config['indexPage']</span></code>로 지정된 페이지를 <em>href</em>에 추가할지 여부를 지정하는 불리언 값입니다.</p>
+<p>예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">link_tag</span><span class="p">(</span><span class="s1">&#39;css/mystyles.css&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;link href=&quot;http://site.com/css/mystyles.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</span>
+</pre></div>
+</div>
+<p>추가 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">link_tag</span><span class="p">(</span><span class="s1">&#39;favicon.ico&#39;</span><span class="p">,</span> <span class="s1">&#39;shortcut icon&#39;</span><span class="p">,</span> <span class="s1">&#39;image/ico&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;link href=&quot;http://site.com/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/ico&quot;&gt;</span>
+
+<span class="k">echo</span> <span class="nx">link_tag</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="s1">&#39;alternate&#39;</span><span class="p">,</span> <span class="s1">&#39;application/rss+xml&#39;</span><span class="p">,</span> <span class="s1">&#39;My RSS Feed&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;link href=&quot;http://site.com/feed&quot; rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;My RSS Feed&quot;&gt;</span>
+</pre></div>
+</div>
+<p>또는 연관 배열을 <code class="docutils literal notranslate"><span class="pre">link_tag()</span></code> 함수에 전달하면 모든 속성과 값을 완전히 제어할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$link</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;href&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;css/printer.css&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rel&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;stylesheet&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;text/css&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;media&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;print&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">echo</span> <span class="nx">link_tag</span><span class="p">(</span><span class="nv">$link</span><span class="p">);</span>
+<span class="c1">// &lt;link href=&quot;http://site.com/css/printer.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;print&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="script_tag">
+<span class="sig-name descname"><span class="pre">script_tag</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$src</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#script_tag" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – JavaScript 파일의 소스 이름 또는 URL, 또는 속성을 지정하는 연관 배열</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – <code class="docutils literal notranslate"><span class="pre">$src</span></code>를 라우팅된 URI 문자열로 처리할지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML script 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> 요소를 생성할 수 있습니다. 매개변수는 <em>src</em>와 선택적 <em>indexPage</em>입니다.</p>
+<p><em>indexPage</em>는 생성되는 주소에 <code class="docutils literal notranslate"><span class="pre">$config['indexPage']</span></code>로 지정된 페이지를 <em>src</em>에 추가할지 여부를 지정하는 불리언 값입니다.</p>
+<p>예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">script_tag</span><span class="p">(</span><span class="s1">&#39;js/mystyles.js&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;script src=&quot;http://site.com/js/mystyles.js&quot;&gt;&lt;/script&gt;</span>
+</pre></div>
+</div>
+<p>또는 연관 배열을 <code class="docutils literal notranslate"><span class="pre">script_tag()</span></code> 함수에 전달하면 모든 속성과 값을 완전히 제어할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$script</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;src&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;js/printer.js&#39;</span><span class="p">,</span> <span class="s1">&#39;defer&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">];</span>
+
+<span class="k">echo</span> <span class="nx">script_tag</span><span class="p">(</span><span class="nv">$script</span><span class="p">);</span>
+<span class="c1">// &lt;script src=&quot;http://site.com/js/printer.js&quot; defer&gt;&lt;/script&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="ul">
+<span class="sig-name descname"><span class="pre">ul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$list</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#ul" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$list</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 목록 항목</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 비순서 목록 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>단순 배열 또는 다차원 배열로부터 비순서 HTML 목록을 생성할 수 있습니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;yellow&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$attributes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boldlist&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;mylist&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">echo</span> <span class="nx">ul</span><span class="p">(</span><span class="nv">$list</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 코드는 다음을 생성합니다:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;boldlist&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mylist&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>red<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>blue<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>green<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>yellow<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>다차원 배열을 사용하는 더 복잡한 예제입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$attributes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boldlist&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;mylist&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;colors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;shapes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;round&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;square&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;circles&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;ellipse&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;oval&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;sphere&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;moods&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;happy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;upset&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;defeated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;dejected&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;disheartened&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;depressed&#39;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">&#39;annoyed&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;cross&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;angry&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">echo</span> <span class="nx">ul</span><span class="p">(</span><span class="nv">$list</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 코드는 다음을 생성합니다:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;boldlist&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mylist&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>colors
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>red<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>blue<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>green<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>shapes
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>round<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>square<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>circles
+                <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>ellipse<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>oval<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>sphere<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>moods
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>happy<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>upset
+                <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>defeated
+                        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+                            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>dejected<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>disheartened<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>depressed<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>annoyed<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>cross<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>angry<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="ol">
+<span class="sig-name descname"><span class="pre">ol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$list</span></em>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ol" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$list</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 목록 항목</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML 순서 목록 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="#ul" title="ul"><code class="xref php php-func docutils literal notranslate"><span class="pre">ul()</span></code></a>과 동일하지만, <code class="docutils literal notranslate"><span class="pre">&lt;ul&gt;</span></code> 대신 순서 목록을 위한 <code class="docutils literal notranslate"><span class="pre">&lt;ol&gt;</span></code> 요소를 생성합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="video">
+<span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$src</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$unsupportedMessage</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$tracks</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#video" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 소스 문자열 또는 소스 배열. <a class="reference internal" href="#source" title="source"><code class="xref php php-func docutils literal notranslate"><span class="pre">source()</span></code></a> 함수 참고</p></li>
+<li><p><strong>$unsupportedMessage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 브라우저에서 video 요소를 지원하지 않을 때 표시할 메시지</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – HTML 속성</p></li>
+<li><p><strong>$tracks</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 배열 안에서 track 함수를 사용합니다. <a class="reference internal" href="#track" title="track"><code class="xref php php-func docutils literal notranslate"><span class="pre">track()</span></code></a> 함수 참고</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 비디오 소스 경로에 indexPage를 추가할지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML video 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>소스 문자열 또는 소스 배열로부터 HTML video 요소를 생성할 수 있습니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$tracks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">track</span><span class="p">(</span><span class="s1">&#39;subtitles_no.vtt&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitles&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegian No&#39;</span><span class="p">),</span>
+    <span class="nx">track</span><span class="p">(</span><span class="s1">&#39;subtitles_yes.vtt&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitles&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegian Yes&#39;</span><span class="p">),</span>
+<span class="p">];</span>
+
+<span class="k">echo</span> <span class="nx">video</span><span class="p">(</span><span class="s1">&#39;test.mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;Your browser does not support the video tag.&#39;</span><span class="p">,</span> <span class="s1">&#39;controls&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">video</span><span class="p">(</span>
+    <span class="s1">&#39;http://www.codeigniter.com/test.mp4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Your browser does not support the video tag.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;controls&#39;</span><span class="p">,</span>
+    <span class="nv">$tracks</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">video</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="nx">source</span><span class="p">(</span><span class="s1">&#39;movie.mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;video/mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">),</span>
+        <span class="nx">source</span><span class="p">(</span><span class="s1">&#39;movie.ogg&#39;</span><span class="p">,</span> <span class="s1">&#39;video/ogg&#39;</span><span class="p">),</span>
+        <span class="nx">source</span><span class="p">(</span><span class="s1">&#39;movie.mov&#39;</span><span class="p">,</span> <span class="s1">&#39;video/quicktime&#39;</span><span class="p">),</span>
+        <span class="nx">source</span><span class="p">(</span><span class="s1">&#39;movie.ogv&#39;</span><span class="p">,</span> <span class="s1">&#39;video/ogv; codecs=dirac, speex&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Your browser does not support the video tag.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;class=&quot;test&quot; controls&#39;</span><span class="p">,</span>
+    <span class="nv">$tracks</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 코드는 다음을 생성합니다:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;test.mp4&quot;</span> <span class="na">controls</span><span class="p">&gt;</span>
+  Your browser does not support the video tag.
+<span class="p">&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.codeigniter.com/test.mp4&quot;</span> <span class="na">controls</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">track</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;subtitles_no.vtt&quot;</span> <span class="na">kind</span><span class="o">=</span><span class="s">&quot;subtitles&quot;</span> <span class="na">srclang</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">label</span><span class="o">=</span><span class="s">&quot;Norwegian No&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">track</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;subtitles_yes.vtt&quot;</span> <span class="na">kind</span><span class="o">=</span><span class="s">&quot;subtitles&quot;</span> <span class="na">srclang</span><span class="o">=</span><span class="s">&quot;yes&quot;</span> <span class="na">label</span><span class="o">=</span><span class="s">&quot;Norwegian Yes&quot;</span> <span class="p">/&gt;</span>
+  Your browser does not support the video tag.
+<span class="p">&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">video</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span> <span class="na">controls</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;movie.mp4&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;video/mp4&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;movie.ogg&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;video/ogg&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;movie.mov&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;video/quicktime&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;movie.ogv&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;video/ogv; codecs=dirac, speex&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">track</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;subtitles_no.vtt&quot;</span> <span class="na">kind</span><span class="o">=</span><span class="s">&quot;subtitles&quot;</span> <span class="na">srclang</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">label</span><span class="o">=</span><span class="s">&quot;Norwegian No&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">track</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;subtitles_yes.vtt&quot;</span> <span class="na">kind</span><span class="o">=</span><span class="s">&quot;subtitles&quot;</span> <span class="na">srclang</span><span class="o">=</span><span class="s">&quot;yes&quot;</span> <span class="na">label</span><span class="o">=</span><span class="s">&quot;Norwegian Yes&quot;</span> <span class="p">/&gt;</span>
+  Your browser does not support the video tag.
+<span class="p">&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="audio">
+<span class="sig-name descname"><span class="pre">audio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$src</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$unsupportedMessage</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$tracks</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#audio" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 소스 문자열 또는 소스 배열. <a class="reference internal" href="#source" title="source"><code class="xref php php-func docutils literal notranslate"><span class="pre">source()</span></code></a> 함수 참고</p></li>
+<li><p><strong>$unsupportedMessage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 브라우저에서 audio 요소를 지원하지 않을 때 표시할 메시지</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>)</p></li>
+<li><p><strong>$tracks</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 배열 안에서 track 함수를 사용합니다. <a class="reference internal" href="#track" title="track"><code class="xref php php-func docutils literal notranslate"><span class="pre">track()</span></code></a> 함수 참고</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 오디오 소스 경로에 indexPage를 추가할지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML audio 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p><a class="reference internal" href="#video" title="video"><code class="xref php php-func docutils literal notranslate"><span class="pre">video()</span></code></a>와 동일하지만, <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code> 대신 <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code> 요소를 생성합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="source">
+<span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$src</span></em>, <em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">'unknown'</span></em>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="sig-paren">)</span><a class="headerlink" href="#source" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 미디어 리소스의 경로</p></li>
+<li><p><strong>$type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 선택적 코덱 매개변수가 포함된 리소스의 MIME 타입</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML source 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;source&gt;</span></code> 요소를 생성할 수 있습니다. 첫 번째 매개변수에는 리소스의 경로가 들어갑니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">source</span><span class="p">(</span><span class="s1">&#39;movie.mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;video/mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot; class=&quot;test&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="embed">
+<span class="sig-name descname"><span class="pre">embed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$src</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#embed" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 삽입할 리소스의 경로</p></li>
+<li><p><strong>$type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – MIME 타입</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 소스 경로에 indexPage를 추가할지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML embed 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;embed&gt;</span></code> 요소를 생성할 수 있습니다. 첫 번째 매개변수에는 삽입 소스가 들어갑니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">embed</span><span class="p">(</span><span class="s1">&#39;movie.mov&#39;</span><span class="p">,</span> <span class="s1">&#39;video/quicktime&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;embed src=&quot;movie.mov&quot; type=&quot;video/quicktime&quot; class=&quot;test&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$data</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">'unknown'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$params</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$indexPage</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#object" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 리소스 URL</p></li>
+<li><p><strong>$type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 리소스의 Content-type</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+<li><p><strong>$indexPage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 리소스 URL에 indexPage를 추가할지 여부</p></li>
+<li><p><strong>$params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 배열 안에서 param 함수를 사용합니다. <a class="reference internal" href="#param" title="param"><code class="xref php php-func docutils literal notranslate"><span class="pre">param()</span></code></a> 함수 참고</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML object 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;object&gt;</span></code> 요소를 생성할 수 있습니다. 첫 번째 매개변수에는 object 데이터가 들어갑니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">object</span><span class="p">(</span><span class="s1">&#39;movie.swf&#39;</span><span class="p">,</span> <span class="s1">&#39;application/x-shockwave-flash&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">object</span><span class="p">(</span>
+    <span class="s1">&#39;movie.swf&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;application/x-shockwave-flash&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="nx">param</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;ref&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">),</span>
+        <span class="nx">param</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;ref&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 코드는 다음을 생성합니다:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">object</span> <span class="na">data</span><span class="o">=</span><span class="s">&quot;movie.swf&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">object</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">object</span> <span class="na">data</span><span class="o">=</span><span class="s">&quot;movie.swf&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">param</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;foo&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;ref&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;bar&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">param</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;hello&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;ref&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;world&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;test&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">object</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="param">
+<span class="sig-name descname"><span class="pre">param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em>, <em class="sig-param"><span class="pre">$value</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">'ref'</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#param" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 매개변수의 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 매개변수의 값</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – HTML 속성</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML param 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;param&gt;</span></code> 요소를 생성할 수 있습니다. 첫 번째 매개변수에는 param 소스가 들어갑니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">param</span><span class="p">(</span><span class="s1">&#39;movie.mov&#39;</span><span class="p">,</span> <span class="s1">&#39;video/quicktime&#39;</span><span class="p">,</span> <span class="s1">&#39;class=&quot;test&quot;&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;param src=&quot;movie.mov&quot; type=&quot;video/quicktime&quot; class=&quot;test&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="track">
+<span class="sig-name descname"><span class="pre">track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$src</span></em>, <em class="sig-param"><span class="pre">$kind</span></em>, <em class="sig-param"><span class="pre">$srcLanguage</span></em>, <em class="sig-param"><span class="pre">$label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#track" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$src</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 트랙 파일(.vtt 파일)의 경로</p></li>
+<li><p><strong>$kind</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 시간 기반 트랙의 종류</p></li>
+<li><p><strong>$srcLanguage</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 시간 기반 트랙의 언어</p></li>
+<li><p><strong>$label</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 시간 기반 트랙의 사용자가 읽을 수 있는 제목</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML track 요소</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>시간 기반 트랙을 지정하는 track 요소를 생성합니다. 트랙은 WebVTT 형식으로 작성됩니다. 예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">track</span><span class="p">(</span><span class="s1">&#39;subtitles_no.vtt&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitles&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;Norwegian No&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;track src=&quot;subtitles_no.vtt&quot; kind=&quot;subtitles&quot; srclang=&quot;no&quot; label=&quot;Norwegian No&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="doctype">
+<span class="sig-name descname"><span class="pre">doctype</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$type</span> <span class="pre">=</span> <span class="pre">'html5'</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#doctype" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Doctype 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML DocType 선언</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>문서 타입 선언(DTD)을 생성하는 데 도움을 줍니다. 기본적으로 HTML 5가 사용되지만, 다양한 doctype을 사용할 수 있습니다.</p>
+<p>예제:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">doctype</span><span class="p">();</span>
+<span class="c1">// &lt;!DOCTYPE html&gt;</span>
+
+<span class="k">echo</span> <span class="nx">doctype</span><span class="p">(</span><span class="s1">&#39;html4-trans&#39;</span><span class="p">);</span>
+<span class="c1">// &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
+</pre></div>
+</div>
+<p>다음은 미리 정의된 doctype 목록입니다. 이 값들은 <strong>app/Config/DocTypes.php</strong>에서 가져오거나 <strong>.env</strong> 설정에서 재정의할 수 있습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>문서 타입</p></th>
+<th class="head"><p>$type 매개변수</p></th>
+<th class="head"><p>결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>XHTML 1.1</p></td>
+<td><p>xhtml11</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.1//EN” “<a class="reference external" href="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>XHTML 1.0 Strict</p></td>
+<td><p>xhtml1-strict</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “<a class="reference external" href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>XHTML 1.0 Transitional</p></td>
+<td><p>xhtml1-trans</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a class="reference external" href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>XHTML 1.0 Frameset</p></td>
+<td><p>xhtml1-frame</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Frameset//EN” “<a class="reference external" href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>XHTML Basic 1.1</p></td>
+<td><p>xhtml-basic11</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML Basic 1.1//EN” “<a class="reference external" href="http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>HTML 5</p></td>
+<td><p>html5</p></td>
+<td><p>&lt;!DOCTYPE html&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>HTML 4 Strict</p></td>
+<td><p>html4-strict</p></td>
+<td><p>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN” “<a class="reference external" href="http://www.w3.org/TR/html4/strict.dtd">http://www.w3.org/TR/html4/strict.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>HTML 4 Transitional</p></td>
+<td><p>html4-trans</p></td>
+<td><p>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a class="reference external" href="http://www.w3.org/TR/html4/loose.dtd">http://www.w3.org/TR/html4/loose.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>HTML 4 Frameset</p></td>
+<td><p>html4-frame</p></td>
+<td><p>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Frameset//EN” “<a class="reference external" href="http://www.w3.org/TR/html4/frameset.dtd">http://www.w3.org/TR/html4/frameset.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>MathML 1.01</p></td>
+<td><p>mathml1</p></td>
+<td><p>&lt;!DOCTYPE math SYSTEM “<a class="reference external" href="http://www.w3.org/Math/DTD/mathml1/mathml.dtd">http://www.w3.org/Math/DTD/mathml1/mathml.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>MathML 2.0</p></td>
+<td><p>mathml2</p></td>
+<td><p>&lt;!DOCTYPE math PUBLIC “-//W3C//DTD MathML 2.0//EN” “<a class="reference external" href="http://www.w3.org/Math/DTD/mathml2/mathml2.dtd">http://www.w3.org/Math/DTD/mathml2/mathml2.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>SVG 1.0</p></td>
+<td><p>svg10</p></td>
+<td><p>&lt;!DOCTYPE svg PUBLIC “-//W3C//DTD SVG 1.0//EN” “<a class="reference external" href="http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>SVG 1.1 Full</p></td>
+<td><p>svg11</p></td>
+<td><p>&lt;!DOCTYPE svg PUBLIC “-//W3C//DTD SVG 1.1//EN” “<a class="reference external" href="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>SVG 1.1 Basic</p></td>
+<td><p>svg11-basic</p></td>
+<td><p>&lt;!DOCTYPE svg PUBLIC “-//W3C//DTD SVG 1.1 Basic//EN” “<a class="reference external" href="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>SVG 1.1 Tiny</p></td>
+<td><p>svg11-tiny</p></td>
+<td><p>&lt;!DOCTYPE svg PUBLIC “-//W3C//DTD SVG 1.1 Tiny//EN” “<a class="reference external" href="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>XHTML+MathML+SVG (XHTML host)</p></td>
+<td><p>xhtml-math-svg-xh</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN” “<a class="reference external" href="http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>XHTML+MathML+SVG (SVG host)</p></td>
+<td><p>xhtml-math-svg-sh</p></td>
+<td><p>&lt;!DOCTYPE svg:svg PUBLIC “-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN” “http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd”&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p>XHTML+RDFa 1.0</p></td>
+<td><p>xhtml-rdfa-1</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML+RDFa 1.0//EN” “<a class="reference external" href="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd</a>”&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>XHTML+RDFa 1.1</p></td>
+<td><p>xhtml-rdfa-2</p></td>
+<td><p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML+RDFa 1.1//EN” “<a class="reference external" href="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd">http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd</a>”&gt;</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="form_helper.html" class="btn btn-neutral float-left" title="폼 헬퍼(Form Helper)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inflector_helper.html" class="btn btn-neutral float-right" title="인플렉터(Inflector) 헬퍼" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

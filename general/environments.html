@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>여러 환경 처리 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="컨트롤러와 라우팅" href="../incoming/index.html" />
+    <link rel="prev" title="애플리케이션 관리" href="managing_apps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">일반 주제</a></li>
+      <li class="breadcrumb-item active">여러 환경 처리</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="handling-multiple-environments">
+<h1>여러 환경 처리<a class="headerlink" href="#handling-multiple-environments" title="Link to this heading"></a></h1>
+<p>개발자는 애플리케이션이 개발 환경에서 실행되는지 운영 환경에서 실행되는지에 따라 시스템 동작이 달라지길 원하는 경우가 많습니다. 예를 들어 자세한 오류 출력은 개발 중에는 유용하지만, 서비스(“live”) 중에는 보안 문제가 될 수 있습니다. 또한 개발 환경에서는 운영 환경과 달리 추가 도구를 로드하고 싶을 수도 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-defined-environments" id="id3">정의된 환경</a></p></li>
+<li><p><a class="reference internal" href="#setting-environment" id="id4">환경 설정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-environment-constant" id="id5">ENVIRONMENT 상수</a></p>
+<ul>
+<li><p><a class="reference internal" href="#env" id="id6">.env</a></p></li>
+<li><p><a class="reference internal" href="#apache" id="id7">Apache</a></p></li>
+<li><p><a class="reference internal" href="#nginx" id="id8">nginx</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#adding-environments" id="id9">환경 추가</a></p>
+<ul>
+<li><p><a class="reference internal" href="#boot-files" id="id10">부트 파일</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#confirming-the-current-environment" id="id11">현재 환경 확인</a></p></li>
+<li><p><a class="reference internal" href="#effects-on-default-framework-behavior" id="id12">기본 프레임워크 동작에 미치는 영향</a></p>
+<ul>
+<li><p><a class="reference internal" href="#error-reporting" id="id13">오류 보고</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="the-defined-environments">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">정의된 환경</a><a class="headerlink" href="#the-defined-environments" title="Link to this heading"></a></h2>
+<p>기본적으로 CodeIgniter에는 세 가지 환경이 정의되어 있습니다.</p>
+<ul class="simple">
+<li><p>운영용 <code class="docutils literal notranslate"><span class="pre">production</span></code></p></li>
+<li><p>개발용 <code class="docutils literal notranslate"><span class="pre">development</span></code></p></li>
+<li><p>PHPUnit 테스트용 <code class="docutils literal notranslate"><span class="pre">testing</span></code></p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">testing</span></code> 환경은 PHPUnit 테스트 전용으로 예약되어 있습니다. 이를 지원하기 위한 특수 조건이 프레임워크 여러 위치에 내장되어 있습니다. 이 환경은 개발 용도로 사용할 수 없습니다.</p>
+</div>
+<p>예를 들어 스테이징용 등 다른 환경이 필요하면 사용자 정의 환경을 추가할 수 있습니다. <a class="reference internal" href="#adding-environments">환경 추가</a> 를 참고하세요.</p>
+</section>
+<section id="setting-environment">
+<span id="id2"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">환경 설정</a><a class="headerlink" href="#setting-environment" title="Link to this heading"></a></h2>
+<section id="the-environment-constant">
+<span id="environment-constant"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">ENVIRONMENT 상수</a><a class="headerlink" href="#the-environment-constant" title="Link to this heading"></a></h3>
+<p>환경을 설정하기 위해 CodeIgniter는 <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 상수를 제공합니다. <code class="docutils literal notranslate"><span class="pre">$_SERVER['CI_ENVIRONMENT']</span></code> 를 설정하면 그 값을 사용하고, 그렇지 않으면 기본값 <code class="docutils literal notranslate"><span class="pre">production</span></code> 을 사용합니다.</p>
+<p>이는 서버 구성에 따라 여러 방법으로 설정할 수 있습니다.</p>
+<section id="env">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">.env</a><a class="headerlink" href="#env" title="Link to this heading"></a></h4>
+<p>변수를 설정하는 가장 간단한 방법은 <a class="reference internal" href="configuration.html#dotenv-file"><span class="std std-ref">.env file</span></a> 에서 설정하는 것입니다.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">CI_ENVIRONMENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">development</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">env</span></code> 명령으로 <strong>.env</strong> 파일의 <code class="docutils literal notranslate"><span class="pre">CI_ENVIRONMENT</span></code> 값을 변경할 수 있습니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark env production</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="apache">
+<span id="environment-apache"></span><h4><a class="toc-backref" href="#id7" role="doc-backlink">Apache</a><a class="headerlink" href="#apache" title="Link to this heading"></a></h4>
+<p>이 서버 변수는 <strong>.htaccess</strong> 파일 또는 Apache 설정에서 <a class="reference external" href="https://httpd.apache.org/docs/2.4/mod/mod_env.html#setenv">SetEnv</a> 를 사용해 설정할 수 있습니다.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SetEnv</span><span class="w"> </span>CI_ENVIRONMENT<span class="w"> </span>development
+</pre></div>
+</div>
+</section>
+<section id="nginx">
+<span id="environment-nginx"></span><h4><a class="toc-backref" href="#id8" role="doc-backlink">nginx</a><a class="headerlink" href="#nginx" title="Link to this heading"></a></h4>
+<p>nginx에서는 환경 변수가 <code class="docutils literal notranslate"><span class="pre">$_SERVER</span></code> 변수에 나타나도록 <code class="docutils literal notranslate"><span class="pre">fastcgi_params</span></code> 를 통해 전달해야 합니다. 이렇게 하면 전용 서버에서는 문제없이 동작하는 서버 전체 <cite>env</cite> 설정 대신, 가상 호스트 수준에서 작동하게 할 수 있습니다. 그런 다음 서버 설정을 다음과 같이 수정합니다:</p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">localhost</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w">     </span><span class="s">conf/defaults.conf</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">root</span><span class="w">        </span><span class="s">/var/www</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w">    </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">\.php</span>$<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">CI_ENVIRONMENT</span><span class="w"> </span><span class="s">&quot;production&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">include</span><span class="w"> </span><span class="s">conf/fastcgi-php.conf</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>nginx 및 다른 서버에서는 대체 방법도 사용할 수 있으며, 이 로직을 완전히 제거하고 (예를 들어) 서버 IP 주소를 기준으로 상수를 설정할 수도 있습니다.</p>
+<p>이 상수는 기본 프레임워크 동작 일부(다음 섹션 참고)에 영향을 줄 뿐 아니라, 현재 어떤 환경에서 실행 중인지 구분하기 위해 개발 코드에서 직접 사용할 수도 있습니다.</p>
+</section>
+</section>
+</section>
+<section id="adding-environments">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">환경 추가</a><a class="headerlink" href="#adding-environments" title="Link to this heading"></a></h2>
+<p>사용자 정의 환경을 추가하려면 해당 부트 파일만 추가하면 됩니다.</p>
+<section id="boot-files">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">부트 파일</a><a class="headerlink" href="#boot-files" title="Link to this heading"></a></h3>
+<p>CodeIgniter는 환경 이름과 일치하는 PHP 스크립트가 <strong>APPPATH/Config/Boot</strong> 아래에 있어야 합니다. 이 파일에는 오류 표시 설정 변경, 추가 개발 도구 로드 등 환경별로 원하는 어떤 사용자 지정이든 포함할 수 있습니다. 이 파일들은 시스템이 자동으로 로드합니다. 새로 설치하면 다음 파일이 이미 생성되어 있습니다:</p>
+<ul class="simple">
+<li><p>development.php</p></li>
+<li><p>production.php</p></li>
+<li><p>testing.php</p></li>
+</ul>
+<p>예를 들어 스테이징용 <code class="docutils literal notranslate"><span class="pre">staging</span></code> 환경을 추가하려면 다음만 수행하면 됩니다:</p>
+<ol class="arabic simple">
+<li><p><strong>APPPATH/Config/Boot/production.php</strong> 를 <strong>staging.php</strong> 로 복사합니다.</p></li>
+<li><p>원한다면 <strong>staging.php</strong> 에서 설정을 사용자 지정합니다.</p></li>
+</ol>
+</section>
+</section>
+<section id="confirming-the-current-environment">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">현재 환경 확인</a><a class="headerlink" href="#confirming-the-current-environment" title="Link to this heading"></a></h2>
+<p>현재 환경을 확인하려면 <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 상수를 출력하면 됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">env</span></code> 명령으로도 현재 환경을 확인할 수 있습니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark env</span>
+</pre></div>
+</div>
+</section>
+<section id="effects-on-default-framework-behavior">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">기본 프레임워크 동작에 미치는 영향</a><a class="headerlink" href="#effects-on-default-framework-behavior" title="Link to this heading"></a></h2>
+<p>CodeIgniter 시스템에는 <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 상수를 사용하는 부분이 있습니다. 이 섹션에서는 기본 프레임워크 동작이 어떻게 영향을 받는지 설명합니다.</p>
+<section id="error-reporting">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">오류 보고</a><a class="headerlink" href="#error-reporting" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> 상수를 <code class="docutils literal notranslate"><span class="pre">development</span></code> 로 설정하면 PHP 오류가 발생할 때마다 모든 오류가 브라우저에 출력됩니다. 반대로 상수를 <code class="docutils literal notranslate"><span class="pre">production</span></code> 으로 설정하면 모든 오류 출력이 비활성화됩니다. 운영 환경에서 오류 보고를 비활성화하는 것은 <a class="reference internal" href="../concepts/security.html"><span class="doc">좋은 보안 관행</span></a> 입니다.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="managing_apps.html" class="btn btn-neutral float-left" title="애플리케이션 관리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../incoming/index.html" class="btn btn-neutral float-right" title="컨트롤러와 라우팅" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

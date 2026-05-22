@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>테스트 데이터 생성 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="컨트롤러 테스트" href="controllers.html" />
+    <link rel="prev" title="데이터베이스 테스트" href="database.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">테스트</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">데이터베이스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">테스트</a></li>
+      <li class="breadcrumb-item active">테스트 데이터 생성</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generating-test-data">
+<h1>테스트 데이터 생성<a class="headerlink" href="#generating-test-data" title="Link to this heading"></a></h1>
+<p>애플리케이션의 테스트를 실행하기 위해 샘플 데이터가 필요한 경우가 많습니다. <code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>클래스는 <a class="reference external" href="https://github.com/FakerPHP/Faker">Faker</a>를 사용하여 모델을 임의 데이터 생성기로 변환합니다. 시드(seed) 또는 테스트 케이스에서 패브리케이터(Fabricator)를 사용하여 단위 테스트를 위한 가짜 데이터를 준비하십시오.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#supported-models" id="id2">지원되는 모델</a></p></li>
+<li><p><a class="reference internal" href="#loading-fabricators" id="id3">패브리케이터 로드</a></p></li>
+<li><p><a class="reference internal" href="#defining-formatters" id="id4">포매터 정의</a></p>
+<ul>
+<li><p><a class="reference internal" href="#advanced-formatting" id="id5">고급 포맷팅</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#setting-modifiers" id="id6">수정자 설정</a></p></li>
+<li><p><a class="reference internal" href="#localization" id="id7">로컬라이제이션</a></p></li>
+<li><p><a class="reference internal" href="#faking-the-data" id="id8">데이터 위조</a></p></li>
+<li><p><a class="reference internal" href="#specifying-test-data" id="id9">테스트 데이터 지정</a></p></li>
+<li><p><a class="reference internal" href="#test-helper" id="id10">테스트 헬퍼</a></p></li>
+<li><p><a class="reference internal" href="#table-counts" id="id11">테이블 카운트</a></p>
+<ul>
+<li><p><a class="reference internal" href="#methods" id="id12">메서드</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="supported-models">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">지원되는 모델</a><a class="headerlink" href="#supported-models" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>는 프레임워크의 핵심 모델인 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code>을 상속하는 모든 모델을 지원합니다. <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Test\Interfaces\FabricatorModel</span></code>을 구현한 커스텀 모델을 사용할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Interfaces\FabricatorModel</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">implements</span> <span class="nx">FabricatorModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">find</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// TODO: Implement find() method.</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">insert</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$returnID</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// TODO: Implement insert() method.</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>메서드 외에도, 인터페이스는 대상 모델에 필요한 몇 가지 속성을 정의합니다. 자세한 내용은 인터페이스 코드를 참고하십시오.</p>
+</div>
+</section>
+<section id="loading-fabricators">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">패브리케이터 로드</a><a class="headerlink" href="#loading-fabricators" title="Link to this heading"></a></h2>
+<p>가장 기본적인 형태에서, 패브리케이터는 작동할 모델을 인자로 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nx">UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>매개변수는 모델의 이름을 지정하는 문자열이거나 모델 인스턴스 자체일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserModel</span><span class="p">(</span><span class="nv">$testDbConnection</span><span class="p">);</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nv">$model</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-formatters">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">포매터 정의</a><a class="headerlink" href="#defining-formatters" title="Link to this heading"></a></h2>
+<p>Faker는 포매터로부터 데이터를 요청하여 생성합니다. 포매터가 정의되지 않은 경우, <code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>는 필드 이름과 모델 속성을 기반으로 가장 적절한 포매터를 추측하며, <code class="docutils literal notranslate"><span class="pre">$fabricator-&gt;defaultFormatter</span></code>로 폴백됩니다. 필드 이름이 일반적인 포매터와 일치하거나 필드 내용이 크게 중요하지 않다면 이 방법도 괜찮지만, 대부분의 경우 생성자의 두 번째 매개변수로 사용할 포매터를 직접 지정하는 것이 좋습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$formatters</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;firstName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;phoneNumber&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;imageUrl&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nx">UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$formatters</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>패브리케이터가 초기화된 후에도 <code class="docutils literal notranslate"><span class="pre">setFormatters()</span></code> 메서드를 사용하여 포매터를 변경할 수 있습니다.</p>
+<section id="advanced-formatting">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">고급 포맷팅</a><a class="headerlink" href="#advanced-formatting" title="Link to this heading"></a></h3>
+<p>포매터의 기본 반환값으로 충분하지 않을 때도 있습니다. Faker 프로바이더는 대부분의 포매터에 매개변수를 허용하여 임의 데이터의 범위를 더 제한할 수 있습니다. 패브리케이터는 모델에서 <code class="docutils literal notranslate"><span class="pre">fake()</span></code> 메서드를 찾아, 그 안에서 가짜 데이터의 형태를 정확하게 정의할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Faker\Generator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fake</span><span class="p">(</span><span class="nx">Generator</span> <span class="o">&amp;</span><span class="nv">$faker</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">(),</span>
+            <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">(),</span>
+            <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">phoneNumber</span><span class="p">(),</span>
+            <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Faker\Provider\Image</span><span class="o">::</span><span class="na">imageUrl</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+            <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">allowRemembering</span> <span class="o">?</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;Y-m-d&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="k">null</span><span class="p">,</span>
+        <span class="p">];</span>
+
+        <span class="cm">/*</span>
+<span class="cm">         * Or you can return a return type object.</span>
+
+<span class="cm">        return new User([</span>
+<span class="cm">            &#39;first&#39;  =&gt; $faker-&gt;firstName(),</span>
+<span class="cm">            &#39;email&#39;  =&gt; $faker-&gt;email(),</span>
+<span class="cm">            &#39;phone&#39;  =&gt; $faker-&gt;phoneNumber(),</span>
+<span class="cm">            &#39;avatar&#39; =&gt; \Faker\Provider\Image::imageUrl(800, 400),</span>
+<span class="cm">            &#39;login&#39;  =&gt; config(&#39;Auth&#39;)-&gt;allowRemembering ? date(&#39;Y-m-d&#39;) : null,</span>
+<span class="cm">        ]);</span>
+
+<span class="cm">        */</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 예시에서 처음 세 값은 이전의 포매터와 동일하다는 점에 주목하십시오. 그러나 <code class="docutils literal notranslate"><span class="pre">avatar</span></code>의 경우 기본값이 아닌 다른 이미지 크기를 요청했고, <code class="docutils literal notranslate"><span class="pre">login</span></code>은 앱 설정에 따른 조건문을 사용했는데, 이 두 가지는 <code class="docutils literal notranslate"><span class="pre">$formatters</span></code> 매개변수로는 불가능한 것들입니다.</p>
+<p>테스트 데이터를 프로덕션 모델과 분리하고 싶을 수 있으므로, 테스트 지원 폴더에 자식 클래스를 정의하는 것이 좋은 방법입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Tests\Support\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Faker\Generator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserFabricator</span> <span class="k">extends</span> <span class="nx">UserModel</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fake</span><span class="p">(</span><span class="nx">Generator</span> <span class="o">&amp;</span><span class="nv">$faker</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setting-modifiers">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">수정자 설정</a><a class="headerlink" href="#setting-modifiers" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p>Faker는 모든 프로바이더 호출 전에 사용하는 세 가지 특별한 프로바이더인 <code class="docutils literal notranslate"><span class="pre">unique()</span></code>, <code class="docutils literal notranslate"><span class="pre">optional()</span></code>, <code class="docutils literal notranslate"><span class="pre">valid()</span></code>를 제공합니다. 패브리케이터는 전용 메서드를 통해 이러한 수정자를 완전히 지원합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nx">UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setUnique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="c1">// sets generated emails to be always unique</span>
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setOptional</span><span class="p">(</span><span class="s1">&#39;group_id&#39;</span><span class="p">);</span> <span class="c1">// sets group id to be optional, with 50% chance to be `null`</span>
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setValid</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$age</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="o">=&gt;</span> <span class="nv">$age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// sets age to be 18 and above only</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>필드 이름 다음에 전달된 인수는 수정자에게 그대로 전달됩니다. 자세한 내용은 <a class="reference external" href="https://fakerphp.github.io/#modifiers">Faker의 수정자 문서</a>를 참고하십시오.</p>
+<p>패브리케이터(Fabricator)의 각 메서드를 호출하는 대신, 모델에서 <code class="docutils literal notranslate"><span class="pre">fake()</span></code> 메서드를 사용하는 경우 Faker의 수정자를 직접 사용할 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Faker\Generator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fake</span><span class="p">(</span><span class="nx">Generator</span> <span class="o">&amp;</span><span class="nv">$faker</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;first&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">(),</span>
+            <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">(),</span>
+            <span class="s1">&#39;group_id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">optional</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">passthrough</span><span class="p">(</span><span class="nb">mt_rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">Fabricator</span><span class="o">::</span><span class="na">getCount</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">))),</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="localization">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">로컬라이제이션</a><a class="headerlink" href="#localization" title="Link to this heading"></a></h2>
+<p>Faker는 다양한 로케일을 지원합니다. 어떤 프로바이더가 원하는 로케일을 지원하는지 확인하려면 해당 문서를 참고하십시오. 패브리케이터를 초기화할 때 세 번째 매개변수에 로케일을 지정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Models\UserModel</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nx">UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>로케일을 지정하지 않으면 <strong>app/Config/App.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">defaultLocale</span></code>로 정의된 로케일을 사용합니다. <code class="docutils literal notranslate"><span class="pre">getLocale()</span></code> 메서드를 통해 기존 패브리케이터의 로케일을 확인할 수 있습니다.</p>
+</section>
+<section id="faking-the-data">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">데이터 위조</a><a class="headerlink" href="#faking-the-data" title="Link to this heading"></a></h2>
+<p>패브리케이터가 올바르게 초기화되면 <code class="docutils literal notranslate"><span class="pre">make()</span></code> 명령으로 테스트 데이터를 쉽게 생성할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Tests\Support\Models\UserFabricator</span><span class="p">;</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="nx">UserFabricator</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<span class="nv">$testUser</span>   <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">();</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$testUser</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>다음과 같은 결과를 얻을 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Maynard&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;king.alford@example.org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;201-886-0269 x3767&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>개수를 지정하여 여러 개를 한 번에 얻을 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make()</span></code>의 반환 타입은 해당 모델에 정의된 타입을 따르지만, 메서드를 직접 사용하여 타입을 강제 지정할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userArray</span>  <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">makeArray</span><span class="p">();</span>
+<span class="nv">$userObject</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">makeObject</span><span class="p">();</span>
+<span class="nv">$userEntity</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">makeObject</span><span class="p">(</span><span class="s1">&#39;App\Entities\User&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make()</span></code>의 반환값은 테스트에서 사용하거나 데이터베이스에 삽입할 준비가 된 상태입니다. 또는 <code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>에 포함된 <code class="docutils literal notranslate"><span class="pre">create()</span></code> 명령을 사용하면 데이터베이스에 자동으로 삽입하고 결과를 반환합니다. 모델 콜백, 데이터베이스 포맷팅, 기본 키 및 타임스탬프와 같은 특수 키로 인해 <code class="docutils literal notranslate"><span class="pre">create()</span></code>의 반환값은 <code class="docutils literal notranslate"><span class="pre">make()</span></code>와 다를 수 있습니다. 다음과 같은 결과를 얻을 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;first&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;Rachel&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;bradley72@gmail.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;741-241-2356&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>      <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+    <span class="s1">&#39;created_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;2020-05-08 14:52:10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;updated_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;2020-05-08 14:52:10&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make()</span></code>와 마찬가지로 개수를 지정하여 객체 배열을 삽입하고 반환받을 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>마지막으로, 실제 데이터베이스를 사용하지 않으면서도 완전한 데이터베이스 객체로 테스트하고 싶은 경우가 있습니다. <code class="docutils literal notranslate"><span class="pre">create()</span></code>는 두 번째 매개변수를 통해 객체 모킹을 허용하며, 데이터베이스에 실제로 접근하지 않고 위에서 설명한 추가 데이터베이스 필드가 포함된 객체를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertIsNumeric</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dontSeeInDatabase</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="specifying-test-data">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">테스트 데이터 지정</a><a class="headerlink" href="#specifying-test-data" title="Link to this heading"></a></h2>
+<p>자동 생성된 데이터도 좋지만, 포매터 설정을 변경하지 않고 특정 필드에 고정 값을 지정하고 싶은 경우가 있습니다. 각 변형마다 새 패브리케이터를 만드는 대신 <code class="docutils literal notranslate"><span class="pre">setOverrides()</span></code>를 사용하여 원하는 필드의 값을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setOverrides</span><span class="p">([</span><span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Bobby&#39;</span><span class="p">]);</span>
+<span class="nv">$bobbyUser</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">make()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">create()</span></code>로 생성된 모든 데이터의 <code class="docutils literal notranslate"><span class="pre">first</span></code> 필드에는 항상 “Bobby”가 사용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Bobby&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;latta.kindel@company.org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;251-806-2169&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Bobby&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;melissa.strike@fabricon.us&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;525-214-2656 x23546&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">setOverrides()</span></code>는 두 번째 매개변수를 통해 재정의가 영구적으로 유지될지, 단일 동작에만 적용될지를 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setOverrides</span><span class="p">([</span><span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Bobby&#39;</span><span class="p">],</span> <span class="nv">$persist</span> <span class="o">=</span> <span class="k">false</span><span class="p">);</span>
+<span class="nv">$bobbyUser</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">();</span>
+<span class="nv">$bobbyUser</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>첫 번째 반환 후에는 패브리케이터가 재정의를 사용하지 않게 되는 것을 확인하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Bobby&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;belingadon142@example.org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;741-857-1933 x1351&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="p">[</span>
+    <span class="s1">&#39;first&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Hans&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;hoppifur@metraxalon.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phone&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;487-235-7006&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://lorempixel.com/800/400/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;login&#39;</span>  <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>두 번째 매개변수를 지정하지 않으면 전달된 값은 기본적으로 영구 유지됩니다.</p>
+</section>
+<section id="test-helper">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">테스트 헬퍼</a><a class="headerlink" href="#test-helper" title="Link to this heading"></a></h2>
+<p>테스트를 위해 일회성 가짜 객체만 필요한 경우가 많습니다. 테스트 헬퍼는 이를 위해 <code class="docutils literal notranslate"><span class="pre">fake($model,</span> <span class="pre">$overrides,</span> <span class="pre">$persist</span> <span class="pre">=</span> <span class="pre">true)</span></code> 함수를 제공합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nx">fake</span><span class="p">(</span><span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Gerry&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>이것은 다음과 동일합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+
+<span class="nv">$fabricator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fabricator</span><span class="p">(</span><span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">);</span>
+<span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">setOverrides</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Gerry&#39;</span><span class="p">]);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$fabricator</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>데이터베이스에 저장하지 않고 가짜 객체만 필요한 경우, persist 매개변수에 false를 전달하면 됩니다.</p>
+</section>
+<section id="table-counts">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">테이블 카운트</a><a class="headerlink" href="#table-counts" title="Link to this heading"></a></h2>
+<p>가짜 데이터가 다른 가짜 데이터에 의존하는 경우가 자주 있습니다. <code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>는 각 테이블에 생성된 가짜 항목 수에 대한 정적 카운트를 제공합니다. 다음 예시를 살펴보십시오:</p>
+<p>프로젝트에 사용자와 그룹이 있다고 가정합니다. 테스트 케이스에서 다양한 크기의 그룹 시나리오를 만들기 위해 <code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>를 사용하여 여러 그룹을 생성합니다. 이제 가짜 사용자를 만들고 싶지만 존재하지 않는 그룹 ID에 할당하고 싶지 않은 경우, 모델의 fake 메서드는 다음과 같이 작성할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Test\Fabricator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Faker\Generator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fake</span><span class="p">(</span><span class="nx">Generator</span> <span class="o">&amp;</span><span class="nv">$faker</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;first&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">firstName</span><span class="p">(),</span>
+            <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">(),</span>
+            <span class="s1">&#39;group_id&#39;</span> <span class="o">=&gt;</span> <span class="nb">mt_rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">Fabricator</span><span class="o">::</span><span class="na">getCount</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">)),</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 새 사용자를 생성하면 유효한 그룹에 속하게 됩니다: <code class="docutils literal notranslate"><span class="pre">$user</span> <span class="pre">=</span> <span class="pre">fake(UserModel::class);</span></code></p>
+<section id="methods">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">메서드</a><a class="headerlink" href="#methods" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Fabricator</span></code>는 내부적으로 카운트를 관리하지만, 다음 정적 메서드를 통해 직접 접근하여 활용할 수도 있습니다:</p>
+<section id="getcount-string-table-int">
+<h4>getCount(string $table): int<a class="headerlink" href="#getcount-string-table-int" title="Link to this heading"></a></h4>
+<p>특정 테이블의 현재 카운트 값을 반환합니다 (기본값: 0).</p>
+</section>
+<section id="setcount-string-table-int-count-int">
+<h4>setCount(string $table, int $count): int<a class="headerlink" href="#setcount-string-table-int-count-int" title="Link to this heading"></a></h4>
+<p>특정 테이블의 카운트 값을 수동으로 설정합니다. 예를 들어, 패브리케이터를 사용하지 않고 테스트 항목을 생성했지만 최종 카운트에 포함시키고 싶은 경우에 사용합니다.</p>
+</section>
+<section id="upcount-string-table-int">
+<h4>upCount(string $table): int<a class="headerlink" href="#upcount-string-table-int" title="Link to this heading"></a></h4>
+<p>특정 테이블의 카운트 값을 1 증가시키고 새 값을 반환합니다. (이것은 <code class="docutils literal notranslate"><span class="pre">Fabricator::create()</span></code>에서 내부적으로 사용됩니다.)</p>
+</section>
+<section id="downcount-string-table-int">
+<h4>downCount(string $table): int<a class="headerlink" href="#downcount-string-table-int" title="Link to this heading"></a></h4>
+<p>특정 테이블의 카운트 값을 1 감소시키고 새 값을 반환합니다. 예를 들어, 가짜 항목을 삭제했지만 변경 사항을 추적하고 싶은 경우에 사용합니다.</p>
+</section>
+<section id="resetcounts">
+<h4>resetCounts()<a class="headerlink" href="#resetcounts" title="Link to this heading"></a></h4>
+<p>모든 카운트를 초기화합니다. 테스트 케이스 사이에 이 메서드를 호출하는 것이 좋습니다 (<code class="docutils literal notranslate"><span class="pre">CIUnitTestCase::$refresh</span> <span class="pre">=</span> <span class="pre">true</span></code>를 사용하면 자동으로 처리됩니다).</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="database.html" class="btn btn-neutral float-left" title="데이터베이스 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="컨트롤러 테스트" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>데이터베이스 Forge 클래스 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="데이터베이스 마이그레이션" href="migration.html" />
+    <link rel="prev" title="데이터베이스 관리" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터베이스 관리</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">데이터베이스 관리</a></li>
+      <li class="breadcrumb-item active">데이터베이스 Forge 클래스</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="database-forge-class">
+<h1>데이터베이스 Forge 클래스<a class="headerlink" href="#database-forge-class" title="Link to this heading"></a></h1>
+<p>데이터베이스 Forge 클래스는 데이터베이스를 관리하는 데 도움이 되는 메서드를 포함합니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#initializing-the-forge-class" id="id7">Forge 클래스 초기화</a></p></li>
+<li><p><a class="reference internal" href="#creating-and-dropping-databases" id="id8">데이터베이스 생성 및 삭제</a></p>
+<ul>
+<li><p><a class="reference internal" href="#forge-createdatabase-db-name" id="id9">$forge-&gt;createDatabase(‘db_name’)</a></p></li>
+<li><p><a class="reference internal" href="#forge-dropdatabase-db-name" id="id10">$forge-&gt;dropDatabase(‘db_name’)</a></p></li>
+<li><p><a class="reference internal" href="#creating-databases-in-the-command-line" id="id11">커맨드 라인에서 데이터베이스 생성</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#creating-tables" id="id12">테이블 생성</a></p>
+<ul>
+<li><p><a class="reference internal" href="#adding-fields" id="id13">필드 추가</a></p></li>
+<li><p><a class="reference internal" href="#adding-keys" id="id14">키 추가</a></p></li>
+<li><p><a class="reference internal" href="#adding-foreign-keys" id="id15">외래 키 추가</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-table" id="id16">테이블 생성하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dropping-tables" id="id17">테이블 삭제</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dropping-a-table" id="id18">테이블 삭제하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modifying-tables" id="id19">테이블 수정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#adding-a-field-to-a-table" id="id20">테이블에 필드 추가</a></p></li>
+<li><p><a class="reference internal" href="#dropping-fields-from-a-table" id="id21">테이블에서 필드 삭제</a></p></li>
+<li><p><a class="reference internal" href="#modifying-a-field-in-a-table" id="id22">테이블의 필드 수정</a></p></li>
+<li><p><a class="reference internal" href="#adding-keys-to-a-table" id="id23">테이블에 키 추가</a></p></li>
+<li><p><a class="reference internal" href="#dropping-a-primary-key" id="id24">기본 키 삭제</a></p></li>
+<li><p><a class="reference internal" href="#dropping-a-key" id="id25">키 삭제</a></p></li>
+<li><p><a class="reference internal" href="#dropping-a-foreign-key" id="id26">외래 키 삭제</a></p></li>
+<li><p><a class="reference internal" href="#renaming-a-table" id="id27">테이블 이름 변경</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#class-reference" id="id28">클래스 레퍼런스</a></p></li>
+</ul>
+</nav>
+<section id="initializing-the-forge-class">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Forge 클래스 초기화</a><a class="headerlink" href="#initializing-the-forge-class" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>Forge 클래스를 초기화하려면 데이터베이스 드라이버가 이미 실행 중이어야 합니다. Forge 클래스는 데이터베이스 드라이버에 의존하기 때문입니다.</p>
+</div>
+<p>Forge 클래스를 다음과 같이 로드합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">forge</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>관리하려는 데이터베이스가 기본 데이터베이스가 아닌 경우, DB Forge 로더에 다른 데이터베이스 그룹 이름을 전달할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">myforge</span> <span class="o">=</span> <span class="nx">\Config\Database</span><span class="o">::</span><span class="na">forge</span><span class="p">(</span><span class="s1">&#39;other_db&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 예제에서는 연결할 다른 데이터베이스 그룹의 이름을 첫 번째 매개변수로 전달합니다.</p>
+</section>
+<section id="creating-and-dropping-databases">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">데이터베이스 생성 및 삭제</a><a class="headerlink" href="#creating-and-dropping-databases" title="Link to this heading"></a></h2>
+<section id="forge-createdatabase-db-name">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">$forge-&gt;createDatabase(‘db_name’)</a><a class="headerlink" href="#forge-createdatabase-db-name" title="Link to this heading"></a></h3>
+<p>첫 번째 매개변수에 지정한 데이터베이스를 생성할 수 있습니다. 성공 또는 실패에 따라 true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database created!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>선택적 두 번째 매개변수를 true로 설정하면 <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">EXISTS</span></code> 구문을 추가하거나 데이터베이스를 생성하기 전에 해당 데이터베이스가 존재하는지 확인합니다(DBMS에 따라 다름).</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm"> * gives CREATE DATABASE IF NOT EXISTS `my_db`</span>
+<span class="cm"> * or will check if a database exists</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="forge-dropdatabase-db-name">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">$forge-&gt;dropDatabase(‘db_name’)</a><a class="headerlink" href="#forge-dropdatabase-db-name" title="Link to this heading"></a></h3>
+<p>첫 번째 매개변수에 지정한 데이터베이스를 삭제할 수 있습니다. 성공 또는 실패에 따라 true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropDatabase</span><span class="p">(</span><span class="s1">&#39;my_db&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Database deleted!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-databases-in-the-command-line">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">커맨드 라인에서 데이터베이스 생성</a><a class="headerlink" href="#creating-databases-in-the-command-line" title="Link to this heading"></a></h3>
+<p>CodeIgniter는 전용 <code class="docutils literal notranslate"><span class="pre">db:create</span></code> 명령을 사용하여 터미널에서 직접 데이터베이스를 생성하는 것을 지원합니다. 이 명령을 사용할 때는 데이터베이스가 아직 존재하지 않는 것으로 가정합니다. 그렇지 않으면 CodeIgniter는 데이터베이스 생성에 실패했다고 오류를 표시합니다.</p>
+<p>시작하려면 명령과 데이터베이스 이름(예: <code class="docutils literal notranslate"><span class="pre">foo</span></code>)을 입력합니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark db:create foo</span>
+</pre></div>
+</div>
+<p>모든 것이 정상적으로 진행되면 <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">&quot;foo&quot;</span> <span class="pre">successfully</span> <span class="pre">created.</span></code> 메시지가 표시됩니다.</p>
+<p>테스트 환경에 있거나 SQLite3 드라이버를 사용하는 경우, <code class="docutils literal notranslate"><span class="pre">--ext</span></code> 옵션을 사용하여 데이터베이스가 생성될 파일의 확장자를 전달할 수 있습니다. 유효한 값은 <code class="docutils literal notranslate"><span class="pre">db</span></code>와 <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>이며, 기본값은 <code class="docutils literal notranslate"><span class="pre">db</span></code>입니다. 이 값들 앞에 마침표를 붙이지 않아야 합니다. :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark db:create foo --ext sqlite</span>
+</pre></div>
+</div>
+<p>위 명령은 <strong>WRITEPATH/foo.sqlite</strong>에 db 파일을 생성합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>특수한 SQLite3 데이터베이스 이름 <code class="docutils literal notranslate"><span class="pre">:memory:</span></code>를 사용하면 명령이 성공 메시지를 출력하지만 데이터베이스 파일은 생성되지 않습니다. 이는 SQLite3가 인메모리 데이터베이스를 사용하기 때문입니다.</p>
+</div>
+</section>
+</section>
+<section id="creating-tables">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">테이블 생성</a><a class="headerlink" href="#creating-tables" title="Link to this heading"></a></h2>
+<p>테이블을 생성할 때 수행하고 싶은 작업이 여러 가지 있을 수 있습니다. 필드 추가, 테이블에 키 추가, 컬럼 변경 등이 그 예입니다. CodeIgniter는 이를 위한 메커니즘을 제공합니다.</p>
+<section id="adding-fields">
+<span id="id2"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">필드 추가</a><a class="headerlink" href="#adding-fields" title="Link to this heading"></a></h3>
+<section id="forge-addfield">
+<h4>$forge-&gt;addField()<a class="headerlink" href="#forge-addfield" title="Link to this heading"></a></h4>
+<p>필드는 일반적으로 연관 배열을 통해 생성됩니다. 배열 내에는 필드의 데이터 타입에 해당하는 <code class="docutils literal notranslate"><span class="pre">type</span></code> 키를 반드시 포함해야 합니다.</p>
+<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">INT</span></code>, <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> 등이 있습니다. 많은 데이터 타입(예: <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code>)은 <code class="docutils literal notranslate"><span class="pre">constraint</span></code> 키도 필요합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="c1">// will translate to &quot;users VARCHAR(100)&quot; when the field is added.</span>
+</pre></div>
+</div>
+<p>추가로 다음과 같은 키/값을 사용할 수 있습니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">unsigned</span></code>/true : 필드 정의에 <code class="docutils literal notranslate"><span class="pre">UNSIGNED</span></code>를 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code>/값 : 필드 정의에 <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> 제약 조건을 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">null</span></code>/true : 필드 정의에 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>을 생성합니다. 이를 지정하지 않으면 필드의 기본값은 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>이 됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto_increment</span></code>/true : 필드에 auto_increment 플래그를 생성합니다. 필드 타입이 <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>와 같이 이를 지원하는 타입이어야 합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unique</span></code>/true : 필드 정의에 유니크 키를 생성합니다.</p></li>
+</ul>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;INT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;unsigned&#39;</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;auto_increment&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unique&#39;</span>     <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;author&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;default&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;King of Town&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;ENUM&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;publish&#39;</span><span class="p">,</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span> <span class="s1">&#39;draft&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;default&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="nv">$fields</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>필드를 정의한 후, <code class="docutils literal notranslate"><span class="pre">$forge-&gt;addField($fields)</span></code>를 사용하여 필드를 추가하고 <a class="reference internal" href="#creating-a-table"><span class="std std-ref">createTable()</span></a> 메서드를 호출합니다.</p>
+</section>
+<section id="notes-on-data-types">
+<h4>데이터 타입에 대한 참고 사항<a class="headerlink" href="#notes-on-data-types" title="Link to this heading"></a></h4>
+<section id="floating-point-types">
+<h5>부동 소수점 타입<a class="headerlink" href="#floating-point-types" title="Link to this heading"></a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">FLOAT</span></code>과 <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>과 같은 부동 소수점 타입은 근사값을 나타냅니다. 따라서 정확한 값이 필요한 경우에는 사용하지 않아야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">mysql</span><span class="o">&gt;</span> <span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">t</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">FLOAT</span><span class="p">,</span> <span class="nx">d</span> <span class="nx">DOUBLE</span><span class="p">);</span>
+<span class="nx">mysql</span><span class="o">&gt;</span> <span class="nx">INSERT</span> <span class="nx">INTO</span> <span class="nx">t</span> <span class="nx">VALUES</span><span class="p">(</span><span class="mf">99.9</span><span class="p">,</span> <span class="mf">99.9</span><span class="p">);</span>
+
+<span class="nx">mysql</span><span class="o">&gt;</span> <span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">t</span> <span class="nx">WHERE</span> <span class="nx">f</span><span class="o">=</span><span class="mf">99.9</span><span class="p">;</span>
+<span class="k">Empty</span> <span class="nx">set</span> <span class="p">(</span><span class="mf">0.00</span> <span class="nx">sec</span><span class="p">)</span>
+
+<span class="nx">mysql</span><span class="o">&gt;</span> <span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">t</span> <span class="nx">WHERE</span> <span class="nx">f</span> <span class="o">&gt;</span> <span class="mf">99.89</span> <span class="k">AND</span> <span class="nx">f</span> <span class="o">&lt;</span> <span class="mf">99.91</span><span class="p">;</span>
+<span class="o">+------+------+</span>
+<span class="o">|</span> <span class="nx">f</span>    <span class="o">|</span> <span class="nx">d</span>    <span class="o">|</span>
+<span class="o">+------+------+</span>
+<span class="o">|</span> <span class="mf">99.9</span> <span class="o">|</span> <span class="mf">99.9</span> <span class="o">|</span>
+<span class="o">+------+------+</span>
+<span class="mi">1</span> <span class="nx">row</span> <span class="nx">in</span> <span class="nx">set</span> <span class="p">(</span><span class="mf">0.01</span> <span class="nx">sec</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>통화 데이터와 같이 정확한 정밀도를 유지하는 것이 중요한 경우에는 <code class="docutils literal notranslate"><span class="pre">DECIMAL</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">NUMERIC</span></code>을 사용해야 합니다.</p>
+</section>
+<section id="text">
+<h5>TEXT<a class="headerlink" href="#text" title="Link to this heading"></a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">TEXT</span></code>는 SQLSRV에서 사용하지 않아야 합니다. 이는 더 이상 사용되지 않습니다. <a class="reference external" href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/ntext-text-and-image-transact-sql?view=sql-server-ver16">ntext, text, and image (Transact-SQL) - SQL Server | Microsoft Learn</a>을 참조하세요.</p>
+</section>
+<section id="enum">
+<h5>ENUM<a class="headerlink" href="#enum" title="Link to this heading"></a></h5>
+<p>모든 데이터베이스가 <code class="docutils literal notranslate"><span class="pre">ENUM</span></code>을 지원하는 것은 아닙니다.</p>
+<p>v4.5.0부터 <code class="docutils literal notranslate"><span class="pre">SQLSRV</span></code> Forge는 <code class="docutils literal notranslate"><span class="pre">ENUM</span></code> 데이터 타입을 <code class="docutils literal notranslate"><span class="pre">VARCHAR(n)</span></code>으로 변환합니다. 이전 버전에서는 <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>로 변환되었습니다.</p>
+</section>
+</section>
+<section id="raw-sql-strings-as-default-values">
+<span id="forge-addfield-default-value-rawsql"></span><h4>기본값으로 Raw SQL 문자열 사용<a class="headerlink" href="#raw-sql-strings-as-default-values" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.0.</span></p>
+</div>
+<p>v4.2.0부터 <code class="docutils literal notranslate"><span class="pre">$forge-&gt;addField()</span></code>는 raw SQL 문자열을 표현하는 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Database\RawSql</span></code> 인스턴스를 허용합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Database\RawSql</span><span class="p">;</span>
+
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;INT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;constraint&#39;</span>     <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;unsigned&#39;</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;auto_increment&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;created_at&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;type&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;TIMESTAMP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">RawSql</span><span class="p">(</span><span class="s1">&#39;CURRENT_TIMESTAMP&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="nv">$fields</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">gives:</span>
+<span class="cm">    &quot;id&quot; INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,</span>
+<span class="cm">    &quot;created_at&quot; TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><code class="docutils literal notranslate"><span class="pre">RawSql</span></code>을 사용할 때는 데이터를 수동으로 이스케이프해야 합니다. 그렇지 않으면 SQL 인젝션이 발생할 수 있습니다.</p>
+</div>
+</section>
+<section id="passing-strings-as-fields">
+<h4>문자열을 필드로 전달<a class="headerlink" href="#passing-strings-as-fields" title="Link to this heading"></a></h4>
+<p>필드를 어떻게 생성할지 정확히 알고 있다면, <code class="docutils literal notranslate"><span class="pre">addField()</span></code>를 사용하여 문자열을 필드 정의에 전달할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="s2">&quot;label varchar(100) NOT NULL DEFAULT &#39;default label&#39;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>raw 문자열을 필드로 전달한 경우, 해당 필드에 대해 <code class="docutils literal notranslate"><span class="pre">addKey()</span></code> 호출을 이어서 사용할 수 없습니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">addField()</span></code>를 여러 번 호출하면 누적됩니다.</p>
+</div>
+</section>
+<section id="creating-an-id-field">
+<h4>id 필드 생성<a class="headerlink" href="#creating-an-id-field" title="Link to this heading"></a></h4>
+<p>id 필드 생성에는 특별한 예외가 있습니다. 타입이 id인 필드는 자동으로 INT(9) auto_increment 기본 키로 지정됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addField</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+<span class="c1">// gives `id` INT(9) NOT NULL AUTO_INCREMENT</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-keys">
+<span id="id3"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">키 추가</a><a class="headerlink" href="#adding-keys" title="Link to this heading"></a></h3>
+<section id="forge-addkey">
+<h4>$forge-&gt;addKey()<a class="headerlink" href="#forge-addkey" title="Link to this heading"></a></h4>
+<p>일반적으로 테이블에 키를 추가하고 싶을 것입니다. 이는 <code class="docutils literal notranslate"><span class="pre">$forge-&gt;addKey('field')</span></code>로 수행합니다. 선택적 두 번째 매개변수를 true로 설정하면 기본 키가 되고, 세 번째 매개변수를 true로 설정하면 유니크 키가 됩니다. 네 번째 매개변수로 이름을 지정할 수 있습니다. 테이블이 이미 존재하는 경우 <code class="docutils literal notranslate"><span class="pre">addKey()</span></code> 이후에 반드시 <code class="docutils literal notranslate"><span class="pre">createTable()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">processIndexes()</span></code>를 호출해야 합니다.</p>
+<p>여러 컬럼의 비기본 키는 배열로 전달해야 합니다. 아래 샘플 출력은 MySQL에 대한 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// gives PRIMARY KEY `blog_id` (`blog_id`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// gives PRIMARY KEY `blog_id_site_id` (`blog_id`, `site_id`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">(</span><span class="s1">&#39;blog_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives KEY `blog_name` (`blog_name`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">([</span><span class="s1">&#39;blog_name&#39;</span><span class="p">,</span> <span class="s1">&#39;blog_label&#39;</span><span class="p">],</span> <span class="k">false</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;my_key_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives KEY `my_key_name` (`blog_name`, `blog_label`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">([</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">],</span> <span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;my_key_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives UNIQUE KEY `my_key_name` (`blog_id`, `uri`)</span>
+</pre></div>
+</div>
+</section>
+<section id="forge-addprimarykey">
+<h4>$forge-&gt;addPrimaryKey()<a class="headerlink" href="#forge-addprimarykey" title="Link to this heading"></a></h4>
+</section>
+<section id="forge-adduniquekey">
+<h4>$forge-&gt;addUniqueKey()<a class="headerlink" href="#forge-adduniquekey" title="Link to this heading"></a></h4>
+<p>코드를 더 명확하게 읽을 수 있도록 특정 메서드를 사용하여 기본 키와 유니크 키를 추가할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addPrimaryKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;pd_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives PRIMARY KEY `pd_name` (`blog_id`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addUniqueKey</span><span class="p">([</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">],</span> <span class="s1">&#39;key_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives UNIQUE KEY `key_name` (`blog_id`, `uri`)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>기본 키를 추가할 때, MySQL과 SQLite는 이름을 제공하더라도 <code class="docutils literal notranslate"><span class="pre">PRIMARY</span></code>로 이름을 사용합니다.</p>
+</div>
+</section>
+</section>
+<section id="adding-foreign-keys">
+<span id="id4"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">외래 키 추가</a><a class="headerlink" href="#adding-foreign-keys" title="Link to this heading"></a></h3>
+<p>외래 키는 테이블 간의 관계와 동작을 강제하는 데 도움이 됩니다. 외래 키를 지원하는 테이블의 경우 forge에서 직접 추가할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">);</span>
+<span class="c1">// gives CONSTRAINT `TABLENAME_users_id_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`)</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">([</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users_name&#39;</span><span class="p">],</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]);</span>
+<span class="c1">// gives CONSTRAINT `TABLENAME_users_id_foreign` FOREIGN KEY(`users_id`, `users_name`) REFERENCES `users`(`id`, `name`)</span>
+</pre></div>
+</div>
+<p>제약 조건의 “on update” 및 “on delete” 속성에 대해 원하는 동작과 이름을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;my_fk_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives CONSTRAINT `my_fk_name` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">);</span>
+<span class="c1">// gives CONSTRAINT `TABLENAME_users_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`) ON DELETE CASCADE</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">([</span><span class="s1">&#39;users_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users_name&#39;</span><span class="p">],</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;my_fk_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives CONSTRAINT `my_fk_name` FOREIGN KEY(`users_id`, `users_name`) REFERENCES `users`(`id`, `name`) ON DELETE CASCADE ON UPDATE CASCADE</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>SQLite3는 외래 키 이름 지정을 지원하지 않습니다. CodeIgniter는 <code class="docutils literal notranslate"><span class="pre">prefix_table_column_foreign</span></code>으로 외래 키를 참조합니다.</p>
+</div>
+</section>
+<section id="creating-a-table">
+<span id="id5"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">테이블 생성하기</a><a class="headerlink" href="#creating-a-table" title="Link to this heading"></a></h3>
+<p>필드와 키를 선언한 후, 다음을 사용하여 새 테이블을 생성할 수 있습니다</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives CREATE TABLE table_name</span>
+</pre></div>
+</div>
+<p>선택적 두 번째 매개변수를 true로 설정하면 테이블이 존재하지 않는 경우에만 테이블을 생성합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// creates table only if table does not exist</span>
+</pre></div>
+</div>
+<p>MySQL의 <code class="docutils literal notranslate"><span class="pre">ENGINE</span></code>과 같은 선택적 테이블 속성을 전달할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$attributes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ENGINE&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;InnoDB&#39;</span><span class="p">];</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="nv">$attributes</span><span class="p">);</span>
+<span class="c1">// produces: CREATE TABLE `table_name` (...) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">CHARACTER</span> <span class="pre">SET</span></code> 및/또는 <code class="docutils literal notranslate"><span class="pre">COLLATE</span></code> 속성을 지정하지 않으면, 설정된 <em>charset</em>과 <em>DBCollat</em> 값이 비어 있지 않는 한 <code class="docutils literal notranslate"><span class="pre">createTable()</span></code>은 항상 해당 값을 추가합니다(MySQL 전용).</p>
+</div>
+</section>
+</section>
+<section id="dropping-tables">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">테이블 삭제</a><a class="headerlink" href="#dropping-tables" title="Link to this heading"></a></h2>
+<section id="dropping-a-table">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">테이블 삭제하기</a><a class="headerlink" href="#dropping-a-table" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DROP</span> <span class="pre">TABLE</span></code> 구문을 실행하고 선택적으로 <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">EXISTS</span></code> 절을 추가합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Produces: DROP TABLE `table_name`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
+
+<span class="c1">// Produces: DROP TABLE IF EXISTS `table_name`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>세 번째 매개변수를 전달하여 <code class="docutils literal notranslate"><span class="pre">CASCADE</span></code> 옵션을 추가할 수 있습니다. 이는 일부 드라이버에서 외래 키가 있는 테이블 삭제를 처리하는 데 필요할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Produces: DROP TABLE `table_name` CASCADE</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropTable</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modifying-tables">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">테이블 수정</a><a class="headerlink" href="#modifying-tables" title="Link to this heading"></a></h2>
+<section id="adding-a-field-to-a-table">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">테이블에 필드 추가</a><a class="headerlink" href="#adding-a-field-to-a-table" title="Link to this heading"></a></h3>
+<section id="forge-addcolumn">
+<h4>$forge-&gt;addColumn()<a class="headerlink" href="#forge-addcolumn" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">addColumn()</span></code> 메서드는 기존 테이블을 수정하는 데 사용됩니다. <a class="reference internal" href="#adding-fields"><span class="std std-ref">테이블 생성</span></a>과 동일한 필드 배열을 허용하며, 추가 필드를 추가하는 데 사용할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>테이블을 생성할 때와 달리, <code class="docutils literal notranslate"><span class="pre">null</span></code>을 지정하지 않으면 컬럼은 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>이 아닌 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>이 됩니다.</p>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
+<span class="c1">// Executes: ALTER TABLE `table_name` ADD `preferences` TEXT</span>
+</pre></div>
+</div>
+<p>MySQL 또는 CUBRID를 사용하는 경우 <code class="docutils literal notranslate"><span class="pre">AFTER</span></code> 및 <code class="docutils literal notranslate"><span class="pre">FIRST</span></code> 절을 활용하여 새 컬럼의 위치를 지정할 수 있습니다.</p>
+<p>예:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Will place the new column after the `another_field` column:</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;another_field&#39;</span><span class="p">],</span>
+<span class="p">];</span>
+
+<span class="c1">// Will place the new column at the start of the table definition:</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dropping-fields-from-a-table">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">테이블에서 필드 삭제</a><a class="headerlink" href="#dropping-fields-from-a-table" title="Link to this heading"></a></h3>
+<section id="forge-dropcolumn">
+<span id="db-forge-dropcolumn"></span><h4>$forge-&gt;dropColumn()<a class="headerlink" href="#forge-dropcolumn" title="Link to this heading"></a></h4>
+<p>테이블에서 컬럼을 제거하는 데 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_to_drop&#39;</span><span class="p">);</span> <span class="c1">// to drop one single column</span>
+</pre></div>
+</div>
+<p>테이블에서 여러 컬럼을 제거하는 데 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;column_1,column_2&#39;</span><span class="p">);</span>      <span class="c1">// by proving comma separated column names</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;column_1&#39;</span><span class="p">,</span> <span class="s1">&#39;column_2&#39;</span><span class="p">]);</span> <span class="c1">// by proving array of column names</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modifying-a-field-in-a-table">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">테이블의 필드 수정</a><a class="headerlink" href="#modifying-a-field-in-a-table" title="Link to this heading"></a></h3>
+<section id="forge-modifycolumn">
+<span id="db-forge-modifycolumn"></span><h4>$forge-&gt;modifyColumn()<a class="headerlink" href="#forge-modifycolumn" title="Link to this heading"></a></h4>
+<p>이 메서드의 사용법은 <code class="docutils literal notranslate"><span class="pre">addColumn()</span></code>과 동일하지만, 새 컬럼을 추가하는 대신 기존 컬럼을 변경합니다. 이름을 변경하려면 필드 정의 배열에 “name” 키를 추가할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;old_name&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">modifyColumn</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="nv">$fields</span><span class="p">);</span>
+<span class="c1">// gives ALTER TABLE `table_name` CHANGE `old_name` `new_name` TEXT NOT NULL</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">modifyColumn()</span></code>은 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>/<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>을 예상치 못하게 변경할 수 있습니다. 따라서 항상 <code class="docutils literal notranslate"><span class="pre">null</span></code> 키의 값을 명시적으로 지정하는 것이 좋습니다. 테이블을 생성할 때와 달리, <code class="docutils literal notranslate"><span class="pre">null</span></code>을 지정하지 않으면 컬럼은 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>이 아닌 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>이 됩니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>버그로 인해 v4.3.4 이전 버전에서 SQLite3는 <code class="docutils literal notranslate"><span class="pre">'null'</span> <span class="pre">=&gt;</span> <span class="pre">false</span></code>를 지정해도 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>을 설정하지 않을 수 있습니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>버그로 인해 v4.3.4 이전 버전에서 Postgres와 SQLSRV는 <code class="docutils literal notranslate"><span class="pre">'null'</span> <span class="pre">=&gt;</span> <span class="pre">true</span></code>를 지정해도 <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>을 설정합니다.</p>
+</div>
+</section>
+</section>
+<section id="adding-keys-to-a-table">
+<span id="db-forge-adding-keys-to-a-table"></span><h3><a class="toc-backref" href="#id23" role="doc-backlink">테이블에 키 추가</a><a class="headerlink" href="#adding-keys-to-a-table" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">addKey()</span></code>, <code class="docutils literal notranslate"><span class="pre">addPrimaryKey()</span></code>, <code class="docutils literal notranslate"><span class="pre">addUniqueKey()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">addForeignKey()</span></code>와 <code class="docutils literal notranslate"><span class="pre">processIndexes()</span></code>를 사용하여 기존 테이블에 키를 추가할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forge</span><span class="o">-&gt;</span><span class="na">addKey</span><span class="p">([</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="k">false</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;category_name&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forge</span><span class="o">-&gt;</span><span class="na">addPrimaryKey</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;pk_actions&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forge</span><span class="o">-&gt;</span><span class="na">addForeignKey</span><span class="p">(</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;userid_fk&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">forge</span><span class="o">-&gt;</span><span class="na">processIndexes</span><span class="p">(</span><span class="s1">&#39;actions&#39;</span><span class="p">);</span>
+<span class="cm">/* gives:</span>
+<span class="cm">ALTER TABLE `actions` ADD KEY `category_name` (`category`, `name`);</span>
+<span class="cm">ALTER TABLE `actions` ADD CONSTRAINT `pk_actions` PRIMARY KEY(`id`);</span>
+<span class="cm">ALTER TABLE `actions` ADD CONSTRAINT `userid_fk` FOREIGN KEY (`userid`) REFERENCES `user`(`id`);</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="dropping-a-primary-key">
+<span id="id6"></span><h3><a class="toc-backref" href="#id24" role="doc-backlink">기본 키 삭제</a><a class="headerlink" href="#dropping-a-primary-key" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>DROP PRIMARY KEY를 실행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// MySQLi Produces: ALTER TABLE `tablename` DROP PRIMARY KEY</span>
+<span class="c1">// Others Produces: ALTER TABLE `tablename` DROP CONSTRAINT `pk_tablename`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropPrimaryKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="dropping-a-key">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">키 삭제</a><a class="headerlink" href="#dropping-a-key" title="Link to this heading"></a></h3>
+<p>DROP KEY를 실행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// For Indexes Produces:        DROP INDEX `users_index` ON `tablename`</span>
+<span class="c1">// For Unique Indexes Produces: ALTER TABLE `tablename` DROP CONSTRAINT `users_index`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span> <span class="s1">&#39;users_index&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="dropping-a-foreign-key">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">외래 키 삭제</a><a class="headerlink" href="#dropping-a-foreign-key" title="Link to this heading"></a></h3>
+<p>DROP FOREIGN KEY를 실행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Produces: ALTER TABLE `tablename` DROP FOREIGN KEY `users_foreign`</span>
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropForeignKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span> <span class="s1">&#39;users_foreign&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="renaming-a-table">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">테이블 이름 변경</a><a class="headerlink" href="#renaming-a-table" title="Link to this heading"></a></h3>
+<p>TABLE 이름 변경을 실행합니다</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">renameTable</span><span class="p">(</span><span class="s1">&#39;old_table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;new_table_name&#39;</span><span class="p">);</span>
+<span class="c1">// gives ALTER TABLE `old_table_name` RENAME TO `new_table_name`</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="class-reference">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<dl class="php class" id="namespace-CodeIgniter\Database">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\Database\</span></span><span class="sig-name descname"><span class="pre">Forge</span></span><a class="headerlink" href="#CodeIgniter\Database\Forge" title="Link to this definition"></a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addColumn">
+<span class="sig-name descname"><span class="pre">addColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$field</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addColumn" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 컬럼을 추가할 테이블 이름</p></li>
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 컬럼 정의</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>기존 테이블에 컬럼을 추가합니다. 사용법: <a class="reference internal" href="#adding-a-field-to-a-table">테이블에 필드 추가</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addField">
+<span class="sig-name descname"><span class="pre">addField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addField" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 추가할 필드 정의</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code> 인스턴스 (메서드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code></p>
+</dd>
+</dl>
+<p>테이블 생성에 사용될 집합에 필드를 추가합니다. 사용법: <a class="reference internal" href="#id2">필드 추가</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addForeignKey">
+<span class="sig-name descname"><span class="pre">addForeignKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$fieldName</span></em>, <em class="sig-param"><span class="pre">$tableName</span></em>, <em class="sig-param"><span class="pre">$tableField</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$onUpdate</span> <span class="pre">=</span> <span class="pre">''</span></em>, <em class="sig-param"><span class="pre">$onDelete</span> <span class="pre">=</span> <span class="pre">''</span></em>, <em class="sig-param"><span class="pre">$fkName</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addForeignKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$fieldName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|string[]</span></code></span>) – 키 필드 이름 또는 필드 배열</p></li>
+<li><p><strong>$tableName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 부모 테이블 이름</p></li>
+<li><p><strong>$tableField</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string|string[]</span></code></span>) – 부모 테이블 필드 이름 또는 필드 배열</p></li>
+<li><p><strong>$onUpdate</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – “on update”에 대한 원하는 동작</p></li>
+<li><p><strong>$onDelete</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – “on delete”에 대한 원하는 동작</p></li>
+<li><p><strong>$fkName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 외래 키 이름. SQLite3에서는 동작하지 않습니다</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code> 인스턴스 (메서드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code></p>
+</dd>
+</dl>
+<p>테이블 생성에 사용될 집합에 외래 키를 추가합니다. 사용법: <a class="reference internal" href="#id4">외래 키 추가</a>를 참조하세요.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$fkName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addKey">
+<span class="sig-name descname"><span class="pre">addKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$key</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$primary</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$unique</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$keyName</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 키 필드 이름 또는 필드 배열</p></li>
+<li><p><strong>$primary</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 기본 키 또는 일반 키로 설정하려면 true로 설정합니다</p></li>
+<li><p><strong>$unique</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – 유니크 키 또는 일반 키로 설정하려면 true로 설정합니다</p></li>
+<li><p><strong>$keyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 추가할 키 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code> 인스턴스 (메서드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code></p>
+</dd>
+</dl>
+<p>테이블 생성에 사용될 집합에 키를 추가합니다. 사용법: <a class="reference internal" href="#id3">키 추가</a>를 참조하세요.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$keyName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addPrimaryKey">
+<span class="sig-name descname"><span class="pre">addPrimaryKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$key</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$keyName</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addPrimaryKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 키 필드 이름 또는 필드 배열</p></li>
+<li><p><strong>$keyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 추가할 키 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code> 인스턴스 (메서드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code></p>
+</dd>
+</dl>
+<p>테이블 생성에 사용될 집합에 기본 키를 추가합니다. 사용법: <a class="reference internal" href="#id3">키 추가</a>를 참조하세요.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$keyName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::addUniqueKey">
+<span class="sig-name descname"><span class="pre">addUniqueKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$key</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$keyName</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::addUniqueKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 키 필드 이름 또는 필드 배열</p></li>
+<li><p><strong>$keyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 추가할 키 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code> 인스턴스 (메서드 체이닝)</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">\CodeIgniter\Database\Forge</span></code></p>
+</dd>
+</dl>
+<p>테이블 생성에 사용될 집합에 유니크 키를 추가합니다. 사용법: <a class="reference internal" href="#id3">키 추가</a>를 참조하세요.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$keyName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::createDatabase">
+<span class="sig-name descname"><span class="pre">createDatabase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$dbName</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$ifNotExists</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::createDatabase" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$db_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 생성할 데이터베이스 이름</p></li>
+<li><p><strong>$ifNotExists</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span></code> 절을 추가하거나 데이터베이스 존재 여부를 확인하려면 true로 설정합니다</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>새 데이터베이스를 생성합니다. 사용법: <a class="reference internal" href="#creating-and-dropping-databases">데이터베이스 생성 및 삭제</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::createTable">
+<span class="sig-name descname"><span class="pre">createTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$if_not_exists</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">array</span> <span class="pre">$attributes</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::createTable" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 생성할 테이블 이름</p></li>
+<li><p><strong>$if_not_exists</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span></code> 절을 추가하려면 true로 설정합니다</p></li>
+<li><p><strong>$attributes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 테이블 속성의 연관 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 쿼리 객체, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>새 테이블을 생성합니다. 사용법: <a class="reference internal" href="#creating-tables">테이블 생성</a>을 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::dropColumn">
+<span class="sig-name descname"><span class="pre">dropColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em>, <em class="sig-param"><span class="pre">$columnNames</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::dropColumn" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 테이블 이름</p></li>
+<li><p><strong>$columnNames</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 쉼표로 구분된 문자열 또는 컬럼 이름의 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>테이블에서 단일 또는 여러 컬럼을 삭제합니다. 사용법: <a class="reference internal" href="#dropping-fields-from-a-table">테이블에서 필드 삭제</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::dropDatabase">
+<span class="sig-name descname"><span class="pre">dropDatabase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$dbName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::dropDatabase" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$dbName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 삭제할 데이터베이스 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>데이터베이스를 삭제합니다. 사용법: <a class="reference internal" href="#creating-and-dropping-databases">데이터베이스 생성 및 삭제</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::dropKey">
+<span class="sig-name descname"><span class="pre">dropKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em>, <em class="sig-param"><span class="pre">$keyName</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$prefixKeyName</span> <span class="pre">=</span> <span class="pre">true</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::dropKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 키가 있는 테이블 이름</p></li>
+<li><p><strong>$keyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 삭제할 키 이름</p></li>
+<li><p><strong>$prefixKeyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – <code class="docutils literal notranslate"><span class="pre">$keyName</span></code>에 데이터베이스 접두사를 추가해야 하는지 여부</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>인덱스 또는 유니크 인덱스를 삭제합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$keyName</span></code>과 <code class="docutils literal notranslate"><span class="pre">$prefixKeyName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::dropPrimaryKey">
+<span class="sig-name descname"><span class="pre">dropPrimaryKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$keyName</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::dropPrimaryKey" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 기본 키를 삭제할 테이블 이름</p></li>
+<li><p><strong>$keyName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 삭제할 기본 키 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>테이블에서 기본 키를 삭제합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$keyName</span></code>은 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::dropTable">
+<span class="sig-name descname"><span class="pre">dropTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table_name</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$if_exists</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::dropTable" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 삭제할 테이블 이름</p></li>
+<li><p><strong>$if_exists</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">EXISTS</span></code> 절을 추가하려면 true로 설정합니다</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>테이블을 삭제합니다. 사용법: <a class="reference internal" href="#dropping-tables">테이블 삭제</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::processIndexes">
+<span class="sig-name descname"><span class="pre">processIndexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::processIndexes" title="Link to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 인덱스를 추가할 테이블 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">addKey()</span></code>, <code class="docutils literal notranslate"><span class="pre">addPrimaryKey()</span></code>, <code class="docutils literal notranslate"><span class="pre">addUniqueKey()</span></code>, <code class="docutils literal notranslate"><span class="pre">addForeignKey()</span></code> 이후에 사용하여 기존 테이블에 인덱스를 추가합니다. <a class="reference internal" href="#adding-keys-to-a-table">테이블에 키 추가</a>를 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::modifyColumn">
+<span class="sig-name descname"><span class="pre">modifyColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$table</span></em>, <em class="sig-param"><span class="pre">$field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::modifyColumn" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$table</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 테이블 이름</p></li>
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 컬럼 정의</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 true, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>테이블 컬럼을 수정합니다. 사용법: <a class="reference internal" href="#modifying-a-field-in-a-table">테이블의 필드 수정</a>을 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Database\Forge::renameTable">
+<span class="sig-name descname"><span class="pre">renameTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$tableName</span></em>, <em class="sig-param"><span class="pre">$newTableName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Database\Forge::renameTable" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$tableName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 현재 테이블 이름</p></li>
+<li><p><strong>$newTableName</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 테이블의 새 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 쿼리 객체, 실패 시 false</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>테이블 이름을 변경합니다. 사용법: <a class="reference internal" href="#renaming-a-table">테이블 이름 변경</a>을 참조하세요.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="데이터베이스 관리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="migration.html" class="btn btn-neutral float-right" title="데이터베이스 마이그레이션" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>팩토리(Factories) &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="HTTP 요청 다루기" href="http.html" />
+    <link rel="prev" title="서비스(Services)" href="services.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CodeIgniter4 개요</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">서비스(Services)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CodeIgniter4 개요</a></li>
+      <li class="breadcrumb-item active">팩토리(Factories)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="factories">
+<h1>팩토리(Factories)<a class="headerlink" href="#factories" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id3">소개</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-are-factories" id="id4">팩토리란 무엇인가요?</a></p></li>
+<li><p><a class="reference internal" href="#differences-from-services" id="id5">서비스(Services)와의 차이점</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#loading-classes" id="id6">클래스 로딩</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-a-class" id="id7">클래스 로드하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#passing-classname-without-namespace" id="id8">네임스페이스 없이 클래스 이름 전달하기</a></p></li>
+<li><p><a class="reference internal" href="#passing-fully-qualified-classname" id="id9">전체 경로 네임스페이스(Fully Qualified Classname) 전달</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#convenience-functions" id="id10">편의 함수</a></p>
+<ul>
+<li><p><a class="reference internal" href="#config" id="id11">config()</a></p></li>
+<li><p><a class="reference internal" href="#model" id="id12">model()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#defining-classname-to-be-loaded" id="id13">로드할 클래스 이름 정의</a></p></li>
+<li><p><a class="reference internal" href="#factory-parameters" id="id14">팩토리 매개변수</a></p></li>
+<li><p><a class="reference internal" href="#factories-options" id="id15">Factories Options</a></p></li>
+<li><p><a class="reference internal" href="#factories-behavior" id="id16">Factories Behavior</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configurations" id="id17">구성</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example-filters-factories" id="id18">예: 필터 팩토리</a></p></li>
+<li><p><a class="reference internal" href="#example-library-factories" id="id19">Example: Library Factories</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#setoptions-method" id="id20">setOptions 메서드</a></p></li>
+<li><p><a class="reference internal" href="#parameter-options" id="id21">매개변수 옵션</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#config-caching" id="id22">Config Caching</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisite" id="id23">전제 조건</a></p></li>
+<li><p><a class="reference internal" href="#how-it-works" id="id24">작동 방식</a></p></li>
+<li><p><a class="reference internal" href="#how-to-update-config-values" id="id25">설정 값 업데이트 방법</a></p></li>
+<li><p><a class="reference internal" href="#how-to-enable-config-caching" id="id26">설정 캐싱 활성화 방법</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">소개</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<section id="what-are-factories">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">팩토리란 무엇인가요?</a><a class="headerlink" href="#what-are-factories" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="services.html"><span class="doc">서비스(Services)</span></a>와 마찬가지로, <strong>팩토리(Factories)</strong>는 클래스 간에 객체 인스턴스를 직접 전달할 필요 없이 코드를 간결하고 최적화된 상태로 유지할 수 있게 돕는 오토로딩의 확장 기능입니다.</p>
+<p>팩토리는 다음과 같은 점에서 CodeIgniter 3의 <code class="docutils literal notranslate"><span class="pre">$this-&gt;load</span></code>와 비슷합니다.</p>
+<ul class="simple">
+<li><p>클래스 로드</p></li>
+<li><p>로드된 클래스 인스턴스 공유</p></li>
+</ul>
+<p>가장 단순하게 말하자면, 팩토리는 클래스 인스턴스를 생성하고 어디에서나 접근할 수 있는 공통된 방법을 제공합니다. 이는 객체 상태를 재사용하고 앱 전체에서 여러 인스턴스를 로드하여 발생하는 메모리 부하를 줄이는 훌륭한 방법입니다.</p>
+<p>어떤 클래스든 팩토리를 통해 로드할 수 있지만, 공통 데이터를 작업하거나 전송하는 데 사용되는 클래스들이 가장 좋은 예입니다. 프레임워크 자체도 내부적으로 팩토리를 사용합니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 클래스를 사용할 때 올바른 설정이 로드되도록 보장하기 위해 사용됩니다.</p>
+</section>
+<section id="differences-from-services">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">서비스(Services)와의 차이점</a><a class="headerlink" href="#differences-from-services" title="Link to this heading"></a></h3>
+<p>팩토리는 인스턴스화를 위해 구체적인 클래스 이름이 필요하며, 인스턴스를 생성하기 위한 별도의 코드를 가지고 있지 않습니다.</p>
+<p>따라서 팩토리는 많은 의존성이 필요한 복잡한 인스턴스를 생성하는 데 적합하지 않으며, 반환될 인스턴스의 클래스를 동적으로 변경할 수 없습니다.</p>
+<p>반면, 서비스는 인스턴스를 생성하는 코드를 포함하고 있어 다른 서비스나 클래스 인스턴스가 필요한 복잡한 인스턴스를 생성할 수 있습니다. 서비스를 가져올 때는 클래스 이름이 아닌 서비스 이름이 필요하므로, 클라이언트 코드를 수정하지 않고도 반환되는 인스턴스를 변경할 수 있습니다.</p>
+</section>
+</section>
+<section id="loading-classes">
+<span id="factories-loading-class"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">클래스 로딩</a><a class="headerlink" href="#loading-classes" title="Link to this heading"></a></h2>
+<section id="loading-a-class">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">클래스 로드하기</a><a class="headerlink" href="#loading-a-class" title="Link to this heading"></a></h3>
+<p><strong>모델(Models)</strong>을 예로 들어보겠습니다. 팩토리 클래스의 매직 정적 메서드인 <code class="docutils literal notranslate"><span class="pre">Factories::models()</span></code>를 사용하여 모델 전용 팩토리에 접근할 수 있습니다.</p>
+<p>이 정적 메서드 이름을 <em>컴포넌트(component)</em>라고 부릅니다.</p>
+<section id="passing-classname-without-namespace">
+<span id="factories-passing-classname-without-namespace"></span><h4><a class="toc-backref" href="#id8" role="doc-backlink">네임스페이스 없이 클래스 이름 전달하기</a><a class="headerlink" href="#passing-classname-without-namespace" title="Link to this heading"></a></h4>
+<p>네임스페이스 없이 클래스 이름을 전달하면, 팩토리는 먼저 <code class="docutils literal notranslate"><span class="pre">App</span></code> 네임스페이스에서 매직 정적 메서드 이름에 대응하는 경로를 찾습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">Factories::models()</span></code>는 <strong>app/Models</strong> 디렉토리를 검색합니다.</p>
+<section id="passing-short-classname">
+<h5>짧은 클래스 이름 전달하기<a class="headerlink" href="#passing-short-classname" title="Link to this heading"></a></h5>
+<p>다음 코드에서 <code class="docutils literal notranslate"><span class="pre">App\Models\UserModel</span></code>이 존재한다면 해당 인스턴스가 반환됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>만약 <code class="docutils literal notranslate"><span class="pre">App\Models\UserModel</span></code>이 없다면 모든 네임스페이스에서 <code class="docutils literal notranslate"><span class="pre">Models\UserModel</span></code>을 검색합니다.</p>
+<p>코드의 다른 곳에서 동일한 클래스를 다시 요청하면, 팩토리는 이전과 동일한 인스턴스를 반환하도록 보장합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">SomeOtherClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">someFunction</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-short-classname-with-sub-directories">
+<h5>하위 디렉토리를 포함한 짧은 클래스 이름 전달<a class="headerlink" href="#passing-short-classname-with-sub-directories" title="Link to this heading"></a></h5>
+<p>하위 디렉토리에 있는 클래스를 로드하려면 <code class="docutils literal notranslate"><span class="pre">/</span></code>를 구분자로 사용합니다. 다음 코드는 <strong>app/Libraries/Sub/SubLib.php</strong>가 존재할 경우 이를 로드합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$lib</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">libraries</span><span class="p">(</span><span class="s1">&#39;Sub/SubLib&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="passing-fully-qualified-classname">
+<span id="factories-passing-fully-qualified-classname"></span><h4><a class="toc-backref" href="#id9" role="doc-backlink">전체 경로 네임스페이스(Fully Qualified Classname) 전달</a><a class="headerlink" href="#passing-fully-qualified-classname" title="Link to this heading"></a></h4>
+<p>전체 경로 네임스페이스를 사용하여 요청할 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;Blog\Models\UserModel&#39;</span><span class="p">);</span>
+<span class="c1">// Or</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="nx">\Blog\Models\UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>BlogModelsUserModel이 존재하면 해당 인스턴스를 반환합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0 이전에는 전체 네임스페이스로 요청했을 때, BlogModelsUserModel만 있다면 해당 인스턴스가 반환되었지만, AppModelsUserModel과 BlogModelsUserModel이 둘 다 있다면 AppModelsUserModel의 인스턴스가 반환되었습니다.</p>
+<p>이 경우 BlogModelsUserModel을 가져오려면 preferApp 옵션을 비활성화해야 했습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;Blog\Models\UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;preferApp&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="convenience-functions">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">편의 함수</a><a class="headerlink" href="#convenience-functions" title="Link to this heading"></a></h2>
+<p>팩토리를 위한 두 가지 단축 함수가 제공됩니다. 이 함수들은 언제나 사용 가능합니다.</p>
+<section id="config">
+<span id="factories-config"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">config()</a><a class="headerlink" href="#config" title="Link to this heading"></a></h3>
+<p>첫 번째는 <a class="reference internal" href="../general/common_functions.html#config" title="config"><code class="xref php php-func docutils literal notranslate"><span class="pre">config()</span></code></a>로, Config 클래스의 새 인스턴스를 반환합니다. 유일한 필수 매개변수는 클래스 이름입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$appConfig</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
+
+<span class="c1">// The code above is the same as the code below.</span>
+<span class="nv">$appConfig</span> <span class="o">=</span> <span class="nx">\CodeIgniter\Config\Factories</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="model">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">model()</a><a class="headerlink" href="#model" title="Link to this heading"></a></h3>
+<p>두 번째 함수인 <a class="reference internal" href="../general/common_functions.html#model" title="model"><code class="xref php php-func docutils literal notranslate"><span class="pre">model()</span></code></a>은 Model 클래스의 새 인스턴스를 반환합니다. 유일한 필수 매개변수는 클래스 이름입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+
+<span class="c1">// The code above is the same as the code below.</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nx">\CodeIgniter\Config\Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="defining-classname-to-be-loaded">
+<span id="factories-defining-classname-to-be-loaded"></span><h2><a class="toc-backref" href="#id13" role="doc-backlink">로드할 클래스 이름 정의</a><a class="headerlink" href="#defining-classname-to-be-loaded" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Factories::define()</span></code> 메서드를 사용하면 클래스를 로드하기 전에 로드할 클래스 이름을 정의할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nx">Factories</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;models&#39;</span><span class="p">,</span> <span class="s1">&#39;Myth\Auth\Models\UserModel&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>첫 번째 매개변수는 컴포넌트입니다. 두 번째 매개변수는 클래스 별칭(팩토리 매직 정적 메서드의 첫 번째 매개변수)이고, 세 번째 매개변수는 로드할 실제 전체 경로 클래스 이름입니다.</p>
+<p>After that, if you load <code class="docutils literal notranslate"><span class="pre">Myth\Auth\Models\UserModel</span></code> with Factories, the
+<code class="docutils literal notranslate"><span class="pre">App\Models\UserModel</span></code> instance will be returned:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$users</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Myth\Auth\Models\UserModel&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="factory-parameters">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">팩토리 매개변수</a><a class="headerlink" href="#factory-parameters" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code>는 두 번째 매개변수로 옵션 값의 배열을 받습니다(아래 설명 참조). 이 지시문은 각 컴포넌트에 대해 구성된 기본 옵션을 재정의합니다.</p>
+<p>동시에 전달된 추가 매개변수는 클래스 생성자로 전달되므로, 클래스 인스턴스를 즉석에서 구성하기 쉽습니다. 예를 들어, 앱이 인증을 위해 별도의 데이터베이스를 사용하고 사용자 레코드 접근이 항상 해당 연결을 통해 이루어지도록 하려는 경우:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$conn</span>  <span class="o">=</span> <span class="nx">db_connect</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="nv">$conn</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">Factories</span></code>에서 <code class="docutils literal notranslate"><span class="pre">UserModel</span></code>을 로드할 때마다 실제로는 대체 데이터베이스 연결을 사용하는 클래스 인스턴스가 반환됩니다.</p>
+</section>
+<section id="factories-options">
+<span id="id2"></span><h2><a class="toc-backref" href="#id15" role="doc-backlink">Factories Options</a><a class="headerlink" href="#factories-options" title="Link to this heading"></a></h2>
+<p>기본 동작이 모든 컴포넌트에 적합하지 않을 수 있습니다. 예를 들어 컴포넌트 이름과 경로가 일치하지 않거나 인스턴스를 특정 클래스 유형으로 제한해야 하는 경우입니다. 각 컴포넌트는 검색 및 인스턴스화를 지시하기 위한 옵션 집합을 받습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>키</p></th>
+<th class="head"><p>유형</p></th>
+<th class="head"><p>설명</p></th>
+<th class="head"><p>기본값</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>component</p></td>
+<td><p>문자열 또는 null</p></td>
+<td><p>컴포넌트 이름(정적 메서드와 다를 경우)입니다. 한 컴포넌트를 다른 컴포넌트의 별칭으로 사용할 때 활용할 수 있습니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code> (component 이름으로 기본값 설정)</p></td>
+</tr>
+<tr class="row-odd"><td><p>경로</p></td>
+<td><p>문자열 또는 null</p></td>
+<td><p>네임스페이스/폴더 내에서 클래스를 찾을 상대 경로입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code> (기본값은 컴포넌트 이름이지만 첫 번째 문자를 대문자로 만듦)</p></td>
+</tr>
+<tr class="row-even"><td><p>instanceOf</p></td>
+<td><p>문자열 또는 null</p></td>
+<td><p>반환된 인스턴스와 일치해야 하는 필수 클래스 이름입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code> (필터링 없음)</p></td>
+</tr>
+<tr class="row-odd"><td><p>getShared</p></td>
+<td><p>boolean</p></td>
+<td><p>클래스의 공유 인스턴스를 반환할지 또는 새 인스턴스를 로드할지 여부입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>preferApp</p></td>
+<td><p>boolean</p></td>
+<td><p>App 네임스페이스에서 동일한 기본 이름을 가진 클래스가 다른 명시적 클래스 요청을 재정의할지 여부입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0부터 <code class="docutils literal notranslate"><span class="pre">preferApp</span></code>은 <a class="reference internal" href="#factories-passing-classname-without-namespace"><span class="std std-ref">네임스페이스 없이 클래스 이름을 요청할 때</span></a>만 작동합니다.</p>
+</div>
+</section>
+<section id="factories-behavior">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Factories Behavior</a><a class="headerlink" href="#factories-behavior" title="Link to this heading"></a></h2>
+<p>옵션은 다음 세 가지 방법 중 하나로 적용할 수 있습니다(우선순위 오름차순):</p>
+<ul class="simple">
+<li><p>컴포넌트 이름과 일치하는 속성을 가진 설정 클래스 <code class="docutils literal notranslate"><span class="pre">Config\Factory</span></code>입니다.</p></li>
+<li><p>정적 메서드 <code class="docutils literal notranslate"><span class="pre">Factories::setOptions()</span></code>입니다.</p></li>
+<li><p>호출 시 매개변수로 옵션을 직접 전달합니다.</p></li>
+</ul>
+<section id="configurations">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">구성</a><a class="headerlink" href="#configurations" title="Link to this heading"></a></h3>
+<p>기본 컴포넌트 옵션을 설정하려면 <strong>app/Config/Factory.php</strong>에 컴포넌트 이름과 일치하는 배열 속성으로 옵션을 제공하는 새 Config 파일을 생성하세요.</p>
+<section id="example-filters-factories">
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">예: 필터 팩토리</a><a class="headerlink" href="#example-filters-factories" title="Link to this heading"></a></h4>
+<p>예를 들어 팩토리로 <strong>필터(Filters)</strong>를 생성하려면 컴포넌트 이름은 <code class="docutils literal notranslate"><span class="pre">filters</span></code>가 됩니다. 각 필터가 CodeIgniter의 <code class="docutils literal notranslate"><span class="pre">FilterInterface</span></code>를 구현하는 클래스의 인스턴스인지 확인하려면 <strong>app/Config/Factory.php</strong> 파일이 다음과 같을 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factory</span> <span class="k">as</span> <span class="nx">BaseFactory</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Filters\FilterInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Factory</span> <span class="k">extends</span> <span class="nx">BaseFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$filters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;instanceOf&#39;</span> <span class="o">=&gt;</span> <span class="nx">FilterInterface</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">Factories::filters('SomeFilter')</span></code>와 같은 코드로 필터를 생성할 수 있으며, 반환된 인스턴스는 반드시 CodeIgniter 필터가 됩니다.</p>
+<p>이는 우연히 네임스페이스에 관련 없는 <code class="docutils literal notranslate"><span class="pre">Filters</span></code> 경로를 가진 서드파티 모듈과의 충돌을 방지합니다.</p>
+</section>
+<section id="example-library-factories">
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Example: Library Factories</a><a class="headerlink" href="#example-library-factories" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Factories::library('SomeLib')</span></code>로 <strong>app/Libraries</strong> 디렉토리의 라이브러리 클래스를 로드하려면, 경로 <code class="docutils literal notranslate"><span class="pre">Libraries</span></code>가 기본 경로 <code class="docutils literal notranslate"><span class="pre">Library</span></code>와 다릅니다.</p>
+<p>이 경우 <strong>app/Config/Factory.php</strong> 파일은 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factory</span> <span class="k">as</span> <span class="nx">BaseFactory</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Factory</span> <span class="k">extends</span> <span class="nx">BaseFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$library</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Libraries&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">Factories::library()</span></code> 메서드로 라이브러리를 로드할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$someLib</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;SomeLib&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setoptions-method">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">setOptions 메서드</a><a class="headerlink" href="#setoptions-method" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code> 클래스에는 런타임 옵션 구성을 허용하는 정적 메서드가 있습니다. <code class="docutils literal notranslate"><span class="pre">setOptions()</span></code> 메서드에 원하는 옵션 배열을 제공하면 기본값과 병합되어 다음 호출을 위해 저장됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Filters\FilterInterface</span><span class="p">;</span>
+
+<span class="nx">Factories</span><span class="o">::</span><span class="na">setOptions</span><span class="p">(</span><span class="s1">&#39;filters&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;instanceOf&#39;</span> <span class="o">=&gt;</span> <span class="nx">FilterInterface</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;prefersApp&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-options">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">매개변수 옵션</a><a class="headerlink" href="#parameter-options" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Factories</span></code>의 매직 정적 호출은 두 번째 매개변수로 옵션 값의 배열을 받습니다. 이 지시문은 각 컴포넌트에 대해 구성된 저장된 옵션을 재정의하며, 정확히 필요한 것을 얻기 위해 호출 시 사용할 수 있습니다. 입력은 각 재정의 값의 키로 옵션 이름이 있는 배열이어야 합니다.</p>
+<p>예를 들어 기본적으로 <code class="docutils literal notranslate"><span class="pre">Factories</span></code>는 컴포넌트의 공유 인스턴스를 찾으려 한다고 가정합니다. 매직 정적 호출에 두 번째 매개변수를 추가하면 해당 단일 호출이 새 인스턴스 또는 공유 인스턴스를 반환할지 제어할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CodeIgniter\Config\Factories</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>  <span class="c1">// Default; will always be the same instance</span>
+<span class="nv">$other</span> <span class="o">=</span> <span class="nx">Factories</span><span class="o">::</span><span class="na">models</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;getShared&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span> <span class="c1">// Will always create a new instance</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="config-caching">
+<span id="factories-config-caching"></span><h2><a class="toc-backref" href="#id22" role="doc-backlink">Config Caching</a><a class="headerlink" href="#config-caching" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 섹션을 주의 깊게 읽고 이 기능의 작동 방식을 이해하지 않는 한 이 기능을 사용하지 마십시오. 그렇지 않으면 애플리케이션이 제대로 작동하지 않을 수 있습니다.</p>
+</div>
+<p>성능 향상을 위해 설정 캐싱(Config Caching)이 구현되었습니다.</p>
+<section id="prerequisite">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">전제 조건</a><a class="headerlink" href="#prerequisite" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>전제 조건이 충족되지 않은 상태에서 이 기능을 사용하면 CodeIgniter가 정상적으로 작동하지 않을 수 있습니다. 그런 경우에는 이 기능을 사용하지 마십시오.</p>
+</div>
+<ul class="simple">
+<li><p>이 기능을 사용하려면 팩토리에서 인스턴스화된 모든 설정(Config) 객체의 속성이 인스턴스화 후에 수정되지 않아야 합니다. 다시 말해, 설정 클래스는 불변(immutable)이거나 읽기 전용(readonly) 클래스여야 합니다.</p></li>
+<li><p>기본적으로 캐시되는 모든 설정 클래스는 <code class="docutils literal notranslate"><span class="pre">__set_state()</span></code> 메서드를 구현해야 합니다.</p></li>
+</ul>
+</section>
+<section id="how-it-works">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">작동 방식</a><a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>한번 캐시되면 설정 파일이나 <strong>.env</strong>가 변경되더라도 캐시를 삭제하기 전까지 설정 값은 절대로 변경되지 않습니다.</p>
+</div>
+<ul class="simple">
+<li><p>종료(shutdown) 전, 팩토리에 있는 설정 인스턴스의 상태가 변경되었다면 모든 설정 인스턴스를 캐시 파일에 저장합니다.</p></li>
+<li><p>캐시가 있는 경우 CodeIgniter 초기화 전에 캐시된 설정 인스턴스들을 복원합니다.</p></li>
+</ul>
+<p>간단히 말해, 팩토리가 보유한 모든 설정 인스턴스는 종료 직전에 캐시되며, 캐시된 인스턴스들은 영구적으로 사용됩니다.</p>
+</section>
+<section id="how-to-update-config-values">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">설정 값 업데이트 방법</a><a class="headerlink" href="#how-to-update-config-values" title="Link to this heading"></a></h3>
+<p>저장된 캐시 버전은 절대 만료되지 않습니다. 기존 설정 파일을 변경하거나 관련 환경 변수를 변경해도 캐시나 설정 값은 업데이트되지 않습니다.</p>
+<p>따라서 설정 값을 업데이트하고 싶다면 설정 파일이나 환경 변수를 수정한 후, 수동으로 캐시 파일을 삭제해야 합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">cache:clear</span></code> 명령을 사용할 수 있습니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark cache:clear</span>
+</pre></div>
+</div>
+<p>또는 단순히 <strong>writable/cache/FactoriesCache_config</strong> 파일을 삭제하십시오.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0부터 <code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">optimize</span></code> 명령은 캐시를 지웁니다.</p>
+</div>
+</section>
+<section id="how-to-enable-config-caching">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">설정 캐싱 활성화 방법</a><a class="headerlink" href="#how-to-enable-config-caching" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p><strong>app/Config/Optimize.php</strong>에서 다음 속성을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$configCacheEnabled</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>또는 <code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">optimize</span></code> 명령으로 활성화할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 속성은 <a class="reference internal" href="../general/configuration.html#configuration-classes-and-environment-variables"><span class="std std-ref">환경 변수</span></a>에 의해 오버라이드될 수 없습니다.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><a class="reference internal" href="../installation/worker_mode.html"><span class="doc">워커 모드(Worker Mode)</span></a>에서 앱을 실행할 때는 이 옵션을 사용하지 마십시오.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="services.html" class="btn btn-neutral float-left" title="서비스(Services)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="http.html" class="btn btn-neutral float-right" title="HTTP 요청 다루기" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

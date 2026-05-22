@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>쿼리 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="쿼리 결과 생성" href="results.html" />
+    <link rel="prev" title="데이터베이스연결" href="connecting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터베이스 다루기</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">데이터베이스 다루기</a></li>
+      <li class="breadcrumb-item active">쿼리</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="queries">
+<h1>쿼리<a class="headerlink" href="#queries" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#query-basics" id="id5">쿼리 기본 사항</a></p>
+<ul>
+<li><p><a class="reference internal" href="#regular-queries" id="id6">일반 쿼리</a></p></li>
+<li><p><a class="reference internal" href="#simplified-queries" id="id7">단순화된 쿼리</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-database-prefixes-manually" id="id8">수동으로 데이터베이스 접두사 작업</a></p>
+<ul>
+<li><p><a class="reference internal" href="#db-prefixtable" id="id9">$db-&gt;prefixTable()</a></p></li>
+<li><p><a class="reference internal" href="#db-setprefix" id="id10">$db-&gt;setPrefix()</a></p></li>
+<li><p><a class="reference internal" href="#db-getprefix" id="id11">$db-&gt;getPrefix()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#protecting-identifiers" id="id12">식별자 보호</a></p>
+<ul>
+<li><p><a class="reference internal" href="#db-protectidentifiers" id="id13">$db-&gt;protectIdentifiers()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#escaping-values" id="id14">이스케이프 값</a></p>
+<ul>
+<li><p><a class="reference internal" href="#db-escape" id="id15">1. $db-&gt;escape()</a></p></li>
+<li><p><a class="reference internal" href="#db-escapestring" id="id16">2. $db-&gt;escapeString()</a></p></li>
+<li><p><a class="reference internal" href="#db-escapelikestring" id="id17">3. $db-&gt;escapeLikeString()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#query-bindings" id="id18">쿼리 바인딩</a></p>
+<ul>
+<li><p><a class="reference internal" href="#named-bindings" id="id19">명명된 바인딩</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#handling-errors" id="id20">오류 처리</a></p>
+<ul>
+<li><p><a class="reference internal" href="#db-error" id="id21">$db-&gt;error()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#prepared-queries" id="id22">준비된 쿼리</a></p>
+<ul>
+<li><p><a class="reference internal" href="#preparing-the-query" id="id23">쿼리 준비</a></p></li>
+<li><p><a class="reference internal" href="#executing-the-query" id="id24">쿼리 실행</a></p></li>
+<li><p><a class="reference internal" href="#other-methods" id="id25">다른 방법</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-query-objects" id="id26">쿼리 개체 작업</a></p>
+<ul>
+<li><p><a class="reference internal" href="#db-getlastquery" id="id27">$db-&gt;getLastQuery()</a></p></li>
+<li><p><a class="reference internal" href="#the-query-class" id="id28">쿼리 클래스</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="query-basics">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">쿼리 기본 사항</a><a class="headerlink" href="#query-basics" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>CodeIgniter는 테이블 및 열 이름에 점(<code class="docutils literal notranslate"><span class="pre">.</span></code>)을 지원하지 않습니다. v4.5.0부터 점이 포함된 데이터베이스 이름을 지원합니다.</p>
+</div>
+<section id="regular-queries">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">일반 쿼리</a><a class="headerlink" href="#regular-queries" title="Link to this heading"></a></h3>
+<section id="db-query">
+<span id="id2"></span><h4>$db-&gt;query()<a class="headerlink" href="#db-query" title="Link to this heading"></a></h4>
+<p>쿼리를 제출하려면 <code class="docutils literal notranslate"><span class="pre">query()</span></code> 메서드를 사용하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$db</span> <span class="o">=</span> <span class="nx">db_connect</span><span class="p">();</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">query()</span></code> 메서드는 “읽기” 유형 쿼리가 실행될 때 데이터베이스 결과 <strong>객체</strong>를 반환합니다. 이 결과는 <a class="reference internal" href="results.html"><span class="doc">결과 표시</span></a>에 사용할 수 있습니다. “쓰기” 유형의 쿼리가 실행되면 성공 또는 실패에 따라 단순히 true 또는 false를 반환합니다. 데이터를 검색할 때 일반적으로 다음과 같이 쿼리를 자신의 변수에 할당합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY HERE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>OCI8 드라이버를 사용하는 경우 SQL 문은 세미콜론(<code class="docutils literal notranslate"><span class="pre">;</span></code>)으로 끝나서는 안 됩니다. PL/SQL 문은 세미콜론(<code class="docutils literal notranslate"><span class="pre">;</span></code>)으로 끝나야 합니다.</p>
+</div>
+</section>
+</section>
+<section id="simplified-queries">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">단순화된 쿼리</a><a class="headerlink" href="#simplified-queries" title="Link to this heading"></a></h3>
+<section id="db-simplequery">
+<span id="id3"></span><h4>$db-&gt;simpleQuery()<a class="headerlink" href="#db-simplequery" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">simpleQuery()</span></code> 메서드는 <code class="docutils literal notranslate"><span class="pre">$db-&gt;query()</span></code> 메서드를 단순화한 버전입니다. 데이터베이스 결과 세트를 반환하지 않으며, 쿼리 타이머를 설정하거나, 바인드 데이터를 컴파일하거나, 디버깅을 위해 쿼리를 저장하지 않습니다. 간단히 쿼리를 제출할 수 있습니다. 대부분의 사용자는 이 기능을 거의 사용하지 않습니다.</p>
+<p>이는 데이터베이스 드라이버의 “실행” 기능이 반환하는 모든 것을 반환합니다. 이는 일반적으로 INSERT, DELETE 또는 UPDATE 문(실제로 사용해야 하는 용도)과 같은 쓰기 유형 쿼리의 성공 또는 실패 시 true/false이고, 가져오기 가능한 결과가 있는 쿼리의 성공 시 리소스/객체입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;YOUR QUERY&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Query failed!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>PostgreSQL의 <code class="docutils literal notranslate"><span class="pre">pg_exec()</span></code> 함수(예를 들어)는 쓰기 유형 쿼리의 경우에도 성공 시 항상 리소스를 반환합니다. 따라서 부울 값을 찾고 있다면 이 점을 염두에 두십시오.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="working-with-database-prefixes-manually">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">수동으로 데이터베이스 접두사 작업</a><a class="headerlink" href="#working-with-database-prefixes-manually" title="Link to this heading"></a></h2>
+<section id="db-prefixtable">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">$db-&gt;prefixTable()</a><a class="headerlink" href="#db-prefixtable" title="Link to this heading"></a></h3>
+<p>데이터베이스 접두사를 설정했고, 예를 들어 기본 SQL 쿼리에서 사용할 테이블 이름 앞에 이를 붙이고 싶다면 다음을 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs prefix_tablename</span>
+</pre></div>
+</div>
+</section>
+<section id="db-setprefix">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">$db-&gt;setPrefix()</a><a class="headerlink" href="#db-setprefix" title="Link to this heading"></a></h3>
+<p>어떤 이유로든 새 연결을 만들지 않고 프로그램적으로 접두사를 변경하고 싶다면 이 메서드를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">setPrefix</span><span class="p">(</span><span class="s1">&#39;newprefix_&#39;</span><span class="p">);</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prefixTable</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">);</span> <span class="c1">// outputs newprefix_tablename</span>
+</pre></div>
+</div>
+</section>
+<section id="db-getprefix">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">$db-&gt;getPrefix()</a><a class="headerlink" href="#db-getprefix" title="Link to this heading"></a></h3>
+<p>이 메서드로 언제든지 현재 접두사를 가져올 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$DBPrefix</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getPrefix</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="protecting-identifiers">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">식별자 보호</a><a class="headerlink" href="#protecting-identifiers" title="Link to this heading"></a></h2>
+<section id="db-protectidentifiers">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">$db-&gt;protectIdentifiers()</a><a class="headerlink" href="#db-protectidentifiers" title="Link to this heading"></a></h3>
+<p>많은 데이터베이스에서는 테이블 및 필드 이름을 보호하는 것이 좋습니다(예: MySQL의 백틱 사용). 쿼리 빌더 쿼리는 자동으로 보호됩니다. 그러나 식별자를 수동으로 보호해야 하는 경우 다음을 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>쿼리 빌더는 사용자가 제공하는 필드 및 테이블 이름을 적절하게 인용하기 위해 최선을 다합니다. 임의의 사용자 입력과 함께 작동하도록 설계되지 않았습니다. 정리되지 않은 사용자 데이터를 제공하지 마십시오.</p>
+</div>
+<p>이 함수는 데이터베이스 설정 파일에 접두사가 지정되어 있다고 가정하여 테이블에 접두사를 추가합니다. 접두사 적용을 활성화하려면 두 번째 매개변수에 true(부울)를 설정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">protectIdentifiers</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="escaping-values">
+<span id="database-queries-escaping"></span><h2><a class="toc-backref" href="#id14" role="doc-backlink">이스케이프 값</a><a class="headerlink" href="#escaping-values" title="Link to this heading"></a></h2>
+<p>데이터를 데이터베이스에 제출하기 전에 데이터를 이스케이프 처리하는 것은 매우 좋은 보안 관행입니다. CodeIgniter에는 이를 수행하는 데 도움이 되는 세 가지 방법이 있습니다.</p>
+<section id="db-escape">
+<span id="database-queries-db-escape"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">1. $db-&gt;escape()</a><a class="headerlink" href="#db-escape" title="Link to this heading"></a></h3>
+<p>이 함수는 문자열 데이터만 이스케이프할 수 있도록 데이터 유형을 결정합니다. 또한 데이터 주위에 작은따옴표를 자동으로 추가하므로 다음을 수행할 필요가 없습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO table (title) VALUES(&#39;</span> <span class="o">.</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="db-escapestring">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">2. $db-&gt;escapeString()</a><a class="headerlink" href="#db-escapestring" title="Link to this heading"></a></h3>
+<p>이 함수는 유형에 관계없이 전달된 데이터를 이스케이프합니다. 대부분의 경우 이 기능보다는 위의 기능을 사용하게 됩니다. 다음과 같이 기능을 사용하십시오.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO table (title) VALUES(&#39;&quot;</span> <span class="o">.</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeString</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;&#39;)&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="db-escapelikestring">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">3. $db-&gt;escapeLikeString()</a><a class="headerlink" href="#db-escapelikestring" title="Link to this heading"></a></h3>
+<p>이 방법은 문자열의 LIKE 와일드카드(<code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span></code>)도 적절하게 이스케이프되도록 LIKE 조건에서 문자열을 사용할 때 사용해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$search</span> <span class="o">=</span> <span class="s1">&#39;20% raise&#39;</span><span class="p">;</span>
+<span class="nv">$sql</span>    <span class="o">=</span> <span class="s2">&quot;SELECT id FROM table WHERE column LIKE &#39;%&quot;</span> <span class="o">.</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">escapeLikeString</span><span class="p">(</span><span class="nv">$search</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;%&#39; ESCAPE &#39;!&#39;&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>escapeLikeString() 메소드는 느낌표를 사용하여 LIKE 조건의 특수 문자를 이스케이프합니다. 이 방법은 사용자가 직접 따옴표로 묶은 부분 문자열을 이스케이프하기 때문에 ESCAPE 조건을 자동으로 추가할 수 없으므로 수동으로 추가해야 합니다.</p>
+</div>
+</section>
+</section>
+<section id="query-bindings">
+<span id="database-queries-query-bindings"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">쿼리 바인딩</a><a class="headerlink" href="#query-bindings" title="Link to this heading"></a></h2>
+<p>바인딩을 사용하면 시스템에서 쿼리를 함께 구성하여 쿼리 구문을 단순화할 수 있습니다. 다음 예를 고려하십시오.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&#39;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>쿼리의 물음표는 쿼리 함수의 두 번째 매개변수에 있는 배열의 값으로 자동으로 대체됩니다.</p>
+<p>바인딩은 IN 세트로 변환되는 배열에서도 작동합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&#39;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span> <span class="s1">&#39;Rick&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>결과 쿼리는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">some_table</span> <span class="nx">WHERE</span> <span class="nx">id</span> <span class="nx">IN</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="k">AND</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;live&#39;</span> <span class="k">AND</span> <span class="nx">author</span> <span class="o">=</span> <span class="s1">&#39;Rick&#39;</span>
+</pre></div>
+</div>
+<p>바인드 사용의 두 번째 이점은 값이 자동으로 이스케이프되어 더 안전한 쿼리를 생성한다는 것입니다. 데이터를 수동으로 이스케이프하는 것을 기억할 필요가 없습니다. 엔진이 자동으로 데이터를 이스케이프 처리합니다.</p>
+<section id="named-bindings">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">명명된 바인딩</a><a class="headerlink" href="#named-bindings" title="Link to this heading"></a></h3>
+<p>바인딩된 값의 위치를 ​​표시하기 위해 물음표를 사용하는 대신 바인딩 이름을 지정하여 전달된 값의 키가 쿼리의 자리 표시자와 일치하도록 할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM some_table WHERE id = :id: AND status = :status: AND author = :name:&#39;</span><span class="p">;</span>
+<span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span>     <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;live&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Rick&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>쿼리의 각 이름은 반드시 콜론으로 묶어야 합니다.</p>
+</div>
+</section>
+</section>
+<section id="handling-errors">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">오류 처리</a><a class="headerlink" href="#handling-errors" title="Link to this heading"></a></h2>
+<section id="db-error">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">$db-&gt;error()</a><a class="headerlink" href="#db-error" title="Link to this heading"></a></h3>
+<p>발생한 마지막 오류를 가져와야 한다면 <code class="docutils literal notranslate"><span class="pre">error()</span></code> 메서드는 해당 코드와 메시지가 들어 있는 배열을 반환합니다. 간단한 예는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">simpleQuery</span><span class="p">(</span><span class="s1">&#39;SELECT `example_field` FROM `example_table`&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$error</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">();</span> <span class="c1">// Has keys &#39;code&#39; and &#39;message&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="prepared-queries">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">준비된 쿼리</a><a class="headerlink" href="#prepared-queries" title="Link to this heading"></a></h2>
+<p>대부분의 데이터베이스 엔진은 쿼리를 한 번 준비한 다음 새 데이터 집합을 사용하여 해당 쿼리를 여러 번 실행할 수 있는 일종의 준비된 문 형식을 지원합니다. 이렇게 하면 데이터가 쿼리 자체와 다른 형식으로 데이터베이스에 전달되므로 SQL 주입 가능성이 제거됩니다. 동일한 쿼리를 여러 번 실행해야 하는 경우에도 훨씬 더 빠를 수 있습니다. 그러나 모든 쿼리에 이를 사용하면 데이터베이스를 두 배 더 자주 호출하게 되므로 성능에 큰 타격을 줄 수 있습니다. 쿼리 작성기 및 데이터베이스 연결이 이미 데이터 이스케이프를 처리하므로 안전 측면도 이미 처리되어 있습니다. 그러나 준비된 문이나 준비된 쿼리를 실행하여 쿼리를 최적화하는 기능이 필요한 경우도 있습니다.</p>
+<section id="preparing-the-query">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">쿼리 준비</a><a class="headerlink" href="#preparing-the-query" title="Link to this heading"></a></h3>
+<p>이는 <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> 메소드를 사용하여 쉽게 수행할 수 있습니다. 이는 쿼리 객체를 반환하는 클로저인 단일 매개변수를 사용합니다. 쿼리 개체는 삽입, 업데이트, 삭제, 교체 및 가져오기를 포함한 모든 “최종” 유형 쿼리에 의해 자동으로 생성됩니다. 이는 쿼리 빌더를 사용하여 쿼리를 실행하면 가장 쉽게 처리됩니다. 쿼리는 실제로 실행되지 않으며 값은 적용되지 않고 자리 표시자 역할을 하므로 중요하지 않습니다. 그러면 ReadyQuery 객체가 반환됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">([</span>
+    <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;country&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+<span class="p">]));</span>
+</pre></div>
+</div>
+<p>쿼리 빌더를 사용하지 않으려면 값 자리 표시자에 물음표를 사용하여 수동으로 쿼리 개체를 생성할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
+
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO user (name, email, country) VALUES (?, ?, ?)&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Query</span><span class="p">(</span><span class="nv">$db</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">setQuery</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>데이터베이스가 문 준비 단계 동안 전달된 옵션 배열을 요구하는 경우 두 번째 매개변수를 통해 해당 배열을 전달할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Database\Query</span><span class="p">;</span>
+
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO user (name, email, country) VALUES (?, ?, ?)&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Query</span><span class="p">(</span><span class="nv">$db</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">setQuery</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="p">},</span> <span class="nv">$options</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>현재 실제로 옵션 배열을 사용하는 유일한 데이터베이스는 SQLSRV입니다.</p>
+</div>
+</section>
+<section id="executing-the-query">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">쿼리 실행</a><a class="headerlink" href="#executing-the-query" title="Link to this heading"></a></h3>
+<p>준비된 쿼리가 있으면 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 메서드를 사용하여 실제로 쿼리를 실행할 수 있습니다. 쿼리 매개변수에 필요한 만큼의 변수를 전달할 수 있습니다. 전달하는 매개변수 수는 쿼리의 자리 표시자 수와 일치해야 합니다. 또한 원래 쿼리에 나타나는 자리 표시자와 동일한 순서로 전달되어야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Prepare the Query</span>
+<span class="nv">$pQuery</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">([</span>
+    <span class="s1">&#39;name&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;country&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+<span class="p">]));</span>
+
+<span class="c1">// Collect the Data</span>
+<span class="nv">$name</span>    <span class="o">=</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">;</span>
+<span class="nv">$email</span>   <span class="o">=</span> <span class="s1">&#39;j.doe@example.com&#39;</span><span class="p">;</span>
+<span class="nv">$country</span> <span class="o">=</span> <span class="s1">&#39;US&#39;</span><span class="p">;</span>
+
+<span class="c1">// Run the Query</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$email</span><span class="p">,</span> <span class="nv">$country</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>“쓰기” 유형의 쿼리의 경우 true 또는 false를 반환하여 쿼리의 성공 또는 실패를 나타냅니다. “읽기” 유형의 쿼리의 경우 표준 <a class="reference internal" href="results.html"><span class="doc">결과 세트</span></a>를 반환합니다.</p>
+</section>
+<section id="other-methods">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">다른 방법</a><a class="headerlink" href="#other-methods" title="Link to this heading"></a></h3>
+<p>이러한 두 가지 기본 메서드 외에도 준비된 쿼리 개체에는 다음과 같은 메서드도 있습니다.</p>
+<section id="close">
+<span id="database-queries-stmt-close"></span><h4>close()<a class="headerlink" href="#close" title="Link to this heading"></a></h4>
+<p>PHP는 데이터베이스와 함께 열려 있는 모든 문을 닫는 작업을 꽤 잘 수행하지만 작업이 끝나면 항상 준비된 문을 닫는 것이 좋습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$pQuery</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Deallocation of prepared statements failed!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.0부터 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 메소드는 모든 DBMS에서 준비된 명령문의 할당을 해제합니다. 이전에는 Postgre, SQLSRV 및 OCI8에서 할당이 취소되지 않았습니다.</p>
+</div>
+</section>
+<section id="getquerystring">
+<h4>getQueryString()<a class="headerlink" href="#getquerystring" title="Link to this heading"></a></h4>
+<p>그러면 준비된 쿼리가 문자열로 반환됩니다.</p>
+</section>
+<section id="haserror">
+<h4>hasError()<a class="headerlink" href="#haserror" title="Link to this heading"></a></h4>
+<p>마지막 <code class="docutils literal notranslate"><span class="pre">execute()</span></code> 호출에서 오류가 발생한 경우 부울 true/false를 반환합니다.</p>
+</section>
+<section id="geterrorcode">
+<h4>getErrorCode()<a class="headerlink" href="#geterrorcode" title="Link to this heading"></a></h4>
+</section>
+<section id="geterrormessage">
+<h4>getErrorMessage()<a class="headerlink" href="#geterrormessage" title="Link to this heading"></a></h4>
+<p>오류가 발생한 경우 이러한 방법을 사용하여 오류 코드와 문자열을 검색할 수 있습니다.</p>
+</section>
+</section>
+</section>
+<section id="working-with-query-objects">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">쿼리 개체 작업</a><a class="headerlink" href="#working-with-query-objects" title="Link to this heading"></a></h2>
+<p>내부적으로 모든 쿼리는 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Database\Query</span></code>의 인스턴스로 처리되고 저장됩니다. 이 클래스는 매개변수 바인딩, 쿼리 준비, 쿼리에 대한 성능 데이터 저장을 담당합니다.</p>
+<section id="db-getlastquery">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">$db-&gt;getLastQuery()</a><a class="headerlink" href="#db-getlastquery" title="Link to this heading"></a></h3>
+<p>마지막 Query 객체만 검색해야 하는 경우 <code class="docutils literal notranslate"><span class="pre">getLastQuery()</span></code> 메서드를 사용하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">getLastQuery</span><span class="p">();</span>
+<span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$query</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="the-query-class">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">쿼리 클래스</a><a class="headerlink" href="#the-query-class" title="Link to this heading"></a></h3>
+<p>각 쿼리 개체는 쿼리 자체에 대한 여러 정보를 저장합니다. 이는 타임라인 기능에서 부분적으로 사용되지만 귀하도 사용할 수 있습니다.</p>
+<section id="getquery">
+<h4>getQuery()<a class="headerlink" href="#getquery" title="Link to this heading"></a></h4>
+<p>모든 처리가 완료된 후 최종 쿼리를 반환합니다. 다음은 데이터베이스로 전송된 정확한 쿼리입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Query 개체를 문자열로 캐스팅하여 동일한 값을 검색할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$query</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="getoriginalquery">
+<h4>getOriginalQuery()<a class="headerlink" href="#getoriginalquery" title="Link to this heading"></a></h4>
+<p>객체에 전달된 원시 SQL을 반환합니다. 여기에는 바인딩이나 접두사가 교체되지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getOriginalQuery</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>hasError()<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<p>이 쿼리를 실행하는 동안 오류가 발생하면 이 메서드는 true를 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">hasError</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Code: &#39;</span> <span class="o">.</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getErrorCode</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="s1">&#39;Error: &#39;</span> <span class="o">.</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getErrorMessage</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="iswritetype">
+<h4>isWriteType()<a class="headerlink" href="#iswritetype" title="Link to this heading"></a></h4>
+<p>쿼리가 쓰기 유형 쿼리(예: INSERT, UPDATE, DELETE 등)인 것으로 확인된 경우 true를 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">isWriteType</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ... do something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="swapprefix">
+<h4>swapPrefix()<a class="headerlink" href="#swapprefix" title="Link to this heading"></a></h4>
+<p>하나의 테이블 접두사를 SQL의 다른 값으로 바꿉니다. 첫 번째 매개변수는 바꾸려는 원래 접두사이고, 두 번째 매개변수는 바꾸려는 값입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">swapPrefix</span><span class="p">(</span><span class="s1">&#39;ci3_&#39;</span><span class="p">,</span> <span class="s1">&#39;ci4_&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="getstarttime">
+<h4>getStartTime()<a class="headerlink" href="#getstarttime" title="Link to this heading"></a></h4>
+<p>쿼리가 실행된 시간을 마이크로초 단위로 가져옵니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getStartTime</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="getduration">
+<h4>getDuration()<a class="headerlink" href="#getduration" title="Link to this heading"></a></h4>
+<p>마이크로초 단위로 쿼리 기간을 초 단위로 나타내는 부동 소수점을 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$microtime</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getDuration</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="connecting.html" class="btn btn-neutral float-left" title="데이터베이스연결" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="results.html" class="btn btn-neutral float-right" title="쿼리 결과 생성" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

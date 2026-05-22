@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이벤트 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="컨트롤러 확장" href="basecontroller.html" />
+    <link rel="prev" title="공통 함수 교체" href="common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CodeIgniter 확장</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">공통 함수 교체</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CodeIgniter 확장</a></li>
+      <li class="breadcrumb-item active">이벤트</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="events">
+<h1>이벤트<a class="headerlink" href="#events" title="Link to this heading"></a></h1>
+<p>CodeIgniter의 이벤트 기능은 코어 파일을 수정하지 않고도 프레임워크의 내부 동작에 접근하고 수정할 수 있는 수단을 제공합니다. CodeIgniter가 실행될 때 특정 실행 과정을 따릅니다. 그러나 실행 과정의 특정 단계에서 어떤 동작이 이루어지기를 원할 때가 있을 수 있습니다. 예를 들어, 컨트롤러가 로드되기 직전이나 직후에 스크립트를 실행하거나, 다른 위치에서 자신만의 스크립트를 트리거하고 싶을 수 있습니다.</p>
+<p>이벤트는 <em>발행/구독</em> 패턴으로 동작하며, 스크립트 실행 중 특정 시점에 이벤트가 트리거됩니다. 다른 스크립트는 해당 이벤트가 트리거될 때 어떤 동작을 수행하고 싶다는 것을 알리기 위해 Events 클래스에 등록함으로써 이벤트에 “구독”할 수 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#enabling-events" id="id3">이벤트 활성화</a></p></li>
+<li><p><a class="reference internal" href="#defining-an-event" id="id4">이벤트 정의</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setting-priorities" id="id5">우선순위 설정</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#publishing-your-own-events" id="id6">직접 이벤트 발행</a></p></li>
+<li><p><a class="reference internal" href="#simulating-events" id="id7">이벤트 시뮬레이션</a></p></li>
+<li><p><a class="reference internal" href="#event-points" id="id8">이벤트 포인트</a></p>
+<ul>
+<li><p><a class="reference internal" href="#for-web-apps" id="id9">웹 앱용</a></p></li>
+<li><p><a class="reference internal" href="#for-cli-apps" id="id10">CLI 앱용</a></p></li>
+<li><p><a class="reference internal" href="#others" id="id11">기타</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="enabling-events">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">이벤트 활성화</a><a class="headerlink" href="#enabling-events" title="Link to this heading"></a></h2>
+<p>이벤트는 항상 활성화되어 있으며, 전역적으로 사용 가능합니다.</p>
+</section>
+<section id="defining-an-event">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">이벤트 정의</a><a class="headerlink" href="#defining-an-event" title="Link to this heading"></a></h2>
+<p>대부분의 이벤트는 <strong>app/Config/Events.php</strong> 파일에 정의됩니다. <code class="docutils literal notranslate"><span class="pre">Events</span></code> 클래스의 <code class="docutils literal notranslate"><span class="pre">on()</span></code> 메서드를 사용하여 이벤트에 동작을 구독할 수 있습니다. 첫 번째 매개변수는 구독할 이벤트의 이름입니다. 두 번째 매개변수는 해당 이벤트가 트리거될 때 실행될 callable입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;MyClass&#39;</span><span class="p">,</span> <span class="s1">&#39;myFunction&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>이 예시에서 <code class="docutils literal notranslate"><span class="pre">pre_system</span></code> 이벤트가 실행될 때마다 <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>의 인스턴스가 생성되고 <code class="docutils literal notranslate"><span class="pre">myFunction()</span></code> 메서드가 실행됩니다. 두 번째 매개변수는 PHP가 인식하는 <em>모든</em> 형태의 <a class="reference external" href="https://www.php.net/manual/en/function.is-callable.php">callable</a>이 될 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="c1">// Call a standalone function</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">);</span>
+
+<span class="c1">// Call on an instance method</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\App\Libraries\User</span><span class="p">();</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$user</span><span class="p">,</span> <span class="s1">&#39;someMethod&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Call on a static method</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="s1">&#39;SomeClass::someMethod&#39;</span><span class="p">);</span>
+
+<span class="c1">// Use a Closure</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;pre_system&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="o">...</span><span class="nv">$params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<section id="setting-priorities">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">우선순위 설정</a><a class="headerlink" href="#setting-priorities" title="Link to this heading"></a></h3>
+<p>단일 이벤트에 여러 메서드를 구독할 수 있으므로, 해당 메서드들이 호출되는 순서를 정의하는 방법이 필요합니다. <code class="docutils literal notranslate"><span class="pre">on()</span></code> 메서드의 세 번째 매개변수로 우선순위 값을 전달하여 이를 설정할 수 있습니다. 낮은 값이 먼저 실행되며, 값 1이 가장 높은 우선순위를 가지고, 낮은 값의 하한은 없습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;post_controller_constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;some_function&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>동일한 우선순위를 가진 구독자는 정의된 순서대로 실행됩니다.</p>
+<p>v4.2.0부터 값에 유용한 범위를 설정하는 세 가지 클래스 상수가 정의되어 있습니다. 반드시 사용할 필요는 없지만 가독성을 높이는 데 도움이 될 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">PRIORITY_LOW</span><span class="p">;</span>    <span class="c1">// 200</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">PRIORITY_NORMAL</span><span class="p">;</span> <span class="c1">// 100</span>
+<span class="nx">Events</span><span class="o">::</span><span class="na">PRIORITY_HIGH</span><span class="p">;</span>   <span class="c1">// 10</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>상수 <code class="docutils literal notranslate"><span class="pre">EVENT_PRIORITY_LOW</span></code>, <code class="docutils literal notranslate"><span class="pre">EVENT_PRIORITY_NORMAL</span></code>, <code class="docutils literal notranslate"><span class="pre">EVENT_PRIORITY_HIGH</span></code>는 v4.6.0에서 제거되었습니다.</p>
+</div>
+<p>정렬이 완료되면 모든 구독자가 순서대로 실행됩니다. 구독자 중 하나라도 부울 false 값을 반환하면 구독자 실행이 중단됩니다.</p>
+</section>
+</section>
+<section id="publishing-your-own-events">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">직접 이벤트 발행</a><a class="headerlink" href="#publishing-your-own-events" title="Link to this heading"></a></h2>
+<p>Events 라이브러리는 직접 코드에서 이벤트를 만드는 것도 간단하게 해줍니다. 이 기능을 사용하려면 이벤트 이름과 함께 <strong>Events</strong> 클래스의 <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> 메서드를 호출하기만 하면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nx">\CodeIgniter\Events\Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>추가 매개변수로 추가하여 구독자에게 임의 수의 인수를 전달할 수 있습니다. 구독자는 정의된 순서와 동일한 순서로 인수를 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">trigger</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">,</span> <span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">);</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;some_event&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$baz</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="simulating-events">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">이벤트 시뮬레이션</a><a class="headerlink" href="#simulating-events" title="Link to this heading"></a></h2>
+<p>테스트 중에는 하루에 수백 통의 이메일을 발송하는 것이 느리고 역효과를 낼 수 있으므로 이벤트가 실제로 실행되지 않기를 원할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">simulate()</span></code> 메서드를 사용하여 Events 클래스가 이벤트 실행을 시뮬레이션만 하도록 지시할 수 있습니다. <strong>true</strong>일 때 모든 이벤트는 trigger 메서드 실행 중에 건너뜁니다. 그러나 그 외의 모든 것은 정상적으로 작동합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>false를 전달하여 시뮬레이션을 중단할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Events\Events</span><span class="p">;</span>
+
+<span class="nx">Events</span><span class="o">::</span><span class="na">simulate</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="event-points">
+<span id="id2"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">이벤트 포인트</a><a class="headerlink" href="#event-points" title="Link to this heading"></a></h2>
+<section id="for-web-apps">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">웹 앱용</a><a class="headerlink" href="#for-web-apps" title="Link to this heading"></a></h3>
+<p>다음은 <strong>public/index.php</strong>에 의해 호출되는 웹 애플리케이션의 사용 가능한 이벤트 포인트 목록입니다:</p>
+<ul class="simple">
+<li><p><strong>pre_system</strong> 시스템 실행 초기에 호출됩니다. URI, Request, Response는 인스턴스화되었지만 페이지 캐시 확인, 라우팅, “before” 컨트롤러 필터 실행은 아직 이루어지지 않은 상태입니다.</p></li>
+<li><p><strong>post_controller_constructor</strong> 컨트롤러가 인스턴스화된 직후, 메서드 호출이 발생하기 전에 호출됩니다.</p></li>
+<li><p><strong>post_system</strong> 시스템 실행 종료 시, “after” 컨트롤러 필터 실행 후, 최종 렌더링된 페이지가 브라우저로 전송되기 직전에 호출됩니다.</p></li>
+</ul>
+</section>
+<section id="for-cli-apps">
+<span id="event-points-for-cli-apps"></span><h3><a class="toc-backref" href="#id10" role="doc-backlink">CLI 앱용</a><a class="headerlink" href="#for-cli-apps" title="Link to this heading"></a></h3>
+<p>다음은 <a class="reference internal" href="../cli/spark_commands.html"><span class="doc">Spark 명령</span></a>의 사용 가능한 이벤트 포인트 목록입니다:</p>
+<ul class="simple">
+<li><p><strong>pre_command</strong> 명령 코드 실행 직전에 호출됩니다.</p></li>
+<li><p><strong>post_command</strong> 명령 코드 실행 직후에 호출됩니다.</p></li>
+</ul>
+</section>
+<section id="others">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">기타</a><a class="headerlink" href="#others" title="Link to this heading"></a></h3>
+<p>다음은 각 라이브러리에서 사용 가능한 이벤트 포인트 목록입니다:</p>
+<ul class="simple">
+<li><p><strong>email</strong> <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Email\Email</span></code>에서 이메일이 성공적으로 전송된 후 호출됩니다. <code class="docutils literal notranslate"><span class="pre">Email</span></code> 클래스의 속성 배열을 매개변수로 받습니다.</p></li>
+<li><p><strong>DBQuery</strong> 성공 여부와 관계없이 데이터베이스 쿼리 후 호출됩니다. <code class="docutils literal notranslate"><span class="pre">Query</span></code> 객체를 받습니다.</p></li>
+<li><p><strong>migrate</strong> <code class="docutils literal notranslate"><span class="pre">latest()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">regress()</span></code>에 대한 마이그레이션 호출이 성공한 후 호출됩니다. <code class="docutils literal notranslate"><span class="pre">MigrationRunner</span></code>의 현재 속성과 메서드 이름을 받습니다.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="common.html" class="btn btn-neutral float-left" title="공통 함수 교체" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basecontroller.html" class="btn btn-neutral float-right" title="컨트롤러 확장" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

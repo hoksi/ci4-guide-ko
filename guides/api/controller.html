@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESTful 컨트롤러 만들기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=afa94a99"></script>
+      <script src="../../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../genindex.html" />
+    <link rel="search" title="검색" href="../../search.html" />
+    <link rel="next" title="마무리" href="conclusion.html" />
+    <link rel="prev" title="데이터베이스 및 모델 생성" href="database-setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">가이드</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">가이드</a></li>
+          <li class="breadcrumb-item"><a href="index.html">REST API 시작하기</a></li>
+      <li class="breadcrumb-item active">RESTful 컨트롤러 만들기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-a-restful-controller">
+<span id="ci47-rest-part4"></span><h1>RESTful 컨트롤러 만들기<a class="headerlink" href="#building-a-restful-controller" title="Link to this heading"></a></h1>
+<p>이 장에서는 <code class="docutils literal notranslate"><span class="pre">book</span></code> 테이블을 적절한 RESTful API로 노출하기 위한 API 엔드포인트를 만듭니다. 거의 보일러플레이트 없이 CRUD 작업을 처리하기 위해 <code class="xref php php-class docutils literal notranslate"><span class="pre">CodeIgniter\RESTful\ResourceController</span></code> 를 사용합니다.</p>
+<section id="what-is-restful">
+<h2>RESTful이란?<a class="headerlink" href="#what-is-restful" title="Link to this heading"></a></h2>
+<p>RESTful API는 표준 HTTP 동사 (<code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code>, <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>) 를 사용해 URI로 식별되는 리소스에 작업을 수행합니다. 이 방식은 API를 예측 가능하고 사용하기 쉽게 만듭니다. REST API의 세부 기준에 대해서는 여러 논의가 있을 수 있지만, 이런 기본 원칙만 지켜도 많은 경우 충분합니다. 자동 라우팅과 <code class="xref php php-class docutils literal notranslate"><span class="pre">ApiResponseTrait</span></code> 를 사용하면 CodeIgniter로 RESTful 엔드포인트를 쉽게 만들 수 있습니다.</p>
+</section>
+<section id="generate-the-controller">
+<h2>컨트롤러 생성<a class="headerlink" href="#generate-the-controller" title="Link to this heading"></a></h2>
+<p>다음 Spark 명령을 실행합니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark make:controller Api/Books</span>
+</pre></div>
+</div>
+<p>이 명령은 <strong>app/Controllers/Api/Books.php</strong> 를 생성합니다.</p>
+<p>파일을 열고 내용을 다음과 같은 기본 클래스 코드로 교체합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers\Api</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controllers\BaseController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Api\ResponseTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Books</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">ResponseTrait</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * List one or many resources</span>
+<span class="sd">     * GET /api/books</span>
+<span class="sd">     *    and</span>
+<span class="sd">     * GET /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">(</span><span class="o">?</span><span class="nx">int</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Update a book</span>
+<span class="sd">     *</span>
+<span class="sd">     * PUT /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">putIndex</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create a new book</span>
+<span class="sd">     *</span>
+<span class="sd">     * POST /api/books</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">postIndex</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Delete a book</span>
+<span class="sd">     *</span>
+<span class="sd">     * DELETE /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteIndex</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>자동 라우팅을 사용하므로 URI 세그먼트 매핑과 충돌하지 않도록 <code class="docutils literal notranslate"><span class="pre">index</span></code> 메서드 이름을 사용해야 합니다. 하지만 HTTP 동사 접두사 (<code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">post</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code>, <code class="docutils literal notranslate"><span class="pre">delete</span></code>) 를 사용해 어떤 메서드가 어떤 동사를 처리하는지 나타낼 수 있습니다. 조금 특이한 점은 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code> 인데, 이는 모든 리소스 목록과 ID 기반 단일 리소스 조회에 모두 사용해야 합니다.</p>
+<div class="admonition tip">
+<p class="admonition-title">팁</p>
+<p>다른 이름 규칙을 선호한다면 <strong>app/Config/Routes.php</strong> 에서 경로를 명시적으로 정의하고 자동 라우팅을 꺼야 합니다.</p>
+</div>
+</section>
+<section id="api-transformers">
+<h2>API 트랜스포머<a class="headerlink" href="#api-transformers" title="Link to this heading"></a></h2>
+<p>데이터 모델과 API 응답에서의 표현 방식을 분리하는 것은 좋은 설계 관행으로 여겨집니다. 이는 데이터를 일관되게 형식화하는 트랜스포머나 리소스 클래스를 사용해 구현하는 경우가 많습니다. CodeIgniter는 이를 돕기 위해 API 트랜스포머를 제공합니다.</p>
+<p>생성기 명령으로 트랜스포머를 생성합니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark make:transformer BookTransformer</span>
+</pre></div>
+</div>
+<p>트랜스포머에는 <code class="docutils literal notranslate"><span class="pre">toArray()</span></code> 메서드 하나가 필요하며, <code class="docutils literal notranslate"><span class="pre">$resource</span></code> 라는 혼합 데이터 타입을 인자로 받아야 합니다. 이 메서드는 리소스를 API 응답에 적합한 배열 형식으로 변환합니다. 반환된 배열은 이후 API 응답용 JSON 또는 XML로 인코딩됩니다.</p>
+<p><strong>app/Transformers/BookTransformer.php</strong> 의 Book 트랜스포머를 수정합니다. 이 예제는 관련 저자 데이터를 포함하므로 조금 더 복잡합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Transformers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\API\BaseTransformer</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookTransformer</span> <span class="k">extends</span> <span class="nx">BaseTransformer</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toArray</span><span class="p">(</span><span class="nx">mixed</span> <span class="nv">$resource</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$resource</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="nv">$resource</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;year&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$resource</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">includeAuthor</span><span class="p">(</span><span class="k">array</span> <span class="nv">$book</span><span class="p">)</span><span class="o">:</span> <span class="o">?</span><span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$book</span><span class="p">[</span><span class="s1">&#39;author_id&#39;</span><span class="p">])</span> <span class="o">||</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$book</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>   <span class="o">=&gt;</span> <span class="nv">$book</span><span class="p">[</span><span class="s1">&#39;author_id&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$book</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">],</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>트랜스포머의 기능 중 하나는 관련 리소스를 조건부로 포함할 수 있다는 점입니다. 여기서는 응답에 포함하기 전에 책 리소스에 <code class="docutils literal notranslate"><span class="pre">author</span></code> 관계가 로드되어 있는지 확인합니다. 이를 통해 요청 맥락에 따라 반환되는 데이터 양을 유연하게 조절할 수 있습니다. API를 호출하는 클라이언트는 <code class="docutils literal notranslate"><span class="pre">/api/books?include=author</span></code> 같은 쿼리 매개변수로 관련 데이터를 명시적으로 요청해야 합니다. 메서드 이름은 <code class="docutils literal notranslate"><span class="pre">include</span></code> 로 시작하고, 그 뒤에 첫 글자를 대문자로 한 관련 리소스 이름이 와야 합니다.</p>
+<p>AuthorTransformer를 사용하지 않은 점을 눈치챘을 수도 있습니다. 저자 데이터는 단순해서 추가 변환 없이 바로 반환할 수 있기 때문입니다. 하지만 더 복잡한 관련 리소스라면 별도의 트랜스포머를 만드는 편이 좋을 수 있습니다. 또한 나중에 N+1 쿼리 문제가 생기지 않도록, 저자 정보는 조회 시점에 함께 가져오게 됩니다.</p>
+</section>
+<section id="listing-books">
+<h2>책 목록 조회<a class="headerlink" href="#listing-books" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">$id</span></code> 매개변수를 선택 사항으로 만들어, 같은 메서드가 모든 책 목록 조회와 ID로 단일 책 조회를 모두 처리할 수 있게 했습니다. 이제 이를 구현해 봅시다.</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">     * List one or many resources</span>
+<span class="x">     * GET /api/books</span>
+<span class="x">     *    and</span>
+<span class="x">     * GET /api/books/{id}</span>
+<span class="x">     */</span>
+<span class="x">    public function getIndex(?int $id = null): ResponseInterface</span>
+<span class="x">    {</span>
+<span class="x">        $model       = model(&#39;BookModel&#39;);</span>
+<span class="x">        $transformer = new BookTransformer();</span>
+
+<span class="x">        // If an ID is provided, fetch a single record</span>
+<span class="x">        if ($id !== null) {</span>
+<span class="x">            $book = $model-&gt;withAuthorInfo()-&gt;find($id);</span>
+
+<span class="x">            if (! $book) {</span>
+<span class="x">                return $this-&gt;failNotFound(&#39;Book not found&#39;);</span>
+<span class="x">            }</span>
+
+<span class="x">            return $this-&gt;respond($transformer-&gt;transform($book));</span>
+<span class="x">        }</span>
+
+<span class="x">        // Otherwise, fetch all records</span>
+<span class="x">        $books = $model-&gt;withAuthorInfo();</span>
+
+<span class="x">        return $this-&gt;paginate($books, 20, transformWith: BookTransformer::class);</span>
+<span class="x">    }</span>
+</pre></div>
+</div>
+<p>이 메서드에서는 <code class="docutils literal notranslate"><span class="pre">$id</span></code> 가 제공되었는지 확인합니다. 제공되었다면 해당 책을 찾습니다. 그 ID로 책을 찾지 못하면 <code class="xref php php-trait docutils literal notranslate"><span class="pre">ResponseTrait</span></code> 의 <a class="reference internal" href="../../outgoing/api_responses.html#failNotFound" title="failNotFound"><code class="xref php php-meth docutils literal notranslate"><span class="pre">failNotFound()</span></code></a> 헬퍼를 사용해 404 Not Found 응답을 반환합니다. 책을 찾으면 BookTransformer를 사용해 형식화된 응답을 반환합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$id</span></code> 가 제공되지 않으면 모델을 사용해 모든 책을 조회하되, 실제 레코드 로드는 나중으로 미룹니다. 이렇게 하면 <code class="docutils literal notranslate"><span class="pre">ResponseTrait</span></code> 의 <a class="reference internal" href="../../outgoing/api_responses.html#paginate" title="paginate"><code class="xref php php-meth docutils literal notranslate"><span class="pre">paginate</span></code></a> 메서드를 사용해 자동으로 페이지네이션을 처리할 수 있습니다. 페이지네이션된 결과 집합의 각 책을 형식화할 수 있도록, 트랜스포머 이름을 <code class="docutils literal notranslate"><span class="pre">paginate</span></code> 메서드에 전달합니다.</p>
+<p>이 두 경우 모두 모델의 <code class="docutils literal notranslate"><span class="pre">withAuthorInfo()</span></code> 라는 새 메서드를 사용합니다. 이 메서드는 책을 조회할 때 관련 저자 데이터를 조인하기 위해 모델에 추가할 사용자 정의 메서드입니다.</p>
+<section id="add-the-model-helper-method">
+<h3>모델 도우미 메서드 추가<a class="headerlink" href="#add-the-model-helper-method" title="Link to this heading"></a></h3>
+<p>BookModel에 <code class="docutils literal notranslate"><span class="pre">withAuthorInfo()</span></code> 라는 새 메서드를 추가합니다. 이 메서드는 Query Builder를 사용해 <code class="docutils literal notranslate"><span class="pre">author</span></code> 테이블을 조인하고 관련 저자 필드를 선택합니다. 이렇게 하면 책을 조회할 때마다 별도의 쿼리를 보내지 않고도 연결된 저자 정보를 함께 가져올 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">withAuthorInfo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span>
+            <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;books.*, authors.name as author_name&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">join</span><span class="p">(</span><span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="s1">&#39;books.author_id = authors.id&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="test-the-list-endpoint">
+<h3>목록 엔드포인트 테스트<a class="headerlink" href="#test-the-list-endpoint" title="Link to this heading"></a></h3>
+<p>로컬 서버를 시작합니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark serve</span>
+</pre></div>
+</div>
+<p>이제 다음 주소로 접속합니다:</p>
+<ul class="simple">
+<li><p><strong>브라우저:</strong> <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api/books</span></code></p></li>
+<li><p><strong>cURL:</strong> <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">http://localhost:8080/api/books</span></code></p></li>
+</ul>
+<p>책 목록이 JSON 형식의 페이지네이션 결과로 표시될 것입니다:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dune&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Frank Herbert&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1965</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-08 00:00:00&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-08 00:00:00&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Neuromancer&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;William Gibson&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1984</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-08 00:00:00&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-08 00:00:00&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;perPage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;totalPages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;self&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/books?page=1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/books?page=1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/books?page=1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;prev&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>시더에서 가져온 JSON 데이터가 보이면, 축하합니다 — API가 실행 중입니다!</p>
+</section>
+</section>
+<section id="implement-the-remaining-methods">
+<h2>나머지 메서드 구현<a class="headerlink" href="#implement-the-remaining-methods" title="Link to this heading"></a></h2>
+<p>나머지 메서드를 포함하도록 <strong>app/Controllers/Api/Books.php</strong> 를 수정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers\Api</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controllers\BaseController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Transformers\BookTransformer</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Api\ResponseTrait</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\HTTP\ResponseInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Books</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">ResponseTrait</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * List one or many resources</span>
+<span class="sd">     * GET /api/books</span>
+<span class="sd">     *    and</span>
+<span class="sd">     * GET /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">(</span><span class="o">?</span><span class="nx">int</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span><span class="o">:</span> <span class="nx">ResponseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$model</span>       <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;BookModel&#39;</span><span class="p">);</span>
+        <span class="nv">$transformer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BookTransformer</span><span class="p">();</span>
+
+        <span class="c1">// If an ID is provided, fetch a single record</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$id</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$book</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">withAuthorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$book</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failNotFound</span><span class="p">(</span><span class="s1">&#39;Book not found&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respond</span><span class="p">(</span><span class="nv">$transformer</span><span class="o">-&gt;</span><span class="na">transform</span><span class="p">(</span><span class="nv">$book</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Otherwise, fetch all records</span>
+        <span class="nv">$books</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">withAuthorInfo</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$books</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">transformWith</span><span class="o">:</span> <span class="nx">BookTransformer</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Update a book</span>
+<span class="sd">     *</span>
+<span class="sd">     * PUT /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">putIndex</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">ResponseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getRawInput</span><span class="p">();</span>
+
+        <span class="nv">$rules</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max_length[255]&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;author_id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|integer|is_not_unique[authors.id]&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;year&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;required|integer|greater_than_equal_to[2000]|less_than_equal_to[&#39;</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;]&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">(</span><span class="nv">$rules</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failValidationErrors</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validator</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;BookModel&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failNotFound</span><span class="p">(</span><span class="s1">&#39;Book not found&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+        <span class="nv">$updatedBook</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">withAuthorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respond</span><span class="p">((</span><span class="k">new</span> <span class="nx">BookTransformer</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">transform</span><span class="p">(</span><span class="nv">$updatedBook</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create a new book</span>
+<span class="sd">     *</span>
+<span class="sd">     * POST /api/books</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">postIndex</span><span class="p">()</span><span class="o">:</span> <span class="nx">ResponseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getPost</span><span class="p">();</span>
+
+        <span class="nv">$rules</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max_length[255]&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;author_id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|integer|is_not_unique[authors.id]&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;year&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;required|integer|greater_than_equal_to[2000]|less_than_equal_to[&#39;</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;]&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">(</span><span class="nv">$rules</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failValidationErrors</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validator</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;BookModel&#39;</span><span class="p">);</span>
+        <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+        <span class="nv">$newBook</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">withAuthorInfo</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">insertID</span><span class="p">());</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respondCreated</span><span class="p">((</span><span class="k">new</span> <span class="nx">BookTransformer</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">transform</span><span class="p">(</span><span class="nv">$newBook</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Delete a book</span>
+<span class="sd">     *</span>
+<span class="sd">     * DELETE /api/books/{id}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteIndex</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">ResponseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;BookModel&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">failNotFound</span><span class="p">(</span><span class="s1">&#39;Book not found&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">respondDeleted</span><span class="p">([</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>각 메서드는 <code class="xref php php-trait docutils literal notranslate"><span class="pre">ResponseTrait</span></code> 의 도우미를 사용해 올바른 HTTP 상태 코드와 JSON 페이로드를 전송합니다.</p>
+<p>이것으로 끝입니다! 이제 올바른 HTTP 메서드, 상태 코드, 데이터 변환을 갖춘 책 관리용 RESTful API가 완성되었습니다. 필요에 따라 인증, 유효성 검사, 기타 기능을 추가해 더 확장할 수 있습니다.</p>
+</section>
+<section id="a-more-semantic-naming-scheme">
+<h2>더 의미 있는 이름 규칙<a class="headerlink" href="#a-more-semantic-naming-scheme" title="Link to this heading"></a></h2>
+<p>이전 예제에서는 작업을 HTTP 동사만으로 판단하고자 했기 때문에 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">putIndex()</span></code> 같은 메서드 이름을 사용했습니다. 자동 라우팅이 활성화된 상태에서는 URI 세그먼트와 충돌하지 않도록 <code class="docutils literal notranslate"><span class="pre">index</span></code> 메서드 이름을 사용해야 합니다. 하지만 더 의미 있는 메서드 이름을 선호한다면, <code class="docutils literal notranslate"><span class="pre">getList()</span></code>, <code class="docutils literal notranslate"><span class="pre">postCreate()</span></code>, <code class="docutils literal notranslate"><span class="pre">putUpdate()</span></code>, <code class="docutils literal notranslate"><span class="pre">deleteDelete()</span></code> 처럼 수행하는 작업을 드러내도록 이름을 바꿀 수 있습니다. 이렇게 하면 각 메서드의 목적이 한눈에 더 잘 보이고, URI에 새 세그먼트 하나가 추가됩니다.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET    /api/books/list         -&gt; getList()
+POST   /api/books/create       -&gt; postCreate()
+PUT    /api/books/update/(:id) -&gt; putUpdate($id)
+DELETE /api/books/delete/(:id) -&gt; deleteDelete($id)
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="database-setup.html" class="btn btn-neutral float-left" title="데이터베이스 및 모델 생성" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="conclusion.html" class="btn btn-neutral float-right" title="마무리" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

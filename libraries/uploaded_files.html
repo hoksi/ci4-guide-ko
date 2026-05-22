@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>업로드된 파일 다루기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="URI 작업하기" href="uri.html" />
+    <link rel="prev" title="타이포그래피" href="typography.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">타이포그래피</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">라이브러리 레퍼런스</a></li>
+      <li class="breadcrumb-item active">업로드된 파일 다루기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="working-with-uploaded-files">
+<h1>업로드된 파일 다루기<a class="headerlink" href="#working-with-uploaded-files" title="Link to this heading"></a></h1>
+<p>CodeIgniter는 PHP의 <code class="docutils literal notranslate"><span class="pre">$_FILES</span></code> 배열을 직접 사용하는 것보다 폼을 통해 업로드된 파일을 훨씬 간단하고 안전하게 다룰 수 있게 해줍니다. 이는 <a class="reference internal" href="files.html"><span class="doc">File 클래스</span></a>를 확장하므로 해당 클래스의 모든 기능을 사용할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이것은 CodeIgniter 3의 파일 업로드 클래스와 다릅니다. 업로드된 파일에 대한 원시 인터페이스를 몇 가지 기능과 함께 제공합니다.</p>
+</div>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#file-upload-form-tutorial" id="id4">파일 업로드 폼 튜토리얼</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-the-upload-form" id="id5">업로드 폼 만들기</a></p></li>
+<li><p><a class="reference internal" href="#the-success-page" id="id6">성공 페이지</a></p></li>
+<li><p><a class="reference internal" href="#the-controller" id="id7">컨트롤러</a></p></li>
+<li><p><a class="reference internal" href="#the-routes" id="id8">라우트</a></p></li>
+<li><p><a class="reference internal" href="#the-upload-directory" id="id9">업로드 디렉터리</a></p></li>
+<li><p><a class="reference internal" href="#try-it" id="id10">사용해 보세요!</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#accessing-files" id="id11">파일 접근</a></p>
+<ul>
+<li><p><a class="reference internal" href="#all-files" id="id12">모든 파일</a></p></li>
+<li><p><a class="reference internal" href="#single-file" id="id13">단일 파일</a></p></li>
+<li><p><a class="reference internal" href="#multiple-files" id="id14">여러 파일</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-the-file" id="id15">파일 다루기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#verify-a-file" id="id16">파일 검증</a></p></li>
+<li><p><a class="reference internal" href="#file-names" id="id17">파일 이름</a></p></li>
+<li><p><a class="reference internal" href="#other-file-info" id="id18">기타 파일 정보</a></p></li>
+<li><p><a class="reference internal" href="#moving-files" id="id19">파일 이동</a></p></li>
+<li><p><a class="reference internal" href="#store-files" id="id20">파일 저장</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="file-upload-form-tutorial">
+<span id="id2"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">파일 업로드 폼 튜토리얼</a><a class="headerlink" href="#file-upload-form-tutorial" title="Link to this heading"></a></h2>
+<p>파일 업로드는 다음과 같은 일반적인 과정을 포함합니다:</p>
+<ul class="simple">
+<li><p>사용자가 파일을 선택하고 업로드할 수 있는 업로드 폼이 표시됩니다.</p></li>
+<li><p>폼이 제출되면 지정한 목적지에 파일이 업로드됩니다.</p></li>
+<li><p>이 과정에서 설정한 기본 설정에 따라 파일이 업로드 허용 여부를 검증합니다.</p></li>
+<li><p>업로드가 완료되면 사용자에게 성공 메시지가 표시됩니다.</p></li>
+</ul>
+<p>이 과정을 설명하기 위한 간략한 튜토리얼이 있습니다. 이후에 참조 정보를 확인할 수 있습니다.</p>
+<section id="creating-the-upload-form">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">업로드 폼 만들기</a><a class="headerlink" href="#creating-the-upload-form" title="Link to this heading"></a></h3>
+<p>텍스트 편집기를 사용하여 <strong>upload_form.php</strong>라는 폼을 만듭니다. 그 안에 이 코드를 넣고 <strong>app/Views</strong> 디렉터리에 저장합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">Upload</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span> <span class="k">as</span> <span class="nv">$error</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$error</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">form_open_multipart</span><span class="p">(</span><span class="s1">&#39;upload/upload&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;userfile&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;upload&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>폼 헬퍼를 사용하여 폼 여는 태그를 생성하고 있음을 알 수 있습니다. 파일 업로드는 멀티파트 폼이 필요하므로 헬퍼가 적절한 구문을 생성해 줍니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$errors</span></code> 변수도 있음을 알 수 있습니다. 사용자가 잘못된 작업을 한 경우 오류 메시지를 표시하기 위해 사용됩니다.</p>
+</section>
+<section id="the-success-page">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">성공 페이지</a><a class="headerlink" href="#the-success-page" title="Link to this heading"></a></h3>
+<p>텍스트 편집기를 사용하여 <strong>upload_success.php</strong>라는 폼을 만듭니다. 그 안에 이 코드를 넣고 <strong>app/Views</strong> 디렉터리에 저장합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">Upload</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Your</span> <span class="nb">file</span> <span class="nx">was</span> <span class="nx">successfully</span> <span class="nx">uploaded</span><span class="o">!&lt;/</span><span class="nx">h3</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="nx">name</span><span class="o">:</span> <span class="o">&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$uploaded_fileinfo</span><span class="o">-&gt;</span><span class="na">getBasename</span><span class="p">())</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>size: <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$uploaded_fileinfo</span><span class="o">-&gt;</span><span class="na">getSizeByUnit</span><span class="p">(</span><span class="s1">&#39;kb&#39;</span><span class="p">))</span> <span class="cp">?&gt;</span> KB<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>extension: <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$uploaded_fileinfo</span><span class="o">-&gt;</span><span class="na">guessExtension</span><span class="p">())</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">anchor</span><span class="p">(</span><span class="s1">&#39;upload&#39;</span><span class="p">,</span> <span class="s1">&#39;Upload Another File!&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="the-controller">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">컨트롤러</a><a class="headerlink" href="#the-controller" title="Link to this heading"></a></h3>
+<p>텍스트 편집기를 사용하여 <strong>Upload.php</strong>라는 컨트롤러를 만듭니다. 그 안에 이 코드를 넣고 <strong>app/Controllers</strong> 디렉터리에 저장합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Files\File</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Upload</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;upload_form&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="p">[]]);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">upload</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$validationRule</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;userfile&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Image File&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;uploaded[userfile]&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;is_image[userfile]&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;max_size[userfile,100]&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;max_dims[userfile,1024,768]&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validateData</span><span class="p">([],</span> <span class="nv">$validationRule</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validator</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">()];</span>
+
+            <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;upload_form&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$img</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;userfile&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$img</span><span class="o">-&gt;</span><span class="na">hasMoved</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nv">$filepath</span> <span class="o">=</span> <span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads/&#39;</span> <span class="o">.</span> <span class="nv">$img</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">();</span>
+
+            <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;uploaded_fileinfo&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="nv">$filepath</span><span class="p">)];</span>
+
+            <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;upload_success&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The file has already been moved.&#39;</span><span class="p">];</span>
+
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;upload_form&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>업로드된 파일의 유효성 검사에는 <a class="reference internal" href="validation.html#rules-for-file-uploads"><span class="std std-ref">파일 업로드 규칙</span></a>만 사용할 수 있습니다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">required</span></code> 규칙도 사용할 수 없으므로, 파일이 필수인 경우 대신 <code class="docutils literal notranslate"><span class="pre">uploaded</span></code> 규칙을 사용하십시오.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$this-&gt;validateData()</span></code>의 첫 번째 인수로 빈 배열(<code class="docutils literal notranslate"><span class="pre">[]</span></code>)이 전달된다는 점에 주목하십시오. 파일 유효성 검사 규칙이 업로드된 파일의 데이터를 Request 객체에서 직접 가져오기 때문입니다.</p>
+<p>폼에 파일 업로드 외의 다른 필드가 있다면 필드 데이터를 첫 번째 인수로 전달합니다.</p>
+</section>
+<section id="the-routes">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">라우트</a><a class="headerlink" href="#the-routes" title="Link to this heading"></a></h3>
+<p>텍스트 편집기를 사용하여 <strong>app/Config/Routes.php</strong>를 엽니다. 그 안에 다음 두 라우트를 추가합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// ...</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * --------------------------------------------------------------------</span>
+<span class="cm"> * Route Definitions</span>
+<span class="cm"> * --------------------------------------------------------------------</span>
+<span class="cm"> */</span>
+
+<span class="c1">// We get a performance increase by specifying the default</span>
+<span class="c1">// route since we don&#39;t have to scan directories.</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;upload&#39;</span><span class="p">,</span> <span class="s1">&#39;Upload::index&#39;</span><span class="p">);</span>          <span class="c1">// Add this line.</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;upload/upload&#39;</span><span class="p">,</span> <span class="s1">&#39;Upload::upload&#39;</span><span class="p">);</span> <span class="c1">// Add this line.</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+</section>
+<section id="the-upload-directory">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">업로드 디렉터리</a><a class="headerlink" href="#the-upload-directory" title="Link to this heading"></a></h3>
+<p>업로드된 파일은 <strong>writable/uploads/</strong> 디렉터리에 저장됩니다.</p>
+</section>
+<section id="try-it">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">사용해 보세요!</a><a class="headerlink" href="#try-it" title="Link to this heading"></a></h3>
+<p>폼을 사용해 보려면 다음과 유사한 URL로 사이트를 방문합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">upload</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>업로드 폼이 표시될 것입니다. 이미지 파일(<strong>jpg</strong>, <strong>gif</strong>, <strong>png</strong>, 또는 <strong>webp</strong>)을 업로드해 보세요. 컨트롤러의 경로가 올바르면 작동해야 합니다.</p>
+</section>
+</section>
+<section id="accessing-files">
+<span id="uploaded-files-accessing-files"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">파일 접근</a><a class="headerlink" href="#accessing-files" title="Link to this heading"></a></h2>
+<section id="all-files">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">모든 파일</a><a class="headerlink" href="#all-files" title="Link to this heading"></a></h3>
+<p>파일을 업로드하면 PHP에서 <code class="docutils literal notranslate"><span class="pre">$_FILES</span></code> 슈퍼전역 변수를 통해 기본적으로 접근할 수 있습니다. 이 배열은 여러 파일을 동시에 업로드할 때 몇 가지 주요 단점이 있으며, 많은 개발자가 인식하지 못하는 잠재적인 보안 취약점이 있습니다. CodeIgniter는 공통 인터페이스 뒤에서 파일 사용을 표준화하여 이러한 두 가지 상황을 모두 해결합니다.</p>
+<p>파일은 현재 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 인스턴스를 통해 접근합니다. 이 요청과 함께 업로드된 모든 파일을 가져오려면 <code class="docutils literal notranslate"><span class="pre">getFiles()</span></code>를 사용합니다. <code class="docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Files\UploadedFile</span></code>의 인스턴스로 표현되는 파일 배열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFiles</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>물론 파일 입력의 이름을 지정하는 방법은 여러 가지가 있으며, 가장 단순한 방법이 아니면 예상치 못한 결과가 발생할 수 있습니다. 배열은 예상하는 방식으로 반환됩니다. 가장 단순한 사용법으로 단일 파일은 다음과 같이 제출될 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;avatar&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>이는 다음과 같은 단순 배열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="c1">// UploadedFile instance,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>UploadedFile 인스턴스는 <code class="docutils literal notranslate"><span class="pre">$_FILES</span></code>에 대응합니다. 사용자가 제출 버튼만 클릭하고 파일을 업로드하지 않더라도 인스턴스는 존재합니다. UploadedFile의 <code class="docutils literal notranslate"><span class="pre">isValid()</span></code> 메서드로 파일이 실제로 업로드되었는지 확인할 수 있습니다. <a class="reference internal" href="#verify-a-file"><span class="std std-ref">파일 검증</span></a>을 참조하십시오.</p>
+</div>
+<p>이름에 배열 표기법을 사용한 경우 입력은 다음과 같이 표시됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatar]&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">getFiles()</span></code>가 반환하는 배열은 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+     <span class="s1">&#39;my-form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;details&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="c1">// UploadedFile instance</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>경우에 따라 업로드할 파일 배열을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Upload</span> <span class="nx">an</span> <span class="nx">avatar</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatars][]&quot;</span><span class="o">&gt;</span>
+<span class="nx">Upload</span> <span class="nx">an</span> <span class="nx">avatar</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatars][]&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>이 경우 반환되는 파일 배열은 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;my-form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;details&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="mi">0</span> <span class="o">=&gt;</span> <span class="c1">// UploadedFile instance,</span>
+                <span class="mi">1</span> <span class="o">=&gt;</span> <span class="c1">// UploadedFile instance,</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="single-file">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">단일 파일</a><a class="headerlink" href="#single-file" title="Link to this heading"></a></h3>
+<p>단일 파일에만 접근하면 되는 경우 <code class="docutils literal notranslate"><span class="pre">getFile()</span></code>을 사용하여 파일 인스턴스를 직접 가져올 수 있습니다. <code class="docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Files\UploadedFile</span></code>의 인스턴스를 반환합니다:</p>
+<section id="simplest-usage">
+<h4>가장 단순한 사용법<a class="headerlink" href="#simplest-usage" title="Link to this heading"></a></h4>
+<p>가장 단순한 사용법으로 단일 파일은 다음과 같이 제출될 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;userfile&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>이는 다음과 같은 단순 파일 인스턴스를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;userfile&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="array-notation">
+<h4>배열 표기법<a class="headerlink" href="#array-notation" title="Link to this heading"></a></h4>
+<p>이름에 배열 표기법을 사용한 경우 입력은 다음과 같이 표시됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatar]&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>파일 인스턴스를 가져오려면:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;my-form.details.avatar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multiple-files">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">여러 파일</a><a class="headerlink" href="#multiple-files" title="Link to this heading"></a></h3>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;images[]&quot;</span> <span class="nx">multiple</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>컨트롤러에서:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$imagefile</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFiles</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$imagefile</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$img</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$img</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span> <span class="nv">$img</span><span class="o">-&gt;</span><span class="na">hasMoved</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nv">$newName</span> <span class="o">=</span> <span class="nv">$img</span><span class="o">-&gt;</span><span class="na">getRandomName</span><span class="p">();</span>
+            <span class="nv">$img</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads&#39;</span><span class="p">,</span> <span class="nv">$newName</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>여기서 <code class="docutils literal notranslate"><span class="pre">images</span></code>는 폼 필드 이름으로부터의 반복입니다.</p>
+<p>같은 이름의 파일이 여러 개인 경우 <code class="docutils literal notranslate"><span class="pre">getFile()</span></code>을 사용하여 각 파일을 개별적으로 가져올 수 있습니다.</p>
+<p>컨트롤러에서:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file1</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;images.0&#39;</span><span class="p">);</span>
+<span class="nv">$file2</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;images.1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>같은 이름의 업로드된 파일 배열을 가져오려면 <code class="docutils literal notranslate"><span class="pre">getFileMultiple()</span></code>을 사용하는 것이 더 편리할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFileMultiple</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>다른 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Upload</span> <span class="nx">an</span> <span class="nx">avatar</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatars][]&quot;</span><span class="o">&gt;</span>
+<span class="nx">Upload</span> <span class="nx">an</span> <span class="nx">avatar</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;my-form[details][avatars][]&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>컨트롤러에서:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file1</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;my-form.details.avatars.0&#39;</span><span class="p">);</span>
+<span class="nv">$file2</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;my-form.details.avatars.1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">getFiles()</span></code>를 사용하는 것이 더 적절합니다.</p>
+</div>
+</section>
+</section>
+<section id="working-with-the-file">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">파일 다루기</a><a class="headerlink" href="#working-with-the-file" title="Link to this heading"></a></h2>
+<p>UploadedFile 인스턴스를 가져온 후에는 파일에 대한 정보를 안전하게 얻을 수 있으며 파일을 새 위치로 이동할 수도 있습니다.</p>
+<section id="verify-a-file">
+<span id="id3"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">파일 검증</a><a class="headerlink" href="#verify-a-file" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">isValid()</span></code> 메서드를 호출하여 파일이 오류 없이 HTTP를 통해 실제로 업로드되었는지 확인할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">\RuntimeException</span><span class="p">(</span><span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getErrorString</span><span class="p">()</span> <span class="o">.</span> <span class="s1">&#39;(&#39;</span> <span class="o">.</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getError</span><span class="p">()</span> <span class="o">.</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 예시에서 볼 수 있듯이, 파일에 업로드 오류가 있으면 <code class="docutils literal notranslate"><span class="pre">getError()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">getErrorString()</span></code> 메서드로 오류 코드(정수)와 오류 메시지를 가져올 수 있습니다. 이 메서드를 통해 다음 오류를 발견할 수 있습니다:</p>
+<ul class="simple">
+<li><p>파일이 <code class="docutils literal notranslate"><span class="pre">upload_max_filesize</span></code> ini 지시자를 초과합니다.</p></li>
+<li><p>파일이 폼에 정의된 업로드 제한을 초과합니다.</p></li>
+<li><p>파일이 일부만 업로드되었습니다.</p></li>
+<li><p>업로드된 파일이 없습니다.</p></li>
+<li><p>파일을 디스크에 쓸 수 없습니다.</p></li>
+<li><p>파일을 업로드할 수 없습니다: 임시 디렉터리가 없습니다.</p></li>
+<li><p>PHP 확장에 의해 파일 업로드가 중단되었습니다.</p></li>
+</ul>
+</section>
+<section id="file-names">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">파일 이름</a><a class="headerlink" href="#file-names" title="Link to this heading"></a></h3>
+<section id="getname">
+<h4>getName()<a class="headerlink" href="#getname" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">getName()</span></code> 메서드로 클라이언트가 제공한 원래 파일 이름을 가져올 수 있습니다. 이는 일반적으로 클라이언트가 보낸 파일 이름이므로 신뢰해서는 안 됩니다. 파일이 이동된 경우 이동된 파일의 최종 이름을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="getclientname">
+<h4>getClientName()<a class="headerlink" href="#getclientname" title="Link to this heading"></a></h4>
+<p>파일이 이동된 경우에도 클라이언트가 보낸 업로드된 파일의 원래 이름을 항상 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$originalName</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientName</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="gettempname">
+<h4>getTempName()<a class="headerlink" href="#gettempname" title="Link to this heading"></a></h4>
+<p>업로드 중 생성된 임시 파일의 전체 경로를 가져오려면 <code class="docutils literal notranslate"><span class="pre">getTempName()</span></code> 메서드를 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$tempfile</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getTempName</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="other-file-info">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">기타 파일 정보</a><a class="headerlink" href="#other-file-info" title="Link to this heading"></a></h3>
+<section id="getclientextension">
+<h4>getClientExtension()<a class="headerlink" href="#getclientextension" title="Link to this heading"></a></h4>
+<p>업로드된 파일 이름을 기반으로 원래 파일 확장자를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$ext</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientExtension</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>이것은 신뢰할 수 없는 출처입니다. 신뢰할 수 있는 버전은 대신 <code class="docutils literal notranslate"><span class="pre">guessExtension()</span></code>을 사용하십시오.</p>
+</div>
+</section>
+<section id="getclientmimetype">
+<h4>getClientMimeType()<a class="headerlink" href="#getclientmimetype" title="Link to this heading"></a></h4>
+<p>클라이언트가 제공한 파일의 MIME 타입을 반환합니다. 이것은 신뢰할 수 없는 값입니다. 신뢰할 수 있는 버전은 대신 <code class="docutils literal notranslate"><span class="pre">getMimeType()</span></code>을 사용하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$type</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientMimeType</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$type</span><span class="p">;</span> <span class="c1">// image/png</span>
+</pre></div>
+</div>
+</section>
+<section id="getclientpath">
+<h4>getClientPath()<a class="headerlink" href="#getclientpath" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p>클라이언트가 디렉터리 업로드를 통해 파일을 업로드한 경우 업로드된 파일의 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/File/webkitRelativePath">webkit 상대 경로</a>를 반환합니다. PHP 8.1 미만 버전에서는 <code class="docutils literal notranslate"><span class="pre">null</span></code>을 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$clientPath</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientPath</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$clientPath</span><span class="p">;</span> <span class="c1">// dir/file.txt, or dir/sub_dir/file.txt</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="moving-files">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">파일 이동</a><a class="headerlink" href="#moving-files" title="Link to this heading"></a></h3>
+<section id="with-original-filename">
+<h4>원래 파일 이름으로<a class="headerlink" href="#with-original-filename" title="Link to this heading"></a></h4>
+<p>각 파일은 적절하게 이름 붙여진 <code class="docutils literal notranslate"><span class="pre">move()</span></code> 메서드를 사용하여 새 위치로 이동할 수 있습니다. 첫 번째 파라미터로 파일을 이동할 디렉터리를 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>기본적으로 원래 파일 이름이 사용됩니다.</p>
+</section>
+<section id="with-new-filename">
+<h4>새 파일 이름으로<a class="headerlink" href="#with-new-filename" title="Link to this heading"></a></h4>
+<p>두 번째 파라미터로 전달하여 새 파일 이름을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$newName</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getRandomName</span><span class="p">();</span>
+<span class="nv">$file</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads&#39;</span><span class="p">,</span> <span class="nv">$newName</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="overwriting-existing-file">
+<h4>기존 파일 덮어쓰기<a class="headerlink" href="#overwriting-existing-file" title="Link to this heading"></a></h4>
+<p>기본적으로 대상 파일이 이미 존재하면 새 파일 이름이 사용됩니다. 예를 들어, 디렉터리에 <strong>image_name.jpg</strong>가 이미 존재하면 파일 이름은 자동으로 <strong>image_name_1.jpg</strong>가 됩니다.</p>
+<p>세 번째 파라미터로 <code class="docutils literal notranslate"><span class="pre">true</span></code>를 전달하여 기존 파일을 덮어쓸 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$file</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="check-if-the-file-moved">
+<h4>파일 이동 여부 확인<a class="headerlink" href="#check-if-the-file-moved" title="Link to this heading"></a></h4>
+<p>파일이 이동되면 임시 파일이 삭제됩니다. <code class="docutils literal notranslate"><span class="pre">hasMoved()</span></code> 메서드로 파일이 이미 이동되었는지 확인할 수 있으며, 불리언을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$file</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">hasMoved</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="when-moving-fails">
+<h4>이동 실패 시<a class="headerlink" href="#when-moving-fails" title="Link to this heading"></a></h4>
+<p>업로드된 파일 이동은 다음과 같은 여러 상황에서 <code class="docutils literal notranslate"><span class="pre">HTTPException</span></code>과 함께 실패할 수 있습니다:</p>
+<ul class="simple">
+<li><p>파일이 이미 이동된 경우</p></li>
+<li><p>파일이 성공적으로 업로드되지 않은 경우</p></li>
+<li><p>파일 이동 작업이 실패한 경우 (예: 권한 부족)</p></li>
+</ul>
+</section>
+</section>
+<section id="store-files">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">파일 저장</a><a class="headerlink" href="#store-files" title="Link to this heading"></a></h3>
+<p>각 파일은 적절하게 이름 붙여진 <code class="docutils literal notranslate"><span class="pre">store()</span></code> 메서드를 사용하여 새 위치로 이동할 수 있습니다.</p>
+<p>가장 단순한 사용법으로 단일 파일은 다음과 같이 제출될 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;file&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;userfile&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>기본적으로 업로드 파일은 <strong>writable/uploads</strong> 디렉터리에 저장됩니다. <strong>YYYYMMDD</strong> 폴더와 무작위 파일 이름이 생성됩니다. 파일 경로를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;userfile&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>첫 번째 파라미터로 파일을 이동할 디렉터리를 지정할 수 있습니다. 두 번째 파라미터로 전달하여 새 파일 이름을 지정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="s1">&#39;userfile&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;head_img/&#39;</span><span class="p">,</span> <span class="s1">&#39;user_name.jpg&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>업로드된 파일 이동은 다음과 같은 여러 상황에서 <code class="docutils literal notranslate"><span class="pre">HTTPException</span></code>과 함께 실패할 수 있습니다:</p>
+<ul class="simple">
+<li><p>파일이 이미 이동된 경우</p></li>
+<li><p>파일이 성공적으로 업로드되지 않은 경우</p></li>
+<li><p>파일 이동 작업이 실패한 경우 (예: 권한 부족)</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="typography.html" class="btn btn-neutral float-left" title="타이포그래피" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="uri.html" class="btn btn-neutral float-right" title="URI 작업하기" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

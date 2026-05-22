@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTTP 메시지 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="Request 클래스" href="request.html" />
+    <link rel="prev" title="자동 라우팅(향상)" href="auto_routing_improved.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">컨트롤러와 라우팅</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">컨트롤러와 라우팅</a></li>
+      <li class="breadcrumb-item active">HTTP 메시지</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="http-messages">
+<h1>HTTP 메시지<a class="headerlink" href="#http-messages" title="Link to this heading"></a></h1>
+<p>Message 클래스는 요청과 응답 모두에 공통적인 HTTP 메시지 부분(메시지 본문, 프로토콜 버전, 헤더 작업 유틸리티 및 콘텐츠 협상 처리 메서드 등)에 대한 인터페이스를 제공합니다.</p>
+<p>이 클래스는 <a class="reference internal" href="request.html"><span class="doc">Request Class</span></a> 및 <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response Class</span></a>가 확장하는 부모 클래스이며, 직접 사용되지는 않습니다.</p>
+<section id="class-reference">
+<h2>클래스 참조<a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<dl class="php class" id="namespace-CodeIgniter\HTTP">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\HTTP\</span></span><span class="sig-name descname"><span class="pre">Message</span></span><a class="headerlink" href="#CodeIgniter\HTTP\Message" title="Link to this definition"></a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::getBody">
+<span class="sig-name descname"><span class="pre">getBody</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::getBody" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>현재 메시지 본문</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>설정된 메시지 본문이 있으면 현재 메시지 본문을 반환합니다. 본문이 없으면 null을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::setBody">
+<span class="sig-name descname"><span class="pre">setBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::setBody" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 메시지의 본문입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>체이닝을 허용하기 위한 Message|Response 인스턴스입니다.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</span></code></span></p>
+</dd>
+</dl>
+<p>현재 요청의 본문을 설정합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::appendBody">
+<span class="sig-name descname"><span class="pre">appendBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::appendBody" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 메시지의 본문입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>체이닝을 허용하기 위한 Message|Response 인스턴스입니다.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</span></code></span></p>
+</dd>
+</dl>
+<p>현재 요청의 본문에 데이터를 추가합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::populateHeaders">
+<span class="sig-name descname"><span class="pre">populateHeaders</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::populateHeaders" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>없음</p>
+</dd>
+</dl>
+<p>SERVER 데이터에서 발견된 헤더를 스캔하고 구문 분석하여 나중에 접근할 수 있도록 저장합니다. 이는 <a class="reference internal" href="incomingrequest.html"><span class="doc">IncomingRequest Class</span></a>에서 현재 요청의 헤더를 사용할 수 있게 하기 위해 사용됩니다.</p>
+<p>헤더는 <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code>로 시작하는 모든 SERVER 데이터(예:<code class="docutils literal notranslate"><span class="pre">HTTP_HOST</span></code>)입니다. 각 메시지는 표준 대문자와 언더스코어 형식에서 단어별 대문자 및 대시 형식으로 변환됩니다. 앞의 <code class="docutils literal notranslate"><span class="pre">HTTP_</span></code>는 문자열에서 제거됩니다. 따라서 <code class="docutils literal notranslate"><span class="pre">HTTP_ACCEPT_LANGUAGE</span></code>는 <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code>가 됩니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::headers">
+<span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::headers" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>발견된 모든 헤더의 배열</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+<p>발견되었거나 이전에 설정된 모든 헤더의 배열을 반환합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::header">
+<span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::header" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 값을 가져오려는 헤더의 이름입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>단일 헤더 객체를 반환합니다. 동일한 이름의 헤더가 여러 개 존재하면 헤더 객체의 배열을 반환합니다.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Header|array</span></code></span></p>
+</dd>
+</dl>
+<p>단일 메시지 헤더의 현재 값을 검색할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">$name</span></code>은 대소문자를 구분하지 않는 헤더 이름입니다. 헤더는 위에서 설명한 대로 내부적으로 변환되지만, 어떤 대소문자 조합으로도 헤더에 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// These are all the same:</span>
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;HOST&#39;</span><span class="p">);</span>
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>헤더에 여러 값이 있는 경우 <code class="docutils literal notranslate"><span class="pre">getValue()</span></code>는 값들의 배열을 반환합니다. <code class="docutils literal notranslate"><span class="pre">getValueLine()</span></code> 메서드를 사용하면 값을 문자열로 가져올 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm"> * Outputs something like:</span>
+<span class="cm"> * &#39;Accept-Language: en,en-US&#39;</span>
+<span class="cm"> */</span>
+
+<span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">();</span>
+<span class="cm">/*</span>
+<span class="cm"> * Outputs something like:</span>
+<span class="cm"> * [</span>
+<span class="cm"> *     &#39;en&#39;,</span>
+<span class="cm"> *     &#39;en-US&#39;,</span>
+<span class="cm"> * ]</span>
+<span class="cm"> */</span>
+
+<span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getValueLine</span><span class="p">();</span>
+<span class="cm">/*</span>
+<span class="cm"> * Outputs something like:</span>
+<span class="cm"> * en,en-US&#39;</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>두 번째 매개변수로 필터 값을 전달하여 헤더를 필터링할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Document-URI&#39;</span><span class="p">,</span> <span class="nx">FILTER_SANITIZE_URL</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::hasHeader">
+<span class="sig-name descname"><span class="pre">hasHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::hasHeader" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 존재하는지 확인하려는 헤더의 이름입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>존재하면 true, 그렇지 않으면 false를 반환합니다.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::getHeaderLine">
+<span class="sig-name descname"><span class="pre">getHeaderLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::getHeaderLine" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 가져올 헤더의 이름입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>헤더 값을 나타내는 문자열입니다.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>헤더의 값들을 문자열로 반환합니다. 이 메서드는 헤더에 값이 여러 개인 경우 값을 문자열로 편리하게 얻을 수 있도록 합니다. 값들은 적절히 연결됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm"> * Outputs:</span>
+<span class="cm"> * &#39;en,en-US&#39;</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::setHeader">
+<span class="sig-name descname"><span class="pre">setHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em>, <em class="sig-param"><span class="pre">$value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::setHeader" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 값을 설정할 헤더의 이름입니다.</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 헤더에 설정할 값입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 Message|Response 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message|CodeIgniter\HTTP\Response</span></code></span></p>
+</dd>
+</dl>
+<p>단일 헤더의 값을 설정합니다. <code class="docutils literal notranslate"><span class="pre">$name</span></code>은 헤더의 대소문자를 구분하지 않는 이름입니다. 컬렉션에 헤더가 아직 없다면 생성됩니다. <code class="docutils literal notranslate"><span class="pre">$value</span></code>는 문자열 또는 문자열 배열일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">,</span> <span class="s1">&#39;codeigniter.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::removeHeader">
+<span class="sig-name descname"><span class="pre">removeHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::removeHeader" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 제거할 헤더의 이름입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 메시지 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CodeIgniter\HTTP\Message" title="CodeIgniter\HTTP\Message"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message</span></code></a></span></p>
+</dd>
+</dl>
+<p>Message에서 헤더를 제거합니다. <code class="docutils literal notranslate"><span class="pre">$name</span></code>은 대소문자를 구분하지 않는 헤더 이름입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">removeHeader</span><span class="p">(</span><span class="s1">&#39;Host&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::appendHeader">
+<span class="sig-name descname"><span class="pre">appendHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em>, <em class="sig-param"><span class="pre">$value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::appendHeader" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 수정할 헤더의 이름입니다</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 헤더에 추가할 값입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 메시지 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CodeIgniter\HTTP\Message" title="CodeIgniter\HTTP\Message"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message</span></code></a></span></p>
+</dd>
+</dl>
+<p>기존 헤더에 값을 추가합니다. 헤더는 단일 문자열이 아니라 값들의 배열이어야 합니다. 만약 문자열이라면 LogicException이 발생합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">appendHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en-US; q=0.8&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::prependHeader">
+<span class="sig-name descname"><span class="pre">prependHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em>, <em class="sig-param"><span class="pre">$value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::prependHeader" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 수정할 헤더의 이름입니다</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 헤더 앞에 삽입할 값입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 메시지 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CodeIgniter\HTTP\Message" title="CodeIgniter\HTTP\Message"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message</span></code></a></span></p>
+</dd>
+</dl>
+<p>기존 헤더의 앞에 값을 삽입합니다. 헤더는 단일 문자열이 아닌 값들의 배열이어야 합니다. 만약 문자열이라면 LogicException이 발생합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">prependHeader</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">,</span> <span class="s1">&#39;en,&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::addHeader">
+<span class="sig-name descname"><span class="pre">addHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em>, <em class="sig-param"><span class="pre">$value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::addHeader" title="Link to this definition"></a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 추가할 헤더의 이름입니다.</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 헤더의 값입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 메시지 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CodeIgniter\HTTP\Message" title="CodeIgniter\HTTP\Message"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message</span></code></a></span></p>
+</dd>
+</dl>
+<p>동일한 이름으로 헤더(헤더 값이 아님)를 추가합니다. 동일한 이름의 헤더를 여러 개 설정할 때만 사용하십시오,</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">addHeader</span><span class="p">(</span><span class="s1">&#39;Set-Cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;logged_in=no; Path=/&#39;</span><span class="p">);</span>
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">addHeader</span><span class="p">(</span><span class="s1">&#39;Set-Cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;sessid=123456; Path=/&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::getProtocolVersion">
+<span class="sig-name descname"><span class="pre">getProtocolVersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::getProtocolVersion" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>현재 HTTP 프로토콜 버전</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>메시지의 현재 HTTP 프로토콜을 반환합니다. 설정되지 않은 경우 <code class="docutils literal notranslate"><span class="pre">1.1</span></code>을 반환합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\HTTP\Message::setProtocolVersion">
+<span class="sig-name descname"><span class="pre">setProtocolVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$version</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\HTTP\Message::setProtocolVersion" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$version</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – HTTP 프로토콜 버전입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>현재 메시지 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><a class="reference internal" href="#CodeIgniter\HTTP\Message" title="CodeIgniter\HTTP\Message"><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Message</span></code></a></span></p>
+</dd>
+</dl>
+<p>이 Message가 사용하는 HTTP 프로토콜 버전을 설정합니다. 유효한 값은 <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">1.1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.0</span></code>, <code class="docutils literal notranslate"><span class="pre">3.0</span></code>입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$message</span><span class="o">-&gt;</span><span class="na">setProtocolVersion</span><span class="p">(</span><span class="s1">&#39;1.1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="auto_routing_improved.html" class="btn btn-neutral float-left" title="자동 라우팅(향상)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="request.html" class="btn btn-neutral float-right" title="Request 클래스" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1639 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URI 라우팅 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="컨트롤러" href="controllers.html" />
+    <link rel="prev" title="컨트롤러와 라우팅" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">컨트롤러와 라우팅</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">컨트롤러와 라우팅</a></li>
+      <li class="breadcrumb-item active">URI 라우팅</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uri-routing">
+<h1>URI 라우팅<a class="headerlink" href="#uri-routing" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-uri-routing" id="id16">URI 라우팅이란 무엇인가요?</a></p></li>
+<li><p><a class="reference internal" href="#setting-routing-rules" id="id17">라우팅 규칙 설정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#examples" id="id18">예제</a></p></li>
+<li><p><a class="reference internal" href="#http-verb-routes" id="id19">HTTP 동사 라우트</a></p></li>
+<li><p><a class="reference internal" href="#specifying-route-handlers" id="id20">라우트 핸들러 지정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#controller-s-namespace" id="id21">컨트롤러 네임스페이스</a></p></li>
+<li><p><a class="reference internal" href="#array-callable-syntax" id="id22">배열 콜러블(Array Callable) 구문</a></p></li>
+<li><p><a class="reference internal" href="#using-closures" id="id23">클로저(Closures) 사용</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#specifying-route-paths" id="id24">라우트 경로 지정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#placeholders" id="id25">자리표시자(Placeholders)</a></p></li>
+<li><p><a class="reference internal" href="#custom-placeholders" id="id26">커스텀 자리표시자</a></p></li>
+<li><p><a class="reference internal" href="#regular-expressions" id="id27">정규 표현식</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#view-routes" id="id28">뷰 라우트</a></p></li>
+<li><p><a class="reference internal" href="#redirecting-routes" id="id29">리다이렉트 라우트</a></p></li>
+<li><p><a class="reference internal" href="#environment-restrictions" id="id30">환경 제한</a></p></li>
+<li><p><a class="reference internal" href="#routes-with-any-http-verbs" id="id31">모든 HTTP 동사의 라우트</a></p></li>
+<li><p><a class="reference internal" href="#mapping-multiple-routes" id="id32">여러 라우트 매핑</a></p></li>
+<li><p><a class="reference internal" href="#command-line-only-routes" id="id33">명령줄 전용 라우트</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#global-options" id="id34">전역 옵션</a></p>
+<ul>
+<li><p><a class="reference internal" href="#applying-filters" id="id35">필터 적용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#alias-filter" id="id36">별칭 필터</a></p></li>
+<li><p><a class="reference internal" href="#classname-filter" id="id37">클래스 이름 필터</a></p></li>
+<li><p><a class="reference internal" href="#multiple-filters" id="id38">다중 필터</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#assigning-namespace" id="id39">네임스페이스 지정</a></p></li>
+<li><p><a class="reference internal" href="#limit-to-hostname" id="id40">호스트 이름으로 제한</a></p>
+<ul>
+<li><p><a class="reference internal" href="#restrict-by-multiple-hostnames" id="id41">여러 호스트 이름으로 제한</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#limit-to-subdomains" id="id42">서브도메인으로 제한</a></p></li>
+<li><p><a class="reference internal" href="#offsetting-the-matched-parameters" id="id43">일치한 매개변수 오프셋</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#reverse-routing" id="id44">역방향 라우팅</a></p></li>
+<li><p><a class="reference internal" href="#named-routes" id="id45">이름 있는 라우트</a></p></li>
+<li><p><a class="reference internal" href="#grouping-routes" id="id46">라우트 그룹화</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setting-namespace" id="id47">네임스페이스 설정</a></p></li>
+<li><p><a class="reference internal" href="#setting-filters" id="id48">필터 설정</a></p></li>
+<li><p><a class="reference internal" href="#setting-other-options" id="id49">기타 옵션 설정</a></p></li>
+<li><p><a class="reference internal" href="#nesting-groups" id="id50">그룹 중첩</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#route-priority" id="id51">라우트 우선순위</a></p>
+<ul>
+<li><p><a class="reference internal" href="#changing-route-priority" id="id52">라우트 우선순위 변경</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#routes-configuration-options" id="id53">라우트 구성 옵션</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-namespace" id="id54">기본 네임스페이스</a></p></li>
+<li><p><a class="reference internal" href="#default-method" id="id55">기본 메서드</a></p></li>
+<li><p><a class="reference internal" href="#translate-uri-dashes" id="id56">URI의 대시 변환</a></p></li>
+<li><p><a class="reference internal" href="#use-defined-routes-only" id="id57">정의된 라우트만 사용</a></p></li>
+<li><p><a class="reference internal" href="#override" id="id58">404 오버라이드</a></p></li>
+<li><p><a class="reference internal" href="#route-processing-by-priority" id="id59">우선순위에 따른 라우트 처리</a></p></li>
+<li><p><a class="reference internal" href="#multiple-uri-segments-as-one-parameter" id="id60">하나의 매개변수로서의 여러 URI 세그먼트</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#auto-routing-improved" id="id61">Auto Routing (Improved)</a></p></li>
+<li><p><a class="reference internal" href="#auto-routing-legacy" id="id62">Auto Routing (Legacy)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enable-auto-routing-legacy" id="id63">Auto Routing (Legacy) 활성화</a></p></li>
+<li><p><a class="reference internal" href="#uri-segments-legacy" id="id64">URI 세그먼트 (Legacy)</a></p></li>
+<li><p><a class="reference internal" href="#configuration-options-legacy" id="id65">구성 옵션 (Legacy)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-controller-legacy" id="id66">기본 컨트롤러 (Legacy)</a></p></li>
+<li><p><a class="reference internal" href="#default-method-legacy" id="id67">기본 메서드 (Legacy)</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#confirming-routes" id="id68">라우트 확인</a></p>
+<ul>
+<li><p><a class="reference internal" href="#spark-routes" id="id69">spark routes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id14" id="id70">Auto Routing (Improved)</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id71">Auto Routing (Legacy)</a></p></li>
+<li><p><a class="reference internal" href="#sort-by-handler" id="id72">핸들러별 정렬</a></p></li>
+<li><p><a class="reference internal" href="#specify-host" id="id73">호스트 지정</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#getting-routing-information" id="id74">라우팅 정보 가져오기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#retrieving-the-current-controller-method-names" id="id75">현재 컨트롤러/메서드 이름 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#getting-active-filters-for-the-current-route" id="id76">현재 라우트의 활성 필터 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#getting-matched-route-options-for-the-current-route" id="id77">현재 라우트의 일치한 라우트 옵션 가져오기</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="what-is-uri-routing">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">URI 라우팅이란 무엇인가요?</a><a class="headerlink" href="#what-is-uri-routing" title="Link to this heading"></a></h2>
+<p>URI 라우팅은 URI를 컨트롤러의 메서드와 연결합니다.</p>
+<p>CodeIgniter에는 두 가지 종류의 라우팅이 있습니다. 하나는 <strong>정의된 라우트 라우팅(Defined Route Routing)</strong>이고, 다른 하나는 <strong>자동 라우팅(Auto Routing)</strong>입니다. 정의된 라우트 라우팅을 사용하면 라우트를 수동으로 정의할 수 있어 유연한 URL 설정이 가능합니다. 자동 라우팅은 규칙(conventions)에 따라 HTTP 요청을 자동으로 라우팅하고 해당하는 컨트롤러 메서드를 실행하므로 라우트를 수동으로 정의할 필요가 없습니다.</p>
+<p>먼저 정의된 라우트 라우팅에 대해 알아보겠습니다. 자동 라우팅을 사용하려면 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>를 참조하십시오.</p>
+</section>
+<section id="setting-routing-rules">
+<span id="defined-route-routing"></span><h2><a class="toc-backref" href="#id17" role="doc-backlink">라우팅 규칙 설정</a><a class="headerlink" href="#setting-routing-rules" title="Link to this heading"></a></h2>
+<p>라우팅 규칙은 <strong>app/Config/Routes.php</strong> 파일에 정의됩니다. 이 파일에서 자신만의 라우팅 기준을 지정할 수 있게 해주는 RouteCollection 클래스의 인스턴스(<code class="docutils literal notranslate"><span class="pre">$routes</span></code>)를 생성하는 것을 볼 수 있습니다. 라우트는 자리표시자(placeholders)나 정규 표현식을 사용하여 지정할 수 있습니다.</p>
+<p>라우트를 지정할 때 HTTP 동사(요청 메서드)에 대응하는 메서드를 선택합니다. GET 요청을 처리하려면 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 메서드를 사용합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>라우트는 왼쪽에 라우트 경로(Route Path)(BaseURL에 대한 상대적인 URI 경로, 예: <code class="docutils literal notranslate"><span class="pre">/</span></code>)를 받고, 이를 오른쪽에 있는 라우트 핸들러(Route Handler)(컨트롤러 및 메서드, 예: <code class="docutils literal notranslate"><span class="pre">Home::index</span></code>)와 컨트롤러에 전달할 매개변수에 매핑합니다.</p>
+<p>컨트롤러와 메서드는 정적 메서드를 사용하는 것과 같은 방식으로, <code class="docutils literal notranslate"><span class="pre">Users::list</span></code>와 같이 클래스와 메서드를 이중 콜론(::)으로 구분하여 나열해야 합니다.</p>
+<p>해당 메서드에 매개변수를 전달해야 하는 경우, 메서드 이름 뒤에 슬래시(/)로 구분하여 나열합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Calls $Users-&gt;list()</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::list&#39;</span><span class="p">);</span>
+
+<span class="c1">// Calls $Users-&gt;list(1, 23)</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/1/23&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::list/1/23&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="examples">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">예제</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<p>다음은 몇 가지 기본적인 라우팅 예제입니다.</p>
+<p>첫 번째 세그먼트에 <strong>journals</strong>라는 단어가 포함된 URL은 <code class="docutils literal notranslate"><span class="pre">\App\Controllers\Blogs</span></code> 클래스와 보통 <code class="docutils literal notranslate"><span class="pre">index()</span></code>인 <a class="reference internal" href="#routing-default-method"><span class="std std-ref">기본 메서드</span></a>로 매핑됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;journals&#39;</span><span class="p">,</span> <span class="s1">&#39;Blogs&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>blog/joe</strong> 세그먼트를 포함하는 URL은 <code class="docutils literal notranslate"><span class="pre">\App\Controllers\Blogs</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">users()</span></code> 메서드에 매핑됩니다. ID는 <code class="docutils literal notranslate"><span class="pre">34</span></code>로 설정됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog/joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Blogs::users/34&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>첫 번째 세그먼트가 <strong>product</strong>이고 두 번째 세그먼트에 무엇이든 오는 URL은 <code class="docutils literal notranslate"><span class="pre">\App\Controllers\Catalog</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">productLookup()</span></code> 메서드에 매핑됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>첫 번째 세그먼트가 <strong>product</strong>이고 두 번째 세그먼트에 숫자가 오는 URL은 <code class="docutils literal notranslate"><span class="pre">\App\Controllers\Catalog</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">productLookupByID()</span></code> 메서드에 매핑되며, 일치하는 숫자를 메서드의 변수로 전달합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookupByID/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="http-verb-routes">
+<span id="routing-http-verb-routes"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">HTTP 동사 라우트</a><a class="headerlink" href="#http-verb-routes" title="Link to this heading"></a></h3>
+<p>표준 HTTP 동사(GET, POST, PUT, DELETE, OPTIONS 등)를 모두 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;products/1&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;products/1&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">match()</span></code> 메서드에 배열로 전달하여 하나의 라우트가 여러 동사에 일치하도록 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">],</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="specifying-route-handlers">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">라우트 핸들러 지정</a><a class="headerlink" href="#specifying-route-handlers" title="Link to this heading"></a></h3>
+<section id="controller-s-namespace">
+<span id="controllers-namespace"></span><h4><a class="toc-backref" href="#id21" role="doc-backlink">컨트롤러 네임스페이스</a><a class="headerlink" href="#controller-s-namespace" title="Link to this heading"></a></h4>
+<p>컨트롤러와 메서드 이름을 문자열로 지정할 때, 컨트롤러 이름 앞에 <code class="docutils literal notranslate"><span class="pre">\</span></code>가 없으면 <a class="reference internal" href="#routing-default-namespace"><span class="std std-ref">기본 네임스페이스</span></a>가 앞에 붙습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Routes to \App\Controllers\Api\Users::update()</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;api/users&#39;</span><span class="p">,</span> <span class="s1">&#39;Api\Users::update&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>맨 앞에 <code class="docutils literal notranslate"><span class="pre">\</span></code>를 붙이면 전체 경로 클래스 이름(fully qualified class name)으로 취급됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Routes to \Acme\Blog\Controllers\Home::list()</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;\Acme\Blog\Controllers\Home::list&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">namespace</span></code> 옵션을 사용하여 네임스페이스를 명시적으로 지정할 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Routes to \Admin\Users::index()</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin/users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Admin&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>자세한 내용은 <a class="reference internal" href="#assigning-namespace"><span class="std std-ref">네임스페이스 지정</span></a>를 참조하십시오.</p>
+</section>
+<section id="array-callable-syntax">
+<h4><a class="toc-backref" href="#id22" role="doc-backlink">배열 콜러블(Array Callable) 구문</a><a class="headerlink" href="#array-callable-syntax" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.0.</span></p>
+</div>
+<p>v4.2.0부터는 배열 콜러블 구문을 사용하여 컨트롤러를 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">\App\Controllers\Home</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>또는 <code class="docutils literal notranslate"><span class="pre">use</span></code> 키워드를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Controllers\Home</span><span class="p">;</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">Home</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">App\Controllers\Home;</span></code> 추가를 잊으면 컨트롤러 클래스 이름이 <code class="docutils literal notranslate"><span class="pre">App\Controllers\Home</span></code>이 아닌 <code class="docutils literal notranslate"><span class="pre">\Home</span></code>으로 해석됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>배열 콜러블 구문을 사용할 때 클래스 이름은 항상 전체 경로 클래스 이름으로 해석됩니다. 따라서 <a class="reference internal" href="#routing-default-namespace"><span class="std std-ref">기본 네임스페이스</span></a>와 <a class="reference internal" href="#assigning-namespace"><span class="std std-ref">namespace 옵션</span></a>은 적용되지 않습니다.</p>
+</div>
+<section id="array-callable-syntax-and-placeholders">
+<h5>배열 콜러블 구문과 자리표시자<a class="headerlink" href="#array-callable-syntax-and-placeholders" title="Link to this heading"></a></h5>
+<p>자리표시자가 있는 경우, 지정된 순서대로 매개변수가 자동으로 설정됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Controllers\Product</span><span class="p">;</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+
+<span class="c1">// The above code is the same as the following:</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::index/$1/$2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>하지만 라우트에 정규 표현식을 사용하는 경우 자동 설정된 매개변수가 올바르지 않을 수 있습니다. 이런 경우에는 매개변수를 수동으로 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Controllers\Product</span><span class="p">;</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">],</span> <span class="s1">&#39;$2/$1&#39;</span><span class="p">]);</span>
+
+<span class="c1">// The above code is the same as the following:</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::index/$2/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-closures">
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">클로저(Closures) 사용</a><a class="headerlink" href="#using-closures" title="Link to this heading"></a></h4>
+<p>익명 함수인 클로저를 라우트의 목적지로 사용할 수 있습니다. 사용자가 해당 URI에 접속하면 이 함수가 실행됩니다. 이는 작은 작업을 빠르게 실행하거나 단순히 뷰를 보여줄 때 유용합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">App\Libraries\RSSFeeder</span><span class="p">;</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$rss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RSSFeeder</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="nv">$rss</span><span class="o">-&gt;</span><span class="na">feed</span><span class="p">(</span><span class="s1">&#39;general&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="specifying-route-paths">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">라우트 경로 지정</a><a class="headerlink" href="#specifying-route-paths" title="Link to this heading"></a></h3>
+<section id="placeholders">
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">자리표시자(Placeholders)</a><a class="headerlink" href="#placeholders" title="Link to this heading"></a></h4>
+<p>전형적인 라우트는 다음과 같은 모습일 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>라우트에서 첫 번째 매개변수는 매칭할 URI를 포함하고, 두 번째 매개변수는 라우팅될 목적지를 포함합니다. 위의 예에서 URL 경로의 첫 번째 세그먼트가 “product”이고 두 번째 세그먼트가 숫자라면, <code class="docutils literal notranslate"><span class="pre">Catalog</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">productLookup</span></code> 메서드가 대신 사용됩니다.</p>
+<p>자리표시자는 단순히 정규 표현식 패턴을 나타내는 문자열입니다. 라우팅 과정에서 이러한 자리표시자들은 정규 표현식 값으로 대체됩니다. 주로 가독성을 위해 사용됩니다.</p>
+<p>라우트에서 사용할 수 있는 자리표시자는 다음과 같습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>자리표시자(Placeholders)</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(:any)</p></td>
+<td><p>해당 지점부터 URI 끝까지의 모든 문자와 일치합니다. 여기에는 여러 URI 세그먼트가 포함될 수 있습니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(:segment)</p></td>
+<td><p>슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)를 제외한 모든 문자와 일치하며, 결과를 단일 세그먼트로 제한합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>(:num)</p></td>
+<td><p>모든 양의 정수와 일치합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(:alpha)</p></td>
+<td><p>알파벳 문자로만 구성된 문자열과 일치합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>(:alphanum)</p></td>
+<td><p>알파벳 문자나 정수, 또는 그 조합으로 구성된 문자열과 일치합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(:hash)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(:segment)</span></code>와 동일하지만, 해시된 ID를 사용하는 라우트를 쉽게 식별하기 위해 사용될 수 있습니다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code>은 <a class="reference internal" href="../outgoing/localization.html"><span class="doc">다국어화(localization)</span></a>를 위해 예약되어 있으므로 자리표시자나 라우트의 다른 부분으로 사용할 수 없습니다.</p>
+</div>
+<section id="the-behavior-of-any">
+<span id="routing-placeholder-any"></span><h5>(:any)의 동작<a class="headerlink" href="#the-behavior-of-any" title="Link to this heading"></a></h5>
+<p>단일 <code class="docutils literal notranslate"><span class="pre">(:any)</span></code>는 URL에 여러 세그먼트가 있을 경우 이를 모두 포함하여 일치하게 됨에 유의하십시오.</p>
+<p>예를 들어 다음 라우트는</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>product/123</strong>, <strong>product/123/456</strong>, <strong>product/123/456/789</strong> 등과 일치합니다.</p>
+<p>기본적으로 위의 예에서 <code class="docutils literal notranslate"><span class="pre">$1</span></code> 자리표시자에 슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)가 포함되어 있다면, <code class="docutils literal notranslate"><span class="pre">Catalog::productLookup()</span></code>에 전달될 때 여전히 여러 매개변수로 분리됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0부터는 설정 옵션을 통해 이 동작을 변경할 수 있습니다. 자세한 내용은 <a class="reference internal" href="#multiple-uri-segments-as-one-parameter"><span class="std std-ref">하나의 매개변수로서의 여러 URI 세그먼트</span></a>를 참조하십시오.</p>
+</div>
+<p>컨트롤러의 구현은 최대 매개변수 개수를 고려해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Catalog</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">productLookup</span><span class="p">(</span><span class="nv">$seg1</span> <span class="o">=</span> <span class="k">false</span><span class="p">,</span> <span class="nv">$seg2</span> <span class="o">=</span> <span class="k">false</span><span class="p">,</span> <span class="nv">$seg3</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$seg1</span><span class="p">;</span> <span class="c1">// Will be 123 in all examples</span>
+        <span class="k">echo</span> <span class="nv">$seg2</span><span class="p">;</span> <span class="c1">// false in first, 456 in second and third example</span>
+        <span class="k">echo</span> <span class="nv">$seg3</span><span class="p">;</span> <span class="c1">// false in first and second, 789 in third</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>또는 <a class="reference external" href="https://www.php.net/manual/ko/functions.arguments.php#functions.variable-arg-list">가변 길이 인수 목록</a>을 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Catalog</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">productLookup</span><span class="p">(</span><span class="o">...</span><span class="nv">$params</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span> <span class="c1">// Will be 123 in all examples</span>
+        <span class="k">echo</span> <span class="nv">$params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span> <span class="c1">// null in first, 456 in second and third example</span>
+        <span class="k">echo</span> <span class="nv">$params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span> <span class="c1">// null in first and second, 789 in third</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">(:any)</span></code> 뒤에는 어떠한 자리표시자도 두지 마십시오. 컨트롤러 메서드에 전달되는 매개변수의 개수가 변경될 수 있기 때문입니다.</p>
+</div>
+<p>여러 세그먼트를 매칭하는 것이 의도한 동작이 아니라면, 라우트를 정의할 때 <code class="docutils literal notranslate"><span class="pre">(:segment)</span></code>를 사용해야 합니다. 위의 예제 URL들을 사용하면 다음과 같습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 설정은 <strong>product/123</strong>만 매칭하며, 다른 예제들에 대해서는 404 에러를 발생시킵니다.</p>
+</section>
+</section>
+<section id="custom-placeholders">
+<h4><a class="toc-backref" href="#id26" role="doc-backlink">커스텀 자리표시자</a><a class="headerlink" href="#custom-placeholders" title="Link to this heading"></a></h4>
+<p>라우트 파일에서 사용할 자신만의 자리표시자를 만들어 경험과 가독성을 완전히 커스터마이징할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">addPlaceholder()</span></code> 메서드를 사용하여 새로운 자리표시자를 추가합니다. 첫 번째 매개변수는 자리표시자로 사용할 문자열이고, 두 번째 매개변수는 대체될 정규 표현식 패턴입니다. 이는 라우트를 추가하기 전에 호출되어야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addPlaceholder</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="s1">&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/(:uuid)&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::show/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="regular-expressions">
+<h4><a class="toc-backref" href="#id27" role="doc-backlink">정규 표현식</a><a class="headerlink" href="#regular-expressions" title="Link to this heading"></a></h4>
+<p>원한다면 정규 표현식을 사용하여 라우팅 규칙을 정의할 수 있습니다. 유효한 모든 정규 표현식이 허용되며 역참조(back-references)도 가능합니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>참고: 역참조를 사용하는 경우 이중 백슬래시 구문 대신 달러($) 구문을 사용해야 합니다. 전형적인 정규 표현식 라우트는 다음과 같은 모습일 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;products/([a-z]+)/(\d+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Products::show/$1/id_$2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>위의 예에서 <strong>products/shirts/123</strong>과 유사한 URI는 <code class="docutils literal notranslate"><span class="pre">Products</span></code> 컨트롤러 클래스의 <code class="docutils literal notranslate"><span class="pre">show()</span></code> 메서드를 호출하며, 원래의 첫 번째와 두 번째 세그먼트가 메서드 인수로 전달됩니다.</p>
+<p>정규 표현식을 사용하면 일반적으로 여러 세그먼트 사이의 구분자를 나타내는 슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)가 포함된 세그먼트도 캡처할 수 있습니다.</p>
+<p>예를 들어, 사용자가 웹 애플리케이션의 비밀번호로 보호된 영역에 접근할 때 로그인 후 동일한 페이지로 리다이렉트하고 싶다면 다음 예제가 유용할 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;login/(.+)&#39;</span><span class="p">,</span> <span class="s1">&#39;Auth::login/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>기본적으로 위의 예에서 <code class="docutils literal notranslate"><span class="pre">$1</span></code> 자리표시자에 슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)가 포함되어 있다면, <code class="docutils literal notranslate"><span class="pre">Auth::login()</span></code>에 전달될 때 여전히 여러 매개변수로 분리됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0부터는 설정 옵션을 통해 이 동작을 변경할 수 있습니다. 자세한 내용은 <a class="reference internal" href="#multiple-uri-segments-as-one-parameter"><span class="std std-ref">하나의 매개변수로서의 여러 URI 세그먼트</span></a>를 참조하십시오.</p>
+</div>
+<p>정규 표현식을 모르거나 더 배우고 싶다면 <a class="reference external" href="https://www.regular-expressions.info/">regular-expressions.info</a>가 좋은 시작점이 될 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>자리표시자와 정규 표현식을 혼합하여 사용할 수도 있습니다.</p>
+</div>
+</section>
+</section>
+<section id="view-routes">
+<span id="id2"></span><h3><a class="toc-backref" href="#id28" role="doc-backlink">뷰 라우트</a><a class="headerlink" href="#view-routes" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>로직이 필요 없이 단순히 뷰를 렌더링하고 싶다면 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 메서드를 사용할 수 있습니다. 이는 항상 GET 요청으로 취급됩니다. 이 메서드는 두 번째 매개변수로 로드할 뷰의 이름을 받습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Displays the view in /app/Views/pages/about.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;pages/about&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>라우트 내에 자리표시자를 사용하는 경우, 뷰 내에서 <code class="docutils literal notranslate"><span class="pre">$segments</span></code>라는 특별한 변수를 통해 접근할 수 있습니다. 이들은 라우트에 나타나는 순서대로 인덱싱된 배열로 제공됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Displays the view in /app/Views/map.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;map/(:segment)/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">);</span>
+
+<span class="c1">// Within the view, you can access the segments with</span>
+<span class="c1">// $segments[0] and $segments[1] respectively.</span>
+</pre></div>
+</div>
+</section>
+<section id="redirecting-routes">
+<span id="id3"></span><h3><a class="toc-backref" href="#id29" role="doc-backlink">리다이렉트 라우트</a><a class="headerlink" href="#redirecting-routes" title="Link to this heading"></a></h3>
+<p>오랫동안 운영되는 사이트라면 페이지 위치가 변경되기 마련입니다. <code class="docutils literal notranslate"><span class="pre">addRedirect()</span></code> 메서드를 사용하여 다른 라우트로 리다이렉트해야 하는 라우트를 지정할 수 있습니다. 첫 번째 매개변수는 이전 라우트의 URI 패턴입니다. 두 번째 매개변수는 리다이렉트할 새 URI이거나 명명된 라우트(named route)의 이름입니다. 세 번째 매개변수는 리다이렉트와 함께 전송할 HTTP 상태 코드입니다. 기본값은 302(임시 리다이렉트)이며 대부분의 경우에 권장됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/profile&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;profile&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Redirect to a named route</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addRedirect</span><span class="p">(</span><span class="s1">&#39;users/about&#39;</span><span class="p">,</span> <span class="s1">&#39;profile&#39;</span><span class="p">);</span>
+<span class="c1">// Redirect to a URI</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addRedirect</span><span class="p">(</span><span class="s1">&#39;users/about&#39;</span><span class="p">,</span> <span class="s1">&#39;users/profile&#39;</span><span class="p">);</span>
+
+<span class="c1">// Redirect with placeholder</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;post/(:num)/comment/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;PostsComments::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;post.comment&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Redirect to a URI</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addRedirect</span><span class="p">(</span><span class="s1">&#39;article/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;post/$1/comment/$2&#39;</span><span class="p">);</span>
+<span class="c1">// Redirect to a named route</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">addRedirect</span><span class="p">(</span><span class="s1">&#39;article/(:num)/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;post.comment&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.2.0부터 <code class="docutils literal notranslate"><span class="pre">addRedirect()</span></code>에서 자리표시자를 사용할 수 있습니다.</p>
+</div>
+<p>페이지를 불러오는 중에 리다이렉트 라우트가 일치하면, 컨트롤러가 로드되기 전에 사용자는 즉시 새 페이지로 리다이렉트됩니다.</p>
+</section>
+<section id="environment-restrictions">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">환경 제한</a><a class="headerlink" href="#environment-restrictions" title="Link to this heading"></a></h3>
+<p>특정 환경에서만 볼 수 있는 라우트 집합을 만들 수 있습니다. 이를 통해 개발자만 로컬 머신에서 사용할 수 있고 테스트나 운영 서버에서는 접근할 수 없는 도구를 만들 수 있습니다. 이는 <code class="docutils literal notranslate"><span class="pre">environment()</span></code> 메서드로 할 수 있습니다. 첫 번째 매개변수는 환경 이름입니다. 이 클로저 안에서 정의된 라우트는 지정한 환경에서만 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;builder&#39;</span><span class="p">,</span> <span class="s1">&#39;Tools\Builder::index&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="routes-with-any-http-verbs">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">모든 HTTP 동사의 라우트</a><a class="headerlink" href="#routes-with-any-http-verbs" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 더 적절한 다른 메서드를 사용하는 것이 좋습니다.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드는 편리해 보이지만, 앞에서 설명한 HTTP 동사 기반 라우트를 항상 사용하는 것이 더 안전합니다. <a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF 보호</span></a>를 사용하더라도 <strong>GET</strong> 요청은 보호하지 않습니다. <code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드에 지정한 URI가 GET 메서드로 접근 가능하다면 CSRF 보호는 작동하지 않습니다.</p>
+</div>
+<p>어떤 HTTP 동사로든 라우트를 정의할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드를 사용하면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;Product::feature&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>HTTP 동사 기반 라우트를 사용하면 현재 요청 메서드와 일치하는 라우트만 저장되므로, 찾을 때 검색해야 하는 라우트 수가 줄어 약간의 성능 향상도 얻을 수 있습니다.</p>
+</div>
+</section>
+<section id="mapping-multiple-routes">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">여러 라우트 매핑</a><a class="headerlink" href="#mapping-multiple-routes" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 더 적절한 다른 메서드를 사용하는 것이 좋습니다.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><code class="docutils literal notranslate"><span class="pre">map()</span></code> 메서드도 내부적으로 <code class="docutils literal notranslate"><span class="pre">add()</span></code>를 호출하므로 <code class="docutils literal notranslate"><span class="pre">add()</span></code>와 마찬가지로 권장되지 않습니다.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드는 사용하기 쉽지만, 여러 라우트를 한 번에 다룰 때는 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 메서드가 더 편리한 경우가 많습니다. 추가할 각 라우트마다 <code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드를 호출하는 대신, 라우트 배열을 정의한 다음 첫 번째 매개변수로 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 메서드에 전달할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$multipleRoutes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;product/(:num)&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;Catalog::productLookupById&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;product/(:alphanum)&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Catalog::productLookupByName&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="nv">$multipleRoutes</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="command-line-only-routes">
+<span id="id4"></span><h3><a class="toc-backref" href="#id33" role="doc-backlink">명령줄 전용 라우트</a><a class="headerlink" href="#command-line-only-routes" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>CLI 스크립트에는 컨트롤러를 CLI로 호출하는 대신 Spark 명령을 사용하는 것이 좋습니다. 자세한 내용은 <a class="reference internal" href="../cli/cli_commands.html"><span class="doc">Spark 명령 만들기</span></a> 페이지를 참조하십시오.</p>
+</div>
+<p>HTTP 동사 기반 라우트 메서드로 생성된 라우트는 CLI에서 사용할 수 없지만, <code class="docutils literal notranslate"><span class="pre">add()</span></code> 메서드로 생성된 라우트는 명령줄에서 계속 사용할 수 있습니다.</p>
+<p>명령줄에서만 동작하고 웹 브라우저에서는 접근할 수 없는 라우트를 <code class="docutils literal notranslate"><span class="pre">cli()</span></code> 메서드로 만들 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">cli</span><span class="p">(</span><span class="s1">&#39;migrate&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Database::migrate&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">Auto Routing (Legacy)</span></a>를 활성화하고 명령 파일을 <strong>app/Controllers</strong>에 두면, 누구나 HTTP를 통해 Auto Routing (Legacy)의 도움으로 해당 명령에 접근할 수 있습니다.</p>
+</div>
+</section>
+</section>
+<section id="global-options">
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">전역 옵션</a><a class="headerlink" href="#global-options" title="Link to this heading"></a></h2>
+<p>라우트를 생성하는 모든 메서드(<code class="docutils literal notranslate"><span class="pre">get()</span></code>, <code class="docutils literal notranslate"><span class="pre">post()</span></code>, <a class="reference internal" href="restful.html"><span class="doc">resource()</span></a> 등)는 생성된 라우트를 수정하거나 더 제한할 수 있는 옵션 배열을 받을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">$options</span></code> 배열은 항상 마지막 매개변수입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">head</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">patch</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">],</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="nv">$array</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{});</span>
+</pre></div>
+</div>
+<section id="applying-filters">
+<span id="id5"></span><h3><a class="toc-backref" href="#id35" role="doc-backlink">필터 적용</a><a class="headerlink" href="#applying-filters" title="Link to this heading"></a></h3>
+<p>컨트롤러 전후에 실행할 필터를 지정하여 특정 라우트의 동작을 변경할 수 있습니다. 이는 인증이나 API 로깅 시 특히 유용합니다.</p>
+<p>필터 값은 문자열 하나 또는 문자열 배열일 수 있습니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">app/Config/Filters.php</span></code>에 정의된 별칭과 일치합니다.</p></li>
+<li><p>필터 클래스 이름</p></li>
+</ul>
+<p>별칭 정의에 대한 자세한 내용은 <a class="reference internal" href="filters.html#filters-aliases"><span class="std std-ref">Controller Filters</span></a>를 참조하십시오.</p>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>필터를 <strong>app/Config/Routes.php</strong>에서 라우트에 지정한 경우(<strong>app/Config/Filters.php</strong>가 아님), Auto Routing (Legacy)를 비활성화하는 것이 좋습니다. <a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">Auto Routing (Legacy)</span></a>가 활성화되어 있으면 컨트롤러가 설정된 라우트와 다른 URL로 접근될 수 있으며, 이 경우 라우트에 지정한 필터가 적용되지 않을 수 있습니다. 자동 라우팅을 비활성화하려면 <a class="reference internal" href="#use-defined-routes-only"><span class="std std-ref">정의된 라우트만 사용</span></a>를 참조하십시오.</p>
+</div>
+<section id="alias-filter">
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">별칭 필터</a><a class="headerlink" href="#alias-filter" title="Link to this heading"></a></h4>
+<p>필터 값으로 <a class="reference internal" href="filters.html#filters-aliases"><span class="std std-ref">app/Config/Filters.php에 정의된</span></a> 별칭을 지정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin-auth&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>또한 별칭 필터의 <code class="docutils literal notranslate"><span class="pre">before()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">after()</span></code> 메서드에 전달할 인수도 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;users/delete/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin-auth:dual,noreturn&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="classname-filter">
+<h4><a class="toc-backref" href="#id37" role="doc-backlink">클래스 이름 필터</a><a class="headerlink" href="#classname-filter" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.1.5.</span></p>
+</div>
+<p>필터 값으로 필터 클래스 이름을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="nx">\App\Filters\SomeFilter</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-filters">
+<span id="id6"></span><h4><a class="toc-backref" href="#id38" role="doc-backlink">다중 필터</a><a class="headerlink" href="#multiple-filters" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.1.5.</span></p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>v4.5.0부터 <em>Multiple Filters</em>는 항상 활성화됩니다. v4.5.0 이전에는 <em>Multiple Filters</em>가 기본적으로 비활성화되어 있었습니다. v4.5.0 이전 버전에서 사용하려면 자세한 내용은 <a class="reference internal" href="../installation/upgrade_415.html#upgrade-415-multiple-filters-for-a-route"><span class="std std-ref">4.1.4에서 4.1.5로 업그레이드</span></a>를 참조하십시오.</p>
+</div>
+<p>필터 값에 배열을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39; AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;admin-auth&#39;</span><span class="p">,</span> <span class="nx">\App\Filters\SomeFilter</span><span class="o">::</span><span class="na">class</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<section id="filter-arguments">
+<h5>필터 인수<a class="headerlink" href="#filter-arguments" title="Link to this heading"></a></h5>
+<p>필터에 추가 인수를 전달할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;users/delete/(:segment)&#39;</span><span class="p">,</span> <span class="s1">&#39;AdminController::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin-auth:dual,noreturn&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>이 예제에서는 배열 <code class="docutils literal notranslate"><span class="pre">['dual',</span> <span class="pre">'noreturn']</span></code>이 필터의 <code class="docutils literal notranslate"><span class="pre">before()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">after()</span></code> 구현 메서드의 <code class="docutils literal notranslate"><span class="pre">$arguments</span></code>로 전달됩니다.</p>
+</section>
+</section>
+</section>
+<section id="assigning-namespace">
+<span id="id7"></span><h3><a class="toc-backref" href="#id39" role="doc-backlink">네임스페이스 지정</a><a class="headerlink" href="#assigning-namespace" title="Link to this heading"></a></h3>
+<p>생성된 컨트롤러 앞에는 <a class="reference internal" href="#routing-default-namespace"><span class="std std-ref">기본 네임스페이스</span></a>가 붙지만, <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 옵션을 사용하여 옵션 배열에서 다른 네임스페이스를 지정할 수도 있습니다. 값은 수정하려는 네임스페이스여야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Routes to \Admin\Users::index()</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin/users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Admin&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>새 네임스페이스는 get, post 등 단일 라우트를 생성하는 메서드 호출에만 적용됩니다. 여러 라우트를 생성하는 메서드의 경우에는 해당 함수로 생성된 모든 라우트에 새 네임스페이스가 적용되며, <code class="docutils literal notranslate"><span class="pre">group()</span></code>의 경우에는 클로저 안에서 생성된 모든 라우트에 적용됩니다.</p>
+</section>
+<section id="limit-to-hostname">
+<h3><a class="toc-backref" href="#id40" role="doc-backlink">호스트 이름으로 제한</a><a class="headerlink" href="#limit-to-hostname" title="Link to this heading"></a></h3>
+<p>옵션 배열의 일부로 허용할 원하는 도메인과 함께 <code class="docutils literal notranslate"><span class="pre">hostname</span></code> 옵션을 전달하면, 라우트 그룹이 애플리케이션의 특정 도메인 또는 서브도메인에서만 동작하도록 제한할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;accounts.example.com&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>이 예제는 도메인이 정확히 <strong>accounts.example.com</strong>과 일치할 때만 지정한 호스트가 동작하도록 허용합니다. 메인 사이트 <strong>example.com</strong>에서는 동작하지 않습니다.</p>
+<section id="restrict-by-multiple-hostnames">
+<h4><a class="toc-backref" href="#id41" role="doc-backlink">여러 호스트 이름으로 제한</a><a class="headerlink" href="#restrict-by-multiple-hostnames" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.6.0.</span></p>
+</div>
+<p>또한 여러 호스트 이름으로 제한할 수도 있습니다. 예:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;hostname&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;s1.example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;s2.example.com&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="limit-to-subdomains">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink">서브도메인으로 제한</a><a class="headerlink" href="#limit-to-subdomains" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">subdomain</span></code> 옵션이 있으면 시스템은 라우트를 해당 서브도메인에서만 사용할 수 있도록 제한합니다. 이 서브도메인을 통해 애플리케이션을 보고 있을 때만 라우트가 일치합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Limit to media.example.com</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;subdomain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;media&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>값을 별표(<code class="docutils literal notranslate"><span class="pre">*</span></code>)로 설정하면 모든 서브도메인으로 제한할 수 있습니다. 서브도메인이 없는 URL에서 보고 있다면 일치하지 않습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Limit to any sub-domain</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;subdomain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;*&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>시스템이 완벽하지는 않으며, 운영 환경에서 사용하기 전에 특정 도메인에서 테스트해야 합니다. 대부분의 도메인은 잘 작동하지만, 도메인 자체에 마침표가 있는 일부 예외 사례(접미사나 www를 구분하는 데 쓰이지 않는 경우)는 잘못된 양성(false positive)을 유발할 수 있습니다.</p>
+</div>
+</section>
+<section id="offsetting-the-matched-parameters">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink">일치한 매개변수 오프셋</a><a class="headerlink" href="#offsetting-the-matched-parameters" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">offset</span></code> 옵션을 사용하면 라우트에서 일치한 매개변수를 임의의 숫자만큼 오프셋할 수 있으며, 값은 오프셋할 세그먼트 수입니다.</p>
+<p>첫 번째 URI 세그먼트가 버전 번호인 API를 개발할 때 유용할 수 있습니다. 첫 번째 매개변수가 언어 문자열일 때도 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;users/show/$1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;offset&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="c1">// Creates:</span>
+<span class="nv">$routes</span><span class="p">[</span><span class="s1">&#39;users/(:num)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;users/show/$2&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reverse-routing">
+<span id="id8"></span><h2><a class="toc-backref" href="#id44" role="doc-backlink">역방향 라우팅</a><a class="headerlink" href="#reverse-routing" title="Link to this heading"></a></h2>
+<p>역방향 라우팅을 사용하면 링크가 이동해야 할 컨트롤러와 메서드, 그리고 필요한 매개변수를 정의하고, 라우터가 해당 현재 라우트를 찾도록 할 수 있습니다. 이를 통해 애플리케이션 코드를 수정하지 않고도 라우트 정의를 변경할 수 있습니다. 보통 뷰에서 링크를 만들 때 사용합니다.</p>
+<p>예를 들어 연결할 사진 갤러리 라우트가 있다면, <a class="reference internal" href="../helpers/url_helper.html#url_to" title="url_to"><code class="xref php php-func docutils literal notranslate"><span class="pre">url_to()</span></code></a> 헬퍼 함수를 사용해 사용해야 할 라우트를 가져올 수 있습니다. 첫 번째 매개변수는 두 개의 콜론(<code class="docutils literal notranslate"><span class="pre">::</span></code>)으로 구분된 완전한 컨트롤러와 메서드이며, 초기 라우트를 작성할 때와 거의 같습니다. 라우트에 전달해야 하는 매개변수는 그다음에 전달합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// The route is defined as:</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/(:num)/gallery/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Galleries::showUserGallery/$1/$2&#39;</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span>
+
+<span class="cm">&lt;!-- Generate the URI to link to user ID 15, gallery 12: --&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">url_to</span><span class="p">(</span><span class="s1">&#39;Galleries::showUserGallery&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>View Gallery<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Result: &#39;http://example.com/users/15/gallery/12&#39; --&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="named-routes">
+<span id="using-named-routes"></span><h2><a class="toc-backref" href="#id45" role="doc-backlink">이름 있는 라우트</a><a class="headerlink" href="#named-routes" title="Link to this heading"></a></h2>
+<p>라우트에 이름을 붙이면 애플리케이션의 취약성을 줄일 수 있습니다. 이는 나중에 호출할 수 있도록 라우트에 이름을 부여하는 기능이며, 라우트 정의가 바뀌더라도 <a class="reference internal" href="../helpers/url_helper.html#url_to" title="url_to"><code class="xref php php-func docutils literal notranslate"><span class="pre">url_to()</span></code></a>로 만든 애플리케이션 내 링크는 변경 없이 그대로 동작합니다. 라우트 이름은 <code class="docutils literal notranslate"><span class="pre">as</span></code> 옵션에 이름을 전달해서 지정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// The route is defined as:</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users/(:num)/gallery/(:num)&#39;</span><span class="p">,</span> <span class="s1">&#39;Galleries::showUserGallery/$1/$2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;user_gallery&#39;</span><span class="p">]);</span>
+
+<span class="cp">?&gt;</span>
+
+<span class="cm">&lt;!-- Generate the URI to link to user ID 15, gallery 12: --&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">url_to</span><span class="p">(</span><span class="s1">&#39;user_gallery&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>View Gallery<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Result: &#39;http://example.com/users/15/gallery/12&#39; --&gt;</span>
+</pre></div>
+</div>
+<p>이것은 뷰를 더 읽기 쉽게 만든다는 추가 이점도 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>기본적으로 정의된 모든 라우트는 경로와 같은 이름을 가집니다. 플레이스홀더는 대응하는 정규식으로 대체됩니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">$routes-&gt;get('edit/(:num)',</span> <span class="pre">'PostController::edit/$1');</span></code> 같은 라우트를 정의했다면 <code class="docutils literal notranslate"><span class="pre">route_to('edit/([0-9]+)',</span> <span class="pre">12)</span></code>로 대응하는 URL을 생성할 수 있습니다.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><a class="reference internal" href="#routing-priority"><span class="std std-ref">라우트 우선순위</span></a>에 따르면, 이름 없는 라우트가 먼저 정의된 뒤 같은 경로 이름을 가진 명명된 라우트가 나중에 정의되면, 두 번째 라우트는 자동 할당된 첫 번째 라우트 이름과 충돌하므로 등록되지 않습니다.</p>
+</div>
+</section>
+<section id="grouping-routes">
+<h2><a class="toc-backref" href="#id46" role="doc-backlink">라우트 그룹화</a><a class="headerlink" href="#grouping-routes" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">group()</span></code> 메서드를 사용하면 라우트를 공통 이름 아래로 묶을 수 있습니다. 그룹 이름은 그룹 안에 정의된 라우트보다 앞에 오는 세그먼트가 됩니다. 이렇게 하면 admin 영역처럼 같은 시작 문자열을 공유하는 많은 라우트를 만들 때 필요한 타이핑을 줄일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Blog::index&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>이렇게 하면 <strong>users</strong> 및 <strong>blog</strong> URI 앞에 <strong>admin</strong>이 붙어 <strong>admin/users</strong> 및 <strong>admin/blog</strong>를 처리합니다.</p>
+<section id="setting-namespace">
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">네임스페이스 설정</a><a class="headerlink" href="#setting-namespace" title="Link to this heading"></a></h3>
+<p>그룹에 옵션을 할당해야 한다면 <a class="reference internal" href="#assigning-namespace"><span class="std std-ref">네임스페이스 지정</span></a>를 참고하여 콜백보다 앞서 지정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;App\API\v1&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>이렇게 하면 <strong>api/users</strong> URI의 <code class="docutils literal notranslate"><span class="pre">App\API\v1\Users</span></code> 컨트롤러에 대한 리소스 라우트를 처리합니다.</p>
+</section>
+<section id="setting-filters">
+<h3><a class="toc-backref" href="#id48" role="doc-backlink">필터 설정</a><a class="headerlink" href="#setting-filters" title="Link to this heading"></a></h3>
+<p>그룹 라우트에 특정 <a class="reference internal" href="filters.html"><span class="doc">filter</span></a>를 사용할 수도 있습니다. 이는 컨트롤러 전이나 후에 항상 필터를 실행합니다. 인증이나 API 로깅에 특히 유용합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;api-auth&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>필터 값은 <strong>app/Config/Filters.php</strong>에 정의된 별칭 중 하나와 일치해야 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.4 이전에는 버그 때문에 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 필터가 내부 라우트에 전달된 필터와 병합되지 않았습니다.</p>
+</div>
+</section>
+<section id="setting-other-options">
+<h3><a class="toc-backref" href="#id49" role="doc-backlink">기타 옵션 설정</a><a class="headerlink" href="#setting-other-options" title="Link to this heading"></a></h3>
+<p>경우에 따라 namespace, subdomain 등 다른 라우트 설정 옵션을 적용하기 위해 라우트를 그룹화하고 싶을 수 있습니다. 그룹에 접두사를 반드시 추가할 필요가 없다면 접두사 대신 빈 문자열을 전달할 수 있으며, 그룹 내 라우트는 그룹이 존재하지 않는 것처럼 라우팅되지만 지정한 라우트 설정 옵션은 적용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Myth\Auth\Controllers&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="s1">&#39;AuthController::login&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;as&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;login&#39;</span><span class="p">]);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="s1">&#39;AuthController::attemptLogin&#39;</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;logout&#39;</span><span class="p">,</span> <span class="s1">&#39;AuthController::logout&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="nesting-groups">
+<span id="routing-nesting-groups"></span><h3><a class="toc-backref" href="#id50" role="doc-backlink">그룹 중첩</a><a class="headerlink" href="#nesting-groups" title="Link to this heading"></a></h3>
+<p>필요하다면 더 세밀한 구성을 위해 그룹 안에 그룹을 중첩할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myfilter1:config&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Admin::index&#39;</span><span class="p">);</span>
+
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;filter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myfilter2:region&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::list&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>이렇게 하면 <strong>admin/users/list</strong> URL을 처리합니다.</p>
+<p>바깥쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 <code class="docutils literal notranslate"><span class="pre">filter</span></code> 옵션은 안쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>의 필터 옵션과 병합됩니다. 위 코드는 <code class="docutils literal notranslate"><span class="pre">admin</span></code> 라우트에 <code class="docutils literal notranslate"><span class="pre">myfilter1:config</span></code>를 실행하고, <code class="docutils literal notranslate"><span class="pre">admin/users/list</span></code> 라우트에 <code class="docutils literal notranslate"><span class="pre">myfilter1:config</span></code>와 <code class="docutils literal notranslate"><span class="pre">myfilter2:region</span></code>을 실행합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.6.0 이전에는 동일한 필터를 서로 다른 인수로 여러 번 실행할 수 없었습니다.</p>
+</div>
+<p>안쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 다른 겹치는 옵션은 해당 값으로 덮어씌워집니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0 이전에는 버그로 인해 바깥쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 옵션이 안쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code> 옵션과 병합되지 않았습니다.</p>
+</div>
+</section>
+</section>
+<section id="route-priority">
+<span id="routing-priority"></span><h2><a class="toc-backref" href="#id51" role="doc-backlink">라우트 우선순위</a><a class="headerlink" href="#route-priority" title="Link to this heading"></a></h2>
+<p>라우트는 정의된 순서대로 라우팅 테이블에 등록됩니다. 즉, URI에 접근하면 먼저 일치하는 라우트가 실행됩니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>서로 다른 핸들러로 같은 라우트 경로가 두 번 이상 정의되면, 먼저 정의된 라우트만 등록됩니다.</p>
+</div>
+<p>라우팅 테이블에 등록된 라우트는 <a class="reference internal" href="#routing-spark-routes"><span class="std std-ref">spark routes</span></a> 명령으로 확인할 수 있습니다.</p>
+<section id="changing-route-priority">
+<h3><a class="toc-backref" href="#id52" role="doc-backlink">라우트 우선순위 변경</a><a class="headerlink" href="#changing-route-priority" title="Link to this heading"></a></h3>
+<p>모듈을 사용할 때 애플리케이션의 라우트에 와일드카드가 포함되어 있으면 문제가 될 수 있습니다. 그러면 모듈 라우트가 올바르게 처리되지 않습니다. <code class="docutils literal notranslate"><span class="pre">priority</span></code> 옵션을 사용해 라우트 처리 우선순위를 낮추면 이 문제를 해결할 수 있습니다. 이 매개변수는 양의 정수와 0을 받을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">priority</span></code>에서 지정한 숫자가 클수록 처리 큐에서의 라우트 우선순위는 낮아집니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// First you need to enable processing of the routes queue by priority.</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">();</span>
+
+<span class="c1">// Config\Routes</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;(.*)&#39;</span><span class="p">,</span> <span class="s1">&#39;Posts::index&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;priority&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="c1">// Modules\Acme\Config\Routes</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin::index&#39;</span><span class="p">);</span>
+
+<span class="c1">// The &quot;admin&quot; route will now be processed before the wildcard route.</span>
+</pre></div>
+</div>
+<p>이 기능을 비활성화하려면 메서드를 <code class="docutils literal notranslate"><span class="pre">false</span></code> 인수로 호출해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>기본적으로 모든 라우트의 우선순위는 0입니다. 음의 정수는 절대값으로 변환됩니다.</p>
+</div>
+</section>
+</section>
+<section id="routes-configuration-options">
+<span id="id9"></span><h2><a class="toc-backref" href="#id53" role="doc-backlink">라우트 구성 옵션</a><a class="headerlink" href="#routes-configuration-options" title="Link to this heading"></a></h2>
+<p>RoutesCollection 클래스는 모든 라우트에 영향을 주는 여러 옵션을 제공하며, 애플리케이션의 요구에 맞게 수정할 수 있습니다. 이러한 옵션은 <strong>app/Config/Routing.php</strong>에서 사용할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>구성 파일 <strong>app/Config/Routing.php</strong>는 v4.4.0부터 추가되었습니다. 이전 버전에서는 <strong>app/Config/Routes.php</strong>에서 설정을 변경하기 위해 setter 메서드를 사용했습니다.</p>
+</div>
+<section id="default-namespace">
+<span id="routing-default-namespace"></span><h3><a class="toc-backref" href="#id54" role="doc-backlink">기본 네임스페이스</a><a class="headerlink" href="#default-namespace" title="Link to this heading"></a></h3>
+<p>라우트에 컨트롤러를 매칭할 때 라우터는 라우트에 지정된 컨트롤러 앞에 기본 네임스페이스 값을 추가합니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">App\Controllers</span></code>입니다.</p>
+<p>값을 빈 문자열(<code class="docutils literal notranslate"><span class="pre">''</span></code>)로 설정하면 각 라우트에서 전체 네임스페이스가 포함된 컨트롤러를 지정해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultNamespace</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// In app/Config/Routes.php</span>
+<span class="c1">// Controller is \Users</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">);</span>
+
+<span class="c1">// Controller is \Admin\Users</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>컨트롤러에 네임스페이스를 명시하지 않았다면 이 값을 변경할 필요가 없습니다. 컨트롤러에 네임스페이스를 사용한다면 이 값을 변경해 입력을 줄일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// This can be overridden in app/Config/Routes.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setDefaultNamespace</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
+
+<span class="c1">// Controller is \App\Users</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Users::index&#39;</span><span class="p">);</span>
+
+<span class="c1">// Controller is \App\Admin\Users</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin\Users::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="default-method">
+<span id="routing-default-method"></span><h3><a class="toc-backref" href="#id55" role="doc-backlink">기본 메서드</a><a class="headerlink" href="#default-method" title="Link to this heading"></a></h3>
+<p>이 설정은 라우트 핸들러에 컨트롤러 이름만 있고 메서드 이름이 없는 경우에 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">index</span></code>입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In app/Config/Routing.php</span>
+<span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultMethod</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$defaultMethod</span></code>는 Auto Routing에서도 자주 사용됩니다. 자세한 내용은 <a class="reference internal" href="auto_routing_improved.html#routing-auto-routing-improved-default-method"><span class="std std-ref">Auto Routing (Improved)</span></a> 또는 <a class="reference internal" href="#routing-auto-routing-legacy-default-method"><span class="std std-ref">Auto Routing (Legacy)</span></a>를 참조하십시오.</p>
+</div>
+<p>다음 라우트를 정의하면:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">App\Controllers\Home</span></code> 컨트롤러의 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 메서드는 라우트가 일치할 때 실행됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">_</span></code>로 시작하는 메서드 이름은 기본 메서드로 사용할 수 없습니다. 그러나 v4.5.0부터는 <code class="docutils literal notranslate"><span class="pre">__invoke</span></code> 메서드를 사용할 수 있습니다.</p>
+</div>
+</section>
+<section id="translate-uri-dashes">
+<h3><a class="toc-backref" href="#id56" role="doc-backlink">URI의 대시 변환</a><a class="headerlink" href="#translate-uri-dashes" title="Link to this heading"></a></h3>
+<p>이 옵션을 사용하면 Auto Routing에서 컨트롤러와 메서드 URI 세그먼트의 대시(<code class="docutils literal notranslate"><span class="pre">-</span></code>)를 밑줄(<code class="docutils literal notranslate"><span class="pre">_</span></code>)로 자동 변환할 수 있어, 그렇게 해야 할 때 추가 라우트 항목을 줄일 수 있습니다. 대시는 클래스 이름이나 메서드 이름의 유효한 문자가 아니므로, 이를 사용하려고 하면 치명적 오류가 발생하기 때문입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$translateURIDashes</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// This can be overridden in app/Config/Routes.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setTranslateURIDashes</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>Auto Routing (Improved)를 사용할 때 v4.4.0 이전에는 <code class="docutils literal notranslate"><span class="pre">$translateURIDashes</span></code>가 true이면 두 개의 URI가 하나의 컨트롤러 메서드에 대응했습니다. 대시용 URI(예: <strong>foo-bar</strong>)와 밑줄용 URI(예: <strong>foo_bar</strong>)가 그것입니다. 이는 잘못된 동작이었습니다. v4.4.0부터는 밑줄용 URI(<strong>foo_bar</strong>)에 접근할 수 없습니다.</p>
+</div>
+</section>
+<section id="use-defined-routes-only">
+<span id="id10"></span><h3><a class="toc-backref" href="#id57" role="doc-backlink">정의된 라우트만 사용</a><a class="headerlink" href="#use-defined-routes-only" title="Link to this heading"></a></h3>
+<p>v4.2.0부터 자동 라우팅은 기본적으로 비활성화되어 있습니다.</p>
+<p>URI와 일치하는 정의된 라우트를 찾지 못하면, Auto Routing이 활성화되어 있을 때 시스템은 해당 URI를 컨트롤러와 메서드에 매칭하려고 시도합니다.</p>
+<p>이 자동 매칭을 비활성화하고 자신이 정의한 라우트만 허용하려면 <code class="docutils literal notranslate"><span class="pre">$autoRoute</span></code> 속성을 false로 설정하면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoute</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// This can be overridden in app/Config/Routes.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setAutoRoute</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p><a class="reference internal" href="../libraries/security.html"><span class="doc">CSRF 보호</span></a>를 사용하더라도 <strong>GET</strong> 요청은 보호하지 않습니다. URI가 GET 메서드로 접근 가능하다면 CSRF 보호는 작동하지 않습니다.</p>
+</div>
+</section>
+<section id="override">
+<span id="id11"></span><h3><a class="toc-backref" href="#id58" role="doc-backlink">404 오버라이드</a><a class="headerlink" href="#override" title="Link to this heading"></a></h3>
+<p>현재 URI와 일치하는 페이지를 찾지 못하면 시스템은 기본 404 보기를 표시합니다. 라우팅 구성 파일에서 <code class="docutils literal notranslate"><span class="pre">$override404</span></code> 속성을 사용해 404 라우트의 컨트롤러 클래스/메서드를 정의할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="o">?</span><span class="nx">string</span> <span class="nv">$override404</span> <span class="o">=</span> <span class="s1">&#39;App\Errors::show404&#39;</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Routes 구성 파일의 <code class="docutils literal notranslate"><span class="pre">set404Override()</span></code> 메서드로 수행할 작업을 지정하여 동작을 바꿀 수도 있습니다. 값은 유효한 클래스/메서드 쌍 또는 클로저일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routes.php</span>
+<span class="c1">// Would execute the show404 method of the App\Errors class</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">set404Override</span><span class="p">(</span><span class="s1">&#39;App\Errors::show404&#39;</span><span class="p">);</span>
+
+<span class="c1">// Will display a custom view.</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">set404Override</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// If you want to get the URI segments.</span>
+    <span class="nv">$segments</span> <span class="o">=</span> <span class="nx">request</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getUri</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getSegments</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;my_errors/not_found.html&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0부터 404 Override 기능은 기본적으로 Response 상태 코드를 <code class="docutils literal notranslate"><span class="pre">404</span></code>로 설정합니다. 이전 버전에서는 코드가 <code class="docutils literal notranslate"><span class="pre">200</span></code>이었습니다. 컨트롤러에서 상태 코드를 바꾸려면 <code class="xref php php-meth docutils literal notranslate"><span class="pre">CodeIgniterHTTPResponse::setStatusCode()</span></code>를 참고하십시오.</p>
+</div>
+</section>
+<section id="route-processing-by-priority">
+<h3><a class="toc-backref" href="#id59" role="doc-backlink">우선순위에 따른 라우트 처리</a><a class="headerlink" href="#route-processing-by-priority" title="Link to this heading"></a></h3>
+<p>라우트 큐를 우선순위에 따라 처리할지 여부를 켜거나 끕니다. 우선순위를 낮추는 설정은 라우트 옵션으로 지정합니다. 기본값은 비활성화입니다. 이 기능은 모든 라우트에 영향을 미칩니다. 우선순위를 낮추는 사용 예는 <a class="reference internal" href="#routing-priority"><span class="std std-ref">라우트 우선순위</span></a>를 참고하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$prioritize</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// In app/Config/Routes.php</span>
+<span class="c1">// to enable</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">();</span>
+
+<span class="c1">// to disable</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">setPrioritize</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-uri-segments-as-one-parameter">
+<span id="id12"></span><h3><a class="toc-backref" href="#id60" role="doc-backlink">하나의 매개변수로서의 여러 URI 세그먼트</a><a class="headerlink" href="#multiple-uri-segments-as-one-parameter" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p>이 옵션을 활성화하면 <code class="docutils literal notranslate"><span class="pre">(:any)</span></code>처럼 여러 세그먼트와 일치하는 자리표시자는 여러 세그먼트를 포함하더라도 그대로 하나의 매개변수로 전달됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In app/Config/Routing.php</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\Routing</span> <span class="k">as</span> <span class="nx">BaseRouting</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Routing</span> <span class="k">extends</span> <span class="nx">BaseRouting</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$multipleSegmentsOneParam</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>예를 들어 다음 라우트는</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;product/(:any)&#39;</span><span class="p">,</span> <span class="s1">&#39;Catalog::productLookup/$1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>그러면 <strong>product/123</strong>, <strong>product/123/456</strong>, <strong>product/123/456/789</strong> 등과 일치합니다. 그리고 URI가 <strong>product/123/456</strong>인 경우 <code class="docutils literal notranslate"><span class="pre">123/456</span></code>이 <code class="docutils literal notranslate"><span class="pre">Catalog::productLookup()</span></code> 메서드의 첫 번째 매개변수로 전달됩니다.</p>
+</section>
+</section>
+<section id="auto-routing-improved">
+<h2><a class="toc-backref" href="#id61" role="doc-backlink">Auto Routing (Improved)</a><a class="headerlink" href="#auto-routing-improved" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.0.</span></p>
+</div>
+<p>Auto Routing (Improved)는 더 안전한 새로운 자동 라우팅 시스템입니다.</p>
+<p><a class="reference internal" href="auto_routing_improved.html"><span class="doc">자동 라우팅(향상)</span></a>에 대한 자세한 내용은 해당 문서를 참조하십시오.</p>
+</section>
+<section id="auto-routing-legacy">
+<span id="id13"></span><h2><a class="toc-backref" href="#id62" role="doc-backlink">Auto Routing (Legacy)</a><a class="headerlink" href="#auto-routing-legacy" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 기능은 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>를 사용하는 것이 좋습니다.</p>
+</div>
+<p>Auto Routing (Legacy)는 CodeIgniter 3의 라우팅 시스템입니다. 규칙에 따라 HTTP 요청을 자동으로 라우팅하고 해당 컨트롤러 메서드를 실행할 수 있습니다.</p>
+<p>모든 라우트는 <strong>app/Config/Routes.php</strong> 파일에서 정의하거나 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>를 사용하도록 권장합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>설정 오류와 잘못된 코딩을 방지하려면 Auto Routing (Legacy) 기능을 사용하지 않는 것이 좋습니다. 컨트롤러 필터나 CSRF 보호가 우회되는 취약한 앱을 만들기 쉽기 때문입니다.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>Auto Routing (Legacy)는 <strong>모든</strong> HTTP 메서드의 HTTP 요청을 컨트롤러 메서드로 라우팅합니다.</p>
+</div>
+<section id="enable-auto-routing-legacy">
+<h3><a class="toc-backref" href="#id63" role="doc-backlink">Auto Routing (Legacy) 활성화</a><a class="headerlink" href="#enable-auto-routing-legacy" title="Link to this heading"></a></h3>
+<p>v4.2.0부터 자동 라우팅은 기본적으로 비활성화되어 있습니다.</p>
+<p>사용하려면 <strong>app/Config/Routing.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoute</span></code> 옵션을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoute</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>그리고 <strong>app/Config/Feature.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoutesImproved</span></code> 속성을 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoutesImproved</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="uri-segments-legacy">
+<h3><a class="toc-backref" href="#id64" role="doc-backlink">URI 세그먼트 (Legacy)</a><a class="headerlink" href="#uri-segments-legacy" title="Link to this heading"></a></h3>
+<p>Model-View-Controller 접근 방식에서 URL의 세그먼트는 보통 다음을 나타냅니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">class</span><span class="o">/</span><span class="nx">method</span><span class="o">/</span><span class="nx">ID</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>첫 번째 세그먼트는 호출되어야 하는 컨트롤러 <strong>클래스</strong>를 나타냅니다.</p></li>
+<li><p>두 번째 세그먼트는 호출되어야 하는 클래스 <strong>메서드</strong>를 나타냅니다.</p></li>
+<li><p>세 번째 및 그 이후의 세그먼트는 컨트롤러에 전달될 ID와 기타 변수를 나타냅니다.</p></li>
+</ol>
+<p>다음 URI를 생각해 보십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">index</span><span class="o">/</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>위의 예에서 CodeIgniter는 <strong>Helloworld.php</strong>라는 컨트롤러를 찾고 <code class="docutils literal notranslate"><span class="pre">index()</span></code> 메서드를 실행하며 <code class="docutils literal notranslate"><span class="pre">'1'</span></code>을 첫 번째 인수로 전달하려고 시도합니다.</p>
+<p>자세한 내용은 <a class="reference internal" href="controllers.html#controller-auto-routing-legacy"><span class="std std-ref">컨트롤러의 Auto Routing (Legacy)</span></a>를 참조하십시오.</p>
+</section>
+<section id="configuration-options-legacy">
+<span id="routing-auto-routing-legacy-configuration-options"></span><h3><a class="toc-backref" href="#id65" role="doc-backlink">구성 옵션 (Legacy)</a><a class="headerlink" href="#configuration-options-legacy" title="Link to this heading"></a></h3>
+<p>이 옵션들은 <strong>app/Config/Routing.php</strong> 파일에서 사용할 수 있습니다.</p>
+<section id="default-controller-legacy">
+<h4><a class="toc-backref" href="#id66" role="doc-backlink">기본 컨트롤러 (Legacy)</a><a class="headerlink" href="#default-controller-legacy" title="Link to this heading"></a></h4>
+<section id="for-site-root-uri-legacy">
+<h5>사이트 루트 URI용 (Legacy)<a class="headerlink" href="#for-site-root-uri-legacy" title="Link to this heading"></a></h5>
+<p>사용자가 사이트의 루트(예: <strong>example.com</strong>)를 방문하면, 사용할 컨트롤러는 명시적으로 해당 라우트가 존재하지 않는 한 <code class="docutils literal notranslate"><span class="pre">$defaultController</span></code> 속성에 설정된 값으로 결정됩니다.</p>
+<p>이 값의 기본값은 <code class="docutils literal notranslate"><span class="pre">Home</span></code>이며, <strong>app/Controllers/Home.php</strong>에 있는 컨트롤러와 일치합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultController</span> <span class="o">=</span> <span class="s1">&#39;Home&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="for-directory-uri-legacy">
+<h5>디렉터리 URI용 (Legacy)<a class="headerlink" href="#for-directory-uri-legacy" title="Link to this heading"></a></h5>
+<p>일치하는 라우트를 찾지 못했을 때도 기본 컨트롤러가 사용되며, URI가 컨트롤러 디렉터리의 디렉터리를 가리키는 경우에도 사용됩니다. 예를 들어 사용자가 <strong>example.com/admin</strong>을 방문했을 때 <strong>app/Controllers/Admin/Home.php</strong>에 컨트롤러가 있으면 그것이 사용됩니다.</p>
+<p>자세한 내용은 <a class="reference internal" href="controllers.html#controller-auto-routing-legacy"><span class="std std-ref">컨트롤러의 Auto Routing (Legacy)</span></a>를 참조하십시오.</p>
+</section>
+</section>
+<section id="default-method-legacy">
+<span id="routing-auto-routing-legacy-default-method"></span><h4><a class="toc-backref" href="#id67" role="doc-backlink">기본 메서드 (Legacy)</a><a class="headerlink" href="#default-method-legacy" title="Link to this heading"></a></h4>
+<p>이는 기본 컨트롤러 설정과 비슷하게 동작하지만, URI와 일치하는 컨트롤러를 찾았으나 메서드에 해당하는 세그먼트가 없을 때 사용할 기본 메서드를 결정하는 데 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">index</span></code>입니다.</p>
+<p>이 예에서 사용자가 <strong>example.com/products</strong>를 방문하고 <code class="docutils literal notranslate"><span class="pre">Products</span></code> 컨트롤러가 존재하면 <code class="docutils literal notranslate"><span class="pre">Products::listAll()</span></code> 메서드가 실행됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultMethod</span> <span class="o">=</span> <span class="s1">&#39;listAll&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="confirming-routes">
+<h2><a class="toc-backref" href="#id68" role="doc-backlink">라우트 확인</a><a class="headerlink" href="#confirming-routes" title="Link to this heading"></a></h2>
+<p>CodeIgniter에는 모든 라우트를 표시하는 다음 <a class="reference internal" href="../cli/spark_commands.html"><span class="doc">명령</span></a>이 있습니다.</p>
+<section id="spark-routes">
+<span id="routing-spark-routes"></span><h3><a class="toc-backref" href="#id69" role="doc-backlink">spark routes</a><a class="headerlink" href="#spark-routes" title="Link to this heading"></a></h3>
+<p>모든 라우트와 필터를 표시합니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark routes</span>
+</pre></div>
+</div>
+<p>출력은 다음과 같습니다:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---------+---------+---------------+-------------------------------+----------------+---------------+
+| Method  | Route   | Name          | Handler                       | Before Filters | After Filters |
++---------+---------+---------------+-------------------------------+----------------+---------------+
+| GET     | /       | »             | \App\Controllers\Home::index  |                | toolbar       |
+| GET     | feed    | »             | (Closure)                     |                | toolbar       |
++---------+---------+---------------+-------------------------------+----------------+---------------+
+</pre></div>
+</div>
+<p><em>Method</em> 열은 해당 라우트가 수신 대기하는 HTTP 메서드를 보여줍니다.</p>
+<p><em>Route</em> 열은 일치시킬 라우트 경로를 보여줍니다. 정의된 라우트의 경로는 정규식으로 표현됩니다.</p>
+<p>v4.3.0부터 <em>Name</em> 열은 라우트 이름을 표시합니다. <code class="docutils literal notranslate"><span class="pre">»</span></code>는 이름이 라우트 경로와 같음을 나타냅니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>시스템이 완벽하지는 않습니다. <code class="docutils literal notranslate"><span class="pre">([^/]+)</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> 같은 정규식 패턴을 포함한 라우트의 경우, 표시되는 <em>Filters*가 정확하지 않을 수 있으며(**app/Config/Filters.php*</em>에서 필터에 대해 복잡한 URI 패턴을 설정한 경우), 또는 <code class="docutils literal notranslate"><span class="pre">&lt;unknown&gt;</span></code>으로 표시될 수 있습니다.</p>
+<p><a class="reference internal" href="filters.html#spark-filter-check"><span class="std std-ref">spark filter:check</span></a> 명령을 사용하면 100% 정확한 필터를 확인할 수 있습니다.</p>
+</div>
+<section id="id14">
+<h4><a class="toc-backref" href="#id70" role="doc-backlink">Auto Routing (Improved)</a><a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<p>Auto Routing (Improved)를 사용할 때 출력은 다음과 같습니다:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-----------+-------------------------+---------------+-----------------------------------+----------------+---------------+
+| Method    | Route                   | Name          | Handler                           | Before Filters | After Filters |
++-----------+-------------------------+---------------+-----------------------------------+----------------+---------------+
+| GET(auto) | product/list/../..[/..] |               | \App\Controllers\Product::getList |                | toolbar       |
++-----------+-------------------------+---------------+-----------------------------------+----------------+---------------+
+</pre></div>
+</div>
+<p><em>Method</em>는 <code class="docutils literal notranslate"><span class="pre">GET(auto)</span></code>와 같이 표시됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">/..</span></code>는 <em>Route</em> 열에서 하나의 세그먼트를 의미합니다. <code class="docutils literal notranslate"><span class="pre">[/..]</span></code>는 선택 사항임을 나타냅니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>auto-routing이 활성화되어 있고 <code class="docutils literal notranslate"><span class="pre">home</span></code> 라우트가 있으면 <code class="docutils literal notranslate"><span class="pre">Home</span></code>, <code class="docutils literal notranslate"><span class="pre">hOme</span></code>, <code class="docutils literal notranslate"><span class="pre">hoMe</span></code>, <code class="docutils literal notranslate"><span class="pre">HOME</span></code> 등으로도 접근할 수 있지만 명령은 <code class="docutils literal notranslate"><span class="pre">home</span></code>만 표시합니다.</p>
+</div>
+<p>다음과 같이 <code class="docutils literal notranslate"><span class="pre">x</span></code>로 시작하는 라우트가 보이면, 이는 라우팅되지 않는 잘못된 라우트이지만 컨트롤러에는 라우팅 가능한 public 메서드가 있음을 의미합니다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-----------+----------------+------+-------------------------------------+----------------+---------------+
+| Method    | Route          | Name | Handler                             | Before Filters | After Filters |
++-----------+----------------+------+-------------------------------------+----------------+---------------+
+| GET(auto) | x home/foo     |      | \App\Controllers\Home::getFoo       | &lt;unknown&gt;      | &lt;unknown&gt;     |
++-----------+----------------+------+-------------------------------------+----------------+---------------+
+</pre></div>
+</div>
+<p>위 예제는 <code class="docutils literal notranslate"><span class="pre">\App\Controllers\Home::getFoo()</span></code> 메서드가 있지만, 기본 컨트롤러(<code class="docutils literal notranslate"><span class="pre">Home</span></code> 기본값)이므로 라우팅되지 않았음을 보여줍니다. 기본 컨트롤러 이름은 URI에서 생략해야 합니다. <code class="docutils literal notranslate"><span class="pre">getFoo()</span></code> 메서드를 삭제해야 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.4 이전에는 버그로 인해 잘못된 라우트가 일반 라우트로 표시되었습니다.</p>
+</div>
+</section>
+<section id="id15">
+<h4><a class="toc-backref" href="#id71" role="doc-backlink">Auto Routing (Legacy)</a><a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<p>Auto Routing (Legacy)를 사용할 때 출력은 다음과 같습니다:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+---------------+-----------------------------------+----------------+---------------+
+| Method | Route              | Name          | Handler                           | Before Filters | After Filters |
++--------+--------------------+---------------+-----------------------------------+----------------+---------------+
+| auto   | product/list[/...] |               | \App\Controllers\Product::getList |                | toolbar       |
++--------+--------------------+---------------+-----------------------------------+----------------+---------------+
+</pre></div>
+</div>
+<p><em>Method</em>는 <code class="docutils literal notranslate"><span class="pre">auto</span></code>입니다.</p>
+<p><em>Route</em> 열의 <code class="docutils literal notranslate"><span class="pre">[/...]</span></code>는 임의 개수의 세그먼트를 의미합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>auto-routing이 활성화되어 있고 <code class="docutils literal notranslate"><span class="pre">home</span></code> 라우트가 있으면 <code class="docutils literal notranslate"><span class="pre">Home</span></code>, <code class="docutils literal notranslate"><span class="pre">hOme</span></code>, <code class="docutils literal notranslate"><span class="pre">hoMe</span></code>, <code class="docutils literal notranslate"><span class="pre">HOME</span></code> 등으로도 접근할 수 있지만 명령은 <code class="docutils literal notranslate"><span class="pre">home</span></code>만 표시합니다.</p>
+</div>
+</section>
+<section id="sort-by-handler">
+<span id="routing-spark-routes-sort-by-handler"></span><h4><a class="toc-backref" href="#id72" role="doc-backlink">핸들러별 정렬</a><a class="headerlink" href="#sort-by-handler" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>라우트를 <em>handler</em> 기준으로 정렬할 수 있습니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark routes --sort-by-handler</span>
+</pre></div>
+</div>
+</section>
+<section id="specify-host">
+<span id="routing-spark-routes-specify-host"></span><h4><a class="toc-backref" href="#id73" role="doc-backlink">호스트 지정</a><a class="headerlink" href="#specify-host" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p>요청 URL에서 호스트를 <code class="docutils literal notranslate"><span class="pre">--host</span></code> 옵션으로 지정할 수 있습니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark routes --host accounts.example.com</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="getting-routing-information">
+<h2><a class="toc-backref" href="#id74" role="doc-backlink">라우팅 정보 가져오기</a><a class="headerlink" href="#getting-routing-information" title="Link to this heading"></a></h2>
+<p>CodeIgniter 4에서 라우팅 정보를 이해하고 관리하는 것은 HTTP 요청을 효과적으로 처리하는 데 중요합니다. 여기에는 활성 컨트롤러와 메서드, 그리고 특정 라우트에 적용된 필터의 세부 정보를 가져오는 작업이 포함됩니다. 아래에서는 로깅, 디버깅 또는 조건부 로직 구현 같은 작업을 지원하기 위해 이 라우팅 정보에 접근하는 방법을 살펴봅니다.</p>
+<section id="retrieving-the-current-controller-method-names">
+<h3><a class="toc-backref" href="#id75" role="doc-backlink">현재 컨트롤러/메서드 이름 가져오기</a><a class="headerlink" href="#retrieving-the-current-controller-method-names" title="Link to this heading"></a></h3>
+<p>경우에 따라 현재 HTTP 요청에 의해 어떤 컨트롤러와 메서드가 호출되었는지 확인해야 할 수 있습니다. 이는 활성 컨트롤러 메서드를 기반으로 로깅, 디버깅 또는 조건부 로직을 수행할 때 유용합니다.</p>
+<p>CodeIgniter 4는 <code class="docutils literal notranslate"><span class="pre">Router</span></code> 클래스를 사용하여 현재 라우트의 컨트롤러와 메서드 이름에 접근하는 간단한 방법을 제공합니다. 예:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Get the router instance.</span>
+<span class="sd">/** @var \CodeIgniter\Router\Router $router */</span>
+<span class="nv">$router</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;router&#39;</span><span class="p">);</span>
+
+<span class="c1">// Retrieve the fully qualified class name of the controller handling the current request.</span>
+<span class="nv">$controller</span> <span class="o">=</span> <span class="nv">$router</span><span class="o">-&gt;</span><span class="na">controllerName</span><span class="p">();</span>
+
+<span class="c1">// Retrieve the method name being executed in the controller for the current request.</span>
+<span class="nv">$method</span> <span class="o">=</span> <span class="nv">$router</span><span class="o">-&gt;</span><span class="na">methodName</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="s1">&#39;Current Controller: &#39;</span> <span class="o">.</span> <span class="nv">$controller</span> <span class="o">.</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s1">&#39;Current Method: &#39;</span> <span class="o">.</span> <span class="nv">$method</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>이 기능은 컨트롤러와 동적으로 상호작용해야 하거나 어떤 메서드가 특정 요청을 처리하는지 기록해야 할 때 특히 유용합니다.</p>
+</section>
+<section id="getting-active-filters-for-the-current-route">
+<h3><a class="toc-backref" href="#id76" role="doc-backlink">현재 라우트의 활성 필터 가져오기</a><a class="headerlink" href="#getting-active-filters-for-the-current-route" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="filters.html"><span class="doc">Filters</span></a>는 HTTP 요청 처리 전후에 인증, 로깅, 보안 검사 같은 작업을 수행할 수 있게 해주는 강력한 기능입니다. 특정 라우트의 활성 필터에 접근하려면 <code class="docutils literal notranslate"><span class="pre">Router</span></code> 클래스의 <code class="xref php php-meth docutils literal notranslate"><span class="pre">CodeIgniterRouterRouter::getFilters()</span></code> 메서드를 사용할 수 있습니다.</p>
+<p>이 메서드는 처리 중인 라우트에 대해 현재 활성화된 필터 목록을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Get the router instance.</span>
+<span class="sd">/** @var \CodeIgniter\Router\Router $router */</span>
+<span class="nv">$router</span>  <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;router&#39;</span><span class="p">);</span>
+<span class="nv">$filters</span> <span class="o">=</span> <span class="nv">$router</span><span class="o">-&gt;</span><span class="na">getFilters</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="s1">&#39;Active Filters for the Route: &#39;</span> <span class="o">.</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="nv">$filters</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">getFilters()</span></code> 메서드는 특정 라우트에 정의된 필터만 반환합니다. 전역 필터나 <strong>app/Config/Filters.php</strong> 파일에 지정된 필터는 포함하지 않습니다.</p>
+</div>
+</section>
+<section id="getting-matched-route-options-for-the-current-route">
+<h3><a class="toc-backref" href="#id77" role="doc-backlink">현재 라우트의 일치한 라우트 옵션 가져오기</a><a class="headerlink" href="#getting-matched-route-options-for-the-current-route" title="Link to this heading"></a></h3>
+<p>라우트를 정의할 때 <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">namespace</span></code>, <code class="docutils literal notranslate"><span class="pre">hostname</span></code>, <code class="docutils literal notranslate"><span class="pre">subdomain</span></code>, <code class="docutils literal notranslate"><span class="pre">offset</span></code>, <code class="docutils literal notranslate"><span class="pre">priority</span></code>, <code class="docutils literal notranslate"><span class="pre">as</span></code> 같은 선택적 매개변수가 있을 수 있습니다. 이들은 모두 앞에서 설명했습니다. 또한 <code class="docutils literal notranslate"><span class="pre">addRedirect()</span></code>를 사용하면 <code class="docutils literal notranslate"><span class="pre">redirect</span></code> 키도 기대할 수 있습니다. 이러한 매개변수의 값을 가져오려면 <code class="docutils literal notranslate"><span class="pre">Router::getMatchedRouteOptions()</span></code>를 호출하면 됩니다. 반환되는 배열의 예는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Get the router instance.</span>
+<span class="sd">/** @var \CodeIgniter\Router\Router $router */</span>
+<span class="nv">$router</span>  <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;router&#39;</span><span class="p">);</span>
+<span class="nv">$options</span> <span class="o">=</span> <span class="nv">$router</span><span class="o">-&gt;</span><span class="na">getMatchedRouteOptions</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="s1">&#39;Route name: &#39;</span> <span class="o">.</span> <span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">];</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+
+<span class="c1">// Route name: api:auth</span>
+<span class="c1">//</span>
+<span class="c1">// Array</span>
+<span class="c1">// (</span>
+<span class="c1">//     [filter] =&gt; api-auth</span>
+<span class="c1">//     [namespace] =&gt; App\API\v1</span>
+<span class="c1">//     [hostname] =&gt; example.com</span>
+<span class="c1">//     [subdomain] =&gt; api</span>
+<span class="c1">//     [offset] =&gt; 1</span>
+<span class="c1">//     [priority] =&gt; 1</span>
+<span class="c1">//     [as] =&gt; api:auth</span>
+<span class="c1">// )</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="컨트롤러와 라우팅" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="컨트롤러" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

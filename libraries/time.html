@@ -1,0 +1,1143 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>시간과 날짜 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="타이포그래피" href="typography.html" />
+    <link rel="prev" title="스로틀러" href="throttler.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="throttler.html">스로틀러</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">라이브러리 레퍼런스</a></li>
+      <li class="breadcrumb-item active">시간과 날짜</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="times-and-dates">
+<h1>시간과 날짜<a class="headerlink" href="#times-and-dates" title="Link to this heading"></a></h1>
+<p>CodeIgniter는 PHP의 DateTimeImmutable 클래스를 기반으로 하는 완전히 로케일화된 불변 날짜/시간 클래스를 제공합니다. 이 클래스는 Intl 확장의 기능을 사용하여 타임존 간 시간을 변환하고 다양한 로케일에 맞게 출력을 올바르게 표시합니다. 이 클래스는 <code class="docutils literal notranslate"><span class="pre">Time</span></code> 클래스이며 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\I18n</span></code> 네임스페이스에 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>Time 클래스는 <code class="docutils literal notranslate"><span class="pre">DateTimeImmutable</span></code>을 확장하므로, 이 클래스가 제공하지 않는 기능이 필요하다면 <a class="reference external" href="https://www.php.net/manual/en/class.datetimeimmutable.php">DateTimeImmutable</a> 클래스 자체에서 찾을 수 있을 것입니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.0 이전에는 Time 클래스가 <code class="docutils literal notranslate"><span class="pre">DateTime</span></code>을 확장했으며 일부 상속된 메서드가 현재 객체 상태를 변경했습니다. 이 버그는 v4.3.0에서 수정되었습니다. 하위 호환성을 위해 이전 Time 클래스가 필요하다면 당분간 더 이상 사용되지 않는 <code class="docutils literal notranslate"><span class="pre">TimeLegacy</span></code> 클래스를 사용할 수 있습니다.</p>
+</div>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#instantiating" id="id3">인스턴스화</a></p>
+<ul>
+<li><p><a class="reference internal" href="#now" id="id4">now()</a></p></li>
+<li><p><a class="reference internal" href="#parse" id="id5">parse()</a></p></li>
+<li><p><a class="reference internal" href="#today" id="id6">today()</a></p></li>
+<li><p><a class="reference internal" href="#yesterday" id="id7">yesterday()</a></p></li>
+<li><p><a class="reference internal" href="#tomorrow" id="id8">tomorrow()</a></p></li>
+<li><p><a class="reference internal" href="#createfromdate" id="id9">createFromDate()</a></p></li>
+<li><p><a class="reference internal" href="#createfromtime" id="id10">createFromTime()</a></p></li>
+<li><p><a class="reference internal" href="#create" id="id11">create()</a></p></li>
+<li><p><a class="reference internal" href="#createfromformat" id="id12">createFromFormat()</a></p></li>
+<li><p><a class="reference internal" href="#createfromtimestamp" id="id13">createFromTimestamp()</a></p></li>
+<li><p><a class="reference internal" href="#createfrominstance" id="id14">createFromInstance()</a></p></li>
+<li><p><a class="reference internal" href="#todatetime" id="id15">toDateTime()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#displaying-the-value" id="id16">값 표시</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tolocalizedstring" id="id17">toLocalizedString()</a></p></li>
+<li><p><a class="reference internal" href="#todatetimestring" id="id18">toDateTimeString()</a></p></li>
+<li><p><a class="reference internal" href="#todatestring" id="id19">toDateString()</a></p></li>
+<li><p><a class="reference internal" href="#totimestring" id="id20">toTimeString()</a></p></li>
+<li><p><a class="reference internal" href="#humanize" id="id21">humanize()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-individual-values" id="id22">개별 값 다루기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#getters" id="id23">게터</a></p></li>
+<li><p><a class="reference internal" href="#setters" id="id24">세터</a></p></li>
+<li><p><a class="reference internal" href="#modifying-the-value" id="id25">값 수정</a></p></li>
+<li><p><a class="reference internal" href="#comparing-two-times" id="id26">두 시간 비교</a></p></li>
+<li><p><a class="reference internal" href="#viewing-differences" id="id27">차이 보기</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="instantiating">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">인스턴스화</a><a class="headerlink" href="#instantiating" title="Link to this heading"></a></h2>
+<p>새 Time 인스턴스를 생성하는 방법은 여러 가지가 있습니다. 첫 번째는 다른 클래스와 마찬가지로 단순히 새 인스턴스를 생성하는 것입니다.</p>
+<p>이 방법을 사용하면 원하는 시간을 나타내는 문자열을 전달할 수 있습니다. PHP의 <a class="reference external" href="https://www.php.net/manual/en/class.datetimeimmutable.php">DateTimeImmutable</a> 생성자가 파싱할 수 있는 모든 문자열을 사용할 수 있습니다. 자세한 내용은 <a class="reference external" href="https://www.php.net/manual/en/datetime.formats.php">Supported Date and Time Formats</a>를 참조하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">);</span>
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2024-01-01 12:00:00&#39;</span><span class="p">);</span>
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">);</span>
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;+3 week&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>두 번째와 세 번째 매개변수에 각각 타임존과 로케일을 나타내는 문자열을 전달할 수 있습니다. 타임존은 PHP의 <a class="reference external" href="https://www.php.net/manual/en/timezones.php">DateTimeZone</a> 클래스가 지원하는 모든 타임존을 사용할 수 있습니다. 로케일은 PHP의 <a class="reference external" href="https://www.php.net/manual/en/class.locale.php">Locale</a> 클래스가 지원하는 모든 로케일을 사용할 수 있습니다. 로케일이나 타임존이 제공되지 않으면 애플리케이션 기본값이 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="now">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">now()</a><a class="headerlink" href="#now" title="Link to this heading"></a></h3>
+<p>Time 클래스는 클래스를 인스턴스화하는 여러 헬퍼 메서드를 가지고 있습니다. 첫 번째는 현재 시간으로 설정된 새 인스턴스를 반환하는 <code class="docutils literal notranslate"><span class="pre">now()</span></code> 메서드입니다. 두 번째와 세 번째 매개변수에 각각 타임존과 로케일을 나타내는 문자열을 전달할 수 있습니다. 로케일이나 타임존이 제공되지 않으면 애플리케이션 기본값이 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="parse">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">parse()</a><a class="headerlink" href="#parse" title="Link to this heading"></a></h3>
+<p>이 헬퍼 메서드는 기본 생성자의 정적 버전입니다. DateTimeImmutable의 생성자에 사용 가능한 문자열을 첫 번째 매개변수로, 타임존을 두 번째 매개변수로, 로케일을 세 번째 매개변수로 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;next Tuesday&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="today">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">today()</a><a class="headerlink" href="#today" title="Link to this heading"></a></h3>
+<p>날짜를 현재 날짜로, 시간을 자정으로 설정한 새 인스턴스를 반환합니다. 첫 번째와 두 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">today</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="yesterday">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">yesterday()</a><a class="headerlink" href="#yesterday" title="Link to this heading"></a></h3>
+<p>날짜를 어제 날짜로, 시간을 자정으로 설정한 새 인스턴스를 반환합니다. 첫 번째와 두 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">yesterday</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="tomorrow">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">tomorrow()</a><a class="headerlink" href="#tomorrow" title="Link to this heading"></a></h3>
+<p>날짜를 내일 날짜로, 시간을 자정으로 설정한 새 인스턴스를 반환합니다. 첫 번째와 두 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$myTime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">tomorrow</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="createfromdate">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">createFromDate()</a><a class="headerlink" href="#createfromdate" title="Link to this heading"></a></h3>
+<p><strong>year</strong>, <strong>month</strong>, <strong>day</strong>를 개별 입력으로 받아 새 인스턴스를 반환합니다. 이 매개변수 중 하나라도 제공되지 않으면 현재 연도, 월, 일을 사용합니다. 네 번째와 다섯 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$today</span>       <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromDate</span><span class="p">();</span>     <span class="c1">// Uses current year, month, and day</span>
+<span class="nv">$anniversary</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromDate</span><span class="p">(</span><span class="mi">2018</span><span class="p">);</span> <span class="c1">// Uses current month and day</span>
+<span class="nv">$date</span>        <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromDate</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="createfromtime">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">createFromTime()</a><a class="headerlink" href="#createfromtime" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">createFromDate()</span></code>와 유사하지만 <strong>hours</strong>, <strong>minutes</strong>, <strong>seconds</strong>에만 관여합니다. Time 인스턴스의 날짜 부분에는 현재 날짜를 사용합니다. 네 번째와 다섯 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$lunch</span>  <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromTime</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>     <span class="c1">// 11:30 am today</span>
+<span class="nv">$dinner</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromTime</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mo">00</span><span class="p">,</span> <span class="mo">00</span><span class="p">);</span> <span class="c1">// 6:00 pm today</span>
+<span class="nv">$time</span>   <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromTime</span><span class="p">(</span><span class="nv">$hour</span><span class="p">,</span> <span class="nv">$minutes</span><span class="p">,</span> <span class="nv">$seconds</span><span class="p">,</span> <span class="nv">$timezone</span><span class="p">,</span> <span class="nv">$locale</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="create">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">create()</a><a class="headerlink" href="#create" title="Link to this heading"></a></h3>
+<p>앞의 두 메서드의 조합으로, <strong>year</strong>, <strong>month</strong>, <strong>day</strong>, <strong>hour</strong>, <strong>minutes</strong>, <strong>seconds</strong>를 개별 매개변수로 받습니다. 제공되지 않은 값은 현재 날짜와 시간을 사용합니다. 네 번째와 다섯 번째 매개변수로 타임존과 로케일 문자열을 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$year</span><span class="p">,</span> <span class="nv">$month</span><span class="p">,</span> <span class="nv">$day</span><span class="p">,</span> <span class="nv">$hour</span><span class="p">,</span> <span class="nv">$minutes</span><span class="p">,</span> <span class="nv">$seconds</span><span class="p">,</span> <span class="nv">$timezone</span><span class="p">,</span> <span class="nv">$locale</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="createfromformat">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">createFromFormat()</a><a class="headerlink" href="#createfromformat" title="Link to this heading"></a></h3>
+<p>이는 DateTimeImmutable의 동일한 이름의 메서드를 대체합니다. 타임존을 동시에 설정할 수 있으며, DateTimeImmutable 대신 <code class="docutils literal notranslate"><span class="pre">Time</span></code> 인스턴스를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span><span class="s1">&#39;j-M-Y&#39;</span><span class="p">,</span> <span class="s1">&#39;15-Feb-2009&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="createfromtimestamp">
+<span id="time-createfromtimestamp"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">createFromTimestamp()</a><a class="headerlink" href="#createfromtimestamp" title="Link to this heading"></a></h3>
+<p>이 메서드는 UNIX 타임스탬프와 선택적으로 타임존과 로케일을 받아 새 Time 인스턴스를 생성합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromTimestamp</span><span class="p">(</span><span class="mi">1501821586</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>타임존을 명시적으로 전달하지 않으면 <strong>UTC</strong>로 Time 인스턴스를 반환합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>UTC를 기본 타임존으로 사용하지 않는 한, 항상 2개의 매개변수(즉, 타임존을 명시적으로 전달)로 <code class="docutils literal notranslate"><span class="pre">createFromTimestamp()</span></code>를 호출하는 것을 권장합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.6부터 v4.6.0 이전까지 이 메서드는 타임존을 지정하지 않으면 기본 타임존으로 Time 인스턴스를 반환했습니다.</p>
+</div>
+</section>
+<section id="createfrominstance">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">createFromInstance()</a><a class="headerlink" href="#createfrominstance" title="Link to this heading"></a></h3>
+<p>DateTime 인스턴스를 제공하는 다른 라이브러리와 작업할 때, 이 메서드를 사용하여 선택적으로 로케일을 설정하면서 Time 인스턴스로 변환할 수 있습니다. 타임존은 전달된 DateTime 인스턴스에서 자동으로 결정됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$dt</span>   <span class="o">=</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromInstance</span><span class="p">(</span><span class="nv">$dt</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="todatetime">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">toDateTime()</a><a class="headerlink" href="#todatetime" title="Link to this heading"></a></h3>
+<p>인스턴스화 메서드는 아니지만, 이 메서드는 <strong>instance</strong> 메서드의 반대로 Time 인스턴스를 DateTime 인스턴스로 변환할 수 있습니다. 타임존 설정은 유지되지만, DateTime은 로케일을 인식하지 못하므로 로케일은 손실됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$datetime</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">toDateTime</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="displaying-the-value">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">값 표시</a><a class="headerlink" href="#displaying-the-value" title="Link to this heading"></a></h2>
+<p>Time 클래스는 DateTimeImmutable을 확장하므로 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드를 포함하여 제공하는 모든 출력 메서드를 사용할 수 있습니다. 그러나 DateTimeImmutable 메서드는 로케일화된 결과를 제공하지 않습니다. 그래도 Time 클래스는 값의 로케일화된 버전을 표시하는 여러 헬퍼 메서드를 제공합니다.</p>
+<section id="tolocalizedstring">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">toLocalizedString()</a><a class="headerlink" href="#tolocalizedstring" title="Link to this heading"></a></h3>
+<p>이것은 DateTimeImmutable의 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드의 로케일화된 버전입니다. 익숙한 값을 사용하는 대신 <a class="reference external" href="https://www.php.net/manual/en/class.intldateformatter.php">IntlDateFormatter</a> 클래스가 허용하는 값을 사용해야 합니다. 전체 값 목록은 <a class="reference external" href="https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/classSimpleDateFormat.html#details">여기</a>에서 확인할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Locale: en</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toLocalizedString</span><span class="p">(</span><span class="s1">&#39;MMM d, yyyy&#39;</span><span class="p">);</span> <span class="c1">// March 9, 2016</span>
+
+<span class="c1">// Locale: fa</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toLocalizedString</span><span class="p">(</span><span class="s1">&#39;MMM d, yyyy&#39;</span><span class="p">);</span> <span class="c1">// مارس ۹, ۲۰۱۶</span>
+</pre></div>
+</div>
+</section>
+<section id="todatetimestring">
+<span id="time-todatetimestring"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">toDateTimeString()</a><a class="headerlink" href="#todatetimestring" title="Link to this heading"></a></h3>
+<p>이것은 <a class="reference external" href="https://www.php.net/manual/en/class.intldateformatter.php">IntlDateFormatter</a>의 값을 기억하지 않아도 사용할 수 있는 세 가지 헬퍼 메서드 중 첫 번째입니다. (<code class="docutils literal notranslate"><span class="pre">Y-m-d</span> <span class="pre">H:i:s</span></code>) 형식으로 로케일화된 문자열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Locale: en</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span> <span class="c1">// 2016-03-09 12:00:00</span>
+
+<span class="c1">// Locale: fa</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span> <span class="c1">// ۲۰۱۶-۰۳-۰۹ ۱۲:۰۰:۰۰</span>
+</pre></div>
+</div>
+</section>
+<section id="todatestring">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">toDateString()</a><a class="headerlink" href="#todatestring" title="Link to this heading"></a></h3>
+<p>Time의 로케일화된 날짜 부분만 표시합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Locale: en</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateString</span><span class="p">();</span> <span class="c1">// 2016-03-09</span>
+
+<span class="c1">// Locale: fa</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateString</span><span class="p">();</span> <span class="c1">// ۲۰۱۶-۰۳-۰۹</span>
+</pre></div>
+</div>
+</section>
+<section id="totimestring">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">toTimeString()</a><a class="headerlink" href="#totimestring" title="Link to this heading"></a></h3>
+<p>값의 로케일화된 시간 부분만 표시합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Locale: en</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toTimeString</span><span class="p">();</span> <span class="c1">// 12:00:00</span>
+
+<span class="c1">// Locale: fa</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toTimeString</span><span class="p">();</span> <span class="c1">// ۱۲:۰۰:۰۰</span>
+</pre></div>
+</div>
+</section>
+<section id="humanize">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">humanize()</a><a class="headerlink" href="#humanize" title="Link to this heading"></a></h3>
+<p>이 메서드는 현재 날짜/시간과 인스턴스의 차이를 쉽게 이해할 수 있는 사람이 읽기 좋은 형식의 문자열로 반환합니다. ‘3 hours ago’, ‘in 1 month’ 등과 같은 문자열을 생성할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Assume current time is: March 10, 2017 (America/Chicago)</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">humanize</span><span class="p">();</span> <span class="c1">// 1 year ago</span>
+</pre></div>
+</div>
+<p>표시되는 정확한 시간은 다음과 같은 방식으로 결정됩니다:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>시간 차이</p></th>
+<th class="head"><p>결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 year &lt; $time &lt; 2 years</p></td>
+<td><p>in 1 year / 1 year ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>1 month &lt; $time &lt; 1 year</p></td>
+<td><p>in 6 months / 6 months ago</p></td>
+</tr>
+<tr class="row-even"><td><p>7 days &lt; $time &lt; 1 month</p></td>
+<td><p>in 3 weeks / 3 weeks ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>today &lt; $time &lt; 7 days</p></td>
+<td><p>in 4 days / 4 days ago</p></td>
+</tr>
+<tr class="row-even"><td><p>$time == yesterday / tomorrow</p></td>
+<td><p>Yesterday / Tomorrow</p></td>
+</tr>
+<tr class="row-odd"><td><p>59 minutes &lt; $time &lt; 1 day</p></td>
+<td><p>in 2 hours / 2 hours ago</p></td>
+</tr>
+<tr class="row-even"><td><p>now &lt; $time &lt; 1 hour</p></td>
+<td><p>in 35 minutes / 35 minutes ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>$time == now</p></td>
+<td><p>Now</p></td>
+</tr>
+</tbody>
+</table>
+<p>결과 문자열은 언어 파일인 <strong>system/Language/en/Time.php</strong>에서 가져옵니다. 재정의하려면 <strong>app/Language/{locale}/Time.php</strong>를 생성하세요.</p>
+</section>
+</section>
+<section id="working-with-individual-values">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">개별 값 다루기</a><a class="headerlink" href="#working-with-individual-values" title="Link to this heading"></a></h2>
+<p>Time 객체는 기존 인스턴스의 연도, 월, 시간 등의 개별 항목을 가져오고 설정할 수 있는 여러 메서드를 제공합니다. 다음 메서드를 통해 가져온 모든 값은 완전히 로케일화되어 Time 인스턴스가 생성될 때 사용된 로케일을 따릅니다.</p>
+<p>다음의 모든 <code class="docutils literal notranslate"><span class="pre">getX()</span></code>와 <code class="docutils literal notranslate"><span class="pre">setX()</span></code> 메서드는 클래스 속성처럼 사용할 수도 있습니다. 따라서 <code class="docutils literal notranslate"><span class="pre">getYear()</span></code>와 같은 메서드 호출은 <code class="docutils literal notranslate"><span class="pre">$time-&gt;year</span></code>를 통해서도 접근할 수 있습니다.</p>
+<section id="getters">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">게터</a><a class="headerlink" href="#getters" title="Link to this heading"></a></h3>
+<p>다음과 같은 기본 게터가 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;August 12, 2016 4:15:23pm&#39;</span><span class="p">);</span>
+
+<span class="c1">// The output may vary based on locale.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getYear</span><span class="p">();</span>   <span class="c1">// &#39;2016&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getMonth</span><span class="p">();</span>  <span class="c1">// &#39;8&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getDay</span><span class="p">();</span>    <span class="c1">// &#39;12&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getHour</span><span class="p">();</span>   <span class="c1">// &#39;16&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getMinute</span><span class="p">();</span> <span class="c1">// &#39;15&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getSecond</span><span class="p">();</span> <span class="c1">// &#39;23&#39;</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">year</span><span class="p">;</span>   <span class="c1">// &#39;2016&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">month</span><span class="p">;</span>  <span class="c1">// &#39;8&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">day</span><span class="p">;</span>    <span class="c1">// &#39;12&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">hour</span><span class="p">;</span>   <span class="c1">// &#39;16&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">minute</span><span class="p">;</span> <span class="c1">// &#39;15&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">second</span><span class="p">;</span> <span class="c1">// &#39;23&#39;</span>
+</pre></div>
+</div>
+<p>이 외에도 날짜에 대한 추가 정보를 제공하는 여러 메서드가 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;August 12, 2016 4:15:23pm&#39;</span><span class="p">);</span>
+
+<span class="c1">// The output may vary based on locale.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getDayOfWeek</span><span class="p">();</span>   <span class="c1">// &#39;6&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getDayOfYear</span><span class="p">();</span>   <span class="c1">// &#39;225&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getWeekOfMonth</span><span class="p">();</span> <span class="c1">// &#39;2&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getWeekOfYear</span><span class="p">();</span>  <span class="c1">// &#39;33&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getTimestamp</span><span class="p">();</span>   <span class="c1">// 1471018523 - UNIX timestamp (locale independent)</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getQuarter</span><span class="p">();</span>     <span class="c1">// &#39;3&#39;</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">dayOfWeek</span><span class="p">;</span>   <span class="c1">// &#39;6&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">dayOfYear</span><span class="p">;</span>   <span class="c1">// &#39;225&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">weekOfMonth</span><span class="p">;</span> <span class="c1">// &#39;2&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">weekOfYear</span><span class="p">;</span>  <span class="c1">// &#39;33&#39;</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="p">;</span>   <span class="c1">// 1471018523</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">quarter</span><span class="p">;</span>     <span class="c1">// &#39;3&#39;</span>
+</pre></div>
+</div>
+<section id="getage">
+<h4>getAge()<a class="headerlink" href="#getage" title="Link to this heading"></a></h4>
+<p>Time 인스턴스와 현재 시간 사이의 나이를 년 단위로 반환합니다. 생일을 기반으로 누군가의 나이를 확인하는 데 완벽합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;5 years ago&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getAge</span><span class="p">();</span> <span class="c1">// 5</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">age</span><span class="p">;</span>      <span class="c1">// 5</span>
+</pre></div>
+</div>
+</section>
+<section id="getdst">
+<h4>getDST()<a class="headerlink" href="#getdst" title="Link to this heading"></a></h4>
+<p>Time 인스턴스가 현재 일광 절약 시간제를 따르고 있는지 여부에 따라 boolean true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromDate</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getDst</span><span class="p">();</span> <span class="c1">// false</span>
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromDate</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">dst</span><span class="p">;</span>      <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="getlocal">
+<h4>getLocal()<a class="headerlink" href="#getlocal" title="Link to this heading"></a></h4>
+<p>Time 인스턴스가 애플리케이션이 현재 실행 중인 것과 동일한 타임존에 있으면 boolean true를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getLocal</span><span class="p">();</span>           <span class="c1">// true</span>
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;Europe/London&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">local</span><span class="p">;</span> <span class="c1">// false</span>
+</pre></div>
+</div>
+</section>
+<section id="getutc">
+<h4>getUtc()<a class="headerlink" href="#getutc" title="Link to this heading"></a></h4>
+<p>Time 인스턴스가 UTC 시간이면 boolean true를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getUtc</span><span class="p">();</span> <span class="c1">// false</span>
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">utc</span><span class="p">;</span>                  <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="gettimezone">
+<h4>getTimezone()<a class="headerlink" href="#gettimezone" title="Link to this heading"></a></h4>
+<p>Time 인스턴스의 타임존으로 설정된 새 <a class="reference external" href="https://www.php.net/manual/en/class.datetimezone.php">DateTimeZone</a> 객체를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$tz</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getTimezone</span><span class="p">();</span>
+<span class="nv">$tz</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nv">$tz</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$tz</span><span class="o">-&gt;</span><span class="na">getOffset</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="gettimezonename">
+<h4>getTimezoneName()<a class="headerlink" href="#gettimezonename" title="Link to this heading"></a></h4>
+<p>Time 인스턴스의 전체 <a class="reference external" href="https://www.php.net/manual/en/timezones.php">타임존 문자열</a>을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getTimezoneName</span><span class="p">();</span> <span class="c1">// America/Chicago</span>
+<span class="k">echo</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">(</span><span class="s1">&#39;Europe/London&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">timezoneName</span><span class="p">;</span>        <span class="c1">// Europe/London</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setters">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">세터</a><a class="headerlink" href="#setters" title="Link to this heading"></a></h3>
+<p>다음과 같은 기본 세터가 있습니다. 설정된 값이 범위를 벗어나면 <code class="docutils literal notranslate"><span class="pre">InvalidArgumentExeption</span></code>이 발생합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 세터는 원본 인스턴스를 그대로 두고 새 Time 인스턴스를 반환합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 세터는 값이 범위를 벗어나면 InvalidArgumentException을 발생시킵니다.</p>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setYear</span><span class="p">(</span><span class="mi">2017</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setMonth</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>       <span class="c1">// April</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setMonth</span><span class="p">(</span><span class="s1">&#39;April&#39;</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setMonth</span><span class="p">(</span><span class="s1">&#39;Feb&#39;</span><span class="p">);</span>   <span class="c1">// February</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setDay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setHour</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>       <span class="c1">// 2:00 pm</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setMinute</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setSecond</span><span class="p">(</span><span class="mi">54</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="settimezone">
+<h4>setTimezone()<a class="headerlink" href="#settimezone" title="Link to this heading"></a></h4>
+<p>현재 타임존에서 새 타임존으로 시간을 변환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span>  <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;13 May 2020 10:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setTimezone</span><span class="p">(</span><span class="s1">&#39;Europe/London&#39;</span><span class="p">);</span> <span class="c1">// Returns new instance converted to new timezone</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">getTimezoneName</span><span class="p">();</span>  <span class="c1">// American/Chicago</span>
+<span class="k">echo</span> <span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">getTimezoneName</span><span class="p">();</span> <span class="c1">// Europe/London</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span>  <span class="c1">// 2020-05-13 10:00:00</span>
+<span class="k">echo</span> <span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span> <span class="c1">// 2020-05-13 18:00:00</span>
+</pre></div>
+</div>
+</section>
+<section id="settimestamp">
+<h4>setTimestamp()<a class="headerlink" href="#settimestamp" title="Link to this heading"></a></h4>
+<p>날짜를 새 타임스탬프로 설정한 새 인스턴스를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// The Application Timezone is &quot;America/Chicago&quot;.</span>
+
+<span class="nv">$time</span>  <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;May 10, 2017&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">setTimestamp</span><span class="p">(</span><span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;April 1, 2017&#39;</span><span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span>  <span class="c1">// 2017-05-10 00:00:00</span>
+<span class="k">echo</span> <span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">();</span> <span class="c1">// 2017-04-01 00:00:00</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.6.0 이전에는 버그로 인해 이 메서드가 잘못된 날짜/시간을 반환할 수 있었습니다. 자세한 내용은 <a class="reference internal" href="../installation/upgrade_460.html#upgrade-460-time-set-timestamp"><span class="std std-ref">업그레이드 가이드</span></a>를 참조하세요.</p>
+</div>
+</section>
+</section>
+<section id="modifying-the-value">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">값 수정</a><a class="headerlink" href="#modifying-the-value" title="Link to this heading"></a></h3>
+<p>다음 메서드를 사용하면 현재 Time에 값을 더하거나 빼서 날짜를 수정할 수 있습니다. 기존 Time 인스턴스는 수정되지 않고 새 인스턴스를 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addSeconds</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addMinutes</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addHours</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addDays</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addMonths</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addCalendarMonths</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">addYears</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subSeconds</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subMinutes</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subHours</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subDays</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subMonths</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subCalendarMonths</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">subYears</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="addcalendarmonths-subcalendarmonths">
+<h4>addCalendarMonths() / subCalendarMonths()<a class="headerlink" href="#addcalendarmonths-subcalendarmonths" title="Link to this heading"></a></h4>
+<p>전체 달력 월을 더하거나 빼서 현재 Time을 수정합니다. 반복 날짜에서 달력 월이 건너뛰어지지 않아야 하는 경우 이 메서드가 유용할 수 있습니다. 초기 날짜 <code class="docutils literal notranslate"><span class="pre">2025-01-31</span></code>에 대한 <code class="docutils literal notranslate"><span class="pre">addMonths()</span></code>와 <code class="docutils literal notranslate"><span class="pre">addCalendarMonths()</span></code>의 비교는 아래 표를 참조하세요.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>$months</p></th>
+<th class="head"><p>addMonths()</p></th>
+<th class="head"><p>addCalendarMonths()</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2025-03-03</p></td>
+<td><p>2025-02-28</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2025-03-31</p></td>
+<td><p>2025-03-31</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>2025-05-01</p></td>
+<td><p>2025-04-30</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>2025-05-31</p></td>
+<td><p>2025-05-31</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>2025-07-01</p></td>
+<td><p>2025-06-30</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>2025-07-31</p></td>
+<td><p>2025-07-31</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="comparing-two-times">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">두 시간 비교</a><a class="headerlink" href="#comparing-two-times" title="Link to this heading"></a></h3>
+<p>다음 메서드를 사용하면 하나의 Time 인스턴스를 다른 인스턴스와 비교할 수 있습니다. 모든 비교는 다른 타임존이 올바르게 처리되도록 비교 전에 먼저 UTC로 변환됩니다.</p>
+<section id="equals">
+<h4>equals()<a class="headerlink" href="#equals" title="Link to this heading"></a></h4>
+<p>전달된 datetime이 현재 인스턴스와 같은지 결정합니다. 여기서 같다는 것은 동일한 순간을 나타낸다는 의미이며, 두 시간 모두 UTC로 변환하여 비교하므로 동일한 타임존에 있을 필요는 없습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time1</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 10, 2017 21:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 11, 2017 03:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/London&#39;</span><span class="p">);</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">equals</span><span class="p">(</span><span class="nv">$time2</span><span class="p">);</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+<p>비교 대상 값은 Time 인스턴스, DateTime 인스턴스, 또는 새 DateTime 인스턴스가 이해할 수 있는 형식의 전체 날짜/시간 문자열일 수 있습니다. 첫 번째 매개변수로 문자열을 전달할 때, 두 번째 매개변수로 타임존 문자열을 전달할 수 있습니다. 타임존이 제공되지 않으면 시스템 기본값이 사용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">equals</span><span class="p">(</span><span class="s1">&#39;January 11, 2017 03:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/London&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="sameas">
+<h4>sameAs()<a class="headerlink" href="#sameas" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">equals()</span></code> 메서드와 동일하지만, 날짜, 시간, 타임존이 모두 동일할 때만 true를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time1</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 10, 2017 21:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 11, 2017 03:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/London&#39;</span><span class="p">);</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">sameAs</span><span class="p">(</span><span class="nv">$time2</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">sameAs</span><span class="p">(</span><span class="s1">&#39;January 10, 2017 21:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="isbefore">
+<h4>isBefore()<a class="headerlink" href="#isbefore" title="Link to this heading"></a></h4>
+<p>전달된 시간이 현재 인스턴스보다 이전인지 확인합니다. 비교는 두 시간의 UTC 버전을 기준으로 수행됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time1</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 10, 2017 21:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 11, 2017 03:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">isBefore</span><span class="p">(</span><span class="nv">$time2</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">isBefore</span><span class="p">(</span><span class="nv">$time1</span><span class="p">);</span> <span class="c1">// false</span>
+</pre></div>
+</div>
+<p>비교 대상 값은 Time 인스턴스, DateTime 인스턴스, 또는 새 DateTime 인스턴스가 이해할 수 있는 형식의 전체 날짜/시간 문자열일 수 있습니다. 첫 번째 매개변수로 문자열을 전달할 때, 두 번째 매개변수로 타임존 문자열을 전달할 수 있습니다. 타임존이 제공되지 않으면 시스템 기본값이 사용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">isBefore</span><span class="p">(</span><span class="s1">&#39;March 15, 2013&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span> <span class="c1">// false</span>
+</pre></div>
+</div>
+</section>
+<section id="isafter">
+<h4>isAfter()<a class="headerlink" href="#isafter" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">isBefore()</span></code>와 완전히 동일하게 작동하지만 전달된 시간 이후인지 확인합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time1</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 10, 2017 21:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$time2</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;January 11, 2017 03:50:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nv">$time1</span><span class="o">-&gt;</span><span class="na">isAfter</span><span class="p">(</span><span class="nv">$time2</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nv">$time2</span><span class="o">-&gt;</span><span class="na">isAfter</span><span class="p">(</span><span class="nv">$time1</span><span class="p">);</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="ispast">
+<span id="time-comparing-two-times-ispast"></span><h4>isPast()<a class="headerlink" href="#ispast" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>현재 인스턴스의 시간이 “now”를 기준으로 과거인지 결정합니다. boolean true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;yesterday&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isPast</span><span class="p">();</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+<section id="isfuture">
+<span id="time-comparing-two-times-isfuture"></span><h4>isFuture()<a class="headerlink" href="#isfuture" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>현재 인스턴스의 시간이 “now”를 기준으로 미래인지 결정합니다. boolean true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;tomorrow&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isFuture</span><span class="p">();</span> <span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="viewing-differences">
+<span id="time-viewing-differences"></span><h3><a class="toc-backref" href="#id27" role="doc-backlink">차이 보기</a><a class="headerlink" href="#viewing-differences" title="Link to this heading"></a></h3>
+<p>두 Time을 직접 비교하려면 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\I18n\TimeDifference</span></code> 인스턴스를 반환하는 <code class="docutils literal notranslate"><span class="pre">difference()</span></code> 메서드를 사용합니다.</p>
+<p>첫 번째 매개변수는 Time 인스턴스, DateTime 인스턴스, 또는 날짜/시간이 포함된 문자열입니다. 첫 번째 매개변수로 문자열을 전달하면 두 번째 매개변수로 타임존 문자열을 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 10, 2017&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">());</span>
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="s1">&#39;July 4, 1975&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">));</span>
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="s1">&#39;July 4, 1975 13:32:05&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>TimeDifference 인스턴스를 얻으면 두 시간의 차이에 대한 정보를 찾기 위해 사용할 수 있는 여러 메서드가 있습니다. 반환되는 값은 원래 시간보다 과거이면 음수, 미래이면 양수입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$current</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 10, 2017&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$test</span>    <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 10, 2010&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="nv">$test</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getYears</span><span class="p">();</span>   <span class="c1">// -7</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getMonths</span><span class="p">();</span>  <span class="c1">// -84</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getWeeks</span><span class="p">();</span>   <span class="c1">// -365</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getDays</span><span class="p">();</span>    <span class="c1">// -2557</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getHours</span><span class="p">();</span>   <span class="c1">// -61368</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getMinutes</span><span class="p">();</span> <span class="c1">// -3682080</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getSeconds</span><span class="p">();</span> <span class="c1">// -220924800</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.7 이전에는 Time이 비교 전에 항상 타임존을 UTC로 변환했습니다. 이로 인해 일광 절약 시간제(DST)로 인해 하루가 24시간과 다를 때 예상치 못한 결과가 발생할 수 있었습니다.</p>
+<p>v4.4.7부터 동일한 타임존에 있는 날짜/시간을 비교할 때 UTC로 변환하지 않고 그대로 비교합니다.</p>
+<blockquote>
+<div><div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// 31 Mar 2024 - Daylight Saving Time Starts</span>
+<span class="nv">$current</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;2024-03-31&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/Madrid&#39;</span><span class="p">);</span>
+<span class="nv">$test</span>    <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;2024-04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/Madrid&#39;</span><span class="p">);</span>
+
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="nv">$test</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">getDays</span><span class="p">();</span>
+<span class="c1">// 0 in v4.4.6 or before</span>
+<span class="c1">// 1 in v4.4.7 or later</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">getX()</span></code> 메서드를 사용하거나 속성처럼 계산된 값에 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">years</span><span class="p">;</span>   <span class="c1">// -7</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">months</span><span class="p">;</span>  <span class="c1">// -84</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">weeks</span><span class="p">;</span>   <span class="c1">// -365</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">days</span><span class="p">;</span>    <span class="c1">// -2557</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">hours</span><span class="p">;</span>   <span class="c1">// -61368</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">minutes</span><span class="p">;</span> <span class="c1">// -3682080</span>
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">seconds</span><span class="p">;</span> <span class="c1">// -220924800</span>
+</pre></div>
+</div>
+<section id="id2">
+<h4>humanize()<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<p>Time의 <code class="docutils literal notranslate"><span class="pre">humanize()</span></code> 메서드와 마찬가지로, 두 시간의 차이를 쉽게 이해할 수 있는 사람이 읽기 좋은 형식의 문자열로 반환합니다. ‘3 hours ago’, ‘in 1 month’ 등과 같은 문자열을 생성할 수 있습니다. 가장 큰 차이는 매우 최근 날짜를 처리하는 방식에 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\I18n\Time</span><span class="p">;</span>
+
+<span class="nv">$current</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 10, 2017&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+<span class="nv">$test</span>    <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;March 9, 2016 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nv">$diff</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="na">difference</span><span class="p">(</span><span class="nv">$test</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$diff</span><span class="o">-&gt;</span><span class="na">humanize</span><span class="p">();</span> <span class="c1">// 1 year ago</span>
+</pre></div>
+</div>
+<p>표시되는 정확한 시간은 다음과 같은 방식으로 결정됩니다:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>시간 차이</p></th>
+<th class="head"><p>결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 year &lt; $time &lt; 2 years</p></td>
+<td><p>in 1 year / 1 year ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>1 month &lt; $time &lt; 1 year</p></td>
+<td><p>in 6 months / 6 months ago</p></td>
+</tr>
+<tr class="row-even"><td><p>7 days &lt; $time &lt; 1 month</p></td>
+<td><p>in 3 weeks / 3 weeks ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>today &lt; $time &lt; 7 days</p></td>
+<td><p>in 4 days / 4 days ago</p></td>
+</tr>
+<tr class="row-even"><td><p>1 hour &lt; $time &lt; 1 day</p></td>
+<td><p>in 8 hours / 8 hours ago</p></td>
+</tr>
+<tr class="row-odd"><td><p>1 minute &lt; $time &lt; 1 hour</p></td>
+<td><p>in 35 minutes / 35 minutes ago</p></td>
+</tr>
+<tr class="row-even"><td><p>$time &lt; 1 minute</p></td>
+<td><p>Now</p></td>
+</tr>
+</tbody>
+</table>
+<p>결과 문자열은 언어 파일인 <strong>system/Language/en/Time.php</strong>에서 가져옵니다. 재정의하려면 <strong>app/Language/{locale}/Time.php</strong>를 생성하세요.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="throttler.html" class="btn btn-neutral float-left" title="스로틀러" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="typography.html" class="btn btn-neutral float-right" title="타이포그래피" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

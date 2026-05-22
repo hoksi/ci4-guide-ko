@@ -1,0 +1,2004 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeIgniter 모델 사용하기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="엔티티 클래스 사용하기" href="entities.html" />
+    <link rel="prev" title="데이터 모델링" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터 모델링</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">데이터 모델링</a></li>
+      <li class="breadcrumb-item active">CodeIgniter 모델 사용하기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-codeigniter-s-model">
+<h1>CodeIgniter 모델 사용하기<a class="headerlink" href="#using-codeigniter-s-model" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#models" id="id7">모델</a></p></li>
+<li><p><a class="reference internal" href="#accessing-models" id="id8">모델 접근하기</a></p></li>
+<li><p><a class="reference internal" href="#codeigniter-s-model" id="id9">CodeIgniter 모델</a></p></li>
+<li><p><a class="reference internal" href="#creating-your-model" id="id10">모델 생성하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#initialize" id="id11">initialize()</a></p></li>
+<li><p><a class="reference internal" href="#connecting-to-the-database" id="id12">데이터베이스 연결하기</a></p></li>
+<li><p><a class="reference internal" href="#configuring-your-model" id="id13">모델 구성하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#table" id="id14">$table</a></p></li>
+<li><p><a class="reference internal" href="#primarykey" id="id15">$primaryKey</a></p></li>
+<li><p><a class="reference internal" href="#useautoincrement" id="id16">$useAutoIncrement</a></p></li>
+<li><p><a class="reference internal" href="#returntype" id="id17">$returnType</a></p></li>
+<li><p><a class="reference internal" href="#usesoftdeletes" id="id18">$useSoftDeletes</a></p></li>
+<li><p><a class="reference internal" href="#allowedfields" id="id19">$allowedFields</a></p></li>
+<li><p><a class="reference internal" href="#allowemptyinserts" id="id20">$allowEmptyInserts</a></p></li>
+<li><p><a class="reference internal" href="#updateonlychanged" id="id21">$updateOnlyChanged</a></p></li>
+<li><p><a class="reference internal" href="#casts" id="id22">$casts</a></p></li>
+<li><p><a class="reference internal" href="#dates" id="id23">날짜</a></p></li>
+<li><p><a class="reference internal" href="#validation" id="id24">유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#callbacks" id="id25">콜백</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#model-field-casting" id="id26">모델 필드 캐스팅</a></p>
+<ul>
+<li><p><a class="reference internal" href="#defining-data-types" id="id27">데이터 타입 정의하기</a></p></li>
+<li><p><a class="reference internal" href="#data-types" id="id28">데이터 타입</a></p>
+<ul>
+<li><p><a class="reference internal" href="#csv" id="id29">csv</a></p></li>
+<li><p><a class="reference internal" href="#datetime" id="id30">datetime</a></p></li>
+<li><p><a class="reference internal" href="#timestamp" id="id31">timestamp</a></p></li>
+<li><p><a class="reference internal" href="#enum" id="id32">enum</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#custom-casting" id="id33">커스텀 캐스팅</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-custom-handlers" id="id34">커스텀 핸들러 생성하기</a></p></li>
+<li><p><a class="reference internal" href="#registering-custom-handlers" id="id35">커스텀 핸들러 등록하기</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id36">매개변수</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-data" id="id37">데이터 다루기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#finding-data" id="id38">데이터 조회하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#find" id="id39">find()</a></p></li>
+<li><p><a class="reference internal" href="#findcolumn" id="id40">findColumn()</a></p></li>
+<li><p><a class="reference internal" href="#findall" id="id41">findAll()</a></p></li>
+<li><p><a class="reference internal" href="#first" id="id42">first()</a></p></li>
+<li><p><a class="reference internal" href="#withdeleted" id="id43">withDeleted()</a></p></li>
+<li><p><a class="reference internal" href="#onlydeleted" id="id44">onlyDeleted()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#saving-data" id="id45">데이터 저장하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#insert" id="id46">insert()</a></p></li>
+<li><p><a class="reference internal" href="#model-allow-empty-inserts" id="id47">allowEmptyInserts()</a></p></li>
+<li><p><a class="reference internal" href="#update" id="id48">update()</a></p></li>
+<li><p><a class="reference internal" href="#save" id="id49">save()</a></p></li>
+<li><p><a class="reference internal" href="#saving-dates" id="id50">날짜 저장하기</a></p></li>
+<li><p><a class="reference internal" href="#primary-key-validation" id="id51">기본 키 유효성 검사</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#deleting-data" id="id52">데이터 삭제하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#delete" id="id53">delete()</a></p></li>
+<li><p><a class="reference internal" href="#purgedeleted" id="id54">purgeDeleted()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#in-model-validation" id="id55">모델 내 유효성 검사</a></p>
+<ul>
+<li><p><a class="reference internal" href="#validating-data" id="id56">데이터 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#setting-validation-rules" id="id57">유효성 검사 규칙 설정하기</a></p></li>
+<li><p><a class="reference internal" href="#getting-validation-result" id="id58">유효성 검사 결과 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#getting-validation-errors" id="id59">유효성 검사 오류 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#retrieving-validation-rules" id="id60">유효성 검사 규칙 조회하기</a></p></li>
+<li><p><a class="reference internal" href="#validation-placeholders" id="id61">유효성 검사 플레이스홀더</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#protecting-fields" id="id62">필드 보호하기</a></p></li>
+<li><p><a class="reference internal" href="#runtime-return-type-changes" id="id63">런타임 반환 타입 변경</a></p>
+<ul>
+<li><p><a class="reference internal" href="#asarray" id="id64">asArray()</a></p></li>
+<li><p><a class="reference internal" href="#asobject" id="id65">asObject()</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#processing-large-amounts-of-data" id="id66">대용량 데이터 처리하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-query-builder" id="id67">쿼리 빌더 사용하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#getting-query-builder-for-the-model-s-table" id="id68">모델 테이블용 쿼리 빌더 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#getting-query-builder-for-another-table" id="id69">다른 테이블용 쿼리 빌더 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#mixing-methods-of-query-builder-and-model" id="id70">쿼리 빌더와 모델 메소드 혼합 사용하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#model-events" id="id71">모델 이벤트</a></p>
+<ul>
+<li><p><a class="reference internal" href="#defining-callbacks" id="id72">콜백 정의하기</a></p></li>
+<li><p><a class="reference internal" href="#specifying-callbacks-to-run" id="id73">실행할 콜백 지정하기</a></p></li>
+<li><p><a class="reference internal" href="#event-parameters" id="id74">이벤트 매개변수</a></p></li>
+<li><p><a class="reference internal" href="#modifying-find-data" id="id75">Find* 데이터 수정하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#manual-model-creation" id="id76">수동 모델 생성</a></p></li>
+</ul>
+</nav>
+<section id="models">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">모델</a><a class="headerlink" href="#models" title="Link to this heading"></a></h2>
+<p>CodeIgniter의 모델은 데이터베이스의 <strong>단일 테이블</strong>과 작업하기 편리하도록 사람들이 일반적으로 사용하는 편의 기능과 추가 기능을 제공합니다.</p>
+<p>레코드 조회, 레코드 업데이트, 레코드 삭제 등 데이터베이스 테이블과 상호작용하는 데 필요한 표준적인 방법들을 위한 헬퍼 메소드를 기본으로 제공합니다.</p>
+</section>
+<section id="accessing-models">
+<span id="id2"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">모델 접근하기</a><a class="headerlink" href="#accessing-models" title="Link to this heading"></a></h2>
+<p>모델은 일반적으로 <strong>app/Models</strong> 디렉터리에 저장됩니다. 디렉터리 내 위치와 일치하는 네임스페이스를 가져야 하며, 예를 들어 <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">App\Models</span></code>와 같이 설정합니다.</p>
+<p>클래스 내에서 새 인스턴스를 생성하거나 <a class="reference internal" href="../general/common_functions.html#model" title="model"><code class="xref php php-func docutils literal notranslate"><span class="pre">model()</span></code></a> 헬퍼 함수를 사용하여 모델에 접근할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Create a new class manually.</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\App\Models\UserModel</span><span class="p">();</span>
+
+<span class="c1">// Create a shared instance of the model.</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;App\Models\UserModel&#39;</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="nx">\App\Models\UserModel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+<span class="c1">// Create a new class with the model() function.</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// Create shared instance with a supplied database connection.</span>
+<span class="nv">$db</span>        <span class="o">=</span> <span class="nx">db_connect</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">);</span>
+<span class="nv">$userModel</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;UserModel&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">model()</span></code>은 내부적으로 <code class="docutils literal notranslate"><span class="pre">Factories::models()</span></code>를 사용합니다. 첫 번째 매개변수에 대한 자세한 내용은 <a class="reference internal" href="../concepts/factories.html#factories-loading-class"><span class="std std-ref">클래스 로딩</span></a>를 참조하세요.</p>
+</section>
+<section id="codeigniter-s-model">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">CodeIgniter 모델</a><a class="headerlink" href="#codeigniter-s-model" title="Link to this heading"></a></h2>
+<p>CodeIgniter는 다음과 같은 몇 가지 유용한 기능을 갖춘 모델 클래스를 제공합니다:</p>
+<ul class="simple">
+<li><p>자동 데이터베이스 연결</p></li>
+<li><p>기본 CRUD 메소드</p></li>
+<li><p><a class="reference internal" href="#in-model-validation"><span class="std std-ref">모델 내 유효성 검사</span></a></p></li>
+<li><p><a class="reference internal" href="../libraries/pagination.html#paginating-with-models"><span class="std std-ref">자동 페이지네이션</span></a></p></li>
+<li><p>그 외 더 많은 기능</p></li>
+</ul>
+<p>이 클래스는 자신만의 모델을 구축하기 위한 견고한 기반을 제공하여 애플리케이션의 모델 레이어를 빠르게 구축할 수 있게 해줍니다.</p>
+</section>
+<section id="creating-your-model">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">모델 생성하기</a><a class="headerlink" href="#creating-your-model" title="Link to this heading"></a></h2>
+<p>CodeIgniter의 모델을 활용하려면 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Model</span></code>을 상속하는 새 모델 클래스를 간단히 생성하면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 빈 클래스는 데이터베이스 연결, 쿼리 빌더, 그리고 다양한 편의 메소드에 손쉽게 접근할 수 있게 해줍니다.</p>
+<section id="initialize">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">initialize()</a><a class="headerlink" href="#initialize" title="Link to this heading"></a></h3>
+<p>모델에 추가 설정이 필요한 경우 <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> 메소드를 확장할 수 있으며, 이 메소드는 모델의 생성자 직후에 실행됩니다. 이를 통해 생성자 매개변수를 반복하지 않고도 추가 작업(예: 다른 모델 확장)을 수행할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Modules\Authentication\Models\UserAuthModel</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">UserAuthModel</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Called during initialization. Appends</span>
+<span class="sd">     * our custom field to the module&#39;s model.</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">allowedFields</span><span class="p">[]</span> <span class="o">=</span> <span class="s1">&#39;middlename&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="connecting-to-the-database">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">데이터베이스 연결하기</a><a class="headerlink" href="#connecting-to-the-database" title="Link to this heading"></a></h3>
+<p>클래스가 처음 인스턴스화될 때 생성자에 데이터베이스 연결 인스턴스가 전달되지 않고 모델 클래스에 <code class="docutils literal notranslate"><span class="pre">$DBGroup</span></code> 속성을 설정하지 않은 경우, 데이터베이스 설정에 지정된 기본 데이터베이스 그룹에 자동으로 연결됩니다.</p>
+<p>클래스에 <code class="docutils literal notranslate"><span class="pre">$DBGroup</span></code> 속성을 추가하여 모델별로 사용할 그룹을 수정할 수 있습니다. 이렇게 하면 모델 내의 <code class="docutils literal notranslate"><span class="pre">$this-&gt;db</span></code> 참조가 적절한 연결을 통해 이루어집니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$DBGroup</span> <span class="o">=</span> <span class="s1">&#39;group_name&#39;</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>“group_name”을 데이터베이스 설정 파일에 정의된 데이터베이스 그룹 이름으로 대체하면 됩니다.</p>
+</section>
+<section id="configuring-your-model">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">모델 구성하기</a><a class="headerlink" href="#configuring-your-model" title="Link to this heading"></a></h3>
+<p>모델 클래스에는 클래스의 메소드가 원활하게 동작할 수 있도록 설정할 수 있는 몇 가지 구성 옵션이 있습니다. 처음 두 가지는 모든 CRUD 메소드에서 사용할 테이블과 필요한 레코드를 찾는 방법을 결정하는 데 사용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span>      <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$useAutoIncrement</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$returnType</span>     <span class="o">=</span> <span class="s1">&#39;array&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$useSoftDeletes</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$allowedFields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">];</span>
+
+    <span class="k">protected</span> <span class="nx">bool</span> <span class="nv">$allowEmptyInserts</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nx">bool</span> <span class="nv">$updateOnlyChanged</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="c1">// Dates</span>
+    <span class="k">protected</span> <span class="nv">$useTimestamps</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$dateFormat</span>    <span class="o">=</span> <span class="s1">&#39;datetime&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$createdField</span>  <span class="o">=</span> <span class="s1">&#39;created_at&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$updatedField</span>  <span class="o">=</span> <span class="s1">&#39;updated_at&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$deletedField</span>  <span class="o">=</span> <span class="s1">&#39;deleted_at&#39;</span><span class="p">;</span>
+
+    <span class="c1">// Validation</span>
+    <span class="k">protected</span> <span class="nv">$validationRules</span>      <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$validationMessages</span>   <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$skipValidation</span>       <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$cleanValidationRules</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="c1">// Callbacks</span>
+    <span class="k">protected</span> <span class="nv">$allowCallbacks</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$beforeInsert</span>   <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$afterInsert</span>    <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$beforeUpdate</span>   <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$afterUpdate</span>    <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$beforeFind</span>     <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$afterFind</span>      <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$beforeDelete</span>   <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">protected</span> <span class="nv">$afterDelete</span>    <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="table">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">$table</a><a class="headerlink" href="#table" title="Link to this heading"></a></h4>
+<p>이 모델이 주로 사용하는 데이터베이스 테이블을 지정합니다. 이는 내장 CRUD 메소드에만 적용됩니다. 자체 쿼리에서 이 테이블만 사용하도록 제한되지는 않습니다.</p>
+</section>
+<section id="primarykey">
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">$primaryKey</a><a class="headerlink" href="#primarykey" title="Link to this heading"></a></h4>
+<p>이 테이블의 레코드를 고유하게 식별하는 컬럼의 이름입니다. 데이터베이스에 지정된 기본 키와 반드시 일치할 필요는 없지만, <code class="docutils literal notranslate"><span class="pre">find()</span></code>와 같은 메소드에서 지정된 값과 어떤 컬럼을 매칭할지 알기 위해 사용됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모든 모델은 모든 기능이 예상대로 동작하도록 primaryKey가 지정되어야 합니다.</p>
+</div>
+</section>
+<section id="useautoincrement">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">$useAutoIncrement</a><a class="headerlink" href="#useautoincrement" title="Link to this heading"></a></h4>
+<p><a class="reference internal" href="#primarykey">$primaryKey</a>에 대해 테이블이 자동 증가 기능을 사용하는지 지정합니다. <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하면 테이블의 모든 레코드에 기본 키 값을 직접 제공해야 합니다. 이 기능은 1:1 관계를 구현하거나 모델에 UUID를 사용하려는 경우 유용할 수 있습니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">true</span></code>입니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a class="reference internal" href="#useautoincrement">$useAutoIncrement</a>를 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하는 경우, 데이터베이스의 기본 키를 <code class="docutils literal notranslate"><span class="pre">unique</span></code>로 설정해야 합니다. 이렇게 하면 모델의 모든 기능이 이전과 동일하게 동작함을 보장할 수 있습니다.</p>
+</div>
+</section>
+<section id="returntype">
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">$returnType</a><a class="headerlink" href="#returntype" title="Link to this heading"></a></h4>
+<p>모델의 <strong>find*()</strong> 메소드는 Result 객체 대신 결과 데이터를 자동으로 반환하여 작업 단계를 줄여줍니다.</p>
+<p>이 설정은 반환되는 데이터의 타입을 정의할 수 있게 해줍니다. 유효한 값은 ‘<strong>array</strong>’(기본값), ‘<strong>object</strong>’, 또는 Result 객체의 <code class="docutils literal notranslate"><span class="pre">getCustomResultObject()</span></code> 메소드와 함께 사용할 수 있는 <strong>완전한 클래스 이름</strong>입니다.</p>
+<p>클래스의 특수 <code class="docutils literal notranslate"><span class="pre">::class</span></code> 상수를 사용하면 대부분의 IDE에서 이름을 자동완성하고 리팩토링과 같은 기능이 코드를 더 잘 이해할 수 있게 됩니다.</p>
+</section>
+<section id="usesoftdeletes">
+<span id="model-use-soft-deletes"></span><h4><a class="toc-backref" href="#id18" role="doc-backlink">$useSoftDeletes</a><a class="headerlink" href="#usesoftdeletes" title="Link to this heading"></a></h4>
+<p>true이면 <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 메소드 호출 시 실제로 행을 삭제하는 대신 데이터베이스에 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code>을 설정합니다. 이는 다른 곳에서 참조될 수 있는 데이터를 보존하거나, 복원 가능한 객체의 “휴지통”을 유지하거나, 보안 추적의 일부로 단순히 보존하는 데 사용할 수 있습니다. true이면 <strong>find*()</strong> 메소드를 호출하기 전에 <code class="docutils literal notranslate"><span class="pre">withDeleted()</span></code> 메소드를 먼저 호출하지 않는 한 <strong>find*()</strong> 메소드는 삭제되지 않은 행만 반환합니다.</p>
+<p>이는 모델의 <a class="reference internal" href="#dateformat">$dateFormat</a> 설정에 따라 데이터베이스에 DATETIME 또는 INTEGER 필드가 필요합니다. 기본 필드 이름은 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code>이지만 <a class="reference internal" href="#deletedfield">$deletedField</a> 속성을 사용하여 원하는 이름으로 구성할 수 있습니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>데이터베이스의 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code> 필드는 nullable이어야 합니다.</p>
+</div>
+</section>
+<section id="allowedfields">
+<span id="model-allowed-fields"></span><h4><a class="toc-backref" href="#id19" role="doc-backlink">$allowedFields</a><a class="headerlink" href="#allowedfields" title="Link to this heading"></a></h4>
+<p>이 배열은 <code class="docutils literal notranslate"><span class="pre">save()</span></code>, <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드 실행 중 설정할 수 있는 필드 이름으로 업데이트해야 합니다. 여기에 포함되지 않은 필드 이름은 삭제됩니다. 이는 폼 입력을 그대로 모델에 전달하여 발생할 수 있는 대량 할당 취약점을 방지하는 데 도움이 됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a class="reference internal" href="#primarykey">$primaryKey</a> 필드는 절대로 허용 필드가 되어서는 안 됩니다.</p>
+</div>
+</section>
+<section id="allowemptyinserts">
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">$allowEmptyInserts</a><a class="headerlink" href="#allowemptyinserts" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>빈 데이터 삽입을 허용할지 여부입니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">false</span></code>이며, 빈 데이터를 삽입하려고 하면 “There is no data to insert.” 메시지와 함께 <code class="docutils literal notranslate"><span class="pre">DataException</span></code>이 발생합니다.</p>
+<p><a class="reference internal" href="#model-allow-empty-inserts"><span class="std std-ref">allowEmptyInserts()</span></a> 메소드로도 이 설정을 변경할 수 있습니다.</p>
+</section>
+<section id="updateonlychanged">
+<span id="model-update-only-changed"></span><h4><a class="toc-backref" href="#id21" role="doc-backlink">$updateOnlyChanged</a><a class="headerlink" href="#updateonlychanged" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p><a class="reference internal" href="entities.html"><span class="doc">엔티티</span></a>의 변경된 필드만 업데이트할지 여부입니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">true</span></code>이며, 데이터베이스 업데이트 시 변경된 필드 데이터만 사용됩니다. 따라서 변경 사항 없이 엔티티를 업데이트하려고 하면 “There is no data to update.” 메시지와 함께 <code class="docutils literal notranslate"><span class="pre">DataException</span></code>이 발생합니다.</p>
+<p>이 속성을 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하면 엔티티의 모든 허용 필드가 언제든지 데이터베이스에 제출되고 업데이트됩니다.</p>
+</section>
+<section id="casts">
+<h4><a class="toc-backref" href="#id22" role="doc-backlink">$casts</a><a class="headerlink" href="#casts" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p>데이터베이스에서 조회한 데이터를 적절한 PHP 타입으로 변환할 수 있게 해줍니다. 이 옵션은 키가 필드 이름이고 값이 데이터 타입인 배열이어야 합니다. 자세한 내용은 <a class="reference internal" href="#model-field-casting"><span class="std std-ref">모델 필드 캐스팅</span></a>을 참조하세요.</p>
+</section>
+<section id="dates">
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">날짜</a><a class="headerlink" href="#dates" title="Link to this heading"></a></h4>
+<section id="usetimestamps">
+<h5>$useTimestamps<a class="headerlink" href="#usetimestamps" title="Link to this heading"></a></h5>
+<p>이 불리언 값은 현재 날짜가 모든 삽입 및 업데이트에 자동으로 추가될지 여부를 결정합니다. <code class="docutils literal notranslate"><span class="pre">true</span></code>이면 <a class="reference internal" href="#dateformat">$dateFormat</a>에 지정된 형식으로 현재 시간을 설정합니다. 이는 테이블에 적절한 데이터 타입의 <strong>created_at</strong>, <strong>updated_at</strong>, <strong>deleted_at</strong> 컬럼이 있어야 합니다. <a class="reference internal" href="#createdfield">$createdField</a>, <a class="reference internal" href="#updatedfield">$updatedField</a>, <a class="reference internal" href="#deletedfield">$deletedField</a>도 참조하세요.</p>
+</section>
+<section id="dateformat">
+<h5>$dateFormat<a class="headerlink" href="#dateformat" title="Link to this heading"></a></h5>
+<p>이 값은 <a class="reference internal" href="#usetimestamps">$useTimestamps</a>및 <a class="reference internal" href="#usesoftdeletes">$useSoftDeletes</a>와 함께 작동하여 올바른 유형의 날짜 값이 데이터베이스에 삽입되도록 합니다. 기본적으로 DATETIME 값을 생성하지만 유효한 옵션은 <code class="docutils literal notranslate"><span class="pre">'datetime'</span></code>, <code class="docutils literal notranslate"><span class="pre">'date'</span></code>, <code class="docutils literal notranslate"><span class="pre">'int'</span></code>(UNIX 타임스탬프)입니다. 잘못되거나 누락된 <a class="reference internal" href="#dateformat">$dateFormat</a>과 함께 <a class="reference internal" href="#usesoftdeletes">$useSoftDeletes</a>또는 <a class="reference internal" href="#usetimestamps">$useTimestamps</a>를 사용하면 예외가 발생합니다.</p>
+</section>
+<section id="createdfield">
+<h5>$createdField<a class="headerlink" href="#createdfield" title="Link to this heading"></a></h5>
+<p>데이터 레코드 생성 타임스탬프에 사용할 데이터베이스 필드를 지정합니다. 빈 문자열(<code class="docutils literal notranslate"><span class="pre">''</span></code>)로 설정하면 업데이트를 방지합니다(<a class="reference internal" href="#usetimestamps">$useTimestamps</a>가 활성화된 경우에도).</p>
+</section>
+<section id="updatedfield">
+<h5>$updatedField<a class="headerlink" href="#updatedfield" title="Link to this heading"></a></h5>
+<p>데이터 레코드 업데이트 타임스탬프를 유지하는 데 사용할 데이터베이스 필드를 지정합니다. 빈 문자열(<code class="docutils literal notranslate"><span class="pre">''</span></code>)로 설정하면 업데이트를 방지합니다(<a class="reference internal" href="#usetimestamps">$useTimestamps</a>가 활성화된 경우에도).</p>
+</section>
+<section id="deletedfield">
+<h5>$deletedField<a class="headerlink" href="#deletedfield" title="Link to this heading"></a></h5>
+<p>소프트 삭제에 사용할 데이터베이스 필드를 지정합니다. <a class="reference internal" href="#model-use-soft-deletes"><span class="std std-ref">$useSoftDeletes</span></a>를 참조하세요.</p>
+</section>
+</section>
+<section id="validation">
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">유효성 검사</a><a class="headerlink" href="#validation" title="Link to this heading"></a></h4>
+<section id="validationrules">
+<h5>$validationRules<a class="headerlink" href="#validationrules" title="Link to this heading"></a></h5>
+<p><a class="reference internal" href="../libraries/validation.html#validation-array"><span class="std std-ref">규칙 저장 방법</span></a>에 설명된 유효성 검사 규칙 배열 또는 같은 섹션에 설명된 유효성 검사 그룹 이름을 포함하는 문자열을 담고 있습니다. <a class="reference internal" href="#model-setting-validation-rules"><span class="std std-ref">유효성 검사 규칙 설정하기</span></a>도 참조하세요.</p>
+</section>
+<section id="validationmessages">
+<h5>$validationMessages<a class="headerlink" href="#validationmessages" title="Link to this heading"></a></h5>
+<p><a class="reference internal" href="../libraries/validation.html#validation-custom-errors"><span class="std std-ref">사용자 정의 오류 메시지 설정</span></a>에 설명된 유효성 검사 시 사용할 사용자 정의 오류 메시지 배열을 담고 있습니다. <a class="reference internal" href="#model-setting-validation-rules"><span class="std std-ref">유효성 검사 규칙 설정하기</span></a>도 참조하세요.</p>
+</section>
+<section id="skipvalidation">
+<h5>$skipValidation<a class="headerlink" href="#skipvalidation" title="Link to this heading"></a></h5>
+<p>모든 <strong>삽입</strong> 및 <strong>업데이트</strong> 중 유효성 검사를 건너뛸지 여부입니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">false</span></code>이며, 데이터는 항상 유효성 검사를 시도합니다. 이는 주로 <code class="docutils literal notranslate"><span class="pre">skipValidation()</span></code> 메소드에서 사용되지만, <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경하면 이 모델은 절대 유효성 검사를 수행하지 않습니다.</p>
+</section>
+<section id="cleanvalidationrules">
+<span id="clean-validation-rules"></span><h5>$cleanValidationRules<a class="headerlink" href="#cleanvalidationrules" title="Link to this heading"></a></h5>
+<p>전달된 데이터에 존재하지 않는 유효성 검사 규칙을 제거할지 여부입니다. 이는 <strong>업데이트</strong> 시 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">true</span></code>이며, 전달된 데이터에 없는 필드의 유효성 검사 규칙은 유효성 검사 전에 (일시적으로) 제거됩니다. 이는 일부 필드만 업데이트할 때 유효성 검사 오류를 방지하기 위한 것입니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cleanRules()</span></code> 메소드로도 값을 변경할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.2.7 이전에는 버그로 인해 <code class="docutils literal notranslate"><span class="pre">$cleanValidationRules</span></code>가 작동하지 않았습니다.</p>
+</div>
+</section>
+</section>
+<section id="callbacks">
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">콜백</a><a class="headerlink" href="#callbacks" title="Link to this heading"></a></h4>
+<section id="allowcallbacks">
+<h5>$allowCallbacks<a class="headerlink" href="#allowcallbacks" title="Link to this heading"></a></h5>
+<p>아래에 정의된 콜백을 사용할지 여부입니다. <a class="reference internal" href="#model-events"><span class="std std-ref">모델 이벤트</span></a>를 참조하세요.</p>
+</section>
+<section id="beforeinsert">
+<h5>$beforeInsert<a class="headerlink" href="#beforeinsert" title="Link to this heading"></a></h5>
+</section>
+<section id="afterinsert">
+<h5>$afterInsert<a class="headerlink" href="#afterinsert" title="Link to this heading"></a></h5>
+</section>
+<section id="beforeupdate">
+<h5>$beforeUpdate<a class="headerlink" href="#beforeupdate" title="Link to this heading"></a></h5>
+</section>
+<section id="afterupdate">
+<h5>$afterUpdate<a class="headerlink" href="#afterupdate" title="Link to this heading"></a></h5>
+</section>
+<section id="beforefind">
+<h5>$beforeFind<a class="headerlink" href="#beforefind" title="Link to this heading"></a></h5>
+</section>
+<section id="afterfind">
+<h5>$afterFind<a class="headerlink" href="#afterfind" title="Link to this heading"></a></h5>
+</section>
+<section id="beforedelete">
+<h5>$beforeDelete<a class="headerlink" href="#beforedelete" title="Link to this heading"></a></h5>
+</section>
+<section id="afterdelete">
+<h5>$afterDelete<a class="headerlink" href="#afterdelete" title="Link to this heading"></a></h5>
+</section>
+<section id="beforeinsertbatch">
+<h5>$beforeInsertBatch<a class="headerlink" href="#beforeinsertbatch" title="Link to this heading"></a></h5>
+</section>
+<section id="afterinsertbatch">
+<h5>$afterInsertBatch<a class="headerlink" href="#afterinsertbatch" title="Link to this heading"></a></h5>
+</section>
+<section id="beforeupdatebatch">
+<h5>$beforeUpdateBatch<a class="headerlink" href="#beforeupdatebatch" title="Link to this heading"></a></h5>
+</section>
+<section id="afterupdatebatch">
+<h5>$afterUpdateBatch<a class="headerlink" href="#afterupdatebatch" title="Link to this heading"></a></h5>
+<p>이 배열들을 사용하면 속성 이름에 지정된 시점에 데이터에 실행될 콜백 메소드를 지정할 수 있습니다. <a class="reference internal" href="#model-events"><span class="std std-ref">모델 이벤트</span></a>를 참조하세요.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="model-field-casting">
+<span id="id3"></span><h2><a class="toc-backref" href="#id26" role="doc-backlink">모델 필드 캐스팅</a><a class="headerlink" href="#model-field-casting" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p>데이터베이스에서 데이터를 조회할 때 정수형 데이터가 PHP에서 문자열 타입으로 변환될 수 있습니다. 또한 날짜/시간 데이터를 PHP의 Time 객체로 변환하고 싶을 수도 있습니다.</p>
+<p>모델 필드 캐스팅을 사용하면 데이터베이스에서 조회한 데이터를 적절한 PHP 타입으로 변환할 수 있습니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><a class="reference internal" href="entities.html"><span class="doc">엔티티</span></a>와 함께 이 기능을 사용하는 경우, <a class="reference internal" href="entities.html#entities-property-casting"><span class="std std-ref">엔티티 속성 캐스팅</span></a>을 사용하지 마세요. 두 캐스팅을 동시에 사용하면 작동하지 않습니다.</p>
+<p>엔티티 속성 캐스팅은 (1)(4)에서 작동하지만, 이 캐스팅은 (2)(3)에서 작동합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nx">App</span> <span class="nx">Code</span><span class="p">]</span> <span class="o">---</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="p">[</span><span class="nx">Entity</span><span class="p">]</span> <span class="o">---</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="p">[</span><span class="nx">Database</span><span class="p">]</span>
+<span class="p">[</span><span class="nx">App</span> <span class="nx">Code</span><span class="p">]</span> <span class="o">&lt;--</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">---</span> <span class="p">[</span><span class="nx">Entity</span><span class="p">]</span> <span class="o">&lt;--</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">---</span> <span class="p">[</span><span class="nx">Database</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>이 캐스팅을 사용하면 엔티티의 속성에 올바른 타입의 PHP 값이 저장됩니다. 이 동작은 이전 동작과 완전히 다릅니다. 속성이 데이터베이스의 원시 데이터를 보유할 것으로 기대하지 마세요.</p>
+</div>
+<section id="defining-data-types">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">데이터 타입 정의하기</a><a class="headerlink" href="#defining-data-types" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">$casts</span></code> 속성으로 정의를 설정합니다. 이 옵션은 키가 필드 이름이고 값이 데이터 타입인 배열이어야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">protected</span> <span class="k">array</span> <span class="nv">$casts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;birthdate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;?datetime&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hobbies&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;json-array&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;active&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;int-bool&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="data-types">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">데이터 타입</a><a class="headerlink" href="#data-types" title="Link to this heading"></a></h3>
+<p>다음 타입들이 기본으로 제공됩니다. 타입 앞에 물음표를 붙여 필드를 nullable로 표시할 수 있습니다. 예: <code class="docutils literal notranslate"><span class="pre">?int</span></code>, <code class="docutils literal notranslate"><span class="pre">?datetime</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>타입</p></th>
+<th class="head"><p>PHP 값 타입</p></th>
+<th class="head"><p>DB 컬럼 타입</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>int</p></td>
+<td><p>int 타입</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>float</p></td>
+<td><p>float (숫자) 타입</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>bool/int/string 타입</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int-bool</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>int 타입 (1 또는 0)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p>array</p></td>
+<td><p>string 타입 (직렬화)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">csv</span></code></p></td>
+<td><p>array</p></td>
+<td><p>string 타입 (CSV)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">json</span></code></p></td>
+<td><p>stdClass</p></td>
+<td><p>json/string 타입</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">json-array</span></code></p></td>
+<td><p>array</p></td>
+<td><p>json/string 타입</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></td>
+<td><p>Time</p></td>
+<td><p>datetime 타입</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></td>
+<td><p>Time</p></td>
+<td><p>int 타입 (UNIX 타임스탬프)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uri</span></code></p></td>
+<td><p>URI</p></td>
+<td><p>string 타입</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enum</span></code></p></td>
+<td><p>Enum</p></td>
+<td><p>string/int 타입</p></td>
+</tr>
+</tbody>
+</table>
+<section id="csv">
+<h4><a class="toc-backref" href="#id29" role="doc-backlink">csv</a><a class="headerlink" href="#csv" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">csv</span></code>로 캐스팅하면 PHP의 내장 <code class="docutils literal notranslate"><span class="pre">implode()</span></code>와 <code class="docutils literal notranslate"><span class="pre">explode()</span></code> 함수를 사용하며 모든 값이 문자열에 안전하고 쉼표가 없다고 가정합니다. 더 복잡한 데이터 캐스팅에는 <code class="docutils literal notranslate"><span class="pre">array</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">json</span></code>을 사용해 보세요.</p>
+</section>
+<section id="datetime">
+<h4><a class="toc-backref" href="#id30" role="doc-backlink">datetime</a><a class="headerlink" href="#datetime" title="Link to this heading"></a></h4>
+<p>밀리초가 포함된 날짜/시간에는 <code class="docutils literal notranslate"><span class="pre">datetime[ms]</span></code>, 마이크로초가 포함된 날짜/시간에는 <code class="docutils literal notranslate"><span class="pre">datetime[us]</span></code>와 같이 매개변수를 전달할 수 있습니다.</p>
+<p>datetime 형식은 <strong>app/Config/Database.php</strong> 파일의 <a class="reference internal" href="../database/configuration.html#database-config-explanation-of-values"><span class="std std-ref">데이터베이스 설정</span></a>에 있는 <code class="docutils literal notranslate"><span class="pre">dateFormat</span></code> 배열에서 설정됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">ms</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">us</span></code>를 매개변수로 설정하면 <strong>모델</strong>은 Time의 초 소수 부분을 처리합니다. 하지만 <strong>쿼리 빌더</strong>는 처리하지 않습니다. 따라서 <code class="docutils literal notranslate"><span class="pre">where()</span></code>와 같은 쿼리 빌더 메소드에 Time을 전달할 때는 여전히 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메소드를 사용해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;SomeModel&#39;</span><span class="p">);</span>
+
+<span class="nv">$now</span> <span class="o">=</span> <span class="nx">\CodeIgniter\I18n\Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+
+<span class="c1">// The following code passes the microseconds to Query Builder.</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;my_dt_field&#39;</span><span class="p">,</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s.u&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+<span class="c1">// Generates: SELECT * FROM `my_table` WHERE `my_dt_field` = &#39;2024-07-28 18:57:58.900326&#39;</span>
+
+<span class="c1">// But the following code loses the microseconds.</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;my_dt_field&#39;</span><span class="p">,</span> <span class="nv">$now</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+<span class="c1">// Generates: SELECT * FROM `my_table` WHERE `my_dt_field` = &#39;2024-07-28 18:57:58&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.6.0 이전에는 <code class="docutils literal notranslate"><span class="pre">ms</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">us</span></code>를 매개변수로 사용할 수 없었습니다. 버그로 인해 Time의 초 소수 부분이 손실되었기 때문입니다.</p>
+</div>
+</section>
+<section id="timestamp">
+<h4><a class="toc-backref" href="#id31" role="doc-backlink">timestamp</a><a class="headerlink" href="#timestamp" title="Link to this heading"></a></h4>
+<p>생성된 <code class="docutils literal notranslate"><span class="pre">Time</span></code> 인스턴스의 타임존은 UTC가 아닌 기본 타임존(앱의 타임존)입니다.</p>
+</section>
+<section id="enum">
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">enum</a><a class="headerlink" href="#enum" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>필드를 PHP enum으로 캐스팅할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">enum[App\Enums\StatusEnum]</span></code>과 같이 매개변수로 enum 클래스 이름을 지정해야 합니다.</p>
+<p>Enum 캐스팅은 다음을 지원합니다:</p>
+<ul class="simple">
+<li><p><strong>Backed enum</strong> (string 또는 int) - 백킹 값이 데이터베이스에 저장됩니다</p></li>
+<li><p><strong>Unit enum</strong> - case 이름이 문자열로 데이터베이스에 저장됩니다</p></li>
+</ul>
+</section>
+</section>
+<section id="custom-casting">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">커스텀 캐스팅</a><a class="headerlink" href="#custom-casting" title="Link to this heading"></a></h3>
+<p>자신만의 변환 타입을 정의할 수 있습니다.</p>
+<section id="creating-custom-handlers">
+<h4><a class="toc-backref" href="#id34" role="doc-backlink">커스텀 핸들러 생성하기</a><a class="headerlink" href="#creating-custom-handlers" title="Link to this heading"></a></h4>
+<p>먼저 타입에 대한 핸들러 클래스를 생성해야 합니다. 클래스가 <strong>app/Models/Cast</strong> 디렉터리에 위치한다고 가정해 봅시다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models\Cast</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\DataCaster\Cast\BaseCast</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">InvalidArgumentException</span><span class="p">;</span>
+
+<span class="c1">// The class must inherit the CodeIgniter\DataCaster\Cast\BaseCast class</span>
+<span class="k">class</span> <span class="nc">CastBase64</span> <span class="k">extends</span> <span class="nx">BaseCast</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$params</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">?</span><span class="nx">object</span> <span class="nv">$helper</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="na">invalidTypeValueError</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$decoded</span> <span class="o">=</span> <span class="nb">base64_decode</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$decoded</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">InvalidArgumentException</span><span class="p">(</span><span class="s1">&#39;Cannot decode: &#39;</span> <span class="o">.</span> <span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$decoded</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span>
+        <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$params</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">?</span><span class="nx">object</span> <span class="nv">$helper</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="na">invalidTypeValueError</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>값을 가져오거나 설정할 때 값을 변경할 필요가 없다면 해당 메소드를 구현하지 않으면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models\Cast</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\DataCaster\Cast\BaseCast</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">InvalidArgumentException</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CastBase64</span> <span class="k">extends</span> <span class="nx">BaseCast</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$params</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">?</span><span class="nx">object</span> <span class="nv">$helper</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="na">invalidTypeValueError</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$decoded</span> <span class="o">=</span> <span class="nb">base64_decode</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$decoded</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">InvalidArgumentException</span><span class="p">(</span><span class="s1">&#39;Cannot decode: &#39;</span> <span class="o">.</span> <span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$decoded</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="registering-custom-handlers">
+<h4><a class="toc-backref" href="#id35" role="doc-backlink">커스텀 핸들러 등록하기</a><a class="headerlink" href="#registering-custom-handlers" title="Link to this heading"></a></h4>
+<p>이제 등록해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Models\Cast\CastBase64</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// Specify the type for the field</span>
+    <span class="k">protected</span> <span class="k">array</span> <span class="nv">$casts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;column1&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;base64&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// Bind the type to the handler</span>
+    <span class="k">protected</span> <span class="k">array</span> <span class="nv">$castHandlers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;base64&#39;</span> <span class="o">=&gt;</span> <span class="nx">CastBase64</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">매개변수</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
+<p>경우에 따라 하나의 타입으로는 충분하지 않을 수 있습니다. 이런 경우 추가 매개변수를 사용할 수 있습니다. 추가 매개변수는 대괄호 안에 <code class="docutils literal notranslate"><span class="pre">type[param1,</span> <span class="pre">param2]</span></code>처럼 쉼표로 구분하여 나열합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Models\Cast\SomeHandler</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// Define a type with parameters</span>
+    <span class="k">protected</span> <span class="k">array</span> <span class="nv">$casts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;column1&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;class[App\SomeClass, param2, param3]&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// Bind the type to the handler</span>
+    <span class="k">protected</span> <span class="k">array</span> <span class="nv">$castHandlers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="nx">SomeHandler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models\Cast</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\DataCaster\Cast\BaseCast</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">SomeHandler</span> <span class="k">extends</span> <span class="nx">BaseCast</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$params</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">?</span><span class="nx">object</span> <span class="nv">$helper</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">:</span> <span class="nx">mixed</span> <span class="p">{</span>
+        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+        <span class="cm">/*</span>
+<span class="cm">         * Output:</span>
+<span class="cm">         * array(3) {</span>
+<span class="cm">         *   [0]=&gt;</span>
+<span class="cm">         *   string(13) &quot;App\SomeClass&quot;</span>
+<span class="cm">         *   [1]=&gt;</span>
+<span class="cm">         *   string(6) &quot;param2&quot;</span>
+<span class="cm">         *   [2]=&gt;</span>
+<span class="cm">         *   string(6) &quot;param3&quot;</span>
+<span class="cm">         * }</span>
+<span class="cm">         */</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>캐스팅 타입이 <code class="docutils literal notranslate"><span class="pre">?bool</span></code>처럼 nullable로 표시되고 전달된 값이 null이 아닌 경우, <code class="docutils literal notranslate"><span class="pre">nullable</span></code> 값을 가진 매개변수가 캐스팅 타입 핸들러에 전달됩니다. 캐스팅 타입에 미리 정의된 매개변수가 있으면 <code class="docutils literal notranslate"><span class="pre">nullable</span></code>이 목록 끝에 추가됩니다.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="working-with-data">
+<h2><a class="toc-backref" href="#id37" role="doc-backlink">데이터 다루기</a><a class="headerlink" href="#working-with-data" title="Link to this heading"></a></h2>
+<section id="finding-data">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">데이터 조회하기</a><a class="headerlink" href="#finding-data" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">find()</span></code>, <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 등 테이블에서 기본 CRUD 작업을 수행하기 위한 여러 함수가 제공됩니다.</p>
+<section id="find">
+<h4><a class="toc-backref" href="#id39" role="doc-backlink">find()</a><a class="headerlink" href="#find" title="Link to this heading"></a></h4>
+<p>첫 번째 매개변수로 전달된 값과 기본 키가 일치하는 단일 행을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$userId</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#returntype">$returnType</a>에 지정된 형식으로 값이 반환됩니다.</p>
+<p>하나 대신 기본 키 값의 배열을 전달하여 두 개 이상의 행을 반환하도록 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">find()</span></code>를 매개변수 없이 또는 <code class="docutils literal notranslate"><span class="pre">null</span></code>과 함께 호출하면 해당 모델의 테이블에 있는 모든 행을 반환하며, 명시적이지는 않지만 <code class="docutils literal notranslate"><span class="pre">findAll()</span></code>과 동일하게 동작합니다.</p>
+</div>
+</section>
+<section id="findcolumn">
+<h4><a class="toc-backref" href="#id40" role="doc-backlink">findColumn()</a><a class="headerlink" href="#findcolumn" title="Link to this heading"></a></h4>
+<p>null 또는 컬럼 값의 인덱스 배열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findColumn</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$columnName</span></code>은 단일 컬럼의 이름이어야 하며, 그렇지 않으면 <code class="docutils literal notranslate"><span class="pre">DataException</span></code>이 발생합니다.</p>
+</section>
+<section id="findall">
+<h4><a class="toc-backref" href="#id41" role="doc-backlink">findAll()</a><a class="headerlink" href="#findall" title="Link to this heading"></a></h4>
+<p>모든 결과를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>이 메소드를 호출하기 전에 필요에 따라 쿼리 빌더 명령을 삽입하여 쿼리를 수정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>첫 번째와 두 번째 매개변수로 각각 limit과 offset 값을 전달할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">(</span><span class="nv">$limit</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="first">
+<h4><a class="toc-backref" href="#id42" role="doc-backlink">first()</a><a class="headerlink" href="#first" title="Link to this heading"></a></h4>
+<p>결과 집합의 첫 번째 행을 반환합니다. 쿼리 빌더와 함께 사용하는 것이 가장 좋습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;deleted&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="withdeleted">
+<h4><a class="toc-backref" href="#id43" role="doc-backlink">withDeleted()</a><a class="headerlink" href="#withdeleted" title="Link to this heading"></a></h4>
+<p><a class="reference internal" href="#usesoftdeletes">$useSoftDeletes</a>가 true이면 <strong>find*()</strong> 메소드는 <code class="docutils literal notranslate"><span class="pre">deleted_at</span> <span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code>인 행을 반환하지 않습니다. 이를 일시적으로 재정의하려면 <strong>find*()</strong> 메소드를 호출하기 전에 <code class="docutils literal notranslate"><span class="pre">withDeleted()</span></code> 메소드를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Only gets non-deleted rows (deleted = 0)</span>
+<span class="nv">$activeUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+
+<span class="c1">// Gets all rows</span>
+<span class="nv">$allUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">withDeleted</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="onlydeleted">
+<h4><a class="toc-backref" href="#id44" role="doc-backlink">onlyDeleted()</a><a class="headerlink" href="#onlydeleted" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">withDeleted()</span></code>는 삭제된 행과 삭제되지 않은 행을 모두 반환하는 반면, 이 메소드는 다음 <strong>find*()</strong> 메소드가 소프트 삭제된 행만 반환하도록 수정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$deletedUsers</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">onlyDeleted</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="saving-data">
+<h3><a class="toc-backref" href="#id45" role="doc-backlink">데이터 저장하기</a><a class="headerlink" href="#saving-data" title="Link to this heading"></a></h3>
+<section id="insert">
+<h4><a class="toc-backref" href="#id46" role="doc-backlink">insert()</a><a class="headerlink" href="#insert" title="Link to this heading"></a></h4>
+<p>첫 번째 매개변수는 데이터베이스에 새 데이터 행을 생성하기 위한 연관 배열입니다. 배열 대신 객체가 전달되면 배열로 변환을 시도합니다.</p>
+<p>배열의 키는 <a class="reference internal" href="#table">$table</a>의 컬럼 이름과 일치해야 하며, 배열의 값은 해당 키에 저장할 값입니다.</p>
+<p>선택적 두 번째 매개변수는 불리언 타입이며, false로 설정하면 메소드가 쿼리의 성공 또는 실패를 나타내는 불리언 값을 반환합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">getInsertID()</span></code> 메소드를 사용하여 마지막으로 삽입된 행의 기본 키를 조회할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="c1">// Inserts data and returns inserted row&#39;s primary key</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Inserts data and returns true on success and false on failure</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// Returns inserted row&#39;s primary key</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">getInsertID</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="model-allow-empty-inserts">
+<span id="id4"></span><h4><a class="toc-backref" href="#id47" role="doc-backlink">allowEmptyInserts()</a><a class="headerlink" href="#model-allow-empty-inserts" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">allowEmptyInserts()</span></code> 메소드를 사용하여 빈 데이터를 삽입할 수 있습니다. 모델은 기본적으로 빈 데이터를 삽입하려고 할 때 예외를 발생시킵니다. 하지만 이 메소드를 호출하면 더 이상 검사가 수행되지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">allowEmptyInserts</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">([]);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#allowemptyinserts">$allowEmptyInserts</a> 속성으로도 이 설정을 변경할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">allowEmptyInserts(false)</span></code>를 호출하여 검사를 다시 활성화할 수 있습니다.</p>
+</section>
+<section id="update">
+<h4><a class="toc-backref" href="#id48" role="doc-backlink">update()</a><a class="headerlink" href="#update" title="Link to this heading"></a></h4>
+<p>데이터베이스의 기존 레코드를 업데이트합니다. 첫 번째 매개변수는 업데이트할 레코드의 <a class="reference internal" href="#primarykey">$primaryKey</a>입니다. 데이터의 연관 배열이 두 번째 매개변수로 이 메소드에 전달됩니다. 배열의 키는 <a class="reference internal" href="#table">$table</a>의 컬럼 이름과 일치해야 하며, 배열의 값은 해당 키에 저장할 값입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>v4.3.0부터 이 메소드는 WHERE 절 없이 SQL 문을 생성하면 <code class="docutils literal notranslate"><span class="pre">DatabaseException</span></code>을 발생시킵니다. 이전 버전에서는 <a class="reference internal" href="#primarykey">$primaryKey</a>를 지정하지 않고 호출하여 WHERE 절 없이 SQL 문이 생성된 경우에도 쿼리가 실행되어 테이블의 모든 레코드가 업데이트되었습니다.</p>
+</div>
+<p>첫 번째 매개변수로 기본 키 배열을 전달하면 단일 호출로 여러 레코드를 업데이트할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>더 유연한 솔루션이 필요한 경우 매개변수를 비워두면 유효성 검사, 이벤트 등의 추가 이점과 함께 쿼리 빌더의 update 명령처럼 작동합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span>
+    <span class="o">-&gt;</span><span class="na">whereIn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span><span class="s1">&#39;active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="save">
+<span id="model-save"></span><h4><a class="toc-backref" href="#id49" role="doc-backlink">save()</a><a class="headerlink" href="#save" title="Link to this heading"></a></h4>
+<p>이는 <strong>기본 키</strong> 값과 일치하는 배열 키가 있는지 여부에 따라 레코드의 삽입 또는 업데이트를 자동으로 처리하는 <code class="docutils literal notranslate"><span class="pre">insert()</span></code>와 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드의 래퍼입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Defined as a model property</span>
+<span class="nv">$primaryKey</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
+
+<span class="c1">// Does an insert()</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Performs an update, since the primary key, &#39;id&#39;, is found.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span>       <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;darth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;d.vader@theempire.com&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>save 메소드는 또한 단순하지 않은 객체를 인식하여 공개 및 보호된 값을 배열로 가져와 적절한 insert 또는 update 메소드에 전달함으로써 커스텀 클래스 결과 객체를 다루는 작업을 훨씬 간단하게 만들 수 있습니다. 이를 통해 엔티티 클래스를 매우 깔끔하게 다룰 수 있습니다. 엔티티 클래스는 사용자, 블로그 게시물, 작업 등과 같은 객체 타입의 단일 인스턴스를 나타내는 단순한 클래스입니다. 이 클래스는 특정 방식으로 요소를 포맷하는 등 객체 자체와 관련된 비즈니스 로직을 유지하는 역할을 합니다. 데이터베이스에 저장되는 방법에 대해서는 알 필요가 없습니다. 가장 단순한 형태는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Entities</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Job</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$id</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$description</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nv">$key</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$key</span><span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">property_exists</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="nv">$key</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$key</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이와 함께 작동하는 매우 간단한 모델은 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">JobModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span>         <span class="o">=</span> <span class="s1">&#39;jobs&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$returnType</span>    <span class="o">=</span> <span class="nx">\App\Entities\Job</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$allowedFields</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 모델은 <code class="docutils literal notranslate"><span class="pre">jobs</span></code> 테이블의 데이터를 처리하며, 모든 결과를 <code class="docutils literal notranslate"><span class="pre">App\Entities\Job</span></code>의 인스턴스로 반환합니다. 해당 레코드를 데이터베이스에 저장해야 할 경우, 커스텀 메소드를 작성하거나 모델의 <code class="docutils literal notranslate"><span class="pre">save()</span></code> 메소드를 사용하여 클래스를 검사하고 공개 및 비공개 속성을 가져와 데이터베이스에 저장해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Retrieve a Job instance</span>
+<span class="nv">$job</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+
+<span class="c1">// Make some changes</span>
+<span class="nv">$job</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;Foobar&#39;</span><span class="p">;</span>
+
+<span class="c1">// Save the changes</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$job</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>엔티티를 자주 사용하게 된다면 CodeIgniter는 엔티티 개발을 더 간단하게 만드는 여러 편리한 기능을 제공하는 내장 <a class="reference internal" href="entities.html"><span class="doc">엔티티 클래스</span></a>를 제공합니다.</p>
+</div>
+</section>
+<section id="saving-dates">
+<span id="model-saving-dates"></span><h4><a class="toc-backref" href="#id50" role="doc-backlink">날짜 저장하기</a><a class="headerlink" href="#saving-dates" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p>데이터를 저장할 때 <a class="reference internal" href="../libraries/time.html"><span class="doc">Time</span></a> 인스턴스를 전달하면 <a class="reference internal" href="../database/configuration.html#database-config-explanation-of-values"><span class="std std-ref">데이터베이스 설정</span></a>의 <code class="docutils literal notranslate"><span class="pre">dateFormat['datetime']</span></code>과 <code class="docutils literal notranslate"><span class="pre">dateFormat['date']</span></code>에 정의된 형식의 문자열로 변환됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0 이전에는 날짜/시간 형식이 모델 클래스에서 <code class="docutils literal notranslate"><span class="pre">Y-m-d</span> <span class="pre">H:i:s</span></code>와 <code class="docutils literal notranslate"><span class="pre">Y-m-d</span></code>로 하드코딩되어 있었습니다.</p>
+</div>
+</section>
+<section id="primary-key-validation">
+<h4><a class="toc-backref" href="#id51" role="doc-backlink">기본 키 유효성 검사</a><a class="headerlink" href="#primary-key-validation" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">insertBatch()</span></code> (<a class="reference internal" href="#useautoincrement">$useAutoIncrement</a>가 <code class="docutils literal notranslate"><span class="pre">false</span></code>인 경우), <code class="docutils literal notranslate"><span class="pre">update()</span></code>, <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 메소드는 데이터베이스 쿼리를 실행하기 전에 기본 키 값의 유효성을 검사합니다. <code class="docutils literal notranslate"><span class="pre">null</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">'0'</span></code>, 빈 문자열, 불리언, 빈 배열, 중첩 배열과 같은 유효하지 않은 값은 특정 오류 메시지와 함께 <code class="docutils literal notranslate"><span class="pre">InvalidArgumentException</span></code>을 발생시킵니다.</p>
+<p>이 동작을 커스터마이즈해야 하는 경우(예: 레거시 시스템에서 <code class="docutils literal notranslate"><span class="pre">0</span></code>을 유효한 기본 키로 허용), 모델에서 <code class="docutils literal notranslate"><span class="pre">validateID()</span></code> 메소드를 재정의할 수 있습니다.</p>
+</section>
+</section>
+<section id="deleting-data">
+<h3><a class="toc-backref" href="#id52" role="doc-backlink">데이터 삭제하기</a><a class="headerlink" href="#deleting-data" title="Link to this heading"></a></h3>
+<section id="delete">
+<h4><a class="toc-backref" href="#id53" role="doc-backlink">delete()</a><a class="headerlink" href="#delete" title="Link to this heading"></a></h4>
+<p>첫 번째 매개변수로 기본 키 값을 받아 모델의 테이블에서 일치하는 레코드를 삭제합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>모델의 <a class="reference internal" href="#usesoftdeletes">$useSoftDeletes</a> 값이 true이면 행을 업데이트하여 <code class="docutils literal notranslate"><span class="pre">deleted_at</span></code>을 현재 날짜와 시간으로 설정합니다. 두 번째 매개변수를 true로 설정하여 영구 삭제를 강제할 수 있습니다.</p>
+<p>첫 번째 매개변수로 기본 키 배열을 전달하여 여러 레코드를 한 번에 삭제할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>매개변수가 전달되지 않으면 이전에 where 호출이 필요한 쿼리 빌더의 delete 메소드처럼 동작합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="purgedeleted">
+<h4><a class="toc-backref" href="#id54" role="doc-backlink">purgeDeleted()</a><a class="headerlink" href="#purgedeleted" title="Link to this heading"></a></h4>
+<p>‘deleted_at IS NOT NULL’인 모든 행을 영구적으로 제거하여 데이터베이스 테이블을 정리합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">purgeDeleted</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="in-model-validation">
+<span id="id5"></span><h3><a class="toc-backref" href="#id55" role="doc-backlink">모델 내 유효성 검사</a><a class="headerlink" href="#in-model-validation" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>모델 내 유효성 검사는 데이터가 데이터베이스에 저장되기 직전에 수행됩니다. 그 이전 시점에서는 데이터가 아직 유효성 검사를 받지 않았습니다. 유효성 검사 이전에 사용자 입력 데이터를 처리하면 취약점이 발생할 수 있습니다.</p>
+</div>
+<section id="validating-data">
+<h4><a class="toc-backref" href="#id56" role="doc-backlink">데이터 유효성 검사</a><a class="headerlink" href="#validating-data" title="Link to this heading"></a></h4>
+<p>모델 클래스는 <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, <code class="docutils literal notranslate"><span class="pre">save()</span></code> 메소드로 데이터베이스에 저장하기 전에 모든 데이터를 자동으로 유효성 검사하는 방법을 제공합니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>데이터를 업데이트할 때 기본적으로 모델 클래스의 유효성 검사는 제공된 필드만 검사합니다. 이는 일부 필드만 업데이트할 때 유효성 검사 오류를 방지하기 위한 것입니다.</p>
+<p>그러나 이는 업데이트 중에 설정한 모든 유효성 검사 규칙이 확인되지 않음을 의미합니다. 따라서 불완전한 데이터가 유효성 검사를 통과할 수 있습니다.</p>
+<p>예를 들어, 다른 필드의 값이 필요한 <code class="docutils literal notranslate"><span class="pre">required*</span></code> 규칙이나 <code class="docutils literal notranslate"><span class="pre">is_unique</span></code> 규칙이 예상대로 동작하지 않을 수 있습니다.</p>
+<p>이러한 문제를 방지하려면 설정으로 이 동작을 변경할 수 있습니다. 자세한 내용은 <a class="reference internal" href="#clean-validation-rules"><span class="std std-ref">$cleanValidationRules</span></a>를 참조하세요.</p>
+</div>
+</section>
+<section id="setting-validation-rules">
+<span id="model-setting-validation-rules"></span><h4><a class="toc-backref" href="#id57" role="doc-backlink">유효성 검사 규칙 설정하기</a><a class="headerlink" href="#setting-validation-rules" title="Link to this heading"></a></h4>
+<p>첫 번째 단계는 적용해야 할 필드와 규칙으로 <a class="reference internal" href="#validationrules">$validationRules</a> 클래스 속성을 채우는 것입니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a class="reference internal" href="../libraries/validation.html#validation-available-rules"><span class="std std-ref">사용 가능한 규칙</span></a>에서 내장 유효성 검사 규칙 목록을 확인할 수 있습니다.</p>
+</div>
+<p>사용하고 싶은 커스텀 오류 메시지가 있으면 <a class="reference internal" href="#validationmessages">$validationMessages</a> 배열에 넣으세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[30]|alpha_numeric_space|min_length[3]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[254]|valid_email|is_unique[users.email]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[255]|min_length[8]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pass_confirm&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required_with[password]|max_length[255]|matches[password]&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+    <span class="k">protected</span> <span class="nv">$validationMessages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;is_unique&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sorry. That email has already been taken. Please choose another.&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../libraries/validation.html#saving-validation-rules-to-config-file"><span class="std std-ref">유효성 검사 설정 파일</span></a> 내에서 규칙과 오류 메시지를 구성하려면 그렇게 하고 <a class="reference internal" href="#validationrules">$validationRules</a>를 생성한 유효성 검사 규칙 그룹 이름으로 설정하면 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>함수를 사용하여 필드에 유효성 검사 규칙을 설정하는 다른 방법도 있습니다.</p>
+<dl class="php class" id="namespace-CodeIgniter">
+<dt class="sig sig-object php" id="CodeIgniter\Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#CodeIgniter\Model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Model::setValidationRule">
+<span class="sig-prename descclassname"><span class="pre">CodeIgniter\Model::</span></span><span class="sig-name descname"><span class="pre">setValidationRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em>, <em class="sig-param"><span class="pre">$fieldRules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Model::setValidationRule" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>)</p></li>
+<li><p><strong>$fieldRules</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>이 함수는 필드 유효성 검사 규칙을 설정합니다.</p>
+<p>사용 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fieldName</span>  <span class="o">=</span> <span class="s1">&#39;username&#39;</span><span class="p">;</span>
+<span class="nv">$fieldRules</span> <span class="o">=</span> <span class="s1">&#39;required|max_length[30]|alpha_numeric_space|min_length[3]&#39;</span><span class="p">;</span>
+
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationRule</span><span class="p">(</span><span class="nv">$fieldName</span><span class="p">,</span> <span class="nv">$fieldRules</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Model::setValidationRules">
+<span class="sig-prename descclassname"><span class="pre">CodeIgniter\Model::</span></span><span class="sig-name descname"><span class="pre">setValidationRules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$validationRules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Model::setValidationRules" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$validationRules</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>이 함수는 유효성 검사 규칙을 설정합니다.</p>
+<p>사용 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[30]|alpha_numeric_space|min_length[3]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>    <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;rules&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[254]|valid_email|is_unique[users.email]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;We really need your email.&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationRules</span><span class="p">(</span><span class="nv">$validationRules</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>함수를 사용하여 필드에 유효성 검사 메시지를 설정하는 다른 방법도 있습니다.</p>
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Model::setValidationMessage">
+<span class="sig-prename descclassname"><span class="pre">CodeIgniter\Model::</span></span><span class="sig-name descname"><span class="pre">setValidationMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$field</span></em>, <em class="sig-param"><span class="pre">$fieldMessages</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Model::setValidationMessage" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$field</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>)</p></li>
+<li><p><strong>$fieldMessages</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>이 함수는 필드별 오류 메시지를 설정합니다.</p>
+<p>사용 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fieldName</span>              <span class="o">=</span> <span class="s1">&#39;name&#39;</span><span class="p">;</span>
+<span class="nv">$fieldValidationMessage</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Your name is required here&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationMessage</span><span class="p">(</span><span class="nv">$fieldName</span><span class="p">,</span> <span class="nv">$fieldValidationMessage</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\Model::setValidationMessages">
+<span class="sig-prename descclassname"><span class="pre">CodeIgniter\Model::</span></span><span class="sig-name descname"><span class="pre">setValidationMessages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$validationMessages</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\Model::setValidationMessages" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$validationMessages</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>이 함수는 필드 메시지를 설정합니다.</p>
+<p>사용 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$fieldValidationMessage</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;required&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Your baby name is missing.&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;min_length&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Too short, man!&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">setValidationMessages</span><span class="p">(</span><span class="nv">$fieldValidationMessage</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="getting-validation-result">
+<h4><a class="toc-backref" href="#id58" role="doc-backlink">유효성 검사 결과 가져오기</a><a class="headerlink" href="#getting-validation-result" title="Link to this heading"></a></h4>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">insert()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, <code class="docutils literal notranslate"><span class="pre">save()</span></code> 메소드를 호출할 때마다 데이터의 유효성이 검사됩니다. 실패하면 모델은 불리언 <strong>false</strong>를 반환합니다.</p>
+</section>
+<section id="getting-validation-errors">
+<span id="model-getting-validation-errors"></span><h4><a class="toc-backref" href="#id59" role="doc-backlink">유효성 검사 오류 가져오기</a><a class="headerlink" href="#getting-validation-errors" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">errors()</span></code> 메소드를 사용하여 유효성 검사 오류를 조회할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;updateUser&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">()]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이는 폼 상단에 모든 오류를 표시하거나 개별적으로 표시하는 데 사용할 수 있는 필드 이름과 관련 오류가 담긴 배열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$errors</span><span class="p">))</span><span class="o">:</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span> <span class="k">as</span> <span class="nv">$field</span> <span class="o">=&gt;</span> <span class="nv">$error</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$error</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="retrieving-validation-rules">
+<h4><a class="toc-backref" href="#id60" role="doc-backlink">유효성 검사 규칙 조회하기</a><a class="headerlink" href="#retrieving-validation-rules" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">validationRules</span></code> 속성에 접근하여 모델의 유효성 검사 규칙을 조회할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">validationRules</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>옵션과 함께 접근자 메소드를 직접 호출하여 해당 규칙의 일부만 조회할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$options</span></code> 매개변수는 하나의 요소를 가진 연관 배열로, 키는 <code class="docutils literal notranslate"><span class="pre">'except'</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">'only'</span></code>이며 값은 관심 있는 필드 이름의 배열입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// get the rules for all but the &quot;username&quot; field</span>
+<span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">([</span><span class="s1">&#39;except&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]]);</span>
+<span class="c1">// get the rules for only the &quot;city&quot; and &quot;state&quot; fields</span>
+<span class="nv">$rules</span> <span class="o">=</span> <span class="nv">$model</span><span class="o">-&gt;</span><span class="na">getValidationRules</span><span class="p">([</span><span class="s1">&#39;only&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-placeholders">
+<h4><a class="toc-backref" href="#id61" role="doc-backlink">유효성 검사 플레이스홀더</a><a class="headerlink" href="#validation-placeholders" title="Link to this heading"></a></h4>
+<p>모델은 전달되는 데이터를 기반으로 규칙의 일부를 대체하는 간단한 방법을 제공합니다. 다소 모호하게 들릴 수 있지만 <code class="docutils literal notranslate"><span class="pre">is_unique</span></code> 유효성 검사 규칙에서 특히 유용합니다. 플레이스홀더는 단순히 <code class="docutils literal notranslate"><span class="pre">$data</span></code>로 전달된 필드의 이름(또는 배열 키)을 중괄호로 감싼 것입니다. 이는 일치하는 수신 필드의 <strong>값</strong>으로 대체됩니다. 예시로 이해해 보겠습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;max_length[19]|is_natural_no_zero&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[254]|valid_email|is_unique[users.email,id,{id}]&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.5부터는 플레이스홀더 필드(<code class="docutils literal notranslate"><span class="pre">id</span></code>)에 대한 유효성 검사 규칙을 설정해야 합니다.</p>
+</div>
+<p>이 규칙 집합에서는 플레이스홀더의 값과 일치하는 id를 가진 행을 제외하고 이메일 주소가 데이터베이스에서 고유해야 한다고 명시합니다. 폼 POST 데이터가 다음과 같다고 가정하면:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$_POST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo@example.com&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">{id}</span></code> 플레이스홀더가 숫자 <strong>4</strong>로 대체되어 다음과 같이 수정된 규칙이 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$validationRules</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;max_length[19]|is_natural_no_zero&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|max_length[254]|valid_email|is_unique[users.email,id,4]&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>따라서 이메일이 고유한지 확인할 때 데이터베이스에서 <code class="docutils literal notranslate"><span class="pre">id=4</span></code>인 행을 무시합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.5부터 플레이스홀더(<code class="docutils literal notranslate"><span class="pre">id</span></code>) 값이 유효성 검사를 통과하지 못하면 플레이스홀더가 대체되지 않습니다.</p>
+</div>
+<p>전달된 동적 키가 폼 데이터와 충돌하지 않도록 주의하는 한, 이를 런타임에 더 동적인 규칙을 생성하는 데도 사용할 수 있습니다.</p>
+</section>
+</section>
+<section id="protecting-fields">
+<h3><a class="toc-backref" href="#id62" role="doc-backlink">필드 보호하기</a><a class="headerlink" href="#protecting-fields" title="Link to this heading"></a></h3>
+<p>대량 할당 공격에 대한 보호를 위해 모델 클래스는 <a class="reference internal" href="#allowedfields">$allowedFields</a> 클래스 속성에 삽입 및 업데이트 중 변경할 수 있는 모든 필드 이름을 나열하도록 <strong>요구</strong>합니다. 여기에 포함되지 않은 추가 데이터는 데이터베이스에 도달하기 전에 제거됩니다. 이는 타임스탬프나 기본 키가 변경되지 않도록 보장하는 데 유용합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$allowedFields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;address&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>때로는 이러한 요소를 변경해야 할 경우가 생깁니다. 이는 종종 테스트, 마이그레이션 또는 시드 중에 발생합니다. 이런 경우 보호를 켜거나 끌 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">protect</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">protect</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="runtime-return-type-changes">
+<h3><a class="toc-backref" href="#id63" role="doc-backlink">런타임 반환 타입 변경</a><a class="headerlink" href="#runtime-return-type-changes" title="Link to this heading"></a></h3>
+<p><strong>find*()</strong> 메소드를 사용할 때 데이터가 반환되어야 할 형식을 클래스 속성 <a class="reference internal" href="#returntype">$returnType</a>으로 지정할 수 있습니다. 하지만 다른 형식으로 데이터를 받고 싶을 때가 있습니다. 모델은 바로 그 작업을 할 수 있는 메소드를 제공합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 메소드들은 다음 <strong>find*()</strong> 메소드 호출에 대해서만 반환 타입을 변경합니다. 그 후에는 기본값으로 재설정됩니다.</p>
+</div>
+<section id="asarray">
+<h4><a class="toc-backref" href="#id64" role="doc-backlink">asArray()</a><a class="headerlink" href="#asarray" title="Link to this heading"></a></h4>
+<p>다음 <strong>find*()</strong> 메소드의 데이터를 연관 배열로 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asArray</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="asobject">
+<h4><a class="toc-backref" href="#id65" role="doc-backlink">asObject()</a><a class="headerlink" href="#asobject" title="Link to this heading"></a></h4>
+<p>다음 <strong>find*()</strong> 메소드의 데이터를 표준 객체 또는 커스텀 클래스 인스턴스로 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Return as standard objects</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asObject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+
+<span class="c1">// Return as custom class instances</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">asObject</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="processing-large-amounts-of-data">
+<h3><a class="toc-backref" href="#id66" role="doc-backlink">대용량 데이터 처리하기</a><a class="headerlink" href="#processing-large-amounts-of-data" title="Link to this heading"></a></h3>
+<p>때로는 대용량 데이터를 처리해야 하며 메모리가 부족해질 위험이 있습니다. 이를 간단하게 하기 위해 chunk() 메소드를 사용하여 작업할 수 있는 더 작은 데이터 청크를 가져올 수 있습니다. 첫 번째 매개변수는 단일 청크에서 조회할 행의 수입니다. 두 번째 매개변수는 각 데이터 행에 대해 호출될 클로저입니다.</p>
+<p>이는 크론잡, 데이터 내보내기 또는 기타 대규모 작업 중에 가장 잘 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">chunk</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something.</span>
+    <span class="c1">// $data is a single row of data.</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-with-query-builder">
+<span id="model-events-callbacks"></span><h2><a class="toc-backref" href="#id67" role="doc-backlink">쿼리 빌더 사용하기</a><a class="headerlink" href="#working-with-query-builder" title="Link to this heading"></a></h2>
+<section id="getting-query-builder-for-the-model-s-table">
+<h3><a class="toc-backref" href="#id68" role="doc-backlink">모델 테이블용 쿼리 빌더 가져오기</a><a class="headerlink" href="#getting-query-builder-for-the-model-s-table" title="Link to this heading"></a></h3>
+<p>CodeIgniter 모델은 해당 모델의 데이터베이스 연결을 위한 쿼리 빌더 인스턴스를 하나 가지고 있습니다. 필요할 때 언제든지 쿼리 빌더의 <strong>공유</strong> 인스턴스에 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$builder</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">builder</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>이 빌더는 이미 모델의 <a class="reference internal" href="#table">$table</a>로 설정되어 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>쿼리 빌더 인스턴스를 얻으면 <a class="reference internal" href="../database/query_builder.html"><span class="doc">쿼리 빌더</span></a>의 메소드를 호출할 수 있습니다. 하지만 쿼리 빌더는 모델이 아니므로 모델의 메소드를 호출할 수 없습니다.</p>
+</div>
+</section>
+<section id="getting-query-builder-for-another-table">
+<h3><a class="toc-backref" href="#id69" role="doc-backlink">다른 테이블용 쿼리 빌더 가져오기</a><a class="headerlink" href="#getting-query-builder-for-another-table" title="Link to this heading"></a></h3>
+<p>다른 테이블에 접근해야 하는 경우 쿼리 빌더의 다른 인스턴스를 얻을 수 있습니다. 테이블 이름을 매개변수로 전달하되, 이는 공유 인스턴스를 반환하지 <strong>않는다</strong>는 점에 유의하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$groupBuilder</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">builder</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="mixing-methods-of-query-builder-and-model">
+<h3><a class="toc-backref" href="#id70" role="doc-backlink">쿼리 빌더와 모델 메소드 혼합 사용하기</a><a class="headerlink" href="#mixing-methods-of-query-builder-and-model" title="Link to this heading"></a></h3>
+<p>쿼리 빌더 메소드와 모델의 CRUD 메소드를 동일한 체인 호출에서 함께 사용할 수 있어 매우 우아하게 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;last_login&#39;</span><span class="p">,</span> <span class="s1">&#39;asc&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>이 경우 모델이 보유한 쿼리 빌더의 공유 인스턴스에서 작동합니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>모델은 쿼리 빌더에 완벽한 인터페이스를 제공하지 않습니다. 모델과 쿼리 빌더는 서로 다른 목적을 가진 별도의 클래스입니다. 같은 데이터를 반환할 것으로 기대해서는 안 됩니다.</p>
+</div>
+<p>쿼리 빌더가 결과를 반환하면 그대로 반환됩니다. 이 경우 결과는 모델의 메소드가 반환한 것과 다를 수 있으며 예상한 것이 아닐 수 있습니다. 모델의 이벤트는 트리거되지 않습니다.</p>
+<p>예상치 못한 동작을 방지하려면 결과를 반환하는 쿼리 빌더 메소드를 사용하지 말고 메소드 체이닝의 끝에 모델의 메소드를 지정하세요.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모델의 데이터베이스 연결에도 원활하게 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$userName</span> <span class="o">=</span> <span class="nv">$userModel</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-events">
+<span id="id6"></span><h2><a class="toc-backref" href="#id71" role="doc-backlink">모델 이벤트</a><a class="headerlink" href="#model-events" title="Link to this heading"></a></h2>
+<p>모델 실행 중 여러 콜백 메소드를 실행하도록 지정할 수 있는 여러 시점이 있습니다. 이 메소드들은 데이터 정규화, 비밀번호 해싱, 관련 엔티티 저장 등 다양한 용도로 사용할 수 있습니다.</p>
+<p>모델 실행의 다음 시점들이 영향을 받을 수 있으며, 각각 클래스 속성을 통해 설정합니다:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#beforeinsert">$beforeInsert</a>, <a class="reference internal" href="#afterinsert">$afterInsert</a></p></li>
+<li><p><a class="reference internal" href="#beforeupdate">$beforeUpdate</a>, <a class="reference internal" href="#afterupdate">$afterUpdate</a></p></li>
+<li><p><a class="reference internal" href="#beforefind">$beforeFind</a>, <a class="reference internal" href="#afterfind">$afterFind</a></p></li>
+<li><p><a class="reference internal" href="#beforedelete">$beforeDelete</a>, <a class="reference internal" href="#afterdelete">$afterDelete</a></p></li>
+<li><p><a class="reference internal" href="#beforeinsertbatch">$beforeInsertBatch</a>, <a class="reference internal" href="#afterinsertbatch">$afterInsertBatch</a></p></li>
+<li><p><a class="reference internal" href="#beforeupdatebatch">$beforeUpdateBatch</a>, <a class="reference internal" href="#afterupdatebatch">$afterUpdateBatch</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$beforeInsertBatch</span></code>, <code class="docutils literal notranslate"><span class="pre">$afterInsertBatch</span></code>, <code class="docutils literal notranslate"><span class="pre">$beforeUpdateBatch</span></code>, <code class="docutils literal notranslate"><span class="pre">$afterUpdateBatch</span></code>는 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+<section id="defining-callbacks">
+<h3><a class="toc-backref" href="#id72" role="doc-backlink">콜백 정의하기</a><a class="headerlink" href="#defining-callbacks" title="Link to this heading"></a></h3>
+<p>먼저 모델에 사용할 새 클래스 메소드를 생성하여 콜백을 지정합니다.</p>
+<p>이 클래스 메소드는 항상 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 배열을 유일한 매개변수로 받습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$data</span></code> 배열의 정확한 내용은 이벤트마다 다르지만, 원래 메소드에 전달된 기본 데이터를 담고 있는 <code class="docutils literal notranslate"><span class="pre">data</span></code>라는 키를 항상 포함합니다. <strong>insert*()</strong> 또는 <strong>update*()</strong> 메소드의 경우 데이터베이스에 삽입되는 키/값 쌍이 됩니다. 메인 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 배열은 메소드에 전달된 다른 값들도 포함하며, 이는 <a class="reference internal" href="#event-parameters">Event Parameters</a>에 상세히 설명되어 있습니다.</p>
+<p>콜백 메소드는 다른 콜백들이 전체 정보를 가질 수 있도록 원래의 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 배열을 반환해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">hashPassword</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password_hash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">password_hash</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
+        <span class="nb">unset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="specifying-callbacks-to-run">
+<h3><a class="toc-backref" href="#id73" role="doc-backlink">실행할 콜백 지정하기</a><a class="headerlink" href="#specifying-callbacks-to-run" title="Link to this heading"></a></h3>
+<p>적절한 클래스 속성(<a class="reference internal" href="#beforeinsert">$beforeInsert</a>, <a class="reference internal" href="#afterupdate">$afterUpdate</a> 등)에 메소드 이름을 추가하여 콜백을 실행할 시점을 지정합니다. 단일 이벤트에 여러 콜백을 추가할 수 있으며 순서대로 처리됩니다. 동일한 콜백을 여러 이벤트에서 사용할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$beforeInsert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
+    <span class="k">protected</span> <span class="nv">$beforeUpdate</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hashPassword&#39;</span><span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>또한 각 모델은 <a class="reference internal" href="#allowcallbacks">$allowCallbacks</a> 속성을 설정하여 클래스 전체에서 콜백을 허용(기본값)하거나 거부할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$allowCallbacks</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">allowCallbacks()</span></code> 메소드를 사용하여 단일 모델 호출에 대해 일시적으로 이 설정을 변경할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">allowCallbacks</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// No callbacks triggered</span>
+<span class="nv">$model</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Callbacks subject to original property value</span>
+</pre></div>
+</div>
+</section>
+<section id="event-parameters">
+<h3><a class="toc-backref" href="#id74" role="doc-backlink">이벤트 매개변수</a><a class="headerlink" href="#event-parameters" title="Link to this heading"></a></h3>
+<p>각 콜백에 전달되는 정확한 데이터는 약간씩 다르므로, 각 이벤트에 전달되는 <code class="docutils literal notranslate"><span class="pre">$data</span></code> 매개변수에 무엇이 있는지에 대한 세부 사항은 다음과 같습니다:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>이벤트</p></th>
+<th class="head"><p>$data 내용</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>beforeInsert</p></td>
+<td><p><strong>data</strong> = 삽입되는 키/값 쌍. 객체 또는 엔티티 클래스가 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 메소드에 전달되면 먼저 배열로 변환됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>afterInsert</p></td>
+<td><p><strong>id</strong> = 새 행의 기본 키, 실패 시 0. <strong>data</strong> = 삽입되는 키/값 쌍. <strong>result</strong> = 쿼리 빌더를 통해 사용된 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 메소드의 결과.</p></td>
+</tr>
+<tr class="row-even"><td><p>beforeUpdate</p></td>
+<td><p><strong>id</strong> = <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드에 전달되는 행의 기본 키 배열. <strong>data</strong> = 업데이트되는 키/값 쌍. 객체 또는 엔티티 클래스가 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드에 전달되면 먼저 배열로 변환됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>afterUpdate</p></td>
+<td><p><strong>id</strong> = <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드에 전달되는 행의 기본 키 배열. <strong>data</strong> = 업데이트되는 키/값 쌍. <strong>result</strong> = 쿼리 빌더를 통해 사용된 <code class="docutils literal notranslate"><span class="pre">update()</span></code> 메소드의 결과.</p></td>
+</tr>
+<tr class="row-even"><td><p>beforeFind</p></td>
+<td><p>호출하는 <strong>메소드</strong>의 이름, <strong>싱글톤</strong> 요청 여부, 그리고 다음 추가 필드들:</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first()</span></code></p></li>
+</ul>
+</td>
+<td><p>추가 필드 없음</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">find()</span></code></p></li>
+</ul>
+</td>
+<td><p><strong>id</strong> = 검색 중인 행의 기본 키.</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">findAll()</span></code></p></li>
+</ul>
+</td>
+<td><p><strong>limit</strong> = 조회할 행의 수. <strong>offset</strong> = 검색 중 건너뛸 행의 수.</p></td>
+</tr>
+<tr class="row-even"><td><p>afterFind</p></td>
+<td><p><strong>beforeFind</strong>와 동일하지만 결과 데이터 행(들)을 포함하거나, 결과가 없으면 null.</p></td>
+</tr>
+<tr class="row-odd"><td><p>beforeDelete</p></td>
+<td><p><strong>id</strong> = <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 메소드에 전달되는 기본 키 행의 배열. <strong>purge</strong> = 소프트 삭제 행을 완전히 삭제해야 할지 여부를 나타내는 불리언.</p></td>
+</tr>
+<tr class="row-even"><td><p>afterDelete</p></td>
+<td><p><strong>id</strong> = <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 메소드에 전달되는 기본 키 행의 배열. <strong>purge</strong> = 소프트 삭제 행을 완전히 삭제해야 할지 여부를 나타내는 불리언. <strong>result</strong> = 쿼리 빌더에서 <code class="docutils literal notranslate"><span class="pre">delete()</span></code> 호출의 결과. <strong>data</strong> = 미사용.</p></td>
+</tr>
+<tr class="row-odd"><td><p>beforeInsertBatch</p></td>
+<td><p><strong>data</strong> = 삽입되는 값의 연관 배열. 객체 또는 엔티티 클래스가 <code class="docutils literal notranslate"><span class="pre">insertBatch()</span></code> 메소드에 전달되면 먼저 배열로 변환됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>afterInsertBatch</p></td>
+<td><p><strong>data</strong> = 삽입되는 값의 연관 배열. <strong>result</strong> = 쿼리 빌더를 통해 사용된 <code class="docutils literal notranslate"><span class="pre">insertbatch()</span></code> 메소드의 결과.</p></td>
+</tr>
+<tr class="row-odd"><td><p>beforeUpdateBatch</p></td>
+<td><p><strong>data</strong> = 업데이트되는 값의 연관 배열. 객체 또는 엔티티 클래스가 <code class="docutils literal notranslate"><span class="pre">updateBatch()</span></code> 메소드에 전달되면 먼저 배열로 변환됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>afterUpdateBatch</p></td>
+<td><p><strong>data</strong> = 업데이트되는 키/값 쌍. <strong>result</strong> = 쿼리 빌더를 통해 사용된 <code class="docutils literal notranslate"><span class="pre">updateBatch()</span></code> 메소드의 결과.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">paginate()</span></code> 메소드를 <code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> 이벤트와 함께 사용하여 쿼리를 수정할 때 결과가 예상대로 동작하지 않을 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beforeFind</span></code> 이벤트는 실제 결과 조회(<code class="docutils literal notranslate"><span class="pre">findAll()</span></code>)에만 영향을 미치지만, 페이지네이션을 위한 전체 행 수를 계산하는 데 사용되는 쿼리에는 영향을 미치지 <strong>않기</strong> 때문입니다.</p>
+<p>결과적으로 페이지네이션 링크를 생성하는 데 사용되는 전체 행 수가 수정된 쿼리 조건을 반영하지 않아 페이지네이션에 불일치가 발생할 수 있습니다.</p>
+</div>
+</section>
+<section id="modifying-find-data">
+<h3><a class="toc-backref" href="#id75" role="doc-backlink">Find* 데이터 수정하기</a><a class="headerlink" href="#modifying-find-data" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">beforeFind</span></code>와 <code class="docutils literal notranslate"><span class="pre">afterFind</span></code> 메소드는 모두 모델의 일반 응답을 재정의하기 위해 수정된 데이터 집합을 반환할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">afterFind</span></code>의 경우 반환 배열의 <code class="docutils literal notranslate"><span class="pre">data</span></code>에 대한 변경 사항은 자동으로 호출 컨텍스트에 다시 전달됩니다. <code class="docutils literal notranslate"><span class="pre">beforeFind</span></code>가 find 워크플로를 가로채려면 추가 불리언 <code class="docutils literal notranslate"><span class="pre">returnData</span></code>도 반환해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="nv">$beforeFind</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;checkCache&#39;</span><span class="p">];</span>
+
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">checkCache</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Check if the requested item is already in our cache</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nv">$item</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getCachedItem</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>       <span class="o">=</span> <span class="nv">$item</span><span class="p">;</span>
+            <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;returnData&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="manual-model-creation">
+<h2><a class="toc-backref" href="#id76" role="doc-backlink">수동 모델 생성</a><a class="headerlink" href="#manual-model-creation" title="Link to this heading"></a></h2>
+<p>애플리케이션을 위한 모델을 생성하는 데 특별한 클래스를 상속할 필요가 없습니다. 데이터베이스 연결 인스턴스만 얻으면 준비가 됩니다. 이를 통해 CodeIgniter의 모델이 기본으로 제공하는 기능을 우회하고 완전히 커스텀한 경험을 만들 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Database\ConnectionInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$db</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ConnectionInterface</span> <span class="nv">$db</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span> <span class="o">=</span> <span class="nv">$db</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="데이터 모델링" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="entities.html" class="btn btn-neutral float-right" title="엔티티 클래스 사용하기" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

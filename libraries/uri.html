@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URI 작업하기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="사용자 에이전트 클래스" href="user_agent.html" />
+    <link rel="prev" title="업로드된 파일 다루기" href="uploaded_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">라이브러리 레퍼런스</a></li>
+      <li class="breadcrumb-item active">URI 작업하기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="working-with-uris">
+<h1>URI 작업하기<a class="headerlink" href="#working-with-uris" title="Link to this heading"></a></h1>
+<p>CodeIgniter는 애플리케이션에서 URI를 다루기 위한 객체 지향 솔루션을 제공합니다. 이를 사용하면 URI가 아무리 복잡하더라도 구조가 항상 올바른지 간단하게 확인할 수 있으며, 기존 URI에 상대 URI를 추가하고 안전하고 올바르게 해석할 수 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#creating-uri-instances" id="id2">URI 인스턴스 생성하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-current-uri" id="id3">현재 URI</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#uri-strings" id="id4">URI 문자열</a></p></li>
+<li><p><a class="reference internal" href="#the-uri-parts" id="id5">URI 구성 요소</a></p>
+<ul>
+<li><p><a class="reference internal" href="#scheme" id="id6">스킴</a></p></li>
+<li><p><a class="reference internal" href="#authority" id="id7">권한(Authority)</a></p></li>
+<li><p><a class="reference internal" href="#userinfo" id="id8">사용자 정보(UserInfo)</a></p></li>
+<li><p><a class="reference internal" href="#host" id="id9">호스트</a></p></li>
+<li><p><a class="reference internal" href="#port" id="id10">포트</a></p></li>
+<li><p><a class="reference internal" href="#path" id="id11">경로</a></p></li>
+<li><p><a class="reference internal" href="#query" id="id12">쿼리</a></p></li>
+<li><p><a class="reference internal" href="#fragment" id="id13">프래그먼트</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#uri-segments" id="id14">URI 세그먼트</a></p></li>
+<li><p><a class="reference internal" href="#disable-throwing-exceptions" id="id15">예외 발생 비활성화</a></p></li>
+</ul>
+</nav>
+<section id="creating-uri-instances">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">URI 인스턴스 생성하기</a><a class="headerlink" href="#creating-uri-instances" title="Link to this heading"></a></h2>
+<p>URI 인스턴스를 생성하는 것은 새 클래스 인스턴스를 생성하는 것만큼 간단합니다.</p>
+<p>새 인스턴스를 생성할 때 생성자에 전체 또는 부분 URL을 전달할 수 있으며, 적절한 섹션으로 파싱됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/some/path&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 <a class="reference internal" href="../general/common_functions.html#service" title="service"><code class="xref php php-func docutils literal notranslate"><span class="pre">service()</span></code></a> 함수를 사용하여 인스턴스를 반환받을 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.example.com/some/path&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>v4.4.0부터 URL을 전달하지 않으면 현재 URI를 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span><span class="p">);</span> <span class="c1">// returns the current SiteURI instance.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>위 코드는 <code class="docutils literal notranslate"><span class="pre">URI</span></code> 클래스를 확장한 <code class="docutils literal notranslate"><span class="pre">SiteURI</span></code> 인스턴스를 반환합니다. <code class="docutils literal notranslate"><span class="pre">URI</span></code> 클래스는 일반 URI를 위한 것이고, <code class="docutils literal notranslate"><span class="pre">SiteURI</span></code> 클래스는 사이트 URI를 위한 것입니다.</p>
+</div>
+<section id="the-current-uri">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">현재 URI</a><a class="headerlink" href="#the-current-uri" title="Link to this heading"></a></h3>
+<p>요청의 현재 URL을 나타내는 객체가 필요할 때 <a class="reference internal" href="../helpers/url_helper.html"><span class="doc">URL 헬퍼</span></a>에서 사용 가능한 <a class="reference internal" href="../helpers/url_helper.html#current_url" title="current_url"><code class="xref php php-func docutils literal notranslate"><span class="pre">current_url()</span></code></a> 함수를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nx">current_url</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>첫 번째 매개변수로 <code class="docutils literal notranslate"><span class="pre">true</span></code>를 전달해야 합니다. 그렇지 않으면 현재 URL의 문자열 표현을 반환합니다.</p>
+<p>이 URI는 현재 요청 객체와 <code class="docutils literal notranslate"><span class="pre">Config\App</span></code>의 설정(<code class="docutils literal notranslate"><span class="pre">baseURL</span></code>, <code class="docutils literal notranslate"><span class="pre">indexPage</span></code>, <code class="docutils literal notranslate"><span class="pre">forceGlobalSecureRequests</span></code>)에 의해 결정된 경로(<code class="docutils literal notranslate"><span class="pre">baseURL</span></code>에 상대적인)를 기반으로 합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code>를 확장한 컨트롤러 안에 있다면, 현재 SiteURI 인스턴스를 가져올 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getUri</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="uri-strings">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">URI 문자열</a><a class="headerlink" href="#uri-strings" title="Link to this heading"></a></h2>
+<p>대부분의 경우 URI의 문자열 표현을 얻는 것이 필요합니다. URI를 문자열로 캐스팅하기만 하면 간단하게 처리할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="nx">current_url</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="k">echo</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$uri</span><span class="p">;</span>  <span class="c1">// http://example.com/index.php</span>
+</pre></div>
+</div>
+<p>URI의 각 구성 요소를 알고 있고 형식이 올바른지 확인만 하고 싶다면, URI 클래스의 정적 메서드인 <code class="docutils literal notranslate"><span class="pre">createURIString()</span></code>을 사용하여 문자열을 생성할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\HTTP\URI</span><span class="p">;</span>
+
+<span class="nv">$uriString</span> <span class="o">=</span> <span class="nx">URI</span><span class="o">::</span><span class="na">createURIString</span><span class="p">(</span><span class="nv">$scheme</span><span class="p">,</span> <span class="nv">$authority</span><span class="p">,</span> <span class="nv">$path</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$fragment</span><span class="p">);</span>
+
+<span class="c1">// Creates: http://exmample.com/some/path?foo=bar#first-heading</span>
+<span class="k">echo</span> <span class="nx">URI</span><span class="o">::</span><span class="na">createURIString</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;some/path&#39;</span><span class="p">,</span> <span class="s1">&#39;foo=bar&#39;</span><span class="p">,</span> <span class="s1">&#39;first-heading&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">URI</span></code>를 문자열로 캐스팅하면 <code class="docutils literal notranslate"><span class="pre">Config\App</span></code>에 정의된 설정에 맞게 프로젝트 URL을 조정하려고 합니다. 정확하고 변경되지 않은 문자열 표현이 필요한 경우 <code class="docutils literal notranslate"><span class="pre">URI::createURIString()</span></code>을 사용하세요.</p>
+</div>
+</section>
+<section id="the-uri-parts">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">URI 구성 요소</a><a class="headerlink" href="#the-uri-parts" title="Link to this heading"></a></h2>
+<p>URI 인스턴스가 있으면 URI의 다양한 구성 요소를 설정하거나 가져올 수 있습니다. 이 섹션에서는 해당 구성 요소가 무엇인지, 그리고 그것들을 다루는 방법을 자세히 설명합니다.</p>
+<section id="scheme">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">스킴</a><a class="headerlink" href="#scheme" title="Link to this heading"></a></h3>
+<p>스킴은 보통 ‘http’ 또는 ‘https’이지만, ‘file’, ‘mailto’ 등 모든 스킴이 지원됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/some/path&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getScheme</span><span class="p">();</span> <span class="c1">// &#39;http&#39;</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setScheme</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="authority">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">권한(Authority)</a><a class="headerlink" href="#authority" title="Link to this heading"></a></h3>
+<p>많은 URI에는 ‘권한(authority)’으로 통칭되는 여러 요소가 포함됩니다. 여기에는 사용자 정보, 호스트, 포트 번호가 포함됩니다. <code class="docutils literal notranslate"><span class="pre">getAuthority()</span></code> 메서드로 이 모든 구성 요소를 하나의 문자열로 가져오거나, 개별 구성 요소를 조작할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;ftp://user:password@example.com:21/some/path&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getAuthority</span><span class="p">();</span>  <span class="c1">// user@example.com:21</span>
+</pre></div>
+</div>
+<p>기본적으로 비밀번호 부분은 표시되지 않습니다. 비밀번호를 표시하려면 <code class="docutils literal notranslate"><span class="pre">showPassword()</span></code> 메서드를 사용할 수 있습니다. 이 URI 인스턴스는 비밀번호 표시를 끌 때까지 계속 표시하므로, 사용이 끝나면 반드시 비밀번호 표시를 꺼야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getAuthority</span><span class="p">();</span>  <span class="c1">// user@example.com:21</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">showPassword</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getAuthority</span><span class="p">();</span>   <span class="c1">// user:password@example.com:21</span>
+
+<span class="c1">// Turn password display off again.</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">showPassword</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>포트를 표시하지 않으려면 유일한 매개변수로 <code class="docutils literal notranslate"><span class="pre">true</span></code>를 전달하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getAuthority</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>  <span class="c1">// user@example.com</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>현재 포트가 스킴의 기본 포트인 경우 포트는 표시되지 않습니다.</p>
+</div>
+</section>
+<section id="userinfo">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">사용자 정보(UserInfo)</a><a class="headerlink" href="#userinfo" title="Link to this heading"></a></h3>
+<p>사용자 정보 섹션은 FTP URI에서 볼 수 있는 사용자 이름과 비밀번호입니다. 권한(Authority)의 일부로 가져올 수도 있지만, 직접 가져올 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getUserInfo</span><span class="p">();</span>   <span class="c1">// user</span>
+</pre></div>
+</div>
+<p>기본적으로 비밀번호는 표시되지 않지만, <code class="docutils literal notranslate"><span class="pre">showPassword()</span></code> 메서드로 이를 재정의할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">showPassword</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getUserInfo</span><span class="p">();</span>   <span class="c1">// user:password</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">showPassword</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="host">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">호스트</a><a class="headerlink" href="#host" title="Link to this heading"></a></h3>
+<p>URI의 호스트 부분은 일반적으로 URL의 도메인 이름입니다. <code class="docutils literal notranslate"><span class="pre">getHost()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setHost()</span></code> 메서드로 쉽게 설정하고 가져올 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/some/path&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getHost</span><span class="p">();</span>   <span class="c1">// www.example.com</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setHost</span><span class="p">(</span><span class="s1">&#39;anotherexample.com&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getHost</span><span class="p">();</span>    <span class="c1">// anotherexample.com</span>
+</pre></div>
+</div>
+</section>
+<section id="port">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">포트</a><a class="headerlink" href="#port" title="Link to this heading"></a></h3>
+<p>포트는 0에서 65535 사이의 정수입니다. 각 스킴에는 연관된 기본값이 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;ftp://user:password@example.com:21/some/path&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getPort</span><span class="p">();</span>   <span class="c1">// 21</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setPort</span><span class="p">(</span><span class="mi">2201</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getPort</span><span class="p">();</span> <span class="c1">// 2201</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">setPort()</span></code> 메서드를 사용할 때 포트가 유효한 범위 내에 있는지 확인한 후 할당됩니다.</p>
+</section>
+<section id="path">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">경로</a><a class="headerlink" href="#path" title="Link to this heading"></a></h3>
+<p>경로는 사이트 내의 모든 세그먼트로 구성됩니다. 예상대로 <code class="docutils literal notranslate"><span class="pre">getPath()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setPath()</span></code> 메서드를 사용하여 조작할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/some/path&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getPath</span><span class="p">();</span>                            <span class="c1">// &#39;/some/path&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setPath</span><span class="p">(</span><span class="s1">&#39;/another/path&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getPath</span><span class="p">();</span>  <span class="c1">// &#39;/another/path&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>경로를 설정할 때 위험한 문자를 인코딩하고 안전을 위해 점 세그먼트를 제거하는 처리가 이루어집니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0부터 <code class="docutils literal notranslate"><span class="pre">SiteURI::getRoutePath()</span></code> 메서드는 baseURL에 상대적인 URI 경로를 반환하고, <code class="docutils literal notranslate"><span class="pre">SiteURI::getPath()</span></code> 메서드는 항상 선행 <code class="docutils literal notranslate"><span class="pre">/</span></code>가 있는 전체 URI 경로를 반환합니다.</p>
+</div>
+</section>
+<section id="query">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">쿼리</a><a class="headerlink" href="#query" title="Link to this heading"></a></h3>
+<p>쿼리 데이터는 단순한 문자열 표현을 사용하여 클래스를 통해 조작할 수 있습니다.</p>
+<section id="getting-setting-query">
+<h4>쿼리 가져오기/설정하기<a class="headerlink" href="#getting-setting-query" title="Link to this heading"></a></h4>
+<p>현재 쿼리 값은 문자열로만 설정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com?foo=bar&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">();</span>  <span class="c1">// &#39;foo=bar&#39;</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setQuery</span><span class="p">(</span><span class="s1">&#39;foo=bar&amp;bar=baz&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">setQuery()</span></code> 메서드는 기존 쿼리 변수를 덮어씁니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>쿼리 값에는 프래그먼트가 포함될 수 없습니다. 포함될 경우 InvalidArgumentException이 발생합니다.</p>
+</div>
+</section>
+<section id="setting-query-from-array">
+<h4>배열로 쿼리 설정하기<a class="headerlink" href="#setting-query-from-array" title="Link to this heading"></a></h4>
+<p>배열을 사용하여 쿼리 값을 설정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setQueryArray</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">setQueryArray()</span></code> 메서드는 기존 쿼리 변수를 덮어씁니다.</p>
+</section>
+<section id="adding-query-value">
+<h4>쿼리 값 추가하기<a class="headerlink" href="#adding-query-value" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">addQuery()</span></code> 메서드를 사용하면 기존 쿼리 변수를 제거하지 않고 쿼리 변수 컬렉션에 값을 추가할 수 있습니다. 첫 번째 매개변수는 변수 이름이고, 두 번째 매개변수는 값입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">addQuery</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="filtering-query-values">
+<h4>쿼리 값 필터링하기<a class="headerlink" href="#filtering-query-values" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">getQuery()</span></code> 메서드에 <em>only</em> 또는 <em>except</em> 키가 있는 옵션 배열을 전달하여 반환되는 쿼리 값을 필터링할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com?foo=bar&amp;bar=baz&amp;baz=foz&#39;</span><span class="p">);</span>
+
+<span class="c1">// Returns &#39;foo=bar&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">([</span><span class="s1">&#39;only&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]]);</span>
+
+<span class="c1">// Returns &#39;foo=bar&amp;baz=foz&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">([</span><span class="s1">&#39;except&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>이는 이번 호출 중에 반환되는 값만 변경합니다.</p>
+</section>
+<section id="changing-query-values">
+<h4>쿼리 값 변경하기<a class="headerlink" href="#changing-query-values" title="Link to this heading"></a></h4>
+<p>URI의 쿼리 값을 더 영구적으로 변경해야 한다면, <code class="docutils literal notranslate"><span class="pre">stripQuery()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">keepQuery()</span></code> 메서드를 사용하여 실제 객체의 쿼리 변수 컬렉션을 변경할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com?foo=bar&amp;bar=baz&amp;baz=foz&#39;</span><span class="p">);</span>
+
+<span class="c1">// Leaves just the &#39;baz&#39; variable</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">stripQuery</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+
+<span class="c1">// Leaves just the &#39;foo&#39; variable</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">keepQuery</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>기본적으로 <code class="docutils literal notranslate"><span class="pre">setQuery()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setQueryArray()</span></code> 메서드는 데이터를 준비하기 위해 네이티브 <code class="docutils literal notranslate"><span class="pre">parse_str()</span></code> 함수를 사용합니다. 더 유연한 규칙(키 이름에 점을 포함하도록 허용)을 사용하려면 사전에 특수 메서드 <code class="docutils literal notranslate"><span class="pre">useRawQueryString()</span></code>을 사용할 수 있습니다.</p>
+</div>
+</section>
+</section>
+<section id="fragment">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">프래그먼트</a><a class="headerlink" href="#fragment" title="Link to this heading"></a></h3>
+<p>프래그먼트는 파운드 기호(<code class="docutils literal notranslate"><span class="pre">#</span></code>) 뒤에 오는 URL 끝 부분입니다. HTML URL에서는 페이지 내 앵커 링크이며, 미디어 URI에서는 다양한 방식으로 활용될 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$uri</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(</span><span class="s1">&#39;http://www.example.com/some/path#first-heading&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getFragment</span><span class="p">();</span>   <span class="c1">// &#39;first-heading&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setFragment</span><span class="p">(</span><span class="s1">&#39;second-heading&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getFragment</span><span class="p">();</span>    <span class="c1">// &#39;second-heading&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="uri-segments">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">URI 세그먼트</a><a class="headerlink" href="#uri-segments" title="Link to this heading"></a></h2>
+<p>슬래시 사이의 경로 각 섹션이 하나의 세그먼트입니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>사이트 URI의 경우, URI 세그먼트는 baseURL에 상대적인 URI 경로 부분만을 의미합니다. baseURL에 하위 폴더가 포함된 경우 값이 현재 URI 경로와 다를 수 있습니다.</p>
+</div>
+<p>URI 클래스는 세그먼트의 값을 확인하는 간단한 방법을 제공합니다. 세그먼트는 경로의 가장 왼쪽인 1번부터 시작합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// URI = http://example.com/users/15/profile</span>
+
+<span class="c1">// Prints &#39;15&#39;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;users&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">getSegment()</span></code> 메서드의 두 번째 매개변수를 사용하여 특정 세그먼트의 다른 기본값을 설정할 수도 있습니다. 기본값은 빈 문자열입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// URI = http://example.com/users/15/profile</span>
+
+<span class="c1">// will print &#39;profile&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<span class="c1">// will print &#39;bar&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+<span class="c1">// will throw an exception</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">);</span>
+<span class="c1">// will print &#39;baz&#39;</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setSilent</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">);</span>
+<span class="c1">// will print &#39;&#39; (empty string)</span>
+<span class="k">echo</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setSilent</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getSegment</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>마지막 +1 세그먼트를 가져올 수 있습니다. 마지막 +2 이상의 세그먼트를 가져오려고 하면 기본적으로 예외가 발생합니다. <code class="docutils literal notranslate"><span class="pre">setSilent()</span></code> 메서드를 사용하여 예외 발생을 방지할 수 있습니다.</p>
+</div>
+<p>전체 세그먼트 수를 가져올 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$total</span> <span class="o">=</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getTotalSegments</span><span class="p">();</span> <span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>마지막으로 모든 세그먼트의 배열을 가져올 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$segments</span> <span class="o">=</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getSegments</span><span class="p">();</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Produces:</span>
+<span class="cm"> * [</span>
+<span class="cm"> *     0 =&gt; &#39;users&#39;,</span>
+<span class="cm"> *     1 =&gt; &#39;15&#39;,</span>
+<span class="cm"> *     2 =&gt; &#39;profile&#39;,</span>
+<span class="cm"> * ]</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</section>
+<section id="disable-throwing-exceptions">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">예외 발생 비활성화</a><a class="headerlink" href="#disable-throwing-exceptions" title="Link to this heading"></a></h2>
+<p>기본적으로 이 클래스의 일부 메서드는 예외를 발생시킬 수 있습니다. 이를 비활성화하려면 예외 발생을 방지하는 특별한 플래그를 설정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Disable throwing exceptions</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setSilent</span><span class="p">();</span>
+
+<span class="c1">// Enable throwing exceptions (default)</span>
+<span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">setSilent</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="uploaded_files.html" class="btn btn-neutral float-left" title="업로드된 파일 다루기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user_agent.html" class="btn btn-neutral float-right" title="사용자 에이전트 클래스" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

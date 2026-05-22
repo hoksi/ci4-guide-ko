@@ -1,0 +1,1295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파서 보기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="뷰 데코레이터" href="view_decorators.html" />
+    <link rel="prev" title="셀 보기" href="view_cells.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">응답 빌드</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_cells.html">셀 보기</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">응답 빌드</a></li>
+      <li class="breadcrumb-item active">파서 보기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="view-parser">
+<h1>파서 보기<a class="headerlink" href="#view-parser" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-the-view-parser-class" id="id2">뷰 파서 클래스 사용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-it-does" id="id3">그것이 하는 일</a></p></li>
+<li><p><a class="reference internal" href="#parser-templates" id="id4">파서 템플릿</a></p></li>
+<li><p><a class="reference internal" href="#parser-configuration-options" id="id5">파서 구성 옵션</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#substitution-variations" id="id6">대체 변형</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loop-substitutions" id="id7">루프 대체</a></p></li>
+<li><p><a class="reference internal" href="#nested-substitutions" id="id8">중첩된 대체</a></p></li>
+<li><p><a class="reference internal" href="#comments" id="id9">댓글</a></p></li>
+<li><p><a class="reference internal" href="#cascading-data" id="id10">계단식 데이터</a></p></li>
+<li><p><a class="reference internal" href="#preventing-parsing" id="id11">구문 분석 방지</a></p></li>
+<li><p><a class="reference internal" href="#conditional-logic" id="id12">조건부 논리</a></p></li>
+<li><p><a class="reference internal" href="#escaping-data" id="id13">데이터 이스케이프</a></p></li>
+<li><p><a class="reference internal" href="#filters" id="id14">필터</a></p></li>
+<li><p><a class="reference internal" href="#parser-plugins" id="id15">파서 플러그인</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage-notes" id="id16">사용법 참고 사항</a></p>
+<ul>
+<li><p><a class="reference internal" href="#view-fragments" id="id17">조각 보기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#class-reference" id="id18">수업 참고자료</a></p></li>
+</ul>
+</nav>
+<p>View Parser는 뷰 파일에 포함된 의사 변수에 대한 간단한 텍스트 대체를 수행할 수 있습니다. 간단한 변수나 변수 태그 쌍을 구문 분석할 수 있습니다.</p>
+<p>의사 변수 이름이나 제어 구문은 this::처럼 중괄호로 묶습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">blog_title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">blog_heading</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h3</span><span class="o">&gt;</span>
+
+    <span class="p">{</span><span class="nx">blog_entries</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="nx">h5</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h5</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">body</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="o">/</span><span class="nx">blog_entries</span><span class="p">}</span>
+
+<span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>이러한 변수는 실제 PHP 변수가 아니라 템플릿(파일 보기)에서 PHP를 제거할 수 있는 일반 텍스트 표현입니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>CodeIgniter에서는 보기 페이지에서 순수 PHP를 사용하면(예: <a class="reference internal" href="view_renderer.html"><span class="doc">View renderer</span></a> 사용) 이 클래스를 좀 더 빠르게 실행할 수 있으므로 이 클래스를 사용할 필요가 <strong>없습니다</strong>. 그러나 일부 개발자는 PHP 작업에 혼란을 느낄 것이라고 생각하는 디자이너와 작업하는 경우 특정 형태의 템플릿 엔진을 사용하는 것을 선호합니다.</p>
+</div>
+<section id="using-the-view-parser-class">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">뷰 파서 클래스 사용</a><a class="headerlink" href="#using-the-view-parser-class" title="Link to this heading"></a></h2>
+<p>파서 클래스를 로드하는 가장 간단한 방법은 해당 서비스를 이용하는 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;parser&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 <code class="docutils literal notranslate"><span class="pre">Parser</span></code> 클래스를 기본 렌더러로 사용하지 않는 경우 직접 인스턴스화할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\Parser</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>그런 다음 제공되는 세 가지 표준 렌더링 방법인 <code class="docutils literal notranslate"><span class="pre">render()</span></code>, <code class="docutils literal notranslate"><span class="pre">setVar()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setData()</span></code> 중 하나를 사용할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">setDelimiters()</span></code> 메소드를 통해 구분 기호를 직접 지정할 수도 있습니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code>을 사용하면 뷰 템플릿은 파서 자체에 의해서만 처리되며 기존 뷰 PHP 스크립트와는 다릅니다. 이러한 스크립트의 PHP 코드는 파서에서 무시되며 대체만 수행됩니다.</p>
+<p>이것은 목적이 있습니다: PHP 없이 파일을 봅니다.</p>
+</div>
+<section id="what-it-does">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">그것이 하는 일</a><a class="headerlink" href="#what-it-does" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code> 클래스는 애플리케이션의 보기 경로에 저장된 “PHP/HTML 스크립트”를 처리합니다. 이 스크립트에는 PHP가 포함될 수 없습니다.</p>
+<p>각 보기 매개변수(의사 변수라고 함)는 제공한 값 유형에 따라 대체를 트리거합니다. 의사 변수는 PHP 변수로 추출되지 않습니다. 대신 해당 값은 의사 변수 구문을 통해 액세스되며 해당 이름은 중괄호 안에서 참조됩니다.</p>
+<p>Parser 클래스는 내부적으로 연관 배열을 사용하여 <code class="docutils literal notranslate"><span class="pre">render()</span></code>을 호출할 때까지 의사 변수 설정을 축적합니다. 이는 의사 변수 이름이 고유해야 함을 의미합니다. 그렇지 않으면 이후 매개변수 설정이 이전 매개변수 설정을 재정의합니다.</p>
+<p>이는 스크립트 내부의 다양한 컨텍스트에 대한 이스케이프 매개변수 값에도 영향을 미칩니다. 이스케이프된 각 값에 고유한 매개변수 이름을 지정해야 합니다.</p>
+</section>
+<section id="parser-templates">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">파서 템플릿</a><a class="headerlink" href="#parser-templates" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">render()</span></code> 메소드를 사용하여 다음과 같이 간단한 템플릿을 구문 분석(또는 렌더링)할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;blog_title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Heading&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>보기 매개변수는 템플릿에서 대체될 데이터의 연관 배열로 <code class="docutils literal notranslate"><span class="pre">setData()</span></code>에 전달됩니다.</p>
+<p>위의 예에서 템플릿에는 <code class="docutils literal notranslate"><span class="pre">{blog_title}</span></code> 및 <code class="docutils literal notranslate"><span class="pre">{blog_heading}</span></code>의 두 가지 변수가 포함됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">render()</span></code>의 첫 번째 매개변수에는 템플릿 이름이 포함됩니다. 여기서 <code class="docutils literal notranslate"><span class="pre">blog_template</span></code>은 보기 템플릿 파일의 이름입니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>파일 확장자를 생략하면 뷰는 .php 확장자로 끝날 것으로 예상됩니다.</p>
+</div>
+</section>
+<section id="parser-configuration-options">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">파서 구성 옵션</a><a class="headerlink" href="#parser-configuration-options" title="Link to this heading"></a></h3>
+<p>여러 옵션을 <code class="docutils literal notranslate"><span class="pre">render()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">renderString()</span></code> 메서드에 전달할 수 있습니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code> - 보기 결과를 저장하는 시간(초)입니다. <code class="docutils literal notranslate"><span class="pre">renderString()</span></code> 동안 무시됨</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache_name</span></code> - 캐시된 보기 결과를 저장/검색하는 데 사용되는 ID입니다. 기본값은 뷰 경로입니다. renderString()에서는 무시됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saveData</span></code> - 후속 호출을 위해 뷰 데이터 매개변수를 유지해야 하는 경우 true입니다. 기본값은 <strong>true</strong>입니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cascadeData</span></code> - 의사 변수 설정을 중첩된 대체 항목에 전달해야 하는 경우 true입니다. 기본값은 <strong>true</strong>입니다.</p></li>
+</ul>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;cache&#39;</span>      <span class="o">=&gt;</span> <span class="nx">HOUR</span><span class="p">,</span>
+    <span class="s1">&#39;cache_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;something_unique&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="substitution-variations">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">대체 변형</a><a class="headerlink" href="#substitution-variations" title="Link to this heading"></a></h2>
+<p>지원되는 대체 유형에는 단순, 반복, 중첩의 세 가지 유형이 있습니다. 대체는 의사 변수가 추가된 것과 동일한 순서로 수행됩니다.</p>
+<p>파서가 수행하는 <strong>간단한 대체</strong>는 다음 예와 같이 해당 데이터 매개변수가 스칼라 또는 문자열 값을 갖는 의사 변수의 일대일 대체입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;&lt;head&gt;&lt;title&gt;{blog_title}&lt;/title&gt;&lt;/head&gt;&#39;</span><span class="p">;</span>
+<span class="nv">$data</span>     <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blog_title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My ramblings&#39;</span><span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+<span class="c1">// Result: &lt;head&gt;&lt;title&gt;My ramblings&lt;/title&gt;&lt;/head&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code>은 중첩된 대체 또는 루핑에 사용되는 “변수 쌍”과 조건부 대체를 위한 일부 고급 구성을 사용하여 훨씬 더 많은 대체를 수행합니다.</p>
+<p>파서가 실행되면 일반적으로</p>
+<ul class="simple">
+<li><p>조건부 대체 처리</p></li>
+<li><p>중첩/루핑 대체 처리</p></li>
+<li><p>나머지 단일 대체 처리</p></li>
+</ul>
+<section id="loop-substitutions">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">루프 대체</a><a class="headerlink" href="#loop-substitutions" title="Link to this heading"></a></h3>
+<p>루프 대체는 의사 변수의 값이 행 설정 배열과 같은 순차적 배열 배열일 때 발생합니다.</p>
+<p>위의 예제 코드를 사용하면 간단한 변수를 바꿀 수 있습니다. 전체 변수 블록을 반복하고 각 반복에 새 값이 포함되도록 하려면 어떻게 해야 합니까? page:: 상단에 표시된 템플릿 예를 고려해 보세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">blog_title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">blog_heading</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h3</span><span class="o">&gt;</span>
+
+    <span class="p">{</span><span class="nx">blog_entries</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="nx">h5</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h5</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">body</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="o">/</span><span class="nx">blog_entries</span><span class="p">}</span>
+
+<span class="o">&lt;/</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>위 코드에서는 변수 쌍(<code class="docutils literal notranslate"><span class="pre">{blog_entries}</span></code> data… <code class="docutils literal notranslate"><span class="pre">{/blog_entries}</span></code>)을 볼 수 있습니다. 이와 같은 경우 이러한 쌍 사이의 전체 데이터 청크는 매개변수 배열의 “blog_entries” 요소에 있는 행 수에 따라 여러 번 반복됩니다.</p>
+<p>변수 쌍 구문 분석은 단일 변수 구문 분석을 위해 위에 표시된 동일한 코드를 사용하여 수행됩니다. 단, 변수 쌍 데이터에 해당하는 다차원 배열을 추가한다는 점만 다릅니다. 다음 예를 고려하십시오.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;blog_title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Heading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_entries&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 1&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 1&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 2&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 2&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 3&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 3&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 4&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 4&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 5&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 5&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>의사 변수 <code class="docutils literal notranslate"><span class="pre">blog_entries</span></code>의 값은 연관 배열의 순차적 배열입니다. 외부 레벨에는 중첩된 각 “행”과 연관된 키가 없습니다.</p>
+<p>“쌍” 데이터가 이미 다차원 배열인 데이터베이스 결과에서 나오는 경우 간단히 데이터베이스 <code class="docutils literal notranslate"><span class="pre">getResultArray()</span></code> 메서드를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM blog&#39;</span><span class="p">);</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;blog_title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Heading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_entries&#39;</span> <span class="o">=&gt;</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getResultArray</span><span class="p">(),</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>루프하려는 배열에 배열 대신 개체가 포함되어 있으면 파서는 먼저 개체에서 <code class="docutils literal notranslate"><span class="pre">asArray()</span></code> 메서드를 찾습니다. 존재하는 경우 해당 메서드가 호출되고 결과 배열은 위에서 설명한 대로 반복됩니다. <code class="docutils literal notranslate"><span class="pre">asArray()</span></code> 메서드가 없으면 개체는 배열로 캐스팅되고 해당 공용 속성을 파서에서 사용할 수 있게 됩니다.</p>
+<p>이는 모든 공용 및 보호 속성(_options 속성 제외)을 반환하고 이를 파서에서 사용할 수 있게 만드는 <code class="docutils literal notranslate"><span class="pre">asArray()</span></code> 메서드가 있는 Entity 클래스에 특히 유용합니다.</p>
+</section>
+<section id="nested-substitutions">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">중첩된 대체</a><a class="headerlink" href="#nested-substitutions" title="Link to this heading"></a></h3>
+<p>중첩된 대체는 의사 변수의 값이 데이터베이스의 레코드와 같은 값의 연관 배열인 경우 발생합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;blog_title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Heading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blog_entries&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;body&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Body 1&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>의사 변수 <code class="docutils literal notranslate"><span class="pre">blog_entries</span></code>의 값은 연관 배열입니다. 내부에 정의된 키/값 쌍은 해당 변수에 대한 변수 쌍 루프 내부에 노출됩니다.</p>
+<p>above::에서 작동할 수 있는 <strong>blog_template.php</strong></p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">blog_title</span><span class="p">}</span> <span class="o">-</span> <span class="p">{</span><span class="nx">blog_heading</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="nx">blog_entries</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">body</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">/</span><span class="nx">blog_entries</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">blog_entries</span></code> 범위 내에서 다른 의사 변수에 액세스하려면 <code class="docutils literal notranslate"><span class="pre">cascadeData</span></code> 옵션이 true로 설정되어 있는지 확인하세요.</p>
+</section>
+<section id="comments">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">댓글</a><a class="headerlink" href="#comments" title="Link to this heading"></a></h3>
+<p>주석을 <code class="docutils literal notranslate"><span class="pre">{#</span>&#160; <span class="pre">#}</span></code> 기호로 묶어 구문 분석 중에 무시되고 제거될 주석을 템플릿에 배치할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="c1"># This comment is removed during parsing. #}</span>
+<span class="p">{</span><span class="nx">blog_entry</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">body</span><span class="p">}</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">/</span><span class="nx">blog_entry</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="cascading-data">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">계단식 데이터</a><a class="headerlink" href="#cascading-data" title="Link to this heading"></a></h3>
+<p>중첩 및 루프 대체를 모두 사용하면 데이터 쌍을 내부 대체에 계단식으로 연결할 수 있는 옵션이 있습니다.</p>
+<p>다음 예는 계단식 배열의 영향을 받지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;{name} lives in {locations}{city} on {planet}{/locations}.&#39;</span><span class="p">;</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;locations&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;city&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Red City&#39;</span><span class="p">,</span> <span class="s1">&#39;planet&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mars&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+<span class="c1">// Result: George lives in Red City on Mars.</span>
+</pre></div>
+</div>
+<p>이 예는 계단식에 따라 다른 결과를 제공합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;{locations}{name} lives in {city} on {planet}{/locations}.&#39;</span><span class="p">;</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;locations&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;city&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Red City&#39;</span><span class="p">,</span> <span class="s1">&#39;planet&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mars&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cascadeData&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+<span class="c1">// Result: {name} lives in Red City on Mars.</span>
+
+<span class="c1">// or</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cascadeData&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="c1">// Result: George lives in Red City on Mars.</span>
+</pre></div>
+</div>
+</section>
+<section id="preventing-parsing">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">구문 분석 방지</a><a class="headerlink" href="#preventing-parsing" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">{noparse}</span></code> <code class="docutils literal notranslate"><span class="pre">{/noparse}</span></code> 태그 쌍을 사용하여 구문 분석되지 않을 페이지 부분을 지정할 수 있습니다. 이 섹션의 모든 내용은 대괄호 사이의 마크업에서 변수 대체, 반복 등이 발생하지 않고 그대로 유지됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">noparse</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Untouched</span> <span class="nx">Code</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">/</span><span class="nx">noparse</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="conditional-logic">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">조건부 논리</a><a class="headerlink" href="#conditional-logic" title="Link to this heading"></a></h3>
+<p>Parser 클래스는 <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code> 및 <code class="docutils literal notranslate"><span class="pre">elseif</span></code> 구문을 처리하기 위한 몇 가지 기본 조건을 지원합니다. 모든 <code class="docutils literal notranslate"><span class="pre">if</span></code> 블록은 <code class="docutils literal notranslate"><span class="pre">endif</span></code> tag::로 닫아야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">!&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="k">endif</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>이 간단한 블록은 구문 분석 중에 다음으로 변환됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$role</span> <span class="o">===</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome, Admin!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>if 문 내에서 사용되는 모든 변수는 이전에 동일한 이름으로 설정되어 있어야 합니다. 그 외에는 표준 PHP 조건부와 똑같이 처리되며 모든 표준 PHP 규칙이 여기에 적용됩니다. <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">===</span></code>, <code class="docutils literal notranslate"><span class="pre">!==</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 등과 같이 일반적으로 사용하는 비교 연산자를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="k">elseif</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;moderator&#39;</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Moderator</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="k">else</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">User</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="k">endif</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>백그라운드에서 조건문은 <code class="docutils literal notranslate"><span class="pre">eval()</span></code>을 사용하여 구문 분석되므로 조건문 내에서 사용되는 사용자 데이터를 주의 깊게 다루어야 합니다. 그렇지 않으면 애플리케이션이 보안 위험에 노출될 수 있습니다.</p>
+</div>
+<section id="changing-the-conditional-delimiters">
+<h4>조건부 구분 기호 변경<a class="headerlink" href="#changing-the-conditional-delimiters" title="Link to this heading"></a></h4>
+<p>템플릿에 다음과 같은 JavaScript 코드가 있는 경우 conditional::으로 해석될 수 있는 문자열이 있기 때문에 구문 분석기는 구문 오류를 발생시킵니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+    <span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">hasAlert</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;{message}&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="nx">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>이 경우 잘못된 해석을 피하기 위해 <code class="docutils literal notranslate"><span class="pre">setConditionalDelimiters()</span></code> 메서드를 사용하여 조건문의 구분 기호를 변경할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setConditionalDelimiters</span><span class="p">(</span><span class="s1">&#39;{%&#39;</span><span class="p">,</span> <span class="s1">&#39;%}&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 경우 template::에 코드를 작성합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span> <span class="o">%</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">User</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="escaping-data">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">데이터 이스케이프</a><a class="headerlink" href="#escaping-data" title="Link to this heading"></a></h3>
+<p>기본적으로 페이지에 대한 XSS 공격을 방지하기 위해 모든 변수 대체가 이스케이프됩니다. CodeIgniter의 <code class="docutils literal notranslate"><span class="pre">esc()</span></code> 메서드는 HTML <code class="docutils literal notranslate"><span class="pre">attr</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code> 등에 있을 때 일반 <code class="docutils literal notranslate"><span class="pre">html</span></code>과 같은 여러 가지 다른 컨텍스트를 지원합니다. 다른 항목이 지정되지 않으면 데이터가 HTML 컨텍스트에 있는 것으로 간주됩니다. <code class="docutils literal notranslate"><span class="pre">esc()</span></code> filter::를 사용하여 사용되는 컨텍스트를 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">user_styles</span> <span class="o">|</span> <span class="nx">esc</span><span class="p">(</span><span class="nx">css</span><span class="p">)</span> <span class="p">}</span>
+<span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;{ user_link | esc(attr) }&quot;</span><span class="o">&gt;</span><span class="p">{</span> <span class="nx">title</span> <span class="p">}</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>탈출하지 않고 사용해야 할 것이 절대적으로 필요한 때가 있을 것입니다. braces:: 열기 및 닫기에 느낌표를 추가하면 됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">!</span> <span class="nx">unescaped_var</span> <span class="o">!</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="filters">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">필터</a><a class="headerlink" href="#filters" title="Link to this heading"></a></h3>
+<p>단일 변수 대체에는 하나 이상의 필터가 적용되어 표시 방식을 수정할 수 있습니다. 이는 출력을 크게 변경하려는 것이 아니라 동일한 변수 데이터를 다른 프레젠테이션으로 재사용하는 방법을 제공합니다. 위에서 설명한 <code class="docutils literal notranslate"><span class="pre">esc</span></code> 필터는 한 가지 예입니다. 날짜는 또 다른 일반적인 사용 사례로, 동일한 페이지의 여러 섹션에서 동일한 데이터의 형식을 다르게 지정해야 할 수 있습니다.</p>
+<p>필터는 의사 변수 이름 뒤에 오는 명령이며 파이프 기호 __PH_0__::로 구분됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// -55 is displayed as 55</span>
+<span class="p">{</span> <span class="nx">value</span><span class="o">|</span><span class="nb">abs</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>매개변수가 인수를 취하는 경우 쉼표로 구분하고 parentheses::로 묶어야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">created_at</span><span class="o">|</span><span class="nb">date</span><span class="p">(</span><span class="nx">Y</span><span class="o">-</span><span class="nx">m</span><span class="o">-</span><span class="nx">d</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>여러 필터를 함께 연결하여 여러 필터를 값에 적용할 수 있습니다. 왼쪽부터 right::까지 순서대로 처리됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">created_at</span><span class="o">|</span><span class="nb">date_modify</span><span class="p">(</span><span class="o">+</span><span class="mi">5</span> <span class="nx">days</span><span class="p">)</span><span class="o">|</span><span class="nb">date</span><span class="p">(</span><span class="nx">Y</span><span class="o">-</span><span class="nx">m</span><span class="o">-</span><span class="nx">d</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<section id="provided-filters">
+<h4>제공되는 필터<a class="headerlink" href="#provided-filters" title="Link to this heading"></a></h4>
+<p>파서를 사용할 때 다음 필터를 사용할 수 있습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>필터</p></th>
+<th class="head"><p>인수</p></th>
+<th class="head"><p>설명</p></th>
+<th class="head"><p>예</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>복근</p></td>
+<td></td>
+<td><p>숫자의 절대값을 표시합니다.</p></td>
+<td><p>{ v|abs }</p></td>
+</tr>
+<tr class="row-odd"><td><p>대문자로 쓰다</p></td>
+<td></td>
+<td><p>문자열을 문장 케이스로 표시합니다. 첫 글자는 모두 소문자이고 대문자입니다.</p></td>
+<td><p>{ v|capitalize}</p></td>
+</tr>
+<tr class="row-even"><td><p>날짜</p></td>
+<td><p>형식(Y-m-d)</p></td>
+<td><p>PHP <strong>날짜</strong> 호환 형식 문자열입니다.</p></td>
+<td><p>{ v|date(Y-m-d) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>날짜_수정</p></td>
+<td><p>더하거나 뺄 값</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+5</span> <span class="pre">day</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">week</span></code>과 같이 날짜를 수정하기 위한 <strong>strtotime</strong> 호환 문자열입니다.</p></td>
+<td><p>{ v|date_modify(+1 day) }</p></td>
+</tr>
+<tr class="row-even"><td><p>기본</p></td>
+<td><p>기본값</p></td>
+<td><p>변수가 <a class="reference external" href="https://www.php.net/manual/en/function.empty.php">empty()</a>인 경우 기본값을 표시합니다.</p></td>
+<td><p>{ v|default(just in case) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>에스</p></td>
+<td><p>HTML, 속성, CSS, JS</p></td>
+<td><p>데이터를 이스케이프할 컨텍스트를 지정합니다.</p></td>
+<td><p>{ v|esc(attr) }</p></td>
+</tr>
+<tr class="row-even"><td><p>발췌</p></td>
+<td><p>문구, 반경</p></td>
+<td><p>주어진 구문에서 단어 반경 내의 텍스트를 반환합니다. <strong>발췌</strong> 도우미 기능과 동일합니다.</p></td>
+<td><p>{ v|excerpt(green giant, 20) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>가장 밝은 부분</p></td>
+<td><p>구절</p></td>
+<td><p>‘&lt;mark&gt;&lt;/mark&gt;’ 태그를 사용하여 텍스트 내에서 특정 문구를 강조 표시합니다.</p></td>
+<td><p>{ v|highlight(view parser) }</p></td>
+</tr>
+<tr class="row-even"><td><p>하이라이트_코드</p></td>
+<td></td>
+<td><p>HTML/CSS로 코드 샘플을 강조 표시합니다.</p></td>
+<td><p>{ v|highlight_code }</p></td>
+</tr>
+<tr class="row-odd"><td><p>한도_문자</p></td>
+<td><p>한계</p></td>
+<td><p>문자 수를 $limit으로 제한합니다.</p></td>
+<td><p>{ v|limit_chars(100) }</p></td>
+</tr>
+<tr class="row-even"><td><p>한도_단어</p></td>
+<td><p>한계</p></td>
+<td><p>단어 수를 $limit으로 제한합니다.</p></td>
+<td><p>{ v|limit_words(20) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>지역_통화</p></td>
+<td><p>통화, 로케일, 분수</p></td>
+<td><p>통화의 현지화된 버전을 표시합니다. “통화” 값은 3자리 ISO 4217 통화 코드입니다.</p></td>
+<td><p>{ v|local_currency(EUR,en_US) }</p></td>
+</tr>
+<tr class="row-even"><td><p>지역_번호</p></td>
+<td><p>유형, 정밀도, 로케일</p></td>
+<td><p>숫자의 현지화된 버전을 표시합니다. “유형”은 소수, 통화, 백분율, 과학, 철자법, 서수, 기간 중 하나일 수 있습니다.</p></td>
+<td><p>{ v|local_number(decimal,2,en_US) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>낮추다</p></td>
+<td></td>
+<td><p>문자열을 소문자로 변환합니다.</p></td>
+<td><p>{ v|lower }</p></td>
+</tr>
+<tr class="row-even"><td><p>nl2br</p></td>
+<td></td>
+<td><p>모든 개행 문자(n)를 HTML &lt;br/&gt; 태그로 바꿉니다.</p></td>
+<td><p>{ v|nl2br }</p></td>
+</tr>
+<tr class="row-odd"><td><p>숫자_형식</p></td>
+<td><p>장소</p></td>
+<td><p>파서 내에서 사용할 수 있도록 PHP <strong>number_format</strong> 함수를 래핑합니다.</p></td>
+<td><p>{ v|number_format(3) }</p></td>
+</tr>
+<tr class="row-even"><td><p>산문</p></td>
+<td></td>
+<td><p>텍스트 본문을 가져와서 <strong>auto_typography()</strong> 메서드를 사용하여 더 보기 좋고 읽기 쉬운 산문으로 바꿉니다.</p></td>
+<td><p>{ v|prose }</p></td>
+</tr>
+<tr class="row-odd"><td><p>둥근</p></td>
+<td><p>장소, 유형</p></td>
+<td><p>숫자를 지정된 위치로 반올림합니다. 대신 <strong>ceil</strong> 및 <strong>floor</strong> 유형을 전달하여 해당 함수를 사용할 수 있습니다.</p></td>
+<td><p>{ v|round(3) } { v|round(ceil) }</p></td>
+</tr>
+<tr class="row-even"><td><p>스트립_태그</p></td>
+<td><p>허용되는 문자</p></td>
+<td><p>PHP <strong>strip_tags</strong>를 래핑합니다. 허용된 태그 문자열을 허용할 수 있습니다.</p></td>
+<td><p>{ v|strip_tags(&lt;br&gt;) }</p></td>
+</tr>
+<tr class="row-odd"><td><p>제목</p></td>
+<td></td>
+<td><p>문자열의 “제목 케이스” 버전을 모두 소문자로 표시하고 각 단어는 대문자로 표시합니다.</p></td>
+<td><p>{ v|title }</p></td>
+</tr>
+<tr class="row-even"><td><p>높은</p></td>
+<td></td>
+<td><p>문자열을 모두 대문자로 표시합니다.</p></td>
+<td><p>{ v|upper }</p></td>
+</tr>
+</tbody>
+</table>
+<p>“local_number” 필터와 관련된 자세한 내용은 <a class="reference external" href="https://www.php.net/manual/en/numberformatter.create.php">PHP’s NumberFormatter</a>을 참조하세요.</p>
+</section>
+<section id="custom-filters">
+<h4>맞춤 필터<a class="headerlink" href="#custom-filters" title="Link to this heading"></a></h4>
+<p><strong>app/Config/View.php</strong>를 편집하고 <code class="docutils literal notranslate"><span class="pre">$filters</span></code> 배열에 새 항목을 추가하여 자신만의 필터를 쉽게 만들 수 있습니다. 각 키는 뷰에서 필터가 호출되는 이름이며 해당 값은 호출 가능한 유효한 PHP입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$filters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;\Some\Class::methodName&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;str_repeat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;str_repeat&#39;</span><span class="p">,</span> <span class="c1">// native php function</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="parser-plugins">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">파서 플러그인</a><a class="headerlink" href="#parser-plugins" title="Link to this heading"></a></h3>
+<p>플러그인을 사용하면 파서를 확장하여 각 프로젝트에 대한 사용자 정의 기능을 추가할 수 있습니다. PHP 호출이 가능하므로 구현이 매우 간단합니다. 템플릿 내에서 플러그인은 <code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">+}</span></code> tags::로 지정됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">+</span> <span class="nx">foo</span> <span class="o">+</span><span class="p">}</span> <span class="nx">inner</span> <span class="nx">content</span> <span class="p">{</span><span class="o">+</span> <span class="o">/</span><span class="nx">foo</span> <span class="o">+</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>이 예에서는 <strong>foo</strong>라는 플러그인을 보여줍니다. 여는 태그와 닫는 태그 사이의 모든 내용을 조작할 수 있습니다. 이 예에서는 “inner content”라는 텍스트로 작업할 수 있습니다. 플러그인은 의사 변수 교체가 발생하기 전에 처리됩니다.</p>
+<p>플러그인은 위에 표시된 것처럼 태그 쌍으로 구성되는 경우가 많지만 닫는 tag:: 없이 단일 태그일 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">+</span> <span class="nx">foo</span> <span class="o">+</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>여는 태그에는 플러그인 작동 방식을 사용자 정의할 수 있는 매개변수도 포함될 수 있습니다. 매개변수는 키/값 pairs::으로 표시됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">+</span> <span class="nx">foo</span> <span class="nx">bar</span><span class="o">=</span><span class="mi">2</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;x y&quot;</span> <span class="o">+</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>매개변수는 단일 values::일 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">+</span> <span class="k">include</span> <span class="nx">somefile</span><span class="o">.</span><span class="nx">php</span> <span class="o">+</span><span class="p">}</span>
+</pre></div>
+</div>
+<section id="provided-plugins">
+<h4>제공되는 플러그인<a class="headerlink" href="#provided-plugins" title="Link to this heading"></a></h4>
+<p>파서를 사용할 때 다음 플러그인을 사용할 수 있습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>플러그인</p></th>
+<th class="head"><p>인수</p></th>
+<th class="head"><p>설명</p></th>
+<th class="head"><p>예</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>현재_url</p></td>
+<td></td>
+<td><p>current_url 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">current_url</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>이전_URL</p></td>
+<td></td>
+<td><p>Previous_url 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">previous_url</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>사이트URL</p></td>
+<td></td>
+<td><p>site_url 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">siteURL</span> <span class="pre">&quot;login&quot;</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>메일토</p></td>
+<td><p>이메일, 제목, 속성</p></td>
+<td><p>mailto 도우미 기능의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">mailto</span> <span class="pre">email=foo&#64;example.com</span> <span class="pre">title=&quot;Stranger</span> <span class="pre">Things&quot;</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>safe_mailto</p></td>
+<td><p>이메일, 제목, 속성</p></td>
+<td><p>safe_mailto 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">safe_mailto</span> <span class="pre">email=foo&#64;example.com</span> <span class="pre">title=&quot;Stranger</span> <span class="pre">Things&quot;</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>랭</p></td>
+<td><p>언어 문자열</p></td>
+<td><p>lang 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">lang</span> <span class="pre">number.terabyteAbbr</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>유효성 검사_오류</p></td>
+<td><p>필드명(선택사항)</p></td>
+<td><p>필드에 대한 오류 문자열(지정된 경우) 또는 모든 유효성 검사 오류를 반환합니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">validation_errors</span> <span class="pre">+}</span> <span class="pre">,</span> <span class="pre">{+</span> <span class="pre">validation_errors</span> <span class="pre">field=&quot;email&quot;</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>노선</p></td>
+<td><p>노선명</p></td>
+<td><p>Route_to 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">route</span> <span class="pre">&quot;login&quot;</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>csp_script_nonce</p></td>
+<td></td>
+<td><p>csp_script_nonce 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">csp_script_nonce</span> <span class="pre">+}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>csp_style_nonce</p></td>
+<td></td>
+<td><p>csp_style_nonce 도우미 함수의 별칭입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{+</span> <span class="pre">csp_style_nonce</span> <span class="pre">+}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="registering-a-plugin">
+<h4>플러그인 등록<a class="headerlink" href="#registering-a-plugin" title="Link to this heading"></a></h4>
+<p>가장 간단하게 새 플러그인을 등록하고 사용할 준비를 하기 위해 해야 할 일은 해당 플러그인을 <strong>app/Config/View.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$plugins</span></code> 배열 아래에 추가하는 것뿐입니다. 키는 템플릿 파일 내에서 사용되는 플러그인의 이름입니다. 값은 정적 클래스 메서드를 포함하여 유효한 PHP 호출 가능입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$plugins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;\Some\Class::methodName&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>클로저를 사용할 수도 있지만 이는 구성 파일의 생성자에서만 정의할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$plugins</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">plugins</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="k">array</span> <span class="nv">$params</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">=&gt;</span> <span class="nv">$params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>호출 가능 항목이 자체적으로 존재하는 경우 열기/닫기 태그가 아닌 단일 태그로 처리됩니다. 이는 플러그인의 반환 값으로 대체됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$plugins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;\Some\Class::methodName&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Tag is replaced by the return value of Some\Class::methodName() static function.</span>
+<span class="cm"> * {+ foo +}</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>콜러블이 배열로 래핑된 경우 태그 사이의 모든 콘텐츠에 대해 작동할 수 있는 열기/닫기 태그 쌍으로 처리됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$plugins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;\Some\Class::methodName&#39;</span><span class="p">],</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// {+ foo +} inner content {+ /foo +}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="usage-notes">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">사용법 참고 사항</a><a class="headerlink" href="#usage-notes" title="Link to this heading"></a></h2>
+<p>템플릿에서 참조되지 않는 대체 매개변수를 포함하면 해당 매개변수는 무시됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;Hello, {firstname} {lastname}&#39;</span><span class="p">;</span>
+<span class="nv">$data</span>     <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;firstname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lastname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+<span class="c1">// Result: Hello, John Doe</span>
+</pre></div>
+</div>
+<p>템플릿에서 참조되는 대체 매개변수를 포함하지 않으면 원래 의사 변수가 결과에 표시됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;Hello, {firstname} {initials} {lastname}&#39;</span><span class="p">;</span>
+<span class="nv">$data</span>     <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;firstname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lastname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+<span class="c1">// Result: Hello, John {initials} Doe</span>
+</pre></div>
+</div>
+<p>배열이 예상될 때(예: 변수 쌍의 경우) 문자열 대체 매개변수를 제공하는 경우 여는 변수 쌍 태그에 대한 대체가 수행되지만 닫는 변수 쌍 태그는 제대로 렌더링되지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;Hello, {firstname} {lastname} ({degrees}{degree} {/degrees})&#39;</span><span class="p">;</span>
+<span class="nv">$data</span>     <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;degrees&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;firstname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lastname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;titles&#39;</span>    <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;degree&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;BSc&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;degree&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;PhD&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+<span class="c1">// Result: Hello, John Doe (Mr{degree} {/degrees})</span>
+</pre></div>
+</div>
+<section id="view-fragments">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">조각 보기</a><a class="headerlink" href="#view-fragments" title="Link to this heading"></a></h3>
+<p>뷰에서 반복 효과를 얻기 위해 변수 쌍을 사용할 필요는 없습니다. 변수 쌍 내부에 있는 항목에 대해 뷰 조각을 사용하고 뷰 대신 컨트롤러에서 반복을 제어하는 ​​것이 가능합니다.</p>
+<p>view::에서 반복이 제어되는 예</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$template</span> <span class="o">=</span> <span class="s1">&#39;&lt;ul&gt;{menuitems}</span>
+<span class="s1">    &lt;li&gt;&lt;a href=&quot;{link}&quot;&gt;{title}&lt;/a&gt;&lt;/li&gt;</span>
+<span class="s1">{/menuitems}&lt;/ul&gt;&#39;</span><span class="p">;</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;menuitems&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Link&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/first&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second Link&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/second&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/first&quot;</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">Link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/second&quot;</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">Link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">ul</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>뷰 프래그먼트를 사용하여 컨트롤러에서 반복을 제어하는 ​​예:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$temp</span>      <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$template1</span> <span class="o">=</span> <span class="s1">&#39;&lt;li&gt;&lt;a href=&quot;{link}&quot;&gt;{title}&lt;/a&gt;&lt;/li&gt;&#39;</span><span class="p">;</span>
+<span class="nv">$data1</span>     <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Link&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/first&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second Link&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/second&#39;</span><span class="p">],</span>
+<span class="p">];</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$data1</span> <span class="k">as</span> <span class="nv">$menuItem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$temp</span> <span class="o">.=</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$menuItem</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$template2</span> <span class="o">=</span> <span class="s1">&#39;&lt;ul&gt;{menuitems}&lt;/ul&gt;&#39;</span><span class="p">;</span>
+<span class="nv">$data</span>      <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;menuitems&#39;</span> <span class="o">=&gt;</span> <span class="nv">$temp</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$template2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/first&quot;</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">Link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/second&quot;</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">Link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">ul</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="class-reference">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">수업 참고자료</a><a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<dl class="php class" id="namespace-CodeIgniter\View">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\View\</span></span><span class="sig-name descname"><span class="pre">Parser</span></span><a class="headerlink" href="#CodeIgniter\View\Parser" title="Link to this definition"></a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$view</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$saveData</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::render" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$view</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 뷰 소스의 파일 이름</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 구성된 옵션 배열</p></li>
+<li><p><strong>$saveData</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">boolean</span></code></span>) – true인 경우 다른 호출에 사용할 데이터를 저장하고, false인 경우 뷰를 렌더링한 후 데이터를 정리합니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>선택한 뷰에 대해 렌더링된 텍스트</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>파일 이름과 이미 설정된 데이터를 기반으로 출력을 작성합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;myview&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>지원되는 옵션:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code> - 보기 결과를 저장하는 시간(초)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache_name</span></code> - 캐시된 보기 결과를 저장/검색하는 데 사용되는 ID입니다. 기본값은 뷰 경로입니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cascadeData</span></code> - 중첩 또는 루프 대체가 발생할 때 적용되는 데이터 쌍을 전파해야 하는 경우 true</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saveData</span></code> - 후속 호출을 위해 뷰 데이터 매개변수를 유지해야 하는 경우 true</p></li>
+</ul>
+</div></blockquote>
+<p>조건부 대체가 먼저 수행된 다음 각 데이터 쌍에 대해 나머지 대체가 수행됩니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::renderString">
+<span class="sig-name descname"><span class="pre">renderString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$template</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$saveData</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::renderString" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$template</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 문자열로 제공되는 소스 보기</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 구성된 옵션 배열</p></li>
+<li><p><strong>$saveData</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">boolean</span></code></span>) – true인 경우 다른 호출에 사용할 데이터를 저장하고, false인 경우 뷰를 렌더링한 후 데이터를 정리합니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>선택한 뷰에 대해 렌더링된 텍스트</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>제공된 템플릿 소스와 이미 설정된 데이터를 기반으로 출력을 작성합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>지원되는 옵션 및 동작은 위와 같습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::setData">
+<span class="sig-name descname"><span class="pre">setData</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$context</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::setData" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 된 뷰 데이터 문자열 배열</p></li>
+<li><p><strong>$context</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 데이터 이스케이프에 사용할 컨텍스트입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>여러 뷰 데이터를 한 번에 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Boss&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>지원되는 이스케이프 컨텍스트: html, css, js, url, attr 또는 raw. ‘raw’인 경우 이스케이프가 발생하지 않습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::setVar">
+<span class="sig-name descname"><span class="pre">setVar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$context</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::setVar" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 뷰 데이터 변수의 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 이 뷰 데이터의 가치</p></li>
+<li><p><strong>$context</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 데이터 이스케이프에 사용할 컨텍스트입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>단일 뷰 데이터를 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>지원되는 이스케이프 컨텍스트: html, css, js, url, attr 또는 raw. ‘raw’인 경우 이스케이프가 발생하지 않습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::setDelimiters">
+<span class="sig-name descname"><span class="pre">setDelimiters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$leftDelimiter</span> <span class="pre">=</span> <span class="pre">'{'</span></em>, <em class="sig-param"><span class="pre">$rightDelimiter</span> <span class="pre">=</span> <span class="pre">'}'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::setDelimiters" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$leftDelimiter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 대체 필드의 왼쪽 구분 기호</p></li>
+<li><p><strong>$rightDelimiter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 대체 필드의 오른쪽 구분 기호</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>대체 필드 구분 기호를 재정의합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setDelimiters</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\Parser::setConditionalDelimiters">
+<span class="sig-name descname"><span class="pre">setConditionalDelimiters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$leftDelimiter</span> <span class="pre">=</span> <span class="pre">'{'</span></em>, <em class="sig-param"><span class="pre">$rightDelimiter</span> <span class="pre">=</span> <span class="pre">'}'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\Parser::setConditionalDelimiters" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$leftDelimiter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 조건문의 왼쪽 구분 기호</p></li>
+<li><p><strong>$rightDelimiter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 조건문의 오른쪽 구분 기호</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>조건부 구분 기호를 재정의합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setConditionalDelimiters</span><span class="p">(</span><span class="s1">&#39;{%&#39;</span><span class="p">,</span> <span class="s1">&#39;%}&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="view_cells.html" class="btn btn-neutral float-left" title="셀 보기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="view_decorators.html" class="btn btn-neutral float-right" title="뷰 데코레이터" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>응답 테스트 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="CLI 명령 테스트" href="cli.html" />
+    <link rel="prev" title="HTTP 기능 테스트" href="feature.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">테스트</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">테스트</a></li>
+      <li class="breadcrumb-item active">응답 테스트</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing-responses">
+<h1>응답 테스트<a class="headerlink" href="#testing-responses" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">TestResponse</span></code> 클래스는 테스트 케이스에서 응답을 파싱하고 테스트하는 데 유용한 다양한 함수를 제공합니다. 일반적으로 <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code>는 <a class="reference internal" href="controllers.html"><span class="doc">컨트롤러 테스트</span></a> 또는 <a class="reference internal" href="feature.html"><span class="doc">HTTP 기능 테스트</span></a>의 결과로 제공되지만, 임의의 <code class="docutils literal notranslate"><span class="pre">ResponseInterface</span></code>를 사용하여 직접 생성할 수도 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\Test\TestResponse</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertOK</span><span class="p">();</span>
+</pre></div>
+</div>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#testing-the-response" id="id2">응답 테스트하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#accessing-request-response" id="id3">요청/응답 접근</a></p></li>
+<li><p><a class="reference internal" href="#checking-response-status" id="id4">응답 상태 확인</a></p></li>
+<li><p><a class="reference internal" href="#session-assertions" id="id5">세션 어설션</a></p></li>
+<li><p><a class="reference internal" href="#header-assertions" id="id6">헤더 어설션</a></p></li>
+<li><p><a class="reference internal" href="#cookie-assertions" id="id7">쿠키 어설션</a></p></li>
+<li><p><a class="reference internal" href="#dom-helpers" id="id8">DOM 헬퍼</a></p></li>
+<li><p><a class="reference internal" href="#dom-assertions" id="id9">DOM 어설션</a></p></li>
+<li><p><a class="reference internal" href="#working-with-json" id="id10">JSON 다루기</a></p></li>
+<li><p><a class="reference internal" href="#working-with-xml" id="id11">XML 다루기</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="testing-the-response">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">응답 테스트하기</a><a class="headerlink" href="#testing-the-response" title="Link to this heading"></a></h2>
+<p>테스트 결과로 <code class="docutils literal notranslate"><span class="pre">TestResponse</span></code>를 받았든 직접 생성했든, 테스트에서 사용할 수 있는 다양한 새로운 어설션들이 있습니다.</p>
+<section id="accessing-request-response">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">요청/응답 접근</a><a class="headerlink" href="#accessing-request-response" title="Link to this heading"></a></h3>
+<section id="request">
+<h4>request()<a class="headerlink" href="#request" title="Link to this heading"></a></h4>
+<p>테스트 중에 설정된 경우 Request 객체에 직접 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="response">
+<h4>response()<a class="headerlink" href="#response" title="Link to this heading"></a></h4>
+<p>이를 통해 응답 객체에 직접 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="checking-response-status">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">응답 상태 확인</a><a class="headerlink" href="#checking-response-status" title="Link to this heading"></a></h3>
+<section id="isok">
+<h4>isOK()<a class="headerlink" href="#isok" title="Link to this heading"></a></h4>
+<p>응답이 “정상”으로 판단되는지 여부에 따라 불리언 true/false를 반환합니다. 이는 주로 200번대 또는 300번대의 응답 상태 코드로 결정됩니다. 리다이렉트가 아닌 경우 빈 본문은 유효하지 않은 것으로 간주됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isOK</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="assertok">
+<h4>assertOK()<a class="headerlink" href="#assertok" title="Link to this heading"></a></h4>
+<p>이 어설션은 단순히 <code class="docutils literal notranslate"><span class="pre">isOK()</span></code> 메서드를 사용하여 응답을 테스트합니다. <code class="docutils literal notranslate"><span class="pre">assertNotOK()</span></code>은 이 어설션의 반대입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertOK</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="isredirect">
+<h4>isRedirect()<a class="headerlink" href="#isredirect" title="Link to this heading"></a></h4>
+<p>응답이 리다이렉트 응답인지 여부에 따라 불리언 true/false를 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">isRedirect</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="assertredirect">
+<h4>assertRedirect()<a class="headerlink" href="#assertredirect" title="Link to this heading"></a></h4>
+<p>응답이 RedirectResponse의 인스턴스임을 어설션합니다. <code class="docutils literal notranslate"><span class="pre">assertNotRedirect()</span></code>은 이 어설션의 반대입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertRedirect</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="assertredirectto">
+<h4>assertRedirectTo()<a class="headerlink" href="#assertredirectto" title="Link to this heading"></a></h4>
+<p>응답이 RedirectResponse의 인스턴스이고 목적지가 주어진 URI와 일치하는지 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertRedirectTo</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="getredirecturl">
+<h4>getRedirectUrl()<a class="headerlink" href="#getredirecturl" title="Link to this heading"></a></h4>
+<p>RedirectResponse에 설정된 URL을 반환하거나, 실패 시 null을 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$url</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getRedirectUrl</span><span class="p">();</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nx">site_url</span><span class="p">(</span><span class="s1">&#39;foo/bar&#39;</span><span class="p">),</span> <span class="nv">$url</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertstatus-int-code">
+<h4>assertStatus(int $code)<a class="headerlink" href="#assertstatus-int-code" title="Link to this heading"></a></h4>
+<p>반환된 HTTP 상태 코드가 $code와 일치하는지 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertStatus</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="session-assertions">
+<span id="response-session-assertions"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">세션 어설션</a><a class="headerlink" href="#session-assertions" title="Link to this heading"></a></h3>
+<section id="assertsessionhas-string-key-value-null">
+<h4>assertSessionHas(string $key, $value = null)<a class="headerlink" href="#assertsessionhas-string-key-value-null" title="Link to this heading"></a></h4>
+<p>결과 세션에 값이 존재하는지 어설션합니다. $value가 전달된 경우 변수의 값이 지정된 값과 일치하는지도 함께 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionHas</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertsessionmissing-string-key">
+<h4>assertSessionMissing(string $key)<a class="headerlink" href="#assertsessionmissing-string-key" title="Link to this heading"></a></h4>
+<p>결과 세션에 지정된 $key가 포함되지 않는지 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSessionMissing</span><span class="p">(</span><span class="s1">&#39;logged_in&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="header-assertions">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">헤더 어설션</a><a class="headerlink" href="#header-assertions" title="Link to this heading"></a></h3>
+<section id="assertheader-string-key-value-null">
+<h4>assertHeader(string $key, $value = null)<a class="headerlink" href="#assertheader-string-key-value-null" title="Link to this heading"></a></h4>
+<p>응답에 <code class="docutils literal notranslate"><span class="pre">$key</span></code>라는 이름의 헤더가 존재하는지 어설션합니다. <code class="docutils literal notranslate"><span class="pre">$value</span></code>가 비어 있지 않은 경우 값이 일치하는지도 함께 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertheadermissing-string-key">
+<h4>assertHeaderMissing(string $key)<a class="headerlink" href="#assertheadermissing-string-key" title="Link to this heading"></a></h4>
+<p>응답에 <code class="docutils literal notranslate"><span class="pre">$key</span></code>라는 이름의 헤더가 존재하지 않는지 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertHeader</span><span class="p">(</span><span class="s1">&#39;Accepts&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cookie-assertions">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">쿠키 어설션</a><a class="headerlink" href="#cookie-assertions" title="Link to this heading"></a></h3>
+<section id="assertcookie-string-key-value-null-string-prefix">
+<h4>assertCookie(string $key, $value = null, string $prefix = ‘’)<a class="headerlink" href="#assertcookie-string-key-value-null-string-prefix" title="Link to this heading"></a></h4>
+<p>응답에 <code class="docutils literal notranslate"><span class="pre">$key</span></code>라는 이름의 쿠키가 존재하는지 어설션합니다. <code class="docutils literal notranslate"><span class="pre">$value</span></code>가 비어 있지 않은 경우 값이 일치하는지도 함께 어설션합니다. 필요한 경우 세 번째 매개변수로 쿠키 접두사를 설정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookie</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertcookiemissing-string-key">
+<h4>assertCookieMissing(string $key)<a class="headerlink" href="#assertcookiemissing-string-key" title="Link to this heading"></a></h4>
+<p>응답에 <code class="docutils literal notranslate"><span class="pre">$key</span></code>라는 이름의 쿠키가 존재하지 않는지 어설션합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookieMissing</span><span class="p">(</span><span class="s1">&#39;ci_session&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertcookieexpired-string-key-string-prefix">
+<h4>assertCookieExpired(string $key, string $prefix = ‘’)<a class="headerlink" href="#assertcookieexpired-string-key-string-prefix" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">$key</span></code>라는 이름의 쿠키가 존재하지만 만료되었는지 어설션합니다. 필요한 경우 두 번째 매개변수로 쿠키 접두사를 설정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertCookieExpired</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dom-helpers">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">DOM 헬퍼</a><a class="headerlink" href="#dom-helpers" title="Link to this heading"></a></h3>
+<p>반환된 응답에는 응답 내의 HTML 출력을 검사하는 다양한 헬퍼 메서드가 포함되어 있습니다. 이 메서드들은 테스트의 어설션 내에서 유용하게 사용할 수 있습니다.</p>
+<section id="see">
+<h4>see()<a class="headerlink" href="#see" title="Link to this heading"></a></h4>
+<p>페이지의 텍스트가 단독으로 존재하는지, 또는 type, class, id로 지정된 태그 내에 더 구체적으로 존재하는지 여부에 따라 불리언 true/false를 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that &quot;Hello World&quot; is on the page</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that &quot;Hello World&quot; is within an h1 tag</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that &quot;Hello World&quot; is within an element with the &quot;notice&quot; class</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;.notice&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that &quot;Hello World&quot; is within an element with id of &quot;title&quot;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;#title&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dontSee()</span></code> 메서드는 정반대입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Checks that &quot;Hello World&quot; does NOT exist on the page</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Checks that &quot;Hellow World&quot; does NOT exist within any h1 tag</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="seeelement">
+<h4>seeElement()<a class="headerlink" href="#seeelement" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">seeElement()</span></code>와 <code class="docutils literal notranslate"><span class="pre">dontSeeElement()</span></code>는 이전 메서드들과 매우 유사하지만, 요소의 값은 확인하지 않습니다. 대신 페이지에 요소가 존재하는지만 단순히 확인합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that an element with class &#39;notice&#39; exists</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;.notice&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that an element with id &#39;title&#39; exists</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Verify that an element with id &#39;title&#39; does NOT exist</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSeeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="seelink">
+<h4>seeLink()<a class="headerlink" href="#seelink" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">seeLink()</span></code>를 사용하여 지정된 텍스트가 있는 링크가 페이지에 존재하는지 확인할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that a link exists with &#39;Upgrade Account&#39; as the text::</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that a link exists with &#39;Upgrade Account&#39; as the text, AND a class of &#39;upsell&#39;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">,</span> <span class="s1">&#39;.upsell&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="seeinfield">
+<h4>seeInField()<a class="headerlink" href="#seeinfield" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">seeInField()</span></code> 메서드는 이름과 값이 있는 입력 태그가 존재하는지 확인합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that an input exists named &#39;user&#39; with the value &#39;John Snow&#39;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check a multi-dimensional input</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeInField</span><span class="p">(</span><span class="s1">&#39;user[name]&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="seecheckboxischecked">
+<h4>seeCheckboxIsChecked()<a class="headerlink" href="#seecheckboxischecked" title="Link to this heading"></a></h4>
+<p>마지막으로, <code class="docutils literal notranslate"><span class="pre">seeCheckboxIsChecked()</span></code> 메서드를 사용하여 체크박스가 존재하고 선택되었는지 확인할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check if checkbox is checked with class of &#39;foo&#39;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeCheckboxIsChecked</span><span class="p">(</span><span class="s1">&#39;.foo&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check if checkbox with id of &#39;bar&#39; is checked</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeCheckboxIsChecked</span><span class="p">(</span><span class="s1">&#39;#bar&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="seexpath">
+<h4>seeXPath()<a class="headerlink" href="#seexpath" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">seeXPath()</span></code>를 사용하면 xpath의 모든 기능을 활용할 수 있습니다. 이 메서드는 DOMXPath 객체를 직접 사용하여 더 복잡한 표현식을 작성하려는 고급 사용자를 위한 것입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that h1 element which contains class &quot;heading&quot; is on the page</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeXPath</span><span class="p">(</span><span class="s1">&#39;//h1[contains(@class, &quot;heading&quot;)]&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that h1 element which contains class &quot;heading&quot; have a text &quot;Hello World&quot;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">seeXPath</span><span class="p">(</span><span class="s1">&#39;//h1[contains(@class, &quot;heading&quot;)][contains(.,&quot;Hello world&quot;)]&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dontSeeXPath()</span></code> 메서드는 정반대입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that h1 element which contains class &quot;heading&quot; does NOT exist on the page</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSeeXPath</span><span class="p">(</span><span class="s1">&#39;//h1[contains(@class, &quot;heading&quot;)]&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Check that h1 element which contains class &quot;heading&quot; and text &quot;Hello World&quot; does NOT exist on the page</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="o">-&gt;</span><span class="na">dontSeeXPath</span><span class="p">(</span><span class="s1">&#39;//h1[contains(@class, &quot;heading&quot;)][contains(.,&quot;Hello world&quot;)]&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dom-assertions">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">DOM 어설션</a><a class="headerlink" href="#dom-assertions" title="Link to this heading"></a></h3>
+<p>다음 어설션을 사용하여 응답 본문에 특정 요소/텍스트 등이 존재하는지 테스트할 수 있습니다.</p>
+<section id="assertsee-string-search-null-string-element-null">
+<h4>assertSee(string $search = null, string $element = null)<a class="headerlink" href="#assertsee-string-search-null-string-element-null" title="Link to this heading"></a></h4>
+<p>페이지에 텍스트/HTML이 단독으로 또는 type, class, id로 지정된 태그 내에 더 구체적으로 존재하는지 어설션합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that &quot;Hello World&quot; is on the page</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that &quot;Hello World&quot; is within an h1 tag</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that &quot;Hello World&quot; is within an element with the &quot;notice&quot; class</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that &quot;Hello World&quot; is within an element with id of &quot;title&quot;</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertdontsee-string-search-null-string-element-null">
+<h4>assertDontSee(string $search = null, string $element = null)<a class="headerlink" href="#assertdontsee-string-search-null-string-element-null" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">assertSee()</span></code> 메서드의 정반대를 어설션합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that &quot;Hello World&quot; does NOT exist on the page</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertDontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that &quot;Hello World&quot; does NOT exist within any h1 tag</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertDontSee</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertseeelement-string-search">
+<h4>assertSeeElement(string $search)<a class="headerlink" href="#assertseeelement-string-search" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">assertSee()</span></code>와 유사하지만, 기존 요소의 존재만 확인합니다. 특정 텍스트는 확인하지 않습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that an element with class &#39;notice&#39; exists</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeElement</span><span class="p">(</span><span class="s1">&#39;.notice&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that an element with id &#39;title&#39; exists</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertdontseeelement-string-search">
+<h4>assertDontSeeElement(string $search)<a class="headerlink" href="#assertdontseeelement-string-search" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">assertSee()</span></code>와 유사하지만, 존재하지 않는 요소만 확인합니다. 특정 텍스트는 확인하지 않습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that an element with id &#39;title&#39; does NOT exist</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertDontSeeElement</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertseelink-string-text-string-details-null">
+<h4>assertSeeLink(string $text, string $details = null)<a class="headerlink" href="#assertseelink-string-text-string-details-null" title="Link to this heading"></a></h4>
+<p>태그 본문으로 <code class="docutils literal notranslate"><span class="pre">$text</span></code>와 일치하는 앵커 태그가 있는지 어설션합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that a link exists with &#39;Upgrade Account&#39; as the text::</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify that a link exists with &#39;Upgrade Account&#39; as the text, AND a class of &#39;upsell&#39;</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeLink</span><span class="p">(</span><span class="s1">&#39;Upgrade Account&#39;</span><span class="p">,</span> <span class="s1">&#39;.upsell&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertseeinfield-string-field-string-value-null">
+<h4>assertSeeInField(string $field, string $value = null)<a class="headerlink" href="#assertseeinfield-string-field-string-value-null" title="Link to this heading"></a></h4>
+<p>이름과 값이 있는 입력 태그가 존재하는지 어설션합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify that an input exists named &#39;user&#39; with the value &#39;John Snow&#39;</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeInField</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+
+<span class="c1">// Verify a multi-dimensional input</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">assertSeeInField</span><span class="p">(</span><span class="s1">&#39;user[name]&#39;</span><span class="p">,</span> <span class="s1">&#39;John Snow&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-with-json">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">JSON 다루기</a><a class="headerlink" href="#working-with-json" title="Link to this heading"></a></h3>
+<p>특히 API 메서드를 사용할 때 응답에 JSON 응답이 포함되는 경우가 많습니다. 다음 메서드들을 사용하여 응답을 테스트할 수 있습니다.</p>
+<section id="getjson">
+<h4>getJSON()<a class="headerlink" href="#getjson" title="Link to this heading"></a></h4>
+<p>이 메서드는 응답 본문을 JSON 문자열로 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Response body is this:</span>
+<span class="cm"> * [&#39;foo&#39; =&gt; &#39;bar&#39;]</span>
+<span class="cm"> */</span>
+
+<span class="nv">$json</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">();</span>
+<span class="cm">/*</span>
+<span class="cm"> * $json is this:</span>
+<span class="cm"> * {</span>
+<span class="cm"> *     &quot;foo&quot;: &quot;bar&quot;</span>
+<span class="cm"> * }</span>
+<span class="cm">`*/</span>
+</pre></div>
+</div>
+<p>이 메서드를 사용하여 <code class="docutils literal notranslate"><span class="pre">$response</span></code>가 실제로 JSON 콘텐츠를 포함하는지 확인할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Verify the response is JSON</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">getJSON</span><span class="p">()</span> <span class="o">!==</span> <span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>결과에서 JSON 문자열이 보기 좋게 들여쓰기(pretty-print)되어 출력된다는 점에 유의하십시오.</p>
+</div>
+</section>
+<section id="assertjsonfragment-array-fragment">
+<h4>assertJSONFragment(array $fragment)<a class="headerlink" href="#assertjsonfragment-array-fragment" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">$fragment</span></code>가 JSON 응답 내에 존재하는지 어설션합니다. 전체 JSON 값과 일치할 필요는 없습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Response body is this:</span>
+<span class="cm"> * [</span>
+<span class="cm"> *     &#39;config&#39; =&gt; [&#39;key-a&#39;, &#39;key-b&#39;],</span>
+<span class="cm"> * ]</span>
+<span class="cm"> */</span>
+
+<span class="c1">// Is true</span>
+<span class="nv">$result</span><span class="o">-&gt;</span><span class="na">assertJSONFragment</span><span class="p">([</span><span class="s1">&#39;config&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;key-a&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+<section id="assertjsonexact-test">
+<h4>assertJSONExact($test)<a class="headerlink" href="#assertjsonexact-test" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">assertJSONFragment()</span></code>와 유사하지만, 전체 JSON 응답을 검사하여 정확한 일치를 보장합니다.</p>
+</section>
+</section>
+<section id="working-with-xml">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">XML 다루기</a><a class="headerlink" href="#working-with-xml" title="Link to this heading"></a></h3>
+<section id="getxml">
+<h4>getXML()<a class="headerlink" href="#getxml" title="Link to this heading"></a></h4>
+<p>애플리케이션이 XML을 반환하는 경우 이 메서드를 통해 가져올 수 있습니다.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="feature.html" class="btn btn-neutral float-left" title="HTTP 기능 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-right" title="CLI 명령 테스트" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

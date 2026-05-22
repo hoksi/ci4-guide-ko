@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>버전 4.0.0-alpha.3 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="버전 4.0.0-알파.2" href="v4.0.0-alpha.2.html" />
+    <link rel="prev" title="버전 4.0.0-alpha.4" href="v4.0.0-alpha.4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../installation/index.html">설치</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../installation/index.html">설치</a></li>
+          <li class="breadcrumb-item"><a href="index.html">변경 로그</a></li>
+      <li class="breadcrumb-item active">버전 4.0.0-alpha.3</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="version-4-0-0-alpha-3">
+<h1>버전 4.0.0-alpha.3<a class="headerlink" href="#version-4-0-0-alpha-3" title="Link to this heading"></a></h1>
+<p>릴리스 날짜: 2018년 11월 30일</p>
+<p><strong>CodeIgniter4의 다음 알파 릴리스</strong></p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#changed-files" id="id2">변경된 파일</a></p></li>
+<li><p><a class="reference internal" href="#prs-merged" id="id3">병합된 PR</a></p></li>
+</ul>
+</nav>
+<section id="changed-files">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">변경된 파일</a><a class="headerlink" href="#changed-files" title="Link to this heading"></a></h2>
+<p>변경된 파일 목록이 PR 번호와 함께 아래에 나열됩니다.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>admin/</dt><dd><ul>
+<li><p>framework/* #1553</p></li>
+<li><p>starter/* #1553</p></li>
+<li><p>docbot #1553</p></li>
+<li><p>release* #1484,</p></li>
+<li><p>pre-commit #1388</p></li>
+<li><p>README.md #1553</p></li>
+<li><p>setup.sh #1388</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>application /</dt><dd><ul>
+<li><dl class="simple">
+<dt>Config/</dt><dd><ul>
+<li><p>Autoload #1396, #1416</p></li>
+<li><p>Mimes #1368, #1465</p></li>
+<li><p>Pager #622</p></li>
+<li><p>Services #1469</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Filters/Honeypot #1376</p></li>
+<li><dl class="simple">
+<dt>Views/</dt><dd><ul>
+<li><p>errors/* #1415, #1413, #1469</p></li>
+<li><p>form.php 제거됨 #1442</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>public /</dt><dd><ul>
+<li><p>index.php #1388, #1457</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>system /</dt><dd><ul>
+<li><dl class="simple">
+<dt>Autoloader/</dt><dd><ul>
+<li><p>Autoloader #1547</p></li>
+<li><p>FileLocator #1547, #1550</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Cache/</dt><dd><ul>
+<li><p>Exceptions/CacheException #1525</p></li>
+<li><p>Handlers/FileHandler #1547, #1525</p></li>
+<li><p>Handlers/MemcachedHandler #1383</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CLI/</dt><dd><ul>
+<li><p>CLI #1432, #1489</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Commands/</dt><dd><ul>
+<li><dl class="simple">
+<dt>Database/</dt><dd><ul>
+<li><p>CreateMigration #1374, #1422, #1431</p></li>
+<li><p>MigrateCurrent #1431</p></li>
+<li><p>MigrateLatest #1431</p></li>
+<li><p>MigrateRollback #1431</p></li>
+<li><p>MigrateStatus #1431</p></li>
+<li><p>MigrateVersion #1431</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Sessions/CrateMigration #1357</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Config/</dt><dd><ul>
+<li><p>AutoloadConfig #1416</p></li>
+<li><p>BaseService #1469</p></li>
+<li><p>Mimes #1453</p></li>
+<li><p>Services #1180, #1469</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Database/</dt><dd><ul>
+<li><p>BaseBuilder #1335, #1491, #1522</p></li>
+<li><p>BaseConnection #1335, #1407, #1491, #1522</p></li>
+<li><p>BaseResult #1426</p></li>
+<li><p>Config #1465, #1469, #1554</p></li>
+<li><p>Forge #1343, #1449, #1470, #1530</p></li>
+<li><p>MigrationRunner #1371</p></li>
+<li><p>MySQLi/Connection #1335, #1449</p></li>
+<li><p>MySQLi/Forge #1343, #1344, #1530</p></li>
+<li><p>MySQLi/Result #1530</p></li>
+<li><p>Postgre/Connection #1335, #1449</p></li>
+<li><p>Postgre/Forge #1530</p></li>
+<li><p>SQLite3/Connection #1335, #1449</p></li>
+<li><p>SQLite3/Forge #1470, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Debug</dt><dd><ul>
+<li><p>Exceptions #1500</p></li>
+<li><p>Toolbar #1370, #1465, #1469, #1547</p></li>
+<li><p>Toolbar/Views/toolbar.tpl #1469</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Email/</dt><dd><ul>
+<li><p>Email #1389, #1413, #1438, #1454, #1465, #1469, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Events/</dt><dd><ul>
+<li><p>Events #1465, #1469, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Files/</dt><dd><ul>
+<li><p>File #1399, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Format/</dt><dd><ul>
+<li><p>XMLFormatter #1471</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Helpers/</dt><dd><ul>
+<li><p>array_helper #1412</p></li>
+<li><p>filesystem_helper #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Honeypot/</dt><dd><ul>
+<li><p>Honeypot #1460</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>HTTP/</dt><dd><ul>
+<li><p>CURLRequest #1547, #1498</p></li>
+<li><p>DownloadResponse #1375</p></li>
+<li><p>Exceptions/DownloadException #1405</p></li>
+<li><p>Files/FileCollection #1506</p></li>
+<li><p>Files/UploadedFile #1335, #1399, #1500, #1506, #1547</p></li>
+<li><p>IncomingRequest #1445, #1469, #1496</p></li>
+<li><p>Message #1497</p></li>
+<li><p>RedirectResponse #1387, #1451, #1464</p></li>
+<li><p>Response #1456, #1472, #1477, #1486, #1504, #1505, #1497, #622</p></li>
+<li><p>ResponseInterface #1384</p></li>
+<li><p>UploadedFile #1368, #1456</p></li>
+<li><p>URI #1213, #1469, #1508</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Images/Handlers/</dt><dd><ul>
+<li><p>ImageMagickHandler #1546</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Language/</dt><dd><ul>
+<li><p>en/Cache #1525</p></li>
+<li><p>en/Database #1335</p></li>
+<li><p>en/Filters #1378</p></li>
+<li><p>en/Migrations #1374</p></li>
+<li><p>Language #1480, #1489</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Log/</dt><dd><ul>
+<li><p>Handlers/FileHandler #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Pager/</dt><dd><ul>
+<li><p>Pager #1213, #622</p></li>
+<li><p>PagerInterface #622</p></li>
+<li><p>PagerRenderer #1213, #622</p></li>
+<li><p>Views/default_full #622</p></li>
+<li><p>Views/default_head #622</p></li>
+<li><p>Views/default_simple #622</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Router/</dt><dd><ul>
+<li><p>RouteCollection #1464, #1524</p></li>
+<li><p>RouteCollectionInterface #1406, #1410</p></li>
+<li><p>Router #1523, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Session/Handlers/</dt><dd><ul>
+<li><p>BaseHandler #1180, #1483</p></li>
+<li><p>DatabaseHandler #1180</p></li>
+<li><p>FileHandler #1180, #1547</p></li>
+<li><p>MemcachedHandler #1180</p></li>
+<li><p>RedisHandler #1180</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Test/</dt><dd><ul>
+<li><p>CIUnitTestCase #1467</p></li>
+<li><p>FeatureTestCase #1427, #1468</p></li>
+<li><p>Filters/CITestStreamFilter #1465</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Validation /</dt><dd><ul>
+<li><p>CreditCardRules #1447, #1529</p></li>
+<li><p>FormatRules #1507</p></li>
+<li><p>Rules #1345</p></li>
+<li><p>Validation #1345</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>View/</dt><dd><ul>
+<li><p>Filters #1469</p></li>
+<li><p>Parser #1417, #1547</p></li>
+<li><p>View #1357, #1377, #1410, #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>bootstrap #1547</p></li>
+<li><p>CodeIgniter #1465, #1505, #1523, 2047b5a, #1547</p></li>
+<li><p>Common #1486, #1496, #1504, #1513</p></li>
+<li><p>ComposerScripts #1469, #1547</p></li>
+<li><p>Controller #1423</p></li>
+<li><p>Entity #1369, #1373</p></li>
+<li><p>Model #1345, #1380, #1373, #1440</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>tests /</dt><dd><ul>
+<li><dl class="simple">
+<dt>_support/</dt><dd><ul>
+<li><p>HTTP/MockResponse #1456</p></li>
+<li><p>_bootstrap.php #1397, #1443</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Cache/Handlers/</dt><dd><ul>
+<li><p>FileHandlerTest #1547, #1525</p></li>
+<li><p>MemcachedHandlerTest #1180, #1383</p></li>
+<li><p>RedisHandlerTest #1180, #1481</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CLI/</dt><dd><ul>
+<li><p>CLITest #1467, #1489</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Commands/</dt><dd><ul>
+<li><p>SessionCommandsTest #1455</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Database/Live/</dt><dd><ul>
+<li><p>ConnectTest #1554</p></li>
+<li><p>ForgeTest #1449, #1470</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>HTTP/</dt><dd><ul>
+<li><p>CURLRequestTest#1498</p></li>
+<li><p>Files/FileCOllectionTest #1506</p></li>
+<li><p>Files/FileMovingTest #1424</p></li>
+<li><p>DownloadResponseTest #1375</p></li>
+<li><p>IncomingRequestTest #1496</p></li>
+<li><p>RedirectResponseTest #1387, #1456</p></li>
+<li><p>ResponseCookieTest #1472, #1509</p></li>
+<li><p>ResponseSendTest #1477, #1486, #1509</p></li>
+<li><p>ResponseTest #1375, #1456, #1472, #1486, #622</p></li>
+<li><p>URITest #1456, #1495</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Helpers/</dt><dd><ul>
+<li><p>DateHelperTest #1479</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>I18n/</dt><dd><ul>
+<li><p>TimeTest #1467, #1473</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Language/</dt><dd><ul>
+<li><p>LanguageTest #1480</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Log/</dt><dd><ul>
+<li><p>FileHandlerTest #1425</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Pager/</dt><dd><ul>
+<li><p>PagerRendererTest #1213, #622</p></li>
+<li><p>PagerTest #622</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Router/</dt><dd><ul>
+<li><p>RouteCollectionTest #1438, #1524</p></li>
+<li><p>RouterTest #1438, #1523</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Session/</dt><dd><ul>
+<li><p>SessionTest  #1180</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Test/</dt><dd><ul>
+<li><p>BootstrapFCPATHTest #1397</p></li>
+<li><p>FeatureTestCase #1468</p></li>
+<li><p>TestCaseEmissionsTest #1477</p></li>
+<li><p>TestCaseTest #1390</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Throttle/</dt><dd><ul>
+<li><p>ThrottleTest #1398</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Validation/</dt><dd><ul>
+<li><p>FormatRulesTest #1507</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>View/</dt><dd><ul>
+<li><p>ParserTest #1335</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>CodeIgniterTest #1500</p></li>
+<li><p>CommonFunctionsSendTest #1486, #1509</p></li>
+<li><p>CommonFunctionsTest #1180, #1486, #1496</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>user_guide_src /source/</dt><dd><ul>
+<li><p>changelogs/ #1385, #1490, #1553</p></li>
+<li><dl class="simple">
+<dt>concepts/</dt><dd><ul>
+<li><p>autoloader #1547</p></li>
+<li><p>security #1540</p></li>
+<li><p>services #1469</p></li>
+<li><p>structure #1448</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>database/</dt><dd><ul>
+<li><p>queries #1407</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dbmgmt/</dt><dd><ul>
+<li><p>forge #1470</p></li>
+<li><p>migration #1374, #1385, #1431</p></li>
+<li><p>seeds #1482</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>extending/</dt><dd><ul>
+<li><p>core_classes #1469</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>helpers/</dt><dd><ul>
+<li><p>form_helper #1499</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>installation/</dt><dd><ul>
+<li><p>index #1388</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>libraries/</dt><dd><ul>
+<li><p>caching #1525</p></li>
+<li><p>pagination #1213</p></li>
+<li><p>validation #27868b, #1540</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>models/</dt><dd><ul>
+<li><p>entities #1518, #1540</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>outgoing/</dt><dd><ul>
+<li><p>response #1472, #1494</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>testing/</dt><dd><ul>
+<li><p>overview #1467</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>tutorial/</dt><dd><ul>
+<li><p>create_news_item #1442</p></li>
+<li><p>static_pages #1547</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>/</dt><dd><ul>
+<li><p>composer.json #1388, #1418, #1536, #1553</p></li>
+<li><p>README.md #1553</p></li>
+<li><p>spark 2047b5a</p></li>
+<li><p>.travis.yml #1394</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="prs-merged">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">병합된 PR</a><a class="headerlink" href="#prs-merged" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>#1554 서비스 인스턴스</p></li>
+<li><p>#1553 Admin/scripts</p></li>
+<li><p>#1550 FileLocator에서 주석 처리된 CLI::newLine($tempFiles) 제거</p></li>
+<li><p>#1549 Database/Seeds 디렉터리에서 .gitignore 대신 .gitkeep 사용</p></li>
+<li><p>#1547 file_exists 를 is_file로 변경</p></li>
+<li><p>#1546 ImageMagickHandler::__construct …</p></li>
+<li><p>#1540 유효성 검사 클래스 사용자 가이드 업데이트</p></li>
+<li><p>#1530 데이터베이스 성능 개선: 가능한 경우 foreach() 사용</p></li>
+<li><p>2047b5a spark 사용 시 필터를 실행하지 않음</p></li>
+<li><p>#1539 CreditCardRules에서 mb_* (멀티바이트 문자열 사용) 제거</p></li>
+<li><p>#1536 composer.json에 ext-json 추가</p></li>
+<li><p>#1525 불필요한 try {} catch {} 제거</p></li>
+<li><p>#1524 ‘websafe’ 옵션을 사용한 라우트 리소스 테스트</p></li>
+<li><p>#1523 일치하는 라우트 정규식이 필터링되는지 확인</p></li>
+<li><p>#1522 BaseBuilder에 property_exists 검사 추가</p></li>
+<li><p>#1521 .gitignore 정리</p></li>
+<li><p>#1518 사소한 오타 수정: setCreatedOn을 setCreatedAt으로 변경</p></li>
+<li><p>#1517 writable/{directory}의 디렉터리별 .htaccess를 writable/로 이동</p></li>
+<li><p>#1513 더 안전한 리다이렉션</p></li>
+<li><p>#1509 사용되지 않는 use 구문 제거</p></li>
+<li><p>#1508 URI::setScheme() 호출에서 중복된 strtolower() 호출 제거</p></li>
+<li><p>#1507 “,”로 구분된 여러 “빈” 문자열이 유효한 이메일로 표시되는 문제 수정</p></li>
+<li><p>#1506 HTTP/File 단위 테스트 보완</p></li>
+<li><p>#1505 모든 응답이 완료될 때까지 종료하지 않음</p></li>
+<li><p>27868b {field} 및 {param} 플레이스홀더에 대한 누락된 문서 추가</p></li>
+<li><p>#1504 RedirectResponse 변경 사항 되돌리기</p></li>
+<li><p>#1500 &#64;로 억제된 오류 무시</p></li>
+<li><p>#1499 form_helper의 set_value 설명 수정</p></li>
+<li><p>#1498 CURLRequest 헬퍼 메서드 추가</p></li>
+<li><p>#1497 사용되지 않는 RedirectException 제거</p></li>
+<li><p>#1496 Common::old() 수정</p></li>
+<li><p>#1495 URI 세그먼트 테스트 추가</p></li>
+<li><p>#1494 사용자 가이드의 메서드 명명 규칙</p></li>
+<li><p>#1491 오류 로깅</p></li>
+<li><p>#1490 변경 로그 구조 재편</p></li>
+<li><p>#1489 CLI::strlen() 추가</p></li>
+<li><p>#1488 다른 위치에서 언어 문자열 로드</p></li>
+<li><p>#1486 RedirectResponse 문제 보고 테스트</p></li>
+<li><p>#1484 누락된 슬래시</p></li>
+<li><p>#1483 SessionHandlersBaseHandler.php의 사소한 오타 수정</p></li>
+<li><p>#1482 문서 수정: Seeds 문서의 쿼리 바인딩 수정</p></li>
+<li><p>#1481 RedisHandler 테스트 정리</p></li>
+<li><p>#1480 언어 키-파일 혼동 수정</p></li>
+<li><p>#1479 또 다른 시간 테스트 수정</p></li>
+<li><p>#1477 Response 전송 테스트 추가</p></li>
+<li><p>#1475 Forge::addField()의 phpdoc 수정</p></li>
+<li><p>#1473 또 다른 시간 테스트에 퍼지(fuzzy) 적용</p></li>
+<li><p>#1472 HTTPResponse 쿠키 테스트 및 누락된 기능 추가</p></li>
+<li><p>#1471 XMLFormatter::format()에서 사용되지 않는 지역 변수 $result 제거</p></li>
+<li><p>#1470 배열 필드 제약 조건으로 테이블 생성 허용</p></li>
+<li><p>#1469 protected/public 함수 호출 시에도 self:: 대신 static:: 사용</p></li>
+<li><p>#1468 FeatureTestCaseTest 출력 버퍼 수정</p></li>
+<li><p>#1467 허용 오차 내에서 시간 테스트 제공</p></li>
+<li><p>#1466 BaseBuilder의 phpdoc 수정</p></li>
+<li><p>#1465 protected 및 public 프로퍼티에 self:: 대신 static:: 사용</p></li>
+<li><p>#1464 사용되지 않는 use 구문 제거</p></li>
+<li><p>#1463 남은 bcit-ci 참조 수정</p></li>
+<li><p>#1461 오타 수정: donload → download</p></li>
+<li><p>#1460 HoneyPot에서 불필요한 삼항 검사 제거</p></li>
+<li><p>#1457 public/index.php에서 $paths-&gt;systemDirectory 사용</p></li>
+<li><p>#1456 HTTP URI 및 Response 테스트 강화</p></li>
+<li><p>#1455 app/Database/Migrations 디렉터리 무시 해제</p></li>
+<li><p>#1454 Email::getEncoding()의 루프에 누락된 break; 추가</p></li>
+<li><p>#1453 확장자에 MIME 타입이 하나만 있는 경우의 버그 수정</p></li>
+<li><p>#1451 RedirectResponse에서 불필요한 $session-&gt;start(); 검사 제거</p></li>
+<li><p>#1450 phpcbf: 일괄 수정</p></li>
+<li><p>#1449 mysql/mariadb에서 indexData를 가져오는 방법 단순화</p></li>
+<li><p>#1448 문서: 누락된 애플리케이션 구조 추가</p></li>
+<li><p>#1447 CreditCardRules에서 카드 정보를 가져오는 루프에 누락된 break; 추가</p></li>
+<li><p>#1445 HTTPIncomingRequest에서 기존 is_cli() 함수 사용</p></li>
+<li><p>#1444 재편된 저장소 관리자 문서 (4/4)</p></li>
+<li><p>#1443 단위 테스트 출력이 캡처되지 않는 문제 수정</p></li>
+<li><p>#1442 app/View/의 폼 뷰 제거 및 새 항목 생성 튜토리얼에서 폼 헬퍼 사용 제거</p></li>
+<li><p>#1440 모델의 마지막 삽입 ID에 접근</p></li>
+<li><p>#1438 마지막 몇 개의 저장소 조직 이름 수정 (3/4)</p></li>
+<li><p>#1437 대부분의 PHP 문서에서 저장소 조직 이름 교체 (2/4)</p></li>
+<li><p>#1436 문서에서 GitHub 조직 이름 변경 (1/4)</p></li>
+<li><p>#1432 컬럼 길이를 가져오기 위해 mb_strlen 사용</p></li>
+<li><p>#1431 마이그레이션 커맨드에서 파라미터와 함께 run() 메서드를 호출할 수 없는 문제</p></li>
+<li><p>#1427 FeatureTestCase에서 “options” 요청 호출 파라미터 수정</p></li>
+<li><p>#1416 DatabaseBaseResult의 성능 개선</p></li>
+<li><p>#1425 FileHandlerTest가 MockFileHandler를 사용하도록 보장</p></li>
+<li><p>#1424 FileMovingTest가 임시 파일을 남기는 문제 수정</p></li>
+<li><p>#1423 Controller의 validate 사용 버그 수정</p></li>
+<li><p>#1422 Migrations.classNotFound 수정</p></li>
+<li><p>#1418 composer.json 정규화</p></li>
+<li><p>#1417 Parser::parsePairs가 항상 이스케이프하는 문제 수정</p></li>
+<li><p>#1416 applicationConfigAutoload에서 $psr4[‘TestsSupport’] 정의 제거</p></li>
+<li><p>#1415 불필요한 “defined(‘BASEPATH’) … 제거</p></li>
+<li><p>#1413 모든 uniqid() 사용 시 more_entropy = true 설정</p></li>
+<li><p>#1412 array_helper의 function_exists() 오타 수정</p></li>
+<li><p>#1411 View::render()의 루프에 누락된 break; 추가</p></li>
+<li><p>#1410 커밋 2d0b325 이후 spark serve가 작동하지 않는 문제 수정</p></li>
+<li><p>#1407 데이터베이스: BaseConnection-&gt;prepare()에 누락된 initialize() 호출 검사 추가</p></li>
+<li><p>#1406 RouteCollectionInterface에 누락된 파라미터 추가</p></li>
+<li><p>#1405 DownloadException에서 사용되는 언어 문자열 수정</p></li>
+<li><p>#1402 사용자 가이드의 클래스 네임스페이스 수정</p></li>
+<li><p>#1399 guessExtension에 선택적 타입 힌팅 추가</p></li>
+<li><p>#1398 쓰로틀 테스트 조정</p></li>
+<li><p>#1397 tests/_support/_bootstrap.php의 FCPATH 설정 수정</p></li>
+<li><p>#1396 “testing” 환경에서만 PSR4 “TestsSupport” 네임스페이스 등록</p></li>
+<li><p>#1395 문서에서 단축 배열 문법 사용</p></li>
+<li><p>#1394 travis 설정에 PHP 7.3 추가</p></li>
+<li><p>#1390 테스트 실행 시 “Hello”가 출력되지 않도록 수정</p></li>
+<li><p>#1389 이메일 파일명 대문자화</p></li>
+<li><p>#1388 커밋 시 Phpcs 자동 수정</p></li>
+<li><p>#1387 이름이 지정된 라우트로 리다이렉트</p></li>
+<li><p>#1385 마이그레이션 페이지 수정; 변경 로그 업데이트</p></li>
+<li><p>#1384 누락된 ResponseInterface 상수 추가</p></li>
+<li><p>#1383 MemcachedHandler::__construct()의 TypeError 수정</p></li>
+<li><p>#1381 사용되지 않는 use 구문 제거</p></li>
+<li><p>#1380 count() 개선, 참 값 검사 사용</p></li>
+<li><p>#1378 Filters 언어 파일 업데이트</p></li>
+<li><p>#1377 monolog가 오류를 유발하는 문제 수정</p></li>
+<li><p>#1376 AppFiltersHoneypot에서 이미 사용 중이기 때문에 Honeypot 클래스를 사용할 수 없는 문제 수정</p></li>
+<li><p>#1375 RFC 6266을 준수하는 다운로드 헤더 적용</p></li>
+<li><p>#1374 누락된 기능 마이그레이션</p></li>
+<li><p>#1373 DB 삽입/저장 시 캐스팅 비활성화</p></li>
+<li><p>#1371 코딩 스타일에서 메서드 이름 업데이트</p></li>
+<li><p>#1370 툴바에 로깅 필요. #1258 수정</p></li>
+<li><p>#1369 보이지 않는 문자 제거</p></li>
+<li><p>#1368 UploadedFile-&gt;guessExtenstion()…</p></li>
+<li><p>#1360 php_errors.log 파일 캐시 제거 (rm –cached)</p></li>
+<li><p>#1357 .php 호환성이 없는 템플릿 파일 업데이트</p></li>
+<li><p>#1345 is_unique가 DBGroup에 정의된 데이터베이스 대신 기본 데이터베이스에 연결하려는 문제</p></li>
+<li><p>#1344 불필요한 테이블 옵션을 따옴표로 묶지 않음</p></li>
+<li><p>#1343 제약 조건에 단일 따옴표 두 개가 추가되지 않도록 방지</p></li>
+<li><p>#1335 MySQLi, Postgre 및 SQLite 데이터베이스 드라이버 검토 및 개선</p></li>
+<li><p>#1213 페이지네이션에서 URI 세그먼트를 페이지 번호로 사용</p></li>
+<li><p>#1180 HTTPRequest 인스턴스를 사용하여 IP 주소 가져오기</p></li>
+<li><p>#622 헤더 링크 페이지네이션 추가</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v4.0.0-alpha.4.html" class="btn btn-neutral float-left" title="버전 4.0.0-alpha.4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v4.0.0-alpha.2.html" class="btn btn-neutral float-right" title="버전 4.0.0-알파.2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

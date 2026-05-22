@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>콘텐츠 협상 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="HTTP 메서드 스푸핑" href="methodspoofing.html" />
+    <link rel="prev" title="IncomingRequest 클래스”" href="incomingrequest.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">컨트롤러와 라우팅</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">컨트롤러와 라우팅</a></li>
+      <li class="breadcrumb-item active">콘텐츠 협상</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="content-negotiation">
+<h1>콘텐츠 협상<a class="headerlink" href="#content-negotiation" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-content-negotiation" id="id2">콘텐츠 협상이란 무엇인가요?</a></p></li>
+<li><p><a class="reference internal" href="#loading-the-class" id="id3">클래스 로딩</a></p></li>
+<li><p><a class="reference internal" href="#negotiating" id="id4">협상하기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#media" id="id5">미디어</a></p></li>
+<li><p><a class="reference internal" href="#language" id="id6">언어</a></p></li>
+<li><p><a class="reference internal" href="#encoding" id="id7">인코딩</a></p></li>
+<li><p><a class="reference internal" href="#character-set" id="id8">문자 집합</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="what-is-content-negotiation">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">콘텐츠 협상이란 무엇인가요?</a><a class="headerlink" href="#what-is-content-negotiation" title="Link to this heading"></a></h2>
+<p>콘텐츠 협상은 클라이언트와 서버가 각각 처리할 수 있는 형식에 따라 클라이언트에 반환할 콘텐츠 유형을 결정하는 방법입니다. 예를 들어 클라이언트가 HTML을 원할지 JSON을 원할지, 이미지를 JPEG로 반환할지 PNG로 반환할지, 어떤 압축 방식을 지원하는지 등을 결정하는 데 사용할 수 있습니다. 이는 각기 우선순위를 가진 여러 값을 지원할 수 있는 네 개의 서로 다른 헤더를 분석하여 수행됩니다.</p>
+<p>수동으로 일치시키려면 상당히 까다로울 수 있습니다. CodeIgniter는 이를 처리해 주는 <code class="docutils literal notranslate"><span class="pre">Negotiator</span></code> 클래스를 제공합니다.</p>
+<p>본질적으로 콘텐츠 협상은 단일 리소스가 여러 유형의 콘텐츠를 제공할 수 있도록 하는 HTTP 규격의 일부로, 클라이언트가 자신에게 가장 적합한 데이터 유형을 요청할 수 있게 합니다.</p>
+<p>이의 전형적인 예로 PNG 파일을 표시할 수 없는 브라우저가 GIF나 JPEG만 요청할 수 있습니다. 서버는 요청을 받으면 클라이언트가 요청한 사용 가능한 파일 형식을 확인하고, 지원하는 이미지 형식 중 가장 적합한 것을 선택합니다. 이 경우 JPEG 이미지를 반환할 가능성이 큽니다.</p>
+<p>이러한 협상은 다음 네 가지 데이터 유형에 대해 발생할 수 있습니다:”``</p>
+<ul class="simple">
+<li><p><strong>미디어/문서 유형</strong> - 이미지 형식이 될 수 있으며, HTML, XML 또는 JSON과 같은 형식 간의 차이를 의미합니다.</p></li>
+<li><p><strong>문자 인코딩</strong> - 반환되는 문서에 설정해야 하는 문자 인코딩입니다. 일반적으로 UTF-8을 사용합니다.</p></li>
+<li><p><strong>문서 인코딩</strong> - 일반적으로 결과물에 사용되는 압축 유형을 의미합니다.</p></li>
+<li><p><strong>문서 언어</strong> - 다국어를 지원하는 사이트의 경우 어떤 언어를 반환할지 결정하는 데 도움이 됩니다.</p></li>
+</ul>
+</section>
+<section id="loading-the-class">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">클래스 로딩</a><a class="headerlink" href="#loading-the-class" title="Link to this heading"></a></h2>
+<p>Service 클래스를 통해 이 클래스의 인스턴스를 수동으로 로드할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$negotiate</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;negotiator&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이는 현재 요청 인스턴스를 가져와 Negotiator 클래스에 자동으로 주입합니다.</p>
+<p>이 클래스는 별도로 로드할 필요가 없습니다. 대신 이 요청의 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 인스턴스를 통해 접근할 수 있습니다. 직접 접근할 수는 없지만, <code class="docutils literal notranslate"><span class="pre">negotiate()</span></code> 메서드를 통해 모든 메서드에 쉽게 접근할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>이렇게 접근하면 첫 번째 매개변수는 찾고자 하는 콘텐츠 유형이고, 두 번째는 지원되는 값들의 배열입니다.</p>
+</section>
+<section id="negotiating">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">협상하기</a><a class="headerlink" href="#negotiating" title="Link to this heading"></a></h2>
+<p>이 섹션에서는 협상할 수 있는 네 가지 유형의 콘텐츠를 논의하고, 위에서 설명한 두 가지 방법으로 Negotiator를 사용하는 예를 보여줍니다.</p>
+<section id="media">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">미디어</a><a class="headerlink" href="#media" title="Link to this heading"></a></h3>
+<p>첫 번째로 살펴볼 것은 ‘미디어’ 협상입니다. 이는 <code class="docutils literal notranslate"><span class="pre">Accept</span></code> 헤더에 의해 제공되며 가장 복잡한 헤더 중 하나입니다. 일반적인 예로는 클라이언트가 서버에 원하는 데이터 형식을 알려주는 경우가 있습니다. 이는 API에서 특히 흔하며, 예를 들어 클라이언트가 API 엔드포인트에서 JSON 형식의 데이터를 요청할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+</pre></div>
+</div>
+<p>서버는 이제 제공할 수 있는 콘텐츠 유형 목록을 제공해야 합니다. 이 예에서 API는 원시 HTML, JSON 또는 XML로 데이터를 반환할 수 있습니다. 이 목록은 선호 순서대로 제공되어야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;application/xml&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$format</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$format</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">(</span><span class="nv">$supported</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 경우 클라이언트와 서버가 데이터 형식을 JSON으로 합의할 수 있으므로 negotiate 메서드에서 ‘json’이 반환됩니다. 기본적으로 일치하는 항목이 없으면 <code class="docutils literal notranslate"><span class="pre">$supported</span></code>배열의 첫 번째 요소가 반환됩니다. 그러나 경우에 따라 형식을 엄격하게 일치시키도록 강제할 필요가 있습니다. 마지막 값으로 <code class="docutils literal notranslate"><span class="pre">true</span></code>를 전달하면 일치 항목이 없을 때 빈 문자열을 반환합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$format</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;media&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$format</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">(</span><span class="nv">$supported</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="language">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">언어</a><a class="headerlink" href="#language" title="Link to this heading"></a></h3>
+<p>또 다른 일반적인 용도는 콘텐츠가 어떤 언어로 제공되어야 하는지를 결정하는 것입니다. 단일 언어 사이트를 운영 중이라면 큰 차이가 없겠지만, 여러 번역을 제공할 수 있는 사이트는 브라우저가 일반적으로 <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code> 헤더에 선호 언어를 함께 전송하므로 이 기능을 유용하게 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">fr</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="nx">en</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>이 예에서는 브라우저가 프랑스를 우선으로 선호하고, 두 번째로 영어를 선호합니다. 웹사이트가 영어와 독일어를 지원한다면 다음과 같이 할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;en&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;de&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">(</span><span class="nv">$supported</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 예에서는 ‘en’이 현재 언어로 반환됩니다. 일치 항목이 없으면 항상 <code class="docutils literal notranslate"><span class="pre">$supported</span></code>배열의 첫 번째 요소가 반환되므로, 해당 항목은 항상 기본 선호 언어여야 합니다.</p>
+<section id="strict-locale-negotiation">
+<h4>엄격 로케일 협상<a class="headerlink" href="#strict-locale-negotiation" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.6.0.</span></p>
+</div>
+<p>기본적으로 로케일은 손실 비교 방식으로 결정됩니다. 따라서 로케일 문자열의 첫 부분(언어)만 고려됩니다. 이는 일반적으로 충분하지만, 경우에 따라 <code class="docutils literal notranslate"><span class="pre">en-US</span></code>와 <code class="docutils literal notranslate"><span class="pre">en-GB</span></code>와 같은 지역 버전을 구분하여 다른 콘텐츠를 제공해야 할 때가 있습니다.</p>
+<p>이러한 경우를 위해 <code class="docutils literal notranslate"><span class="pre">Config\Feature::$strictLocaleNegotiation</span></code>을 통해 활성화할 수 있는 새 설정을 도입했습니다. 이를 통해 먼저 엄격한 비교가 수행되도록 보장합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>CodeIgniter는 기본 언어 태그(‘en’, ‘fr’ 등)에 대해서만 번역을 제공합니다. 따라서 이 기능을 활성화하고 <code class="docutils literal notranslate"><span class="pre">Config\App::$supportedLocales</span></code>설정에 지역 언어 태그(‘en-US’, ‘fr-FR’ 등)를 포함하는 경우, 자체 번역 파일이 있다면 CodeIgniter의 번역 파일 폴더 이름도 <code class="docutils literal notranslate"><span class="pre">$supportedLocales</span></code>배열에 맞게 변경해야 한다는 점을 유의하세요.</p>
+</div>
+<p>이제 아래 예를 살펴보겠습니다. 브라우저의 선호 언어는 다음과 같이 설정됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">fr</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="nx">en</span><span class="o">-</span><span class="nx">GB</span><span class="p">;</span> <span class="nx">q</span><span class="o">=</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>이 예에서는 브라우저가 프랑스를 우선으로 선호하고, 두 번째로 영국 영어를 선호합니다. 반면 귀하의 웹사이트는 독일어와 미국 영어를 지원합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$supported</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;de&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;en-US&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="nv">$supported</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$lang</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">language</span><span class="p">(</span><span class="nv">$supported</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 예에서는 ‘en-US’가 현재 언어로 반환됩니다. 일치 항목이 없으면 <code class="docutils literal notranslate"><span class="pre">$supported</span></code>배열의 첫 번째 요소가 반환됩니다. 로케일 선택 과정은 다음과 같이 작동합니다.</p>
+<p>브라우저가 ‘fr’를 선호하더라도 이것이 <code class="docutils literal notranslate"><span class="pre">$supported</span></code>배열에 없다면 문제가 발생합니다. ‘en-GB’에서도 같은 문제가 발생하지만, 여기서는 변형을 검색할 수 있습니다. 먼저 가장 일반적인 로케일(이 경우 ‘en’)로 대체를 시도하고, 이것이 배열에 없다면 지역 로케일 ‘en-‘을 검색합니다. 그러면 <code class="docutils literal notranslate"><span class="pre">$supported</span></code>배열의 값과 일치하여 ‘en-US’를 반환합니다.</p>
+<p>따라서 로케일 선택 과정은 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li><p>엄격 일치(‘en-GB’) - ISO 639-1 및 ISO 3166-1 alpha-2</p></li>
+<li><p>일반 로케일 일치(‘en’) - ISO 639-1</p></li>
+<li><p>지역 로케일 일치(‘en-’) - ISO 639-1 및 ISO 3166-1 alpha-2의 와일드카드</p></li>
+</ol>
+</section>
+</section>
+<section id="encoding">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">인코딩</a><a class="headerlink" href="#encoding" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Accept-Encoding</span></code> 헤더에는 클라이언트가 선호하는 문자 집합이 포함되며, 클라이언트가 지원하는 압축 유형을 지정하는 데 사용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span><span class="o">:</span> <span class="nx">compress</span><span class="p">,</span> <span class="nx">gzip</span>
+</pre></div>
+</div>
+<p>웹 서버는 사용할 수 있는 압축 유형을 정의합니다. 일부 서버(예: Apache)는 <strong>gzip</strong>만 지원합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$type</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;encoding&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gzip&#39;</span><span class="p">]);</span>
+<span class="c1">// or</span>
+<span class="nv">$type</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">encoding</span><span class="p">([</span><span class="s1">&#39;gzip&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>자세한 내용은 <a class="reference external" href="https://en.wikipedia.org/wiki/HTTP_compression">Wikipedia</a>를 참조하세요.</p>
+</section>
+<section id="character-set">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">문자 집합</a><a class="headerlink" href="#character-set" title="Link to this heading"></a></h3>
+<p>원하는 문자 집합은 <code class="docutils literal notranslate"><span class="pre">Accept-Charset</span></code> 헤더를 통해 전달됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="o">/</span><span class="nx">foo</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Charset</span><span class="o">:</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">8</span>
+</pre></div>
+</div>
+<p>기본적으로 일치 항목이 없으면 <strong>utf-8</strong>이 반환됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$charset</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">negotiate</span><span class="p">(</span><span class="s1">&#39;charset&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;utf-8&#39;</span><span class="p">]);</span>
+<span class="c1">// or</span>
+<span class="nv">$charset</span> <span class="o">=</span> <span class="nv">$negotiate</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">([</span><span class="s1">&#39;utf-8&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="incomingrequest.html" class="btn btn-neutral float-left" title="IncomingRequest 클래스”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="methodspoofing.html" class="btn btn-neutral float-right" title="HTTP 메서드 스푸핑" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

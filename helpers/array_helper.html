@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>배열 헬퍼 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="쿠키 헬퍼" href="cookie_helper.html" />
+    <link rel="prev" title="헬퍼(Helpers)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">헬퍼(Helpers)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">헬퍼(Helpers)</a></li>
+      <li class="breadcrumb-item active">배열 헬퍼</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="array-helper">
+<h1>배열 헬퍼<a class="headerlink" href="#array-helper" title="Link to this heading"></a></h1>
+<p>배열 헬퍼는 배열의 복잡한 사용을 단순화하는 여러 함수를 제공합니다. PHP가 이미 제공하는 기능을 중복 구현하지 않으며, 사용 편의성을 크게 향상시키는 경우에만 예외로 합니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#loading-this-helper" id="id2">헬퍼 로드</a></p></li>
+<li><p><a class="reference internal" href="#available-functions" id="id3">사용 가능한 함수</a></p></li>
+</ul>
+</nav>
+<section id="loading-this-helper">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">헬퍼 로드</a><a class="headerlink" href="#loading-this-helper" title="Link to this heading"></a></h2>
+<p>이 헬퍼는 다음 코드를 사용하여 로드합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="available-functions">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">사용 가능한 함수</a><a class="headerlink" href="#available-functions" title="Link to this heading"></a></h2>
+<p>다음 함수들을 사용할 수 있습니다:</p>
+<dl class="php function">
+<dt class="sig sig-object php" id="dot_array_search">
+<span class="sig-name descname"><span class="pre">dot_array_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">string</span> <span class="pre">$search</span></em>, <em class="sig-param"><span class="pre">array</span> <span class="pre">$values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dot_array_search" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$search</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 배열 검색 방법을 설명하는 점 표기법 문자열</p></li>
+<li><p><strong>$values</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 검색할 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>배열에서 찾은 값, 또는 null</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>이 메서드를 사용하면 점 표기법으로 배열에서 특정 키를 검색할 수 있으며, <code class="docutils literal notranslate"><span class="pre">*</span></code>와일드카드 사용도 지원합니다. 다음 배열을 예로 들겠습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;buzz&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;fizz&#39;</span> <span class="o">=&gt;</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;baz&#39;</span> <span class="o">=&gt;</span> <span class="mi">23</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>검색 문자열 <code class="docutils literal notranslate"><span class="pre">foo.buzz.fizz</span></code>를 사용하여 <code class="docutils literal notranslate"><span class="pre">fizz</span></code>의 값을 찾을 수 있습니다. 마찬가지로 <code class="docutils literal notranslate"><span class="pre">foo.bar.baz</span></code>로 <code class="docutils literal notranslate"><span class="pre">baz</span></code>의 값을 찾을 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns: 11</span>
+<span class="nv">$fizz</span> <span class="o">=</span> <span class="nx">dot_array_search</span><span class="p">(</span><span class="s1">&#39;foo.buzz.fizz&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Returns: 23</span>
+<span class="nv">$baz</span> <span class="o">=</span> <span class="nx">dot_array_search</span><span class="p">(</span><span class="s1">&#39;foo.bar.baz&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>별표(<code class="docutils literal notranslate"><span class="pre">*</span></code>)를 와일드카드로 사용하면 경로의 임의 세그먼트를 대체할 수 있습니다. 일치하는 항목이 있으면 찾을 때까지 모든 자식 노드를 탐색합니다. 값을 모르거나 숫자 인덱스를 가진 경우에 유용합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Returns: 23</span>
+<span class="nv">$baz</span> <span class="o">=</span> <span class="nx">dot_array_search</span><span class="p">(</span><span class="s1">&#39;foo.*.baz&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>배열 키에 점(<code class="docutils literal notranslate"><span class="pre">.</span></code>)이 포함된 경우, 백슬래시(<code class="docutils literal notranslate"><span class="pre">\</span></code>)로 이스케이프할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;bar.baz&#39;</span> <span class="o">=&gt;</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;foo.bar&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;baz&#39;</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="c1">// Returns: 23</span>
+<span class="nv">$barBaz</span> <span class="o">=</span> <span class="nx">dot_array_search</span><span class="p">(</span><span class="s1">&#39;foo.bar\.baz&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="c1">// Returns: 43</span>
+<span class="nv">$fooBar</span> <span class="o">=</span> <span class="nx">dot_array_search</span><span class="p">(</span><span class="s1">&#39;foo\.bar.baz&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.2.0 이전에는 버그로 인해 <code class="docutils literal notranslate"><span class="pre">dot_array_search('foo.bar.baz',</span> <span class="pre">['foo'</span> <span class="pre">=&gt;</span> <span class="pre">['bar'</span> <span class="pre">=&gt;</span> <span class="pre">23]])</span></code>가 <code class="docutils literal notranslate"><span class="pre">23</span></code>을 반환했습니다. v4.2.0 이상에서는 <code class="docutils literal notranslate"><span class="pre">null</span></code>을 반환합니다.</p>
+</div>
+<dl class="php function">
+<dt class="sig sig-object php" id="array_deep_search">
+<span class="sig-name descname"><span class="pre">array_deep_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$key</span></em>, <em class="sig-param"><span class="pre">array</span> <span class="pre">$array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#array_deep_search" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 대상 키</p></li>
+<li><p><strong>$array</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 검색할 배열</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>배열에서 찾은 값, 또는 null</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>깊이를 알 수 없는 배열에서 특정 키 값을 가진 요소의 값을 반환합니다</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="array_sort_by_multiple_keys">
+<span class="sig-name descname"><span class="pre">array_sort_by_multiple_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">array</span> <span class="pre">&amp;$array</span></em>, <em class="sig-param"><span class="pre">array</span> <span class="pre">$sortColumns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#array_sort_by_multiple_keys" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$array</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 정렬할 배열(참조로 전달됩니다).</p></li>
+<li><p><strong>$sortColumns</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 정렬 기준이 되는 배열 키와 해당 PHP 정렬 플래그를 연관 배열로 지정합니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>정렬 성공 여부.</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>이 메서드는 다차원 배열의 요소를 하나 이상의 키 값을 기준으로 계층적으로 정렬합니다. 예를 들어 모델의 <code class="docutils literal notranslate"><span class="pre">find()</span></code> 함수에서 반환될 수 있는 다음 배열을 살펴보겠습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$players</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Maria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Frank&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>이제 이 배열을 두 개의 키를 기준으로 정렬해 보겠습니다. 이 메서드는 깊은 배열 레벨의 값에 접근하는 점 표기법을 지원하지만, 와일드카드는 지원하지 않습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">array_sort_by_multiple_keys</span><span class="p">(</span><span class="nv">$players</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;team.order&#39;</span> <span class="o">=&gt;</span> <span class="nx">SORT_ASC</span><span class="p">,</span>
+    <span class="s1">&#39;position&#39;</span>   <span class="o">=&gt;</span> <span class="nx">SORT_ASC</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$players</span></code> 배열은 이제 각 플레이어의 <code class="docutils literal notranslate"><span class="pre">team</span></code> 하위 배열에 있는 <code class="docutils literal notranslate"><span class="pre">order</span></code> 값으로 정렬됩니다. 여러 플레이어의 이 값이 동일하면 <code class="docutils literal notranslate"><span class="pre">position</span></code>으로 추가 정렬됩니다. 결과 배열은 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$players</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Frank&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Maria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;team_id&#39;</span>  <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;team&#39;</span>     <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>같은 방식으로 이 메서드는 객체 배열도 처리할 수 있습니다. 위 예시에서 각 <code class="docutils literal notranslate"><span class="pre">player</span></code>는 배열로, <code class="docutils literal notranslate"><span class="pre">teams</span></code>는 객체로 표현될 수도 있습니다. 메서드는 각 중첩 레벨의 요소 타입을 자동으로 감지하여 적절히 처리합니다.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="array_flatten_with_dots">
+<span class="sig-name descname"><span class="pre">array_flatten_with_dots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">iterable</span> <span class="pre">$array</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">string</span> <span class="pre">$id</span> <span class="pre">=</span> <span class="pre">''</span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="headerlink" href="#array_flatten_with_dots" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$array</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">iterable</span></code></span>) – 평탄화할 다차원 배열</p></li>
+<li><p><strong>$id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 외부 키 앞에 붙일 선택적 ID입니다. 내부적으로 키 평탄화에 사용됩니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>평탄화된 배열</p>
+</dd>
+</dl>
+<p>이 함수는 키 구분자로 점을 사용하여 다차원 배열을 단일 키-값 배열로 평탄화합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$arrayToFlatten</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;personal&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;john&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;smith&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;age&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;26&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;address&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;other_details&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;marines officer&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nv">$flattened</span> <span class="o">=</span> <span class="nx">array_flatten_with_dots</span><span class="p">(</span><span class="nv">$arrayToFlatten</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>확인해 보면 <code class="docutils literal notranslate"><span class="pre">$flattened</span></code>는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;personal.first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;john&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;personal.last_name&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;smith&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;personal.age&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;26&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;personal.address&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;other_details&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;marines officer&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>사용자는 <code class="docutils literal notranslate"><span class="pre">$id</span></code> 매개변수를 직접 사용할 수 있지만 필수는 아닙니다. 함수는 내부적으로 이 매개변수를 사용하여 평탄화된 키를 추적합니다. 초기 <code class="docutils literal notranslate"><span class="pre">$id</span></code>를 제공하면 모든 키 앞에 붙습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// using the same data from above</span>
+<span class="nv">$flattened</span> <span class="o">=</span> <span class="nx">array_flatten_with_dots</span><span class="p">(</span><span class="nv">$arrayToFlatten</span><span class="p">,</span> <span class="s1">&#39;foo_&#39;</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm"> * $flattened is now:</span>
+<span class="cm"> * [</span>
+<span class="cm"> *     &#39;foo_personal.first_name&#39; =&gt; &#39;john&#39;,</span>
+<span class="cm"> *     &#39;foo_personal.last_name&#39;  =&gt; &#39;smith&#39;,</span>
+<span class="cm"> *     &#39;foo_personal.age&#39;        =&gt; &#39;26&#39;,</span>
+<span class="cm"> *     &#39;foo_personal.address&#39;    =&gt; &#39;US&#39;,</span>
+<span class="cm"> *     &#39;foo_other_details&#39;       =&gt; &#39;marines officer&#39;,</span>
+<span class="cm"> * ]</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="array_group_by">
+<span class="sig-name descname"><span class="pre">array_group_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">array</span> <span class="pre">$array</span></em>, <em class="sig-param"><span class="pre">array</span> <span class="pre">$indexes</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">bool</span> <span class="pre">$includeEmpty</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="headerlink" href="#array_group_by" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$array</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 데이터 행(주로 쿼리 결과에서 가져옴)</p></li>
+<li><p><strong>$indexes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 값을 그룹화할 인덱스입니다. 점 표기법을 따릅니다</p></li>
+<li><p><strong>$includeEmpty</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – true이면 <code class="docutils literal notranslate"><span class="pre">null</span></code>과 <code class="docutils literal notranslate"><span class="pre">''</span></code> 값을 필터링하지 않습니다</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>인덱스 값으로 그룹화된 배열</p>
+</dd>
+</dl>
+<p>이 함수를 사용하면 인덱스 값을 기준으로 데이터 행을 그룹화할 수 있습니다. 반환되는 배열의 깊이는 매개변수로 전달된 인덱스 수와 같습니다.</p>
+<p>이 예시는 API에서 불러온 중첩 배열 형태의 데이터를 보여줍니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$employees</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Urbano&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Canada&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Case&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Emera&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Richy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mandy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Risa&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Alfred&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Tabby&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Ario&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Somerset&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>먼저 <code class="docutils literal notranslate"><span class="pre">gender</span></code>로 그룹화한 뒤 <code class="docutils literal notranslate"><span class="pre">hr.department</span></code>로 다시 그룹화합니다(최대 깊이 = 2). 빈 값을 제외한 결과는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">array_group_by</span><span class="p">(</span><span class="nv">$employees</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;hr.department&#39;</span><span class="p">]);</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Male&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Marketing&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Case&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Tabby&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Somerset&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Engineering&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Alfred&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Sales&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Ario&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Female&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Engineering&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Emera&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Risa&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>그리고 동일한 코드에서 이번에는 빈 값을 포함하는 경우입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">array_group_by</span><span class="p">(</span><span class="nv">$employees</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;hr.department&#39;</span><span class="p">],</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Engineering&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Urbano&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Canada&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Sales&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Richy&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mandy&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Male&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Marketing&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Case&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Tabby&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Somerset&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Engineering&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Alfred&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;Sales&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Ario&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Female&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Engineering&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Emera&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Risa&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;gender&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;hr&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;country&#39;</span>    <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                    <span class="s1">&#39;department&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Engineering&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="헬퍼(Helpers)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cookie_helper.html" class="btn btn-neutral float-right" title="쿠키 헬퍼" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

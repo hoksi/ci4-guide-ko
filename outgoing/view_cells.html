@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>셀 보기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="파서 보기" href="view_parser.html" />
+    <link rel="prev" title="레이아웃 보기" href="view_layouts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">응답 빌드</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">응답 빌드</a></li>
+      <li class="breadcrumb-item active">셀 보기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="view-cells">
+<h1>셀 보기<a class="headerlink" href="#view-cells" title="Link to this heading"></a></h1>
+<p>많은 애플리케이션에는 페이지마다 또는 페이지의 다른 위치에서 반복될 수 있는 작은 보기 조각이 있습니다. 이는 종종 도움말 상자, 탐색 컨트롤, 광고, 로그인 양식 등입니다. CodeIgniter를 사용하면 View Cells 내에서 이러한 프레젠테이션 블록에 대한 논리를 캡슐화할 수 있습니다. 기본적으로 다른 뷰에 포함될 수 있는 미니 뷰입니다. 여기에는 셀별 표시 논리를 처리하기 위한 논리가 내장되어 있을 수 있습니다. 각 셀의 논리를 자체 클래스로 분리하여 보기를 더 읽기 쉽고 유지 관리하기 쉽게 만드는 데 사용할 수 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#simple-and-controlled-cells" id="id4">단순하고 제어되는 셀</a></p></li>
+<li><p><a class="reference internal" href="#calling-a-view-cell" id="id5">뷰 셀 호출</a></p>
+<ul>
+<li><p><a class="reference internal" href="#namespace-omission" id="id6">네임스페이스 생략</a></p></li>
+<li><p><a class="reference internal" href="#passing-parameters-as-key-value-string" id="id7">매개변수를 키/값 문자열로 전달하기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#simple-cells" id="id8">단순 셀</a></p></li>
+<li><p><a class="reference internal" href="#controlled-cells" id="id9">제어되는 셀</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-a-controlled-cell" id="id10">제어되는 셀 만들기</a></p></li>
+<li><p><a class="reference internal" href="#generating-cell-via-command" id="id11">명령을 통해 셀 생성</a></p></li>
+<li><p><a class="reference internal" href="#using-a-different-view" id="id12">다른 보기 사용</a></p></li>
+<li><p><a class="reference internal" href="#customize-the-rendering" id="id13">렌더링 사용자 정의</a></p></li>
+<li><p><a class="reference internal" href="#computed-properties" id="id14">계산된 속성</a></p></li>
+<li><p><a class="reference internal" href="#presentation-methods" id="id15">프리젠테이션 방법</a></p></li>
+<li><p><a class="reference internal" href="#performing-setup-logic" id="id16">설정 로직 수행</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#cell-caching" id="id17">셀 캐싱</a></p></li>
+</ul>
+</nav>
+<section id="simple-and-controlled-cells">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">단순하고 제어되는 셀</a><a class="headerlink" href="#simple-and-controlled-cells" title="Link to this heading"></a></h2>
+<p>CodeIgniter는 단순 뷰 셀과 제어 뷰 셀의 두 가지 유형을 지원합니다.</p>
+<p><strong>간단한 보기 셀</strong>은 선택한 모든 클래스 및 메서드에서 생성될 수 있으며 문자열을 반환해야 한다는 점을 제외하면 어떤 규칙도 따를 필요가 없습니다.</p>
+<p><strong>제어된 뷰 셀</strong>은 뷰 셀을 더욱 유연하고 빠르게 사용할 수 있도록 하는 추가 기능을 제공하는 <code class="docutils literal notranslate"><span class="pre">Codeigniter\View\Cells\Cell</span></code> 클래스를 확장하는 클래스에서 생성되어야 합니다.</p>
+</section>
+<section id="calling-a-view-cell">
+<span id="app-cells"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">뷰 셀 호출</a><a class="headerlink" href="#calling-a-view-cell" title="Link to this heading"></a></h2>
+<p>사용 중인 뷰 셀 유형에 관계없이 <code class="docutils literal notranslate"><span class="pre">view_cell()</span></code> 도우미 함수를 사용하여 모든 뷰에서 이를 호출할 수 있습니다.</p>
+<p>첫 번째 매개변수는 (1) 클래스 및 메소드의 이름(단순 셀) 또는 (2) 호출할 클래스 및 선택적 메소드의 이름(제어 셀)이고, 두 번째 매개변수는 메소드에 전달할 매개변수의 배열 또는 문자열입니다.”#: ../../source/outgoing/view_cells.rst:3</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View.</span>
+
+<span class="c1">// Simple Cell</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;App\Cells\MyClass::myMethod&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value2&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span>
+
+// Controlled Cell
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;App\Cells\MyCell&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value2&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>Cell이 반환하는 문자열은 <code class="docutils literal notranslate"><span class="pre">view_cell()</span></code> 함수가 호출된 뷰에 삽입됩니다.</p>
+<section id="namespace-omission">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">네임스페이스 생략</a><a class="headerlink" href="#namespace-omission" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>클래스의 전체 네임스페이스를 포함하지 않으면 <code class="docutils literal notranslate"><span class="pre">App\Cells</span></code> 네임스페이스에서 찾을 수 있다고 가정합니다. 따라서 다음 예에서는 <strong>app/Cells/MyClass.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> 클래스를 찾으려고 시도합니다. 거기에서 발견되지 않으면 발견될 때까지 모든 네임스페이스를 검사하여 각 네임스페이스의 <strong>Cells</strong> 하위 디렉터리 내에서 검색합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View.</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;MyClass::myMethod&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value2&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-parameters-as-key-value-string">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">매개변수를 키/값 문자열로 전달하기</a><a class="headerlink" href="#passing-parameters-as-key-value-string" title="Link to this heading"></a></h3>
+<p>매개변수를 키/값 문자열로 전달할 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View.</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;MyClass::myMethod&#39;</span><span class="p">,</span> <span class="s1">&#39;param1=value1, param2=value2&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="simple-cells">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">단순 셀</a><a class="headerlink" href="#simple-cells" title="Link to this heading"></a></h2>
+<p>단순 셀은 선택한 메서드에서 문자열을 반환하는 클래스입니다. 간단한 경고 메시지 셀의 예는 다음과 같습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessage</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">show</span><span class="p">(</span><span class="k">array</span> <span class="nv">$params</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;div class=</span><span class="se">\&quot;</span><span class="s2">alert alert-</span><span class="si">{</span><span class="nv">$params</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">{</span><span class="nv">$params</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/div&gt;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음과 같은 뷰 내에서 호출합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View.</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;AlertMessage::show&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The user has been updated.&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>또한 더 나은 가독성을 위해 메서드의 매개변수 변수와 일치하는 매개변수 이름을 사용할 수 있습니다. 이 방법을 사용하는 경우 모든 매개변수는 항상 뷰 셀 호출에 지정되어야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View.</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;Blog::recentPosts&#39;</span><span class="p">,</span> <span class="s1">&#39;category=codeigniter, limit=5&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// In a Cell.</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Blog</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">recentPosts</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$category</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$limit</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="nv">$posts</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">blogModel</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="nv">$category</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;published_on&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;recentPosts&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;posts&#39;</span> <span class="o">=&gt;</span> <span class="nv">$posts</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="controlled-cells">
+<span id="id2"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">제어되는 셀</a><a class="headerlink" href="#controlled-cells" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>제어되는 셀에는 두 가지 기본 목표가 있습니다. (1) 셀을 최대한 빠르게 작성하고 (2) 필요한 경우 뷰에 추가 논리와 유연성을 제공하는 것입니다.</p>
+<p>클래스는 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\View\Cells\Cell</span></code>을 확장해야 합니다. 동일한 폴더에 보기 파일이 있어야 합니다. 관례적으로 클래스 이름은 접미사가 <code class="docutils literal notranslate"><span class="pre">Cell</span></code>인 PascalCase여야 하며 뷰는 접미사가 없는 클래스 이름의 snake_cased 버전이어야 합니다. 예를 들어, <code class="docutils literal notranslate"><span class="pre">MyCell</span></code> 클래스가 있는 경우 뷰 파일은 <code class="docutils literal notranslate"><span class="pre">my.php</span></code>이어야 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.3.5 이전에는 생성된 뷰 파일이 <code class="docutils literal notranslate"><span class="pre">_cell.php</span></code>로 끝납니다. v4.3.5 이상에서는 <code class="docutils literal notranslate"><span class="pre">_cell</span></code> 접미사 없이 보기 파일을 생성하지만 기존 보기 파일은 계속 찾아서 로드됩니다.</p>
+</div>
+<section id="creating-a-controlled-cell">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">제어되는 셀 만들기</a><a class="headerlink" href="#creating-a-controlled-cell" title="Link to this heading"></a></h3>
+<p>가장 기본적인 수준에서 클래스 내에서 구현해야 하는 것은 공용 속성뿐입니다. 이러한 속성은 뷰 파일에서 자동으로 사용할 수 있게 됩니다.</p>
+<p>위에서 AlertMessage를 제어 셀로 구현하면 다음과 같습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// app/Cells/AlertMessageCell.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessageCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$type</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$message</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// app/Cells/alert_message.php</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;alert alert-&lt;?= esc(</span><span class="si">$type</span><span class="s2">, &#39;attr&#39;) ?&gt;&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Called in main View:</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;AlertMessageCell&#39;</span><span class="p">,</span> <span class="s1">&#39;type=warning, message=Failed.&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>유형이 지정된 속성을 사용하는 경우 초기 값을 설정해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// app/Cells/AlertMessageCell.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessageCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$type</span>    <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="generating-cell-via-command">
+<span id="id3"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">명령을 통해 셀 생성</a><a class="headerlink" href="#generating-cell-via-command" title="Link to this heading"></a></h3>
+<p>CLI에서 내장된 명령을 통해 제어 셀을 생성할 수도 있습니다. 명령은 <code class="docutils literal notranslate"><span class="pre">php</span> <span class="pre">spark</span> <span class="pre">make:cell</span></code>입니다. 생성할 셀의 이름인 하나의 인수가 필요합니다. 이름은 PascalCase에 있어야 하며 클래스는 <strong>app/Cells</strong> 디렉터리에 생성됩니다. 보기 파일은 <strong>app/Cells</strong> 디렉터리에도 생성됩니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark make:cell AlertMessageCell</span>
+</pre></div>
+</div>
+</section>
+<section id="using-a-different-view">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">다른 보기 사용</a><a class="headerlink" href="#using-a-different-view" title="Link to this heading"></a></h3>
+<p>클래스에서 <code class="docutils literal notranslate"><span class="pre">view</span></code> 속성을 설정하여 사용자 정의 보기 파일 경로를 지정할 수 있습니다. 뷰는 일반적인 뷰와 같은 위치에 배치됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessageCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$type</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$message</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nx">string</span> <span class="nv">$view</span> <span class="o">=</span> <span class="nx">APPPATH</span> <span class="o">.</span> <span class="s1">&#39;Views/cells/alerts.php&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="customize-the-rendering">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">렌더링 사용자 정의</a><a class="headerlink" href="#customize-the-rendering" title="Link to this heading"></a></h3>
+<p>HTML 렌더링에 대해 더 많은 제어가 필요한 경우 <code class="docutils literal notranslate"><span class="pre">render()</span></code> 메서드를 구현할 수 있습니다. 이 방법을 사용하면 추가 논리를 수행하고 필요한 경우 추가 데이터를 뷰에 전달할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">render()</span></code> 메서드는 문자열을 반환해야 합니다.</p>
+<p>제어되는 셀의 모든 기능을 활용하려면 일반적인 <code class="docutils literal notranslate"><span class="pre">view()</span></code> 도우미 함수 대신 <code class="docutils literal notranslate"><span class="pre">$this-&gt;view()</span></code>을 사용해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessageCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$type</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$message</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;my/custom/view&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;extra&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;data&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="computed-properties">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">계산된 속성</a><a class="headerlink" href="#computed-properties" title="Link to this heading"></a></h3>
+<p>하나 이상의 속성에 대해 추가 논리를 수행해야 하는 경우 계산된 속성을 사용할 수 있습니다. 이를 위해서는 속성을 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">private</span></code>로 설정하고 이름이 <code class="docutils literal notranslate"><span class="pre">get</span></code> 및 <code class="docutils literal notranslate"><span class="pre">Property</span></code>로 둘러싸인 속성 이름으로 구성된 공개 메서드를 구현해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// In a View. Initialize the protected properties.</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;AlertMessageCell&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;note&#39;</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// app/Cells/AlertMessageCell.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AlertMessageCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$type</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$message</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$computed</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">mount</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">computed</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;%s - %s&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getComputedProperty</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">computed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getTypeProperty</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getMessageProperty</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// app/Cells/alert_message.php</span>
+<span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">type</span> <span class="o">-</span> <span class="o">&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$type</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>message - <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>computed: <span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$computed</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>셀 초기화 중에 비공개로 선언된 속성은 설정할 수 없습니다. <code class="docutils literal notranslate"><span class="pre">getDataProperty()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">getViewProperty()</span></code> 메서드 호출은 사용할 수 없으며 내부 프로세스에만 사용됩니다.</p>
+</div>
+</section>
+<section id="presentation-methods">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">프리젠테이션 방법</a><a class="headerlink" href="#presentation-methods" title="Link to this heading"></a></h3>
+<p>때로는 뷰에 대한 추가 로직을 수행해야 하지만 이를 매개변수로 전달하고 싶지 않은 경우가 있습니다. 셀의 보기 자체 내에서 호출되는 메서드를 구현할 수 있습니다. 이는 보기의 가독성에 도움이 될 수 있습니다. 템플릿에서 메서드 호출이 허용될 뿐만 아니라 공용 속성이 있는 전체 Сell 개체를 사용할 수 있다는 것을 눈치챘을 것입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// app/Cells/RecentPostsCell.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RecentPostsCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$posts</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">linkPost</span><span class="p">(</span><span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">anchor</span><span class="p">(</span><span class="s1">&#39;posts/&#39;</span> <span class="o">.</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// app/Cells/recent_posts.php</span>
+<span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$posts</span> <span class="k">as</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">linkPost</span><span class="p">(</span><span class="nv">$post</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="performing-setup-logic">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">설정 로직 수행</a><a class="headerlink" href="#performing-setup-logic" title="Link to this heading"></a></h3>
+<p>뷰가 렌더링되기 전에 추가 논리를 수행해야 하는 경우 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 메서드를 구현할 수 있습니다. 이 메서드는 클래스가 인스턴스화된 직후에 호출되며 추가 속성을 설정하거나 다른 논리를 수행하는 데 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RecentPostsCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$posts</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">mount</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">posts</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;PostModel&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;DESC&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>추가 매개변수를 <code class="docutils literal notranslate"><span class="pre">view_cell()</span></code> 도우미 함수에 배열로 전달하여 <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 메서드에 전달할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">mount()</span></code> 메소드의 매개변수 이름과 일치하는 전송된 매개변수는 모두 다음으로 전달됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// app/Cells/RecentPostsCell.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Cells</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\View\Cells\Cell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RecentPostsCell</span> <span class="k">extends</span> <span class="nx">Cell</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$posts</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">mount</span><span class="p">(</span><span class="o">?</span><span class="nx">int</span> <span class="nv">$categoryId</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">posts</span> <span class="o">=</span> <span class="nx">model</span><span class="p">(</span><span class="s1">&#39;PostModel&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">when</span><span class="p">(</span>
+                <span class="nv">$categoryId</span><span class="p">,</span>
+                <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$categoryId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;category_id&#39;</span><span class="p">,</span> <span class="nv">$categoryId</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;DESC&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">findAll</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Called in main View:</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;RecentPostsCell&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;categoryId&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">])</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cell-caching">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">셀 캐싱</a><a class="headerlink" href="#cell-caching" title="Link to this heading"></a></h2>
+<p>세 번째 매개변수로 데이터를 캐시할 시간(초)을 전달하여 뷰 셀 호출의 결과를 캐시할 수 있습니다. 현재 구성된 캐시 엔진을 사용합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Cache the view for 5 minutes</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;App\Cells\Blog::recentPosts&#39;</span><span class="p">,</span> <span class="s1">&#39;limit=5&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>원하는 경우 새 이름을 네 번째 매개변수로 전달하여 자동 생성된 이름 대신 사용할 사용자 정의 이름을 제공할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Cache the view for 5 minutes</span>
+<span class="o">&lt;?=</span> <span class="nx">view_cell</span><span class="p">(</span><span class="s1">&#39;App\Cells\Blog::recentPosts&#39;</span><span class="p">,</span> <span class="s1">&#39;limit=5&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;newcacheid&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="view_layouts.html" class="btn btn-neutral float-left" title="레이아웃 보기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="view_parser.html" class="btn btn-neutral float-right" title="파서 보기" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

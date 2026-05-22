@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>현지화 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="뷰 파일의 대체 PHP 구문" href="alternative_php.html" />
+    <link rel="prev" title="콘텐츠 보안 정책" href="csp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">응답 빌드</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">응답 빌드</a></li>
+      <li class="breadcrumb-item active">현지화</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="localization">
+<h1>현지화<a class="headerlink" href="#localization" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#working-with-locales" id="id5">로케일 작업</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configuring-the-locale" id="id6">로케일 구성</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setting-the-default-locale" id="id7">기본 로케일 설정</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#locale-detection" id="id8">로케일 감지</a></p>
+<ul>
+<li><p><a class="reference internal" href="#content-negotiation" id="id9">콘텐츠 협상</a></p></li>
+<li><p><a class="reference internal" href="#in-routes" id="id10">경로 중</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#setting-the-current-locale" id="id11">현재 로케일 설정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#incomingrequest-locale" id="id12">들어오는요청 로케일</a></p></li>
+<li><p><a class="reference internal" href="#language-locale" id="id13">언어 로케일</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#retrieving-the-current-locale" id="id14">현재 로케일 검색</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#language-localization" id="id15">언어 현지화</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-language-files" id="id16">언어 파일 생성</a></p></li>
+<li><p><a class="reference internal" href="#basic-usage" id="id17">기본 사용법</a></p>
+<ul>
+<li><p><a class="reference internal" href="#replacing-parameters" id="id18">매개변수 바꾸기</a></p></li>
+<li><p><a class="reference internal" href="#specifying-locale" id="id19">로케일 지정</a></p></li>
+<li><p><a class="reference internal" href="#nested-arrays" id="id20">중첩 배열</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#language-fallback" id="id21">언어 대체</a></p></li>
+<li><p><a class="reference internal" href="#system-message-translations" id="id22">시스템 메시지 번역</a></p></li>
+<li><p><a class="reference internal" href="#overriding-system-message-translations" id="id23">시스템 메시지 번역 재정의</a></p></li>
+<li><p><a class="reference internal" href="#generating-translation-files-via-command" id="id24">명령을 통해 번역 파일 생성</a></p>
+<ul>
+<li><p><a class="reference internal" href="#synchronization-translation-files-via-command" id="id25">명령을 통한 동기화 번역 파일</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="working-with-locales">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">로케일 작업</a><a class="headerlink" href="#working-with-locales" title="Link to this heading"></a></h2>
+<p>CodeIgniter는 애플리케이션을 다양한 언어로 현지화하는 데 도움이 되는 여러 도구를 제공합니다. 애플리케이션의 전체 지역화는 복잡한 주제이지만 애플리케이션의 문자열을 지원되는 다른 언어로 바꾸는 것은 간단합니다.</p>
+<section id="configuring-the-locale">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">로케일 구성</a><a class="headerlink" href="#configuring-the-locale" title="Link to this heading"></a></h3>
+<section id="setting-the-default-locale">
+<span id="id2"></span><h4><a class="toc-backref" href="#id7" role="doc-backlink">기본 로케일 설정</a><a class="headerlink" href="#setting-the-default-locale" title="Link to this heading"></a></h4>
+<p>모든 사이트에는 운영되는 기본 언어/로캘이 있습니다. 이는 <strong>app/Config/App.php</strong>에서 설정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">App</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultLocale</span> <span class="o">=</span> <span class="s1">&#39;en&#39;</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>값은 응용 프로그램이 텍스트 문자열 및 기타 형식을 관리하는 데 사용하는 모든 문자열이 될 수 있습니다. <a class="reference external" href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> 언어 코드를 사용하는 것이 좋습니다. 이로 인해 미국 영어의 경우 en-US, 프랑스어/프랑스의 경우 fr-FR과 같은 언어 코드가 생성됩니다. 이에 대한 더 읽기 쉬운 소개는 <a class="reference external" href="https://www.w3.org/International/articles/language-tags/">W3C’s site</a>에서 찾을 수 있습니다.</p>
+<p>시스템은 정확하게 일치하는 항목을 찾을 수 없는 경우 보다 일반적인 언어 코드로 대체할 만큼 똑똑합니다. 로케일 코드가 <code class="docutils literal notranslate"><span class="pre">en-US</span></code>로 설정되었고 <code class="docutils literal notranslate"><span class="pre">en</span></code>에 대해 설정된 언어 파일만 있는 경우 더 구체적인 <code class="docutils literal notranslate"><span class="pre">en-US</span></code>에 대한 것이 없기 때문에 해당 파일이 사용됩니다. 그러나 <strong>app/Language/en-US</strong> 디렉토리에 언어 디렉토리가 있는 경우 해당 디렉토리가 먼저 사용됩니다.</p>
+</section>
+</section>
+<section id="locale-detection">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">로케일 감지</a><a class="headerlink" href="#locale-detection" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>로케일 감지는 IncomingRequest 클래스를 사용하는 웹 기반 요청에 대해서만 작동합니다. 명령줄 요청에는 이러한 기능이 없습니다.</p>
+</div>
+<p>요청 중에 올바른 로케일을 감지하기 위해 지원되는 두 가지 방법이 있습니다.</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#content-negotiation">Content Negotiation</a>: 첫 번째는 사용할 올바른 로케일을 결정하기 위해 자동으로 <a class="reference internal" href="../incoming/content_negotiation.html"><span class="doc">content negotiation</span></a>을 수행하는 “설정하고 잊어버리는” 방법입니다.</p></li>
+<li><p><a class="reference internal" href="#in-routes">In Routes</a>: 두 번째 방법을 사용하면 로케일을 설정하는 데 사용될 경로의 세그먼트를 지정할 수 있습니다.</p></li>
+</ol>
+<p>로캘을 직접 설정해야 하는 경우 <a class="reference internal" href="#setting-the-current-locale">Setting the Current Locale</a>을 참조하세요.</p>
+<p>v4.4.0부터 <code class="docutils literal notranslate"><span class="pre">Config\App::$supportedLocales</span></code> 설정에서 설정된 유효한 로케일을 설정(및 재설정)하기 위해 <code class="docutils literal notranslate"><span class="pre">IncomingRequest::setValidLocales()</span></code>이 추가되었습니다.</p>
+<section id="content-negotiation">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">콘텐츠 협상</a><a class="headerlink" href="#content-negotiation" title="Link to this heading"></a></h4>
+<p><strong>app/Config/App.php</strong>에서 두 가지 추가 설정을 지정하여 자동으로 콘텐츠 협상이 이루어지도록 설정할 수 있습니다. 첫 번째 값은 Request 클래스에 우리가 로케일을 협상하고 싶다는 것을 알려주므로 간단히 true로 설정하십시오.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">App</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$negotiateLocale</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 기능이 활성화되면 시스템은 <code class="docutils literal notranslate"><span class="pre">$supportLocales</span></code>에서 정의한 로케일 배열을 기반으로 올바른 언어를 자동으로 협상합니다. 지원하는 언어와 요청한 언어 간에 일치하는 항목이 없으면 <code class="docutils literal notranslate"><span class="pre">$supportedLocales</span></code>의 첫 번째 항목이 사용됩니다. 다음 예에서는 일치하는 항목이 없으면 <code class="docutils literal notranslate"><span class="pre">en</span></code> 로캘이 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">App</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$supportedLocales</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;es&#39;</span><span class="p">,</span> <span class="s1">&#39;fr-FR&#39;</span><span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="in-routes">
+<span id="localization-in-routes"></span><h4><a class="toc-backref" href="#id10" role="doc-backlink">경로 중</a><a class="headerlink" href="#in-routes" title="Link to this heading"></a></h4>
+<p>두 번째 방법은 사용자 정의 자리 표시자를 사용하여 원하는 로케일을 감지하고 요청에 설정합니다. 자리 표시자 <code class="docutils literal notranslate"><span class="pre">{locale}</span></code>은(는) 경로의 구간으로 배치될 수 있습니다. 있는 경우 일치하는 세그먼트의 내용이 귀하의 로캘이 됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;{locale}/books&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Books::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 예에서 사용자가 <strong>http://example.com/fr/books</strong>,을(를) 방문하려고 하면 해당 로케일이 유효한 로케일로 구성되었다고 가정하여 로케일이 <code class="docutils literal notranslate"><span class="pre">fr</span></code>로 설정됩니다.</p>
+<p>값이 <strong>app/Config/App.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$supportedLocales</span></code>에 정의된 유효한 로케일과 일치하지 않는 경우 앱 구성 파일에 정의된 지원 로케일만 사용하도록 설정하지 않는 한 기본 로케일이 그 자리에서 사용됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">useSupportedLocalesOnly</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">useSupportedLocalesOnly()</span></code> 메소드는 v4.3.0부터 사용할 수 있습니다.</p>
+</div>
+</section>
+</section>
+<section id="setting-the-current-locale">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">현재 로케일 설정</a><a class="headerlink" href="#setting-the-current-locale" title="Link to this heading"></a></h3>
+<section id="incomingrequest-locale">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">들어오는요청 로케일</a><a class="headerlink" href="#incomingrequest-locale" title="Link to this heading"></a></h4>
+<p>로캘을 직접 설정하려면 <a class="reference internal" href="../incoming/incomingrequest.html"><span class="doc">IncomingRequest 클래스”</span></a>에서 <code class="docutils literal notranslate"><span class="pre">setLocale()</span></code> 메서드를 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="sd">/** @var \CodeIgniter\HTTP\IncomingRequest $request */</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;ja&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>로케일을 설정하기 전에 유효한 로케일을 설정해야 합니다. 유효하지 않은 로케일을 설정하려고 하면 <a class="reference internal" href="#setting-the-default-locale"><span class="std std-ref">default locale</span></a>이(가) 설정되기 때문입니다.</p>
+<p>기본적으로 유효한 로케일은 <strong>app/Config/App.php</strong>의 <code class="docutils literal notranslate"><span class="pre">Config\App::$supportedLocales</span></code>에 정의되어 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">App</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$supportedLocales</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;es&#39;</span><span class="p">,</span> <span class="s1">&#39;fr-FR&#39;</span><span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0부터 유효한 로케일을 설정(및 재설정)하기 위해 <code class="docutils literal notranslate"><span class="pre">IncomingRequest::setValidLocales()</span></code>이 추가되었습니다. 유효한 로케일을 동적으로 변경하려면 이를 사용하십시오.</p>
+</div>
+</section>
+<section id="language-locale">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">언어 로케일</a><a class="headerlink" href="#language-locale" title="Link to this heading"></a></h4>
+<p><a class="reference internal" href="../general/common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 함수에 사용된 <code class="docutils literal notranslate"><span class="pre">Language</span></code> 클래스에도 현재 로케일이 있습니다. 인스턴스화하는 동안 <code class="docutils literal notranslate"><span class="pre">IncomingRequest</span></code> 로케일로 설정됩니다.</p>
+<p>언어 클래스를 인스턴스화한 후 로캘을 변경하려면 <code class="docutils literal notranslate"><span class="pre">Language::setLocale()</span></code> 메서드를 사용하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="sd">/** @var \CodeIgniter\Language\Language $lang */</span>
+<span class="nv">$lang</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">);</span>
+<span class="nv">$lang</span><span class="o">-&gt;</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;ja&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="retrieving-the-current-locale">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">현재 로케일 검색</a><a class="headerlink" href="#retrieving-the-current-locale" title="Link to this heading"></a></h3>
+<p>현재 로케일은 항상 <code class="docutils literal notranslate"><span class="pre">getLocale()</span></code> 메소드를 통해 IncomingRequest 객체에서 검색할 수 있습니다. 컨트롤러가 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code>을 확장하는 경우 <code class="docutils literal notranslate"><span class="pre">$this-&gt;request</span></code>을 통해 사용할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserController</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$locale</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getLocale</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>또는 <a class="reference internal" href="../concepts/services.html"><span class="doc">Services class</span></a>을 사용하여 현재 요청을 검색할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$locale</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getLocale</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="language-localization">
+<span id="id3"></span><h2><a class="toc-backref" href="#id15" role="doc-backlink">언어 현지화</a><a class="headerlink" href="#language-localization" title="Link to this heading"></a></h2>
+<section id="creating-language-files">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">언어 파일 생성</a><a class="headerlink" href="#creating-language-files" title="Link to this heading"></a></h3>
+<p>언어 문자열은 지원되는 각 언어(로케일)에 대한 하위 디렉터리와 함께 <strong>app/Language</strong> 디렉터리에 저장됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span><span class="o">/</span>
+    <span class="nx">Language</span><span class="o">/</span>
+        <span class="nx">en</span><span class="o">/</span>
+            <span class="nx">App</span><span class="o">.</span><span class="nx">php</span>
+        <span class="nx">fr</span><span class="o">/</span>
+            <span class="nx">App</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>언어 파일에는 네임스페이스가 없습니다.</p>
+</div>
+<p>언어에는 필요한 특정 명명 규칙이 없습니다. 파일 이름은 파일에 포함된 콘텐츠 유형을 설명하기 위해 논리적으로 지정되어야 합니다. 예를 들어, 오류 메시지가 포함된 파일을 생성한다고 가정해 보겠습니다. 간단히 이름을 <strong>Errors.php</strong>로 지정할 수도 있습니다.</p>
+<p>파일 내에서 배열의 각 요소에 언어 키가 있고 반환할 문자열이 있을 수 있는 배열을 반환합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;languageKey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The actual message to be shown.&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>언어 키의 시작과 끝 부분에는 점(<code class="docutils literal notranslate"><span class="pre">.</span></code>)을 사용할 수 없습니다.</p>
+</div>
+<p>또한 중첩 정의도 지원합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;languageKey&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;nested&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The actual message to be shown.&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;errorEmailMissing&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;You must submit an email address&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;errorURLMissing&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;You must submit a URL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;errorUsernameMissing&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;You must submit a username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;nested&#39;</span>               <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;error&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A specific error message&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-usage">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">기본 사용법</a><a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="../general/common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 도우미 함수를 사용하면 파일 이름과 언어 키를 마침표(<code class="docutils literal notranslate"><span class="pre">.</span></code>)로 구분하여 첫 번째 매개변수로 전달하여 모든 언어 파일에서 텍스트를 검색할 수 있습니다.</p>
+<p>예를 들어 <strong>Errors.php</strong> 언어 파일에서 <code class="docutils literal notranslate"><span class="pre">errorEmailMissing</span></code> 문자열을 로드하려면 다음을 수행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Errors.errorEmailMissing&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>중첩된 정의의 경우 다음을 수행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Errors.nested.error.message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>요청된 언어 키가 현재 로케일(<a class="reference internal" href="#language-fallback">Language Fallback</a> 이후)에 대한 파일에 없으면 문자열이 변경되지 않고 다시 전달됩니다. 이 예에서는 존재하지 않는 경우 <code class="docutils literal notranslate"><span class="pre">Errors.errorEmailMissing</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">Errors.nested.error.message</span></code>을 반환합니다.</p>
+<section id="replacing-parameters">
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">매개변수 바꾸기</a><a class="headerlink" href="#replacing-parameters" title="Link to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>다음 기능이 모두 작동하려면 시스템에 <a class="reference external" href="https://www.php.net/manual/en/book.intl.php">intl</a> 확장 프로그램을 로드해야 합니다. 확장이 로드되지 않으면 교체가 시도되지 않습니다. 훌륭한 개요는 <a class="reference external" href="https://www.sitepoint.com/localization-demystified-understanding-php-intl/">Sitepoint</a>에서 확인할 수 있습니다.</p>
+</div>
+<p>언어 문자열의 자리 표시자를 대체하기 위해 값 배열을 <code class="docutils literal notranslate"><span class="pre">lang()</span></code> 함수의 두 번째 매개변수로 전달할 수 있습니다. 이를 통해 매우 간단한 숫자 변환 및 형식 지정이 가능합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// The language file, Tests.php:</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;apples&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;I have {0, number} apples.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;men&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;The top {1, number} men out-performed the remaining {0, number}&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;namedApples&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;I have {number_apples, number, integer} apples.&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="c1">// Displays &quot;I have 3 apples.&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.apples&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>자리 표시자의 첫 번째 항목은 숫자인 경우 배열 항목의 인덱스에 해당합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Displays &quot;The top 23 men out-performed the remaining 20&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.men&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">23</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>원하는 경우 명명된 키를 사용하여 작업을 보다 쉽게 ​​수행할 수도 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="c1">// Displays &quot;I have 3 apples.&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.namedApples&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;number_apples&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>분명히 숫자 교체 이상의 작업을 수행할 수 있습니다. 기본 라이브러리의 <a class="reference external" href="https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/classMessageFormat.html#details">official ICU docs</a>에 따라 다음 유형의 데이터를 대체할 수 있습니다.</p>
+<ul class="simple">
+<li><p>숫자 - 정수, 통화, 퍼센트</p></li>
+<li><p>날짜 - 단기, 중기, 장기, 전체</p></li>
+<li><p>시간 - 짧음, 중간, 길음, 전체</p></li>
+<li><p>철자법 - 숫자를 철자합니다(즉, 34는 34가 됩니다).</p></li>
+<li><p>서수</p></li>
+<li><p>지속</p></li>
+</ul>
+<p>다음은 몇 가지 예입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// The language file, Tests.php</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;shortTime&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;The time is now {0, time, short}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mediumTime&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The time is now {0, time, medium}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;longTime&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The time is now {0, time, long}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fullTime&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The time is now {0, time, full}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;shortDate&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;The date is now {0, date, short}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mediumDate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The date is now {0, date, medium}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;longDate&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The date is now {0, date, long}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fullDate&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The date is now {0, date, full}.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;spelledOut&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;34 is {0, spellout}&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ordinal&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;The ordinal is {0, ordinal}&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;It has been {0, duration}&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="c1">// Displays &quot;The time is now 11:18 PM&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.shortTime&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The time is now 11:18:50 PM&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.mediumTime&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The time is now 11:19:09 PM CDT&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.longTime&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The time is now 11:19:26 PM Central Daylight Time&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.fullTime&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+
+<span class="c1">// Displays &quot;The date is now 8/14/16&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.shortDate&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The date is now Aug 14, 2016&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.mediumDate&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The date is now August 14, 2016&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.longDate&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+<span class="c1">// Displays &quot;The date is now Sunday, August 14, 2016&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.fullDate&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+
+<span class="c1">// Displays &quot;34 is thirty-four&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.spelledOut&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">34</span><span class="p">]);</span>
+
+<span class="c1">// Displays &quot;It has been 408,676:24:35&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Tests.ordinal&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()]);</span>
+</pre></div>
+</div>
+<p>조건부 대체, 복수화 수행 등과 같은 기능이 무엇인지 더 잘 이해하려면 MessageFormatter 클래스와 기본 ICU 형식을 읽어야 합니다. 이전에 제공된 두 링크 모두 사용 가능한 옵션에 대한 훌륭한 아이디어를 제공합니다.</p>
+</section>
+<section id="specifying-locale">
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">로케일 지정</a><a class="headerlink" href="#specifying-locale" title="Link to this heading"></a></h4>
+<p>매개변수를 교체할 때 사용할 다른 로케일을 지정하려면 해당 로케일을 <a class="reference internal" href="../general/common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 함수의 세 번째 매개변수로 전달할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Displays &quot;The time is now 23:21:28 GMT-5&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Test.longTime&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">time</span><span class="p">()],</span> <span class="s1">&#39;ru-RU&#39;</span><span class="p">);</span>
+
+<span class="c1">// Displays &quot;£7.41&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;{price, number, currency}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;price&#39;</span> <span class="o">=&gt;</span> <span class="mf">7.41</span><span class="p">],</span> <span class="s1">&#39;en-GB&#39;</span><span class="p">);</span>
+<span class="c1">// Displays &quot;$7.41&quot;</span>
+<span class="k">echo</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;{price, number, currency}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;price&#39;</span> <span class="o">=&gt;</span> <span class="mf">7.41</span><span class="p">],</span> <span class="s1">&#39;en-US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>현재 로캘을 변경하려면 <a class="reference internal" href="#language-locale">Language Locale</a>을 참조하세요.</p>
+</section>
+<section id="nested-arrays">
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">중첩 배열</a><a class="headerlink" href="#nested-arrays" title="Link to this heading"></a></h4>
+<p>언어 파일을 사용하면 중첩 배열을 사용하여 목록 등을 더 쉽게 작업할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Language/en/Fruit.php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;list&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Apples&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Bananas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Grapes&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Lemons&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Oranges&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Strawberries&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+
+<span class="c1">// Displays &quot;Apples, Bananas, Grapes, Lemons, Oranges, Strawberries&quot;</span>
+<span class="k">echo</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Fruit.list&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="language-fallback">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">언어 대체</a><a class="headerlink" href="#language-fallback" title="Link to this heading"></a></h3>
+<p>특정 로케일(예: <strong>Language/en/App.php</strong>)에 대한 메시지 세트가 있는 경우 해당 로케일에 대한 언어 변형을 각각 자체 폴더(예: <strong>Language/en-US/App.php</strong>)에 추가할 수 있습니다.</p>
+<p>해당 로케일 변형에 대해 다르게 지역화되는 메시지에 대한 값만 제공하면 됩니다. 누락된 메시지 정의는 기본 로캘 설정에서 자동으로 가져옵니다.</p>
+<p>더 좋아졌습니다. 새 메시지가 프레임워크에 추가되었지만 아직 해당 로케일에 맞게 번역할 기회가 없었던 경우 현지화가 영어(<strong>en</strong>)로 돌아갈 수 있습니다.</p>
+<p>따라서 로케일 <code class="docutils literal notranslate"><span class="pre">fr-CA</span></code>을 사용하는 경우 먼저 <strong>Language/fr-CA</strong> 디렉토리에서 지역화된 메시지를 찾은 다음 <strong>Language/fr</strong> 디렉토리, 마지막으로 <strong>Language/en</strong> 디렉토리에서 찾습니다.</p>
+</section>
+<section id="system-message-translations">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">시스템 메시지 번역</a><a class="headerlink" href="#system-message-translations" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://github.com/codeigniter4/translations">own repository</a>에는 시스템 메시지 번역의 “공식” 세트가 있습니다.</p>
+<p>해당 저장소를 다운로드하고 <strong>Language</strong> 폴더를 <strong>app</strong> 폴더에 복사할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">App</span></code> 네임스페이스가 <strong>앱</strong> 폴더에 매핑되므로 통합된 번역이 자동으로 선택됩니다.</p>
+<p>또는 프로젝트 내에서 다음 명령을 실행하는 것이 더 나은 방법입니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">composer require codeigniter4/translations</span>
+</pre></div>
+</div>
+<p>번역 폴더가 적절하게 매핑되므로 번역된 메시지가 자동으로 선택됩니다.</p>
+</section>
+<section id="overriding-system-message-translations">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">시스템 메시지 번역 재정의</a><a class="headerlink" href="#overriding-system-message-translations" title="Link to this heading"></a></h3>
+<p>프레임워크는 <a class="reference internal" href="#system-message-translations">System Message Translations</a>을 제공하며, 설치한 패키지도 메시지 번역을 제공할 수 있습니다.</p>
+<p>일부 언어 메시지를 재정의하려면 <strong>app/Language</strong> 디렉터리에 언어 파일을 생성하세요. 그런 다음 파일에서 재정의하려는 배열만 반환합니다.</p>
+</section>
+<section id="generating-translation-files-via-command">
+<span id="id4"></span><h3><a class="toc-backref" href="#id24" role="doc-backlink">명령을 통해 번역 파일 생성</a><a class="headerlink" href="#generating-translation-files-via-command" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">app</span></code> 폴더에서 번역 파일을 자동으로 생성하고 업데이트할 수 있습니다. 이 명령은 <code class="docutils literal notranslate"><span class="pre">lang()</span></code> 함수의 사용을 검색하고 <code class="docutils literal notranslate"><span class="pre">Config\App</span></code>에서 로케일 <code class="docutils literal notranslate"><span class="pre">defaultLocale``을</span> <span class="pre">정의하여</span> <span class="pre">``app/Language</span></code>의 현재 번역 키를 결합합니다. 수술 후에는 언어 키를 직접 번역해야 합니다. 이 명령은 일반적으로 <code class="docutils literal notranslate"><span class="pre">File.array.nested.text</span></code> 중첩된 키를 인식할 수 있습니다. 이전에 저장된 키는 변경되지 않습니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark lang:find</span>
+</pre></div>
+</div>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Controllers/Translation/Lang.php</span>
+<span class="nv">$message</span>  <span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Text.info.success&#39;</span><span class="p">);</span>
+<span class="nv">$message2</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">(</span><span class="s1">&#39;Text.paragraph&#39;</span><span class="p">);</span>
+
+<span class="c1">// The following will be saved in Language/en/Text.php</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;info&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;success&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Text.info.success&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;paragraph&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Text.paragraph&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>명령이 폴더를 검색할 때 <code class="docutils literal notranslate"><span class="pre">app/Language</span></code>는 건너뜁니다.</p>
+</div>
+<p>생성된 언어 파일은 코딩 표준을 따르지 않을 가능성이 높습니다. 포맷하는 것이 좋습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">php-cs-fixer</span></code>이 설치된 경우 <code class="docutils literal notranslate"><span class="pre">vendor/bin/php-cs-fixer</span> <span class="pre">fix</span> <span class="pre">./app/Language</span></code>을 실행합니다.</p>
+<p>업데이트하기 전에 다음 명령으로 찾은 번역을 미리 볼 수 있습니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark lang:find --verbose --show-new</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code>의 자세한 출력에는 잘못된 키 목록도 표시됩니다. 예를 들어:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+
+<span class="go">Files found: 10</span>
+<span class="go">New translates found: 30</span>
+<span class="go">Bad translates found: 5</span>
+<span class="go">+------------------------+---------------------------------+</span>
+<span class="go">| Bad Key                | Filepath                        |</span>
+<span class="go">+------------------------+---------------------------------+</span>
+<span class="go">| ..invalid_nested_key.. | app/Controllers/Translation.php |</span>
+<span class="go">| .invalid_key           | app/Controllers/Translation.php |</span>
+<span class="go">| TranslationBad         | app/Controllers/Translation.php |</span>
+<span class="go">| TranslationBad.        | app/Controllers/Translation.php |</span>
+<span class="go">| TranslationBad...      | app/Controllers/Translation.php |</span>
+<span class="go">+------------------------+---------------------------------+</span>
+
+<span class="go">All operations done!</span>
+</pre></div>
+</div>
+<p>보다 정확한 검색을 위해 검색하려는 로캘이나 디렉터리를 지정하세요.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark lang:find --dir Controllers/Translation --locale en --show-new</span>
+</pre></div>
+</div>
+<p>자세한 정보는 다음 명령을 실행하여 확인할 수 있습니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark lang:find --help</span>
+</pre></div>
+</div>
+<section id="synchronization-translation-files-via-command">
+<span id="sync-translations-command"></span><h4><a class="toc-backref" href="#id25" role="doc-backlink">명령을 통한 동기화 번역 파일</a><a class="headerlink" href="#synchronization-translation-files-via-command" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.6.0.</span></p>
+</div>
+<p>현재 언어에 대한 번역을 마친 후 다른 언어에 대한 파일을 만들어야 할 수도 있습니다. 이를 해결하기 위해 Spark <code class="docutils literal notranslate"><span class="pre">lang:find</span></code> 명령을 사용할 수 있습니다. 그러나 모든 번역, 특히 <code class="docutils literal notranslate"><span class="pre">lang('App.status.'</span> <span class="pre">.</span> <span class="pre">$key,</span> <span class="pre">['payload'</span> <span class="pre">=&gt;</span> <span class="pre">'John'],</span> <span class="pre">'en')</span></code>과 같이 동적으로 설정된 매개변수가 있는 번역을 감지하지 못할 수도 있습니다.</p>
+<p>번역이 누락되지 않도록 하려면 완성된 언어 파일을 복사하여 수동으로 번역하는 것이 가장 좋습니다. 이 접근 방식은 명령이 간과했을 수 있는 고유 키를 보존합니다.</p>
+<p>당신이 해야 할 일은 다음을 실행하는 것 뿐입니다:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">// Specify the locale for new/updated translations</span>
+<span class="go">php spark lang:sync --target ru</span>
+
+<span class="go">// or set the original locale</span>
+<span class="go">php spark lang:sync --locale en --target ru</span>
+</pre></div>
+</div>
+<p>결과적으로 번역 키가 포함된 파일을 받게 됩니다. 대상 로케일에 중복된 키가 있으면 저장됩니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>새 번역에서 일치하지 않는 키가 삭제됩니다!</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="csp.html" class="btn btn-neutral float-left" title="콘텐츠 보안 정책" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alternative_php.html" class="btn btn-neutral float-right" title="뷰 파일의 대체 PHP 구문" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

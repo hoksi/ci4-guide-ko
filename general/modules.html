@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>코드 모듈 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="애플리케이션 관리" href="managing_apps.html" />
+    <link rel="prev" title="AJAX 요청" href="ajax.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">일반 주제</a></li>
+      <li class="breadcrumb-item active">코드 모듈</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-modules">
+<h1>코드 모듈<a class="headerlink" href="#code-modules" title="Link to this heading"></a></h1>
+<p>CodeIgniter는 재사용 가능한 코드를 생성하는 데 도움이 되는 코드 모듈화 형식을 지원합니다. 모듈은 일반적으로 특정 주제를 중심으로 하며 대규모 애플리케이션 내의 미니 애플리케이션으로 생각할 수 있습니다.</p>
+<p>컨트롤러, 모델, 보기, 구성 파일, 도우미, 언어 파일 등과 같은 프레임워크 내의 모든 표준 파일 형식이 지원됩니다. 모듈에는 원하는 만큼 이러한 파일 형식이 포함될 수 있습니다.</p>
+<p>모듈을 Composer 패키지로 생성하려면 <a class="reference internal" href="../extending/composer_packages.html"><span class="doc">Composer 패키지 만들기</span></a>도 참조하세요.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#namespaces" id="id3">네임스페이스</a></p></li>
+<li><p><a class="reference internal" href="#autoloading-non-class-files" id="id4">클래스가 아닌 파일 자동 로드</a></p></li>
+<li><p><a class="reference internal" href="#auto-discovery" id="id5">자동 검색</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enable-disable-discover" id="id6">검색 활성화/비활성화</a></p></li>
+<li><p><a class="reference internal" href="#specify-discovery-items" id="id7">검색 항목 지정</a></p></li>
+<li><p><a class="reference internal" href="#discovery-and-composer" id="id8">발견과 작곡가</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-with-files" id="id9">파일 작업</a></p>
+<ul>
+<li><p><a class="reference internal" href="#routes" id="id10">노선</a></p></li>
+<li><p><a class="reference internal" href="#filters" id="id11">필터</a></p></li>
+<li><p><a class="reference internal" href="#controllers" id="id12">컨트롤러</a></p></li>
+<li><p><a class="reference internal" href="#config-files" id="id13">구성 파일</a></p></li>
+<li><p><a class="reference internal" href="#migrations" id="id14">마이그레이션</a></p></li>
+<li><p><a class="reference internal" href="#seeds" id="id15">씨앗</a></p></li>
+<li><p><a class="reference internal" href="#helpers" id="id16">헬퍼(Helpers)</a></p></li>
+<li><p><a class="reference internal" href="#language-files" id="id17">언어 파일</a></p></li>
+<li><p><a class="reference internal" href="#libraries" id="id18">도서관</a></p></li>
+<li><p><a class="reference internal" href="#models" id="id19">모델(Models)</a></p></li>
+<li><p><a class="reference internal" href="#views" id="id20">뷰(Views)</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="namespaces">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">네임스페이스</a><a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<p>모듈 기능의 핵심 요소는 CodeIgniter가 사용하는 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR-4 compatible autoloading</span></a>에서 나옵니다. 모든 코드에서 PSR-4 자동 로더와 네임스페이스를 사용할 수 있지만 모듈을 최대한 활용하는 기본 방법은 코드에 네임스페이스를 지정하고 이를 <code class="docutils literal notranslate"><span class="pre">$psr4</span></code> 속성의 <strong>app/Config/Autoload.php</strong>에 추가하는 것입니다.</p>
+<p>예를 들어, 애플리케이션 간에 재사용할 수 있는 간단한 블로그 모듈을 유지하고 싶다고 가정해 보겠습니다. 회사 이름이 Acme인 폴더를 만들어 모든 모듈을 저장할 수 있습니다. 기본 프로젝트 루트의 <strong>app</strong> 디렉터리 바로 옆에 배치하겠습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">acme</span><span class="o">/</span>        <span class="c1">// New modules directory</span>
+<span class="nx">app</span><span class="o">/</span>
+<span class="k">public</span><span class="o">/</span>
+<span class="nb">system</span><span class="o">/</span>
+<span class="nx">tests</span><span class="o">/</span>
+<span class="nx">writable</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>app/Config/Autoload.php</strong>을 열고 <code class="docutils literal notranslate"><span class="pre">Acme\Blog</span></code> 네임스페이스를 <code class="docutils literal notranslate"><span class="pre">$psr4</span></code> 배열 속성에 추가합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\AutoloadConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Autoload</span> <span class="k">extends</span> <span class="nx">AutoloadConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nv">$psr4</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nx">APP_NAMESPACE</span> <span class="o">=&gt;</span> <span class="nx">APPPATH</span><span class="p">,</span>
+        <span class="s1">&#39;Acme\Blog&#39;</span>   <span class="o">=&gt;</span> <span class="nx">ROOTPATH</span> <span class="o">.</span> <span class="s1">&#39;acme/Blog&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 이것이 설정되었으므로 <code class="docutils literal notranslate"><span class="pre">Acme\Blog</span></code> 네임스페이스를 통해 <strong>acme/Blog</strong> 폴더 내의 모든 파일에 액세스할 수 있습니다. 이것만으로도 모듈이 작동하는 데 필요한 것의 80%가 처리되므로 네임스페이스에 익숙해지고 사용에 익숙해져야 합니다. 정의된 모든 네임스페이스를 통해 여러 파일 형식이 자동으로 검색됩니다. 이는 모듈 작업에 중요한 요소입니다.</p>
+<p>모듈 내의 공통 디렉토리 구조는 기본 애플리케이션 폴더를 모방합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">acme</span><span class="o">/</span>
+    <span class="nx">Blog</span><span class="o">/</span>
+        <span class="nx">Config</span><span class="o">/</span>
+        <span class="nx">Controllers</span><span class="o">/</span>
+        <span class="nx">Database</span><span class="o">/</span>
+            <span class="nx">Migrations</span><span class="o">/</span>
+            <span class="nx">Seeds</span><span class="o">/</span>
+        <span class="nx">Helpers</span><span class="o">/</span>
+        <span class="nx">Language</span><span class="o">/</span>
+            <span class="nx">en</span><span class="o">/</span>
+        <span class="nx">Libraries</span><span class="o">/</span>
+        <span class="nx">Models</span><span class="o">/</span>
+        <span class="nx">Views</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>물론 이 정확한 구조를 사용하도록 강요할 수는 없으며 필요하지 않은 디렉터리를 제외하고 엔터티, 인터페이스 또는 저장소 등을 위한 새 디렉터리를 생성하는 등 모듈에 가장 적합한 방식으로 구조를 구성해야 합니다.</p>
+</section>
+<section id="autoloading-non-class-files">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">클래스가 아닌 파일 자동 로드</a><a class="headerlink" href="#autoloading-non-class-files" title="Link to this heading"></a></h2>
+<p>대부분의 경우 모듈에는 PHP 클래스뿐만 아니라 일반적으로 클래스가 로드되는 방식으로 로드되지 않는 절차 함수, 부트스트래핑 파일, 모듈 상수 파일 등과 같은 다른 클래스도 포함됩니다. 이에 대한 한 가지 접근 방식은 파일이 사용될 파일의 ​​시작 부분에 <code class="docutils literal notranslate"><span class="pre">require</span></code>을 사용하는 것입니다.</p>
+<p>CodeIgniter가 제공하는 또 다른 접근 방식은 클래스를 자동 로드하는 방법과 같이 이러한 <em>비클래스</em> 파일을 자동 로드하는 것입니다. 우리가 해야 할 일은 해당 파일에 대한 경로 목록을 제공하고 이를 <strong>app/Config/Autoload.php</strong> 파일의 <code class="docutils literal notranslate"><span class="pre">$files</span></code> 속성에 포함시키는 것뿐입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\AutoloadConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Autoload</span> <span class="k">extends</span> <span class="nx">AutoloadConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nv">$files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;path/to/my/functions.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;path/to/my/constants.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;path/to/my/bootstrap.php&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="auto-discovery">
+<span id="id2"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">자동 검색</a><a class="headerlink" href="#auto-discovery" title="Link to this heading"></a></h2>
+<p>포함하려는 파일에 전체 네임스페이스를 지정해야 하는 경우가 많지만, CodeIgniter는 다음을 포함한 다양한 파일 유형을 자동으로 검색하여 애플리케이션에 모듈을 더 쉽게 통합하도록 구성할 수 있습니다.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></p></li>
+<li><p><a class="reference internal" href="../incoming/filters.html"><span class="doc">Filters</span></a></p></li>
+<li><p><a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">등록기관</span></a></p></li>
+<li><p><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></p></li>
+<li><p><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></p></li>
+</ul>
+<p>이는 <strong>app/Config/Modules.php</strong> 파일에 구성되어 있습니다.</p>
+<p>자동 검색 시스템은 <strong>Config/Autoload.php</strong> 및 Composer 패키지에 정의된 psr4 네임스페이스 내의 특정 디렉터리와 파일을 검색하여 작동합니다.</p>
+<p>검색 프로세스는 해당 경로에서 검색 가능한 항목을 찾고, 예를 들어 <strong>acme/Blog/Config/Routes.php</strong>에서 경로 파일을 찾아야 합니다.</p>
+<section id="enable-disable-discover">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">검색 활성화/비활성화</a><a class="headerlink" href="#enable-disable-discover" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">$enabled</span></code> 클래스 변수를 사용하여 시스템의 모든 자동 검색을 켜거나 끌 수 있습니다. False는 모든 검색을 비활성화하여 성능을 최적화하지만 모듈 및 Composer 패키지의 특수 기능을 무효화합니다.</p>
+</section>
+<section id="specify-discovery-items">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">검색 항목 지정</a><a class="headerlink" href="#specify-discovery-items" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">$aliases</span></code> 옵션을 사용하면 자동으로 검색되는 항목을 지정할 수 있습니다. 항목이 없으면 해당 항목에 대한 자동 검색이 수행되지 않지만 배열의 다른 항목은 계속 검색됩니다.</p>
+</section>
+<section id="discovery-and-composer">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">발견과 작곡가</a><a class="headerlink" href="#discovery-and-composer" title="Link to this heading"></a></h3>
+<p>PSR-4 네임스페이스를 사용하여 Composer를 통해 설치된 패키지도 기본적으로 검색됩니다. PSR-0 네임스페이스 패키지는 감지되지 않습니다.</p>
+<section id="specify-composer-packages">
+<span id="modules-specify-composer-packages"></span><h4>Composer 패키지 지정<a class="headerlink" href="#specify-composer-packages" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3.0.</span></p>
+</div>
+<p>관련 없는 Composer 패키지를 검색하는 데 시간을 낭비하지 않으려면 <strong>app/Config/Modules.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$composerPackages</span></code> 변수를 편집하여 검색할 패키지를 수동으로 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Modules\Modules</span> <span class="k">as</span> <span class="nx">BaseModules</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Modules</span> <span class="k">extends</span> <span class="nx">BaseModules</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nv">$composerPackages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;only&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="c1">// List up all packages to auto-discover</span>
+            <span class="s1">&#39;codeigniter4/shield&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>또는 검색에서 제외할 패키지를 지정할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Modules\Modules</span> <span class="k">as</span> <span class="nx">BaseModules</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Modules</span> <span class="k">extends</span> <span class="nx">BaseModules</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nv">$composerPackages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;exclude&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="c1">// List up packages to exclude.</span>
+            <span class="s1">&#39;pestphp/pest&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="disable-composer-package-discovery">
+<h4>Composer 패키지 검색 비활성화<a class="headerlink" href="#disable-composer-package-discovery" title="Link to this heading"></a></h4>
+<p>파일을 찾을 때 Composer의 알려진 디렉터리 전체를 검색하지 않으려면 <strong>app/Config/Modules.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$discoverInComposer</span></code> 변수를 편집하여 이 기능을 끌 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Modules\Modules</span> <span class="k">as</span> <span class="nx">BaseModules</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Modules</span> <span class="k">extends</span> <span class="nx">BaseModules</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$discoverInComposer</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="working-with-files">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">파일 작업</a><a class="headerlink" href="#working-with-files" title="Link to this heading"></a></h2>
+<p>이 섹션에서는 각 파일 유형(컨트롤러, 뷰, 언어 파일 등)을 살펴보고 모듈 내에서 이를 사용하는 방법을 살펴보겠습니다. 이 정보 중 일부는 사용자 가이드의 관련 위치에 더 자세히 설명되어 있지만, 모든 정보가 어떻게 결합되는지 더 쉽게 이해할 수 있도록 여기에 재현되어 있습니다.</p>
+<section id="routes">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">노선</a><a class="headerlink" href="#routes" title="Link to this heading"></a></h3>
+<p>기본적으로 <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 구성 파일에서 끌 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>파일이 현재 범위에 포함되므로 <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 인스턴스가 이미 정의되어 있습니다. 해당 클래스를 재정의하려고 하면 오류가 발생합니다.</p>
+</div>
+<p>모듈 작업 시 애플리케이션의 경로에 와일드카드가 포함되어 있으면 문제가 될 수 있습니다. 이 경우 <a class="reference internal" href="../incoming/routing.html#routing-priority"><span class="std std-ref">라우트 우선순위</span></a>을 참조하세요.</p>
+</section>
+<section id="filters">
+<span id="modules-filters"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">필터</a><a class="headerlink" href="#filters" title="Link to this heading"></a></h3>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">버전 4.4.2부터 폐지됨.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 기능은 더 이상 사용되지 않습니다. 대신 다음과 같이 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">등록기관</span></a>을 사용하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">CodeIgniter\Shield\Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Shield\Filters\SessionAuth</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeIgniter\Shield\Filters\TokenAuth</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Registrar</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Registers the Shield filters.</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">Filters</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;aliases&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;session&#39;</span> <span class="o">=&gt;</span> <span class="nx">SessionAuth</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+                <span class="s1">&#39;tokens&#39;</span>  <span class="o">=&gt;</span> <span class="nx">TokenAuth</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>기본적으로 <a class="reference internal" href="../incoming/filters.html"><span class="doc">filters</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 구성 파일에서 끌 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>파일이 현재 범위에 포함되므로 <code class="docutils literal notranslate"><span class="pre">$filters</span></code> 인스턴스가 이미 정의되어 있습니다. 해당 클래스를 재정의하려고 하면 오류가 발생합니다.</p>
+</div>
+<p>모듈의 <strong>Config/Filters.php</strong> 파일에서 사용하는 필터의 별칭을 정의해야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$filters</span><span class="o">-&gt;</span><span class="na">aliases</span><span class="p">[</span><span class="s1">&#39;menus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">\App\Filters\MenusFilter</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="controllers">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">컨트롤러</a><a class="headerlink" href="#controllers" title="Link to this heading"></a></h3>
+<p>기본 <strong>app/Controllers</strong> 디렉터리 외부의 컨트롤러는 URI 감지를 통해 자동으로 라우팅될 수 없지만 Routes 파일 자체 내에서 지정되어야 합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Routes.php</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;\Acme\Blog\Controllers\Blog::index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>여기에 필요한 입력량을 줄이려면 <strong>group</strong> 라우팅 기능이 도움이 됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;namespace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">],</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog::index&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="config-files">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">구성 파일</a><a class="headerlink" href="#config-files" title="Link to this heading"></a></h3>
+<p>구성 파일 작업 시 특별한 변경이 필요하지 않습니다. 이들은 여전히 ​​네임스페이스 클래스이며 <code class="docutils literal notranslate"><span class="pre">new</span></code> 명령으로 로드됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>구성 파일은 항상 사용 가능한 <a class="reference internal" href="common_functions.html#config" title="config"><code class="xref php php-func docutils literal notranslate"><span class="pre">config()</span></code></a> 함수를 사용할 때마다 자동으로 검색되며 짧은 클래스 이름을 전달합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모듈에서 동일한 짧은 클래스 이름을 사용하지 않는 것이 좋습니다. <strong>app/Config/</strong>의 알려진 구성을 재정의하거나 추가해야 하는 모듈은 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">Implicit Registrars</span></a>을 사용해야 합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0 이전에는 <code class="docutils literal notranslate"><span class="pre">config(\Acme\Blog\Config\Blog::class)</span></code>와 같은 정규화된 클래스 이름을 지정하더라도 동일한 단축 이름을 가진 클래스가 있는 경우 <code class="docutils literal notranslate"><span class="pre">config()</span></code>이 <strong>app/Config/</strong>에서 파일을 찾습니다. 이 동작은 v4.4.0에서 수정되었으며 지정된 인스턴스를 반환합니다.</p>
+</div>
+</section>
+<section id="migrations">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">마이그레이션</a><a class="headerlink" href="#migrations" title="Link to this heading"></a></h3>
+<p>마이그레이션 파일은 정의된 네임스페이스 내에서 자동으로 검색됩니다. 모든 네임스페이스에서 발견된 모든 마이그레이션은 매번 실행됩니다.</p>
+</section>
+<section id="seeds">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">씨앗</a><a class="headerlink" href="#seeds" title="Link to this heading"></a></h3>
+<p>시드 파일은 전체 네임스페이스가 제공되는 한 CLI에서 사용하거나 다른 시드 파일 내에서 호출할 수 있습니다. CLI를 호출하는 경우 이중 백슬래시를 제공해야 합니다.</p>
+<p>유닉스의 경우:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark db:seed Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
+</pre></div>
+</div>
+<p>Windows의 경우:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark db:seed Acme\Blog\Database\Seeds\TestPostSeeder</span>
+</pre></div>
+</div>
+</section>
+<section id="helpers">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">헬퍼(Helpers)</a><a class="headerlink" href="#helpers" title="Link to this heading"></a></h3>
+<p>도우미는 네임스페이스 <strong>Helpers</strong> 디렉터리 내에 있는 한 <a class="reference internal" href="common_functions.html#helper" title="helper"><code class="xref php php-func docutils literal notranslate"><span class="pre">helper()</span></code></a> 함수를 사용할 때 정의된 네임스페이스 내에서 자동으로 검색됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>네임스페이스를 지정할 수 있습니다. 자세한 내용은 <a class="reference internal" href="helpers.html#helpers-loading-from-specified-namespace"><span class="std std-ref">지정된 네임스페이스에서 로드</span></a>을 참조하세요.</p>
+</section>
+<section id="language-files">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">언어 파일</a><a class="headerlink" href="#language-files" title="Link to this heading"></a></h3>
+<p>언어 파일은 기본 응용 프로그램 디렉터리와 동일한 디렉터리 구조를 따르는 한 <a class="reference internal" href="common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 함수를 사용할 때 정의된 네임스페이스에서 자동으로 찾습니다.</p>
+</section>
+<section id="libraries">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">도서관</a><a class="headerlink" href="#libraries" title="Link to this heading"></a></h3>
+<p>라이브러리는 항상 정규화된 클래스 이름으로 인스턴스화되므로 특별한 액세스가 제공되지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$lib</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Libraries\BlogLib</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="models">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">모델(Models)</a><a class="headerlink" href="#models" title="Link to this heading"></a></h3>
+<p>정규화된 클래스 이름으로 <code class="docutils literal notranslate"><span class="pre">new</span></code> 키워드를 사용하여 모델을 인스턴스화하는 경우 특별한 액세스가 제공되지 않습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Models\PostModel</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>항상 사용 가능한 <a class="reference internal" href="common_functions.html#model" title="model"><code class="xref php php-func docutils literal notranslate"><span class="pre">model()</span></code></a> 기능을 사용할 때마다 모델 파일이 자동으로 검색됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>모듈에서 동일한 짧은 클래스 이름을 사용하지 않는 것이 좋습니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0 이전에는 <code class="docutils literal notranslate"><span class="pre">model(\Acme\Blog\Model\PostModel::class)</span></code>와 같은 정규화된 클래스 이름을 지정하더라도 동일한 단축 이름을 가진 클래스가 있는 경우 <code class="docutils literal notranslate"><span class="pre">model()</span></code>이 <strong>app/Models/</strong>에서 파일을 찾습니다. 자세한 내용은 <a class="reference internal" href="../concepts/factories.html#factories-passing-fully-qualified-classname"><span class="std std-ref">전체 경로 네임스페이스(Fully Qualified Classname) 전달</span></a>의 참고 사항을 참조하세요.</p>
+</div>
+</section>
+<section id="views">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">뷰(Views)</a><a class="headerlink" href="#views" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="../outgoing/views.html#namespaced-views"><span class="std std-ref">views</span></a> 문서에 설명된 대로 클래스 네임스페이스를 사용하여 뷰를 로드할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;Acme\Blog\Views\index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ajax.html" class="btn btn-neutral float-left" title="AJAX 요청" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="managing_apps.html" class="btn btn-neutral float-right" title="애플리케이션 관리" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

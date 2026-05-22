@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>렌더러 보기 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="레이아웃 보기" href="view_layouts.html" />
+    <link rel="prev" title="뷰(Views)" href="views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">응답 빌드</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="views.html">뷰(Views)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">응답 빌드</a></li>
+      <li class="breadcrumb-item active">렌더러 보기</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="view-renderer">
+<h1>렌더러 보기<a class="headerlink" href="#view-renderer" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-the-view-renderer" id="id2">뷰 렌더러 사용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-it-does" id="id3">그것이 하는 일</a></p></li>
+<li><p><a class="reference internal" href="#setting-view-parameters" id="id4">뷰 매개변수 설정</a></p></li>
+<li><p><a class="reference internal" href="#method-chaining" id="id5">메소드 체이닝</a></p></li>
+<li><p><a class="reference internal" href="#escaping-data" id="id6">데이터 이스케이프</a></p></li>
+<li><p><a class="reference internal" href="#view-renderer-options" id="id7">렌더러 옵션 보기</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#class-reference" id="id8">수업 참고자료</a></p></li>
+</ul>
+</nav>
+<section id="using-the-view-renderer">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">뷰 렌더러 사용</a><a class="headerlink" href="#using-the-view-renderer" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../general/common_functions.html#view" title="view"><code class="xref php php-func docutils literal notranslate"><span class="pre">view()</span></code></a> 함수는 <code class="docutils literal notranslate"><span class="pre">renderer</span></code> 서비스의 인스턴스를 가져와 데이터를 설정하고 뷰를 렌더링하는 편의 함수입니다. 이것이 바로 여러분이 원하는 것일 때가 많지만, 좀 더 직접적으로 작업하고 싶은 경우가 있을 수도 있습니다. 이 경우 View 서비스에 직접 액세스할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;renderer&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>또는 <code class="docutils literal notranslate"><span class="pre">View</span></code> 클래스를 기본 렌더러로 사용하지 않는 경우 직접 인스턴스화할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\View\View</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>컨트롤러 내에서만 서비스를 생성해야 합니다. 라이브러리에서 View 클래스에 액세스해야 하는 경우 이를 라이브러리 생성자에서 종속성으로 설정해야 합니다.</p>
+</div>
+<p>그런 다음 제공되는 세 가지 표준 방법인 <a class="reference internal" href="#CodeIgniter\View\View::render" title="CodeIgniter\View\View::render"><code class="xref php php-meth docutils literal notranslate"><span class="pre">render()</span></code></a>, <a class="reference internal" href="#CodeIgniter\View\View::setVar" title="CodeIgniter\View\View::setVar"><code class="xref php php-meth docutils literal notranslate"><span class="pre">setVar()</span></code></a> 및 <a class="reference internal" href="#CodeIgniter\View\View::setData" title="CodeIgniter\View\View::setData"><code class="xref php php-meth docutils literal notranslate"><span class="pre">setData()</span></code></a> 중 하나를 사용할 수 있습니다.</p>
+<section id="what-it-does">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">그것이 하는 일</a><a class="headerlink" href="#what-it-does" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">View</span></code> 클래스는 보기 매개변수를 스크립트 내에서 액세스할 수 있는 PHP 변수로 추출한 후 애플리케이션의 보기 경로에 저장된 기존 HTML/PHP 스크립트를 처리합니다. 이는 뷰 매개변수 이름이 합법적인 PHP 변수 이름이어야 함을 의미합니다.</p>
+<p>View 클래스는 내부적으로 연관 배열을 사용하여 <code class="docutils literal notranslate"><span class="pre">render()</span></code>을 호출할 때까지 뷰 매개변수를 축적합니다. 이는 매개변수(또는 변수) 이름이 고유해야 함을 의미합니다. 그렇지 않으면 이후 변수 설정이 이전 변수 설정을 재정의합니다.</p>
+<p>이는 스크립트 내부의 다양한 컨텍스트에 대한 이스케이프 매개변수 값에도 영향을 미칩니다. 이스케이프된 각 값에 고유한 매개변수 이름을 지정해야 합니다.</p>
+<p>값이 배열인 매개변수에는 특별한 의미가 부여되지 않습니다. PHP 코드에서 배열을 적절하게 처리하는 것은 사용자의 몫입니다.</p>
+</section>
+<section id="setting-view-parameters">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">뷰 매개변수 설정</a><a class="headerlink" href="#setting-view-parameters" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="#CodeIgniter\View\View::setVar" title="CodeIgniter\View\View::setVar"><code class="xref php php-meth docutils literal notranslate"><span class="pre">setVar()</span></code></a> 메소드는 뷰 매개변수를 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#CodeIgniter\View\View::setData" title="CodeIgniter\View\View::setData"><code class="xref php php-meth docutils literal notranslate"><span class="pre">setData()</span></code></a> 메소드는 여러 뷰 매개변수를 한 번에 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Boss&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="method-chaining">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">메소드 체이닝</a><a class="headerlink" href="#method-chaining" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">setVar()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setData()</span></code> 메서드는 연결 가능하므로 여러 가지 호출을 체인으로 결합할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="nv">$one</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="nv">$two</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;myView&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="escaping-data">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">데이터 이스케이프</a><a class="headerlink" href="#escaping-data" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">setVar()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setData()</span></code> 함수에 데이터를 전달할 때 크로스 사이트 스크립팅 공격으로부터 보호하기 위해 데이터를 이스케이프할 수 있는 옵션이 있습니다. 두 방법 중 하나의 마지막 매개변수로 원하는 컨텍스트를 전달하여 데이터를 이스케이프할 수 있습니다. 컨텍스트 설명은 아래를 참조하세요.</p>
+<p>데이터가 이스케이프되는 것을 원하지 않으면 <code class="docutils literal notranslate"><span class="pre">null</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">'raw'</span></code>을 각 함수의 최종 매개변수로 전달할 수 있습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="nv">$one</span><span class="p">,</span> <span class="s1">&#39;raw&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>데이터를 이스케이프하지 않기로 선택하거나 객체 인스턴스를 전달하는 경우 <a class="reference internal" href="../general/common_functions.html#esc" title="esc"><code class="xref php php-func docutils literal notranslate"><span class="pre">esc()</span></code></a> 함수를 사용하여 뷰 내에서 데이터를 수동으로 이스케이프할 수 있습니다. 첫 번째 매개변수는 이스케이프할 문자열입니다. 두 번째 매개변수는 데이터를 이스케이프하기 위한 컨텍스트입니다(아래 참조).</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="nv">$object</span><span class="o">-&gt;</span><span class="na">getStat</span><span class="p">())</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<section id="escaping-contexts">
+<h4>이스케이프 컨텍스트<a class="headerlink" href="#escaping-contexts" title="Link to this heading"></a></h4>
+<p>기본적으로 <code class="docutils literal notranslate"><span class="pre">esc()</span></code>, <code class="docutils literal notranslate"><span class="pre">setVar()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setData()</span></code> 함수는 이스케이프하려는 데이터가 표준 HTML 내에서 사용되도록 의도된 것이라고 가정합니다. 그러나 데이터가 Javascript, CSS 또는 href 속성에서 사용되는 경우에는 다른 이스케이프 규칙을 적용해야 합니다. 두 번째 매개변수로 컨텍스트 이름을 전달할 수 있습니다. 유효한 컨텍스트는 <code class="docutils literal notranslate"><span class="pre">'html'</span></code>, <code class="docutils literal notranslate"><span class="pre">'js'</span></code>, <code class="docutils literal notranslate"><span class="pre">'css'</span></code>, <code class="docutils literal notranslate"><span class="pre">'url'</span></code> 및 __PH_7__::입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&lt;?= esc(</span><span class="si">$url</span><span class="s2">, &#39;url&#39;) ?&gt;&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">foo</span><span class="o">=</span><span class="s2">&quot;&lt;?= esc(</span><span class="si">$bar</span><span class="s2">, &#39;attr&#39;) ?&gt;&quot;</span><span class="o">&gt;</span><span class="nx">Some</span> <span class="nx">Link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="k">var</span> <span class="nx">siteName</span> <span class="o">=</span> <span class="s1">&#39;&lt;?= esc($siteName, &#39;</span><span class="nx">js</span><span class="s1">&#39;) ?&gt;&#39;</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="nx">script</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">style</span><span class="o">&gt;</span>
+    <span class="nx">body</span> <span class="p">{</span>
+        <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span> <span class="o">&lt;?=</span> <span class="nx">esc</span><span class="p">(</span><span class="s1">&#39;bgColor&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+    }
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="view-renderer-options">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">렌더러 옵션 보기</a><a class="headerlink" href="#view-renderer-options" title="Link to this heading"></a></h3>
+<p>여러 옵션을 <code class="docutils literal notranslate"><span class="pre">render()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">renderString()</span></code> 메서드에 전달할 수 있습니다.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$options</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code> - 보기 결과를 저장하는 시간(초)입니다. <code class="docutils literal notranslate"><span class="pre">renderString()</span></code>에 대해서는 무시됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache_name</span></code> - 캐시된 보기 결과를 저장/검색하는 데 사용되는 ID입니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">$viewPath</span></code>입니다. <code class="docutils literal notranslate"><span class="pre">renderString()</span></code>에 대해서는 무시됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code> - <a class="reference internal" href="../testing/debugging.html#the-debug-toolbar"><span class="std std-ref">Debug Toolbar</span></a>에 대한 디버그 코드 추가를 비활성화하려면 false로 설정할 수 있습니다.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$saveData</span></code> - 후속 호출을 위해 뷰 데이터 매개변수를 유지해야 하는 경우 true입니다.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>인터페이스에 의해 정의된 <code class="docutils literal notranslate"><span class="pre">$saveData</span></code>은 부울이어야 하지만 클래스 구현(아래 <code class="docutils literal notranslate"><span class="pre">View</span></code>과 같은)은 이를 확장하여 <code class="docutils literal notranslate"><span class="pre">null</span></code> 값을 포함할 수 있습니다.</p>
+</div>
+</section>
+</section>
+<section id="class-reference">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">수업 참고자료</a><a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<dl class="php class" id="namespace-CodeIgniter\View">
+<dt class="sig sig-object php" id="CodeIgniter\View\View">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\View\</span></span><span class="sig-name descname"><span class="pre">View</span></span><a class="headerlink" href="#CodeIgniter\View\View" title="Link to this definition"></a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\View::render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$view</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$saveData</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\View::render" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$view</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 뷰 소스의 파일 이름</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 구성된 옵션 배열</p></li>
+<li><p><strong>$saveData</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">boolean|null</span></code></span>) – true인 경우 다른 호출에 사용할 수 있도록 데이터를 저장합니다. false인 경우 뷰를 렌더링한 후 데이터를 정리합니다. null인 경우 구성 설정을 사용합니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>선택한 뷰에 대해 렌더링된 텍스트</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>파일 이름과 이미 설정된 데이터를 기반으로 출력을 작성합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$view</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;myview&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\View::renderString">
+<span class="sig-name descname"><span class="pre">renderString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$view</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$options</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$saveData</span> <span class="pre">=</span> <span class="pre">false</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\View::renderString" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$view</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 렌더링할 뷰의 콘텐츠(예: 데이터베이스에서 검색된 콘텐츠)</p></li>
+<li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 구성된 옵션 배열</p></li>
+<li><p><strong>$saveData</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">boolean|null</span></code></span>) – true인 경우 다른 호출에 사용할 수 있도록 데이터를 저장합니다. false인 경우 뷰를 렌더링한 후 데이터를 정리합니다. null인 경우 구성 설정을 사용합니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>선택한 뷰에 대해 렌더링된 텍스트</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>뷰 조각과 이미 설정된 데이터를 기반으로 출력을 빌드합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$view</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;My Sharona&lt;/div&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>이는 데이터베이스에 저장되었을 수 있는 콘텐츠를 표시하는 데 사용될 수 있지만 이것이 잠재적인 보안 취약성이라는 점과 그러한 데이터를 <strong>반드시</strong> 검증하고 적절하게 이스케이프 처리해야 한다는 점을 인식해야 합니다!</p>
+</div>
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\View::setData">
+<span class="sig-name descname"><span class="pre">setData</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$data</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$context</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\View::setData" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$data</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 된 뷰 데이터 문자열 배열</p></li>
+<li><p><strong>$context</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 데이터 이스케이프에 사용할 컨텍스트입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>여러 뷰 데이터를 한 번에 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Boss&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>지원되는 이스케이프 컨텍스트: <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">js</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">attr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">raw</span></code>. <code class="docutils literal notranslate"><span class="pre">'raw'</span></code>인 경우 탈출이 발생하지 않습니다.</p>
+<p>각 호출은 뷰가 렌더링될 때까지 객체가 축적하는 데이터 배열에 추가됩니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CodeIgniter\View\View::setVar">
+<span class="sig-name descname"><span class="pre">setVar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$name</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$value</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$context</span> <span class="pre">=</span> <span class="pre">null</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CodeIgniter\View\View::setVar" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 뷰 데이터 변수의 이름</p></li>
+<li><p><strong>$value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span>) – 이 뷰 데이터의 가치</p></li>
+<li><p><strong>$context</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 데이터 이스케이프에 사용할 컨텍스트입니다.</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>메소드 체이닝을 위한 렌더러</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">CodeIgniter\View\RendererInterface.</span></code></span></p>
+</dd>
+</dl>
+<p>단일 뷰 데이터를 설정합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setVar</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>지원되는 이스케이프 컨텍스트: <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">js</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">attr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">raw</span></code>. <code class="docutils literal notranslate"><span class="pre">'raw'</span></code>인 경우 탈출이 발생하지 않습니다.</p>
+<p>이전에 이 개체에 사용한 뷰 데이터 변수를 사용하는 경우 새 값이 기존 값을 대체합니다.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="views.html" class="btn btn-neutral float-left" title="뷰(Views)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="view_layouts.html" class="btn btn-neutral float-right" title="레이아웃 보기" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

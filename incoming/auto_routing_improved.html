@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자동 라우팅(향상) &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="HTTP 메시지" href="message.html" />
+    <link rel="prev" title="컨트롤러 속성" href="controller_attributes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">컨트롤러와 라우팅</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">컨트롤러와 라우팅</a></li>
+      <li class="breadcrumb-item active">자동 라우팅(향상)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="auto-routing-improved">
+<span id="id1"></span><h1>자동 라우팅(향상)<a class="headerlink" href="#auto-routing-improved" title="Link to this heading"></a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.0.</span></p>
+</div>
+<nav class="contents local" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-auto-routing-improved" id="id6">자동 라우팅(향상)이란?</a></p></li>
+<li><p><a class="reference internal" href="#differences-from-auto-routing-legacy" id="id7">레거시 자동 라우팅과의 차이점</a></p></li>
+<li><p><a class="reference internal" href="#enable-auto-routing-improved" id="id8">자동 라우팅(향상) 활성화</a></p></li>
+<li><p><a class="reference internal" href="#uri-segments" id="id9">URI 세그먼트</a></p></li>
+<li><p><a class="reference internal" href="#let-s-try-it-hello-world" id="id10">실제로 해봅시다: Hello World!</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-controller" id="id11">컨트롤러 만들기</a></p></li>
+<li><p><a class="reference internal" href="#check-the-routes" id="id12">라우트 확인</a></p></li>
+<li><p><a class="reference internal" href="#visit-your-site" id="id13">사이트 방문</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#examples-of-controller-names" id="id14">컨트롤러 이름 예시</a></p></li>
+<li><p><a class="reference internal" href="#controller-methods" id="id15">컨트롤러 메서드</a></p>
+<ul>
+<li><p><a class="reference internal" href="#method-visibility" id="id16">메서드 가시성</a></p></li>
+<li><p><a class="reference internal" href="#default-method" id="id17">기본 메서드</a></p></li>
+<li><p><a class="reference internal" href="#normal-methods" id="id18">일반 메서드</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#passing-uri-segments-to-your-methods" id="id19">URI 세그먼트를 메서드에 전달하기</a></p></li>
+<li><p><a class="reference internal" href="#default-controller" id="id20">기본 컨트롤러</a></p></li>
+<li><p><a class="reference internal" href="#default-method-fallback" id="id21">기본 메서드 폴백</a></p>
+<ul>
+<li><p><a class="reference internal" href="#fallback-to-default-controller" id="id22">기본 컨트롤러로 폴백</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#organizing-your-controllers-into-sub-directories" id="id23">컨트롤러를 하위 디렉터리로 구성하기</a></p></li>
+<li><p><a class="reference internal" href="#examples-of-controller-methods-and-uris" id="id24">컨트롤러/메서드와 URI 예시</a></p></li>
+<li><p><a class="reference internal" href="#applying-filters" id="id25">필터 적용</a></p></li>
+<li><p><a class="reference internal" href="#configuration-options" id="id26">설정 옵션</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id27">기본 컨트롤러</a></p>
+<ul>
+<li><p><a class="reference internal" href="#for-site-root-uri" id="id28">사이트 루트 URI의 경우</a></p></li>
+<li><p><a class="reference internal" href="#for-directory-uri" id="id29">디렉터리 URI의 경우</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#routing-auto-routing-improved-default-method" id="id30">기본 메서드</a></p></li>
+<li><p><a class="reference internal" href="#translate-uri-to-camelcase" id="id31">URI를 CamelCase로 변환</a></p>
+<ul>
+<li><p><a class="reference internal" href="#disable-translate-uri-to-camelcase" id="id32">URI를 CamelCase로 변환 비활성화</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-routing" id="id33">모듈 라우팅</a></p></li>
+</ul>
+</nav>
+<section id="what-is-auto-routing-improved">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">자동 라우팅(향상)이란?</a><a class="headerlink" href="#what-is-auto-routing-improved" title="Link to this heading"></a></h2>
+<p>기본적으로 모든 라우트는 구성 파일에 <a class="reference internal" href="routing.html#defined-route-routing"><span class="std std-ref">defined</span></a> 되어 있어야 합니다.</p>
+<p>그러나 <strong>자동 라우팅(향상)</strong>을 사용하면 컨트롤러 이름과 메서드 이름을 규약에 따라 정의하면 자동으로 라우팅됩니다. 즉, 라우트를 수동으로 정의할 필요가 없습니다.</p>
+<p>자동 라우팅(향상)을 활성화하면, URI와 일치하는 정의된 라우트가 없는 경우 시스템이 해당 URI를 컨트롤러와 메서드에 대해 매칭하려 시도합니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>보안상의 이유로 정의된 라우트에서 컨트롤러가 사용되는 경우 자동 라우팅(향상)이 컨트롤러로 라우팅되지 않습니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>자동 라우팅(향상)은 기본적으로 비활성화되어 있습니다. 사용하려면 <a class="reference internal" href="#enabled-auto-routing-improved"><span class="std std-ref">자동 라우팅(향상) 활성화</span></a>을 참조하세요.</p>
+</div>
+</section>
+<section id="differences-from-auto-routing-legacy">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">레거시 자동 라우팅과의 차이점</a><a class="headerlink" href="#differences-from-auto-routing-legacy" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="routing.html#auto-routing-legacy"><span class="std std-ref">Auto Routing (Legacy)</span></a>은 CodeIgniter 3의 라우팅 시스템입니다. 익숙하지 않다면 다음 섹션으로 이동하세요.</p>
+<p>잘 아시는 분들은 <strong>자동 라우팅(향상)</strong>에서 다음과 같은 몇 가지 변경 사항을 확인하실 수 있습니다.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>컨트롤러 메서드에는 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">postCreate()</span></code>과 같은 HTTP 동사 접두사가 필요합니다.</dt><dd><ul>
+<li><p>개발자는 항상 HTTP 메서드를 알고 있으므로 예상치 못한 HTTP 메서드가 포함된 요청은 컨트롤러를 실행하지 않습니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>기본 컨트롤러(기본적으로 <code class="docutils literal notranslate"><span class="pre">Home</span></code>)와 기본 메서드(기본적으로 <code class="docutils literal notranslate"><span class="pre">index</span></code>)는 URI에서 생략되어야 합니다.</dt><dd><ul>
+<li><p>컨트롤러 메서드와 URI 간의 일대일 대응을 제한합니다.</p></li>
+<li><p>예: 기본적으로 <code class="docutils literal notranslate"><span class="pre">/</span></code>에 접근할 수 있지만 <code class="docutils literal notranslate"><span class="pre">/home</span></code> 및 <code class="docutils literal notranslate"><span class="pre">/home/index</span></code>은 404 Not Found가 됩니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>메서드 매개변수 개수를 확인합니다.</dt><dd><ul>
+<li><p>URI에 메서드 매개 변수보다 더 많은 매개 변수가 있는 경우 404 찾을 수 없음이 발생합니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">_remap()</span></code> 메서드를 지원하지 않습니다.</dt><dd><ul>
+<li><p>컨트롤러 메서드와 URI 간의 일대일 대응을 제한합니다.</p></li>
+<li><p>하지만 대신 <a class="reference internal" href="#auto-routing-improved-default-method-fallback"><span class="std std-ref">기본 메서드 폴백</span></a> 기능이 있습니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>정의된 라우트의 컨트롤러에 접근할 수 없습니다.</dt><dd><ul>
+<li><p><strong>자동 라우팅</strong>을 통해 접근할 수 있는 컨트롤러와 <strong>정의된 라우트</strong>를 통해 접근할 수 있는 컨트롤러를 완전히 분리합니다.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="enable-auto-routing-improved">
+<span id="enabled-auto-routing-improved"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">자동 라우팅(향상) 활성화</a><a class="headerlink" href="#enable-auto-routing-improved" title="Link to this heading"></a></h2>
+<p>이를 사용하려면 <strong>app/Config/Routing.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoute</span></code> 옵션 설정을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoute</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>그리고 <strong>app/Config/Feature.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoutesImproved</span></code> 속성을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoutesImproved</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>자동 라우팅(향상)을 사용하는 경우 <strong>app/Config/Routes.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$routes-&gt;get('/',</span> <span class="pre">'Home::index');</span></code> 줄을 제거해야 합니다. 정의된 라우트는 자동 라우팅보다 우선하며 정의된 라우트에 정의된 컨트롤러는 보안상의 이유로 자동 라우팅(향상)에 의해 접근가 거부되기 때문입니다.</p>
+</div>
+</section>
+<section id="uri-segments">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">URI 세그먼트</a><a class="headerlink" href="#uri-segments" title="Link to this heading"></a></h2>
+<p>Model-View-Controller 접근 방식을 따르는 URL의 세그먼트는 일반적으로 다음을 나타냅니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="p">{</span><span class="nx">class</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="nx">method</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="nx">param1</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>첫 번째 세그먼트는 호출되어야 하는 컨트롤러 <strong>클래스</strong>를 나타냅니다.</p></li>
+<li><p>두 번째 세그먼트는 호출되어야 하는 클래스 <strong>메서드</strong>를 나타냅니다.</p></li>
+<li><p>세 번째 세그먼트와 추가 세그먼트는 컨트롤러 메서드에 전달될 <strong>매개변수</strong>를 나타냅니다.</p></li>
+</ol>
+<p>다음 URI를 고려하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span><span class="o">/</span><span class="nx">hello</span><span class="o">/</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>위의 예에서 <strong>GET</strong> 메서드를 사용하여 HTTP 요청을 보내면 자동 라우팅(향상)은 <code class="docutils literal notranslate"><span class="pre">App\Controllers\HelloWorld</span></code>이라는 컨트롤러를 찾으려고 시도하고 <code class="docutils literal notranslate"><span class="pre">'1'</span></code>을 첫 번째 매개 변수로 전달하여 <code class="docutils literal notranslate"><span class="pre">getHello()</span></code> 메서드를 실행합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>자동 라우팅(향상)으로 실행되는 컨트롤러 메서드에는 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">postCreate()</span></code>와 같은 HTTP 동사(<code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">post</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code> 등) 접두사가 필요합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>컨트롤러의 짧은 이름이 URI의 첫 번째 세그먼트와 일치하면 로드됩니다.</p>
+</div>
+</section>
+<section id="let-s-try-it-hello-world">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">실제로 해봅시다: Hello World!</a><a class="headerlink" href="#let-s-try-it-hello-world" title="Link to this heading"></a></h2>
+<p>실제로 작동하는 모습을 볼 수 있도록 간단한 컨트롤러를 만들어 보겠습니다.</p>
+<section id="create-a-controller">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">컨트롤러 만들기</a><a class="headerlink" href="#create-a-controller" title="Link to this heading"></a></h3>
+<p>텍스트 편집기를 사용하여 <strong>app/Controllers</strong> 디렉터리에 <strong>HelloWorld.php</strong>라는 파일을 만들고 그 안에 다음 코드를 입력합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloWorld</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>파일 이름은 <strong>HelloWorld.php</strong>여야 합니다. 자동 라우팅(향상)을 사용하는 경우 컨트롤러 클래스 이름은 CamelCase여야 합니다.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">HelloWorld</span></code> 컨트롤러가 <code class="docutils literal notranslate"><span class="pre">BaseController</span></code>을 확장하고 있음을 알 수 있습니다. BaseController의 기능이 필요하지 않은 경우 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Controller</span></code>을 확장할 수도 있습니다.</p>
+<p>BaseController는 구성 요소를 로드하고 모든 컨트롤러에 필요한 기능을 수행하기 위한 편리한 장소를 제공합니다. 새로운 컨트롤러에서 이 클래스를 확장할 수 있습니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>자동 라우팅(향상)으로 실행되는 컨트롤러 메서드에는 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>, <code class="docutils literal notranslate"><span class="pre">postCreate()</span></code>와 같은 HTTP 동사(<code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">post</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code> 등) 접두사가 필요합니다.</p>
+</div>
+</section>
+<section id="check-the-routes">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">라우트 확인</a><a class="headerlink" href="#check-the-routes" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">routes</span></code> 명령을 사용하여 라우트를 확인할 수 있습니다.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark routes</span>
+</pre></div>
+</div>
+<p>올바르게 수행했다면 다음과 같이 표시되어야 합니다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-----------+-------------+------+---------------------------------------+----------------+---------------+
+| Method    | Route       | Name | Handler                               | Before Filters | After Filters |
++-----------+-------------+------+---------------------------------------+----------------+---------------+
+| GET(auto) | hello-world |      | \App\Controllers\HelloWorld::getIndex |                |               |
++-----------+-------------+------+---------------------------------------+----------------+---------------+
+</pre></div>
+</div>
+<p>출력 세부정보는 <a class="reference internal" href="routing.html#routing-spark-routes"><span class="std std-ref">spark routes</span></a>을 참조하세요.</p>
+</section>
+<section id="visit-your-site">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">사이트 방문</a><a class="headerlink" href="#visit-your-site" title="Link to this heading"></a></h3>
+<p>이제 다음과 유사한 URL을 사용하여 사이트를 방문하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>
+</pre></div>
+</div>
+<p>시스템은 대시(<code class="docutils literal notranslate"><span class="pre">-</span></code>)가 포함된 URI를 컨트롤러 및 메서드 URI 세그먼트의 CamelCase로 자동 변환합니다.</p>
+<p>예를 들어, URI <code class="docutils literal notranslate"><span class="pre">sub-dir/hello-controller/some-method</span></code>은 <code class="docutils literal notranslate"><span class="pre">SubDir\HelloController::getSomeMethod()</span></code> 메서드를 실행합니다.</p>
+<p>올바르게 수행했다면 다음과 같이 표시됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="examples-of-controller-names">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">컨트롤러 이름 예시</a><a class="headerlink" href="#examples-of-controller-names" title="Link to this heading"></a></h2>
+<p>다음은 유효한 컨트롤러 이름입니다. <code class="docutils literal notranslate"><span class="pre">App\Controllers\HelloWorld</span></code>은 CamelCase이기 때문입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloWorld</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음은 유효하지 <strong>않습니다</strong>. 첫 글자(<code class="docutils literal notranslate"><span class="pre">h</span></code>)는 대문자가 아니기 때문입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">helloworld</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음도 유효하지 <strong>않습니다</strong>. 첫 글자(<code class="docutils literal notranslate"><span class="pre">h</span></code>)는 대문자가 아니기 때문입니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">helloWorld</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="controller-methods">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">컨트롤러 메서드</a><a class="headerlink" href="#controller-methods" title="Link to this heading"></a></h2>
+<section id="method-visibility">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">메서드 가시성</a><a class="headerlink" href="#method-visibility" title="Link to this heading"></a></h3>
+<p>HTTP 요청을 통해 실행 가능한 메서드를 정의하는 경우 해당 메서드를 <code class="docutils literal notranslate"><span class="pre">public</span></code>로 선언해야 합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>보안상의 이유로 새 유틸리티 메서드를 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">private</span></code>로 선언해야 합니다.</p>
+</div>
+</section>
+<section id="default-method">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">기본 메서드</a><a class="headerlink" href="#default-method" title="Link to this heading"></a></h3>
+<p>위의 예에서 메서드 이름은 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>입니다. 메서드(HTTP 동사 + <code class="docutils literal notranslate"><span class="pre">Index()</span></code>)를 <strong>기본 메서드</strong>라고 하며, URI의 <strong>두 번째 세그먼트</strong>가 비어 있는 경우 로드됩니다.</p>
+</section>
+<section id="normal-methods">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">일반 메서드</a><a class="headerlink" href="#normal-methods" title="Link to this heading"></a></h3>
+<p>URI의 두 번째 세그먼트는 컨트롤러의 어떤 메서드가 호출되는지 결정합니다.</p>
+<p>시도해 봅시다. 컨트롤러에 새 메서드를 추가합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloWorld</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getComment</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;I am not flat!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이제 다음 URL을 로드하여 <code class="docutils literal notranslate"><span class="pre">getComment()</span></code> 메서드를 확인하세요.:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span><span class="o">/</span><span class="nx">comment</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>새 메시지가 표시됩니다.</p>
+</section>
+</section>
+<section id="passing-uri-segments-to-your-methods">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">URI 세그먼트를 메서드에 전달하기</a><a class="headerlink" href="#passing-uri-segments-to-your-methods" title="Link to this heading"></a></h2>
+<p>URI에 세 개 이상의 세그먼트가 포함되어 있으면 해당 세그먼트가 매개변수로 메서드에 전달됩니다.</p>
+<p>예를 들어 다음과 같은 URI가 있다고 가정해 보겠습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">shoes</span><span class="o">/</span><span class="nx">sandals</span><span class="o">/</span><span class="mi">123</span>
+</pre></div>
+</div>
+<p>귀하의 메서드는 URI 세그먼트 3과 4(<code class="docutils literal notranslate"><span class="pre">'sandals'</span></code> 및 <code class="docutils literal notranslate"><span class="pre">'123'</span></code>)로 전달됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Products</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getShoes</span><span class="p">(</span><span class="nv">$type</span><span class="p">,</span> <span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$type</span> <span class="o">.</span> <span class="nv">$id</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>메서드 매개 변수보다 URI에 매개 변수가 더 많은 경우 자동 라우팅(향상)이 메서드를 실행하지 않고 404 찾을 수 없음이 발생합니다.</p>
+</div>
+</section>
+<section id="default-controller">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">기본 컨트롤러</a><a class="headerlink" href="#default-controller" title="Link to this heading"></a></h2>
+<p><strong>기본 컨트롤러</strong>는 사이트 루트 URL만 요청하는 경우처럼 URI가 디렉터리 이름으로 끝나거나 URI가 없을 때 사용되는 특수 컨트롤러입니다.</p>
+<p>기본적으로 기본 컨트롤러는 <code class="docutils literal notranslate"><span class="pre">Home</span></code>입니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>기본 컨트롤러에서는 기본 메서드(GET 요청의 경우 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code>)만 정의합니다. 다른 공개 메서드를 정의하면 해당 메서드는 실행되지 않습니다.</p>
+</div>
+<p>자세한 내용은 <a class="reference internal" href="#routing-auto-routing-improved-configuration-options"><span class="std std-ref">설정 옵션</span></a>을 참조하세요.</p>
+</section>
+<section id="default-method-fallback">
+<span id="auto-routing-improved-default-method-fallback"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">기본 메서드 폴백</a><a class="headerlink" href="#default-method-fallback" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p>메서드 이름의 URI 세그먼트에 해당하는 컨트롤러 메서드가 존재하지 않는 경우 기본 메서드가 정의되어 있으면 나머지 URI 세그먼트를 기본 메서드에 전달하여 실행합니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span> <span class="nv">$action</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음 URL을 로드합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">product</span><span class="o">/</span><span class="mi">15</span><span class="o">/</span><span class="nx">edit</span>
+</pre></div>
+</div>
+<p>이 메서드는 URI 세그먼트 2와 3(<code class="docutils literal notranslate"><span class="pre">'15'</span></code> 및 <code class="docutils literal notranslate"><span class="pre">'edit'</span></code>)으로 전달됩니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>메서드 매개 변수보다 URI에 매개 변수가 더 많은 경우 자동 라우팅(향상)이 메서드를 실행하지 않고 404 찾을 수 없음이 발생합니다.</p>
+</div>
+<section id="fallback-to-default-controller">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">기본 컨트롤러로 폴백</a><a class="headerlink" href="#fallback-to-default-controller" title="Link to this heading"></a></h3>
+<p>컨트롤러 이름의 URI 세그먼트에 해당하는 컨트롤러가 존재하지 않고 디렉터리에 기본 컨트롤러(기본적으로 <code class="docutils literal notranslate"><span class="pre">Home</span></code>)가 있는 경우 나머지 URI 세그먼트는 기본 컨트롤러의 기본 메서드에 전달됩니다.</p>
+<p>예를 들어, <strong>app/Controllers/News</strong> 디렉터리에 다음과 같은 기본 컨트롤러 <code class="docutils literal notranslate"><span class="pre">Home</span></code>이 있는 경우:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers\News</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controllers\BaseController</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Home</span> <span class="k">extends</span> <span class="nx">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIndex</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음 URL을 로드합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">news</span><span class="o">/</span><span class="mi">101</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">News\Home</span></code> 컨트롤러와 기본 <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code> 메서드가 발견됩니다. 따라서 기본 메서드는 두 번째 URI 세그먼트(<code class="docutils literal notranslate"><span class="pre">'101'</span></code>)를 가져옵니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">App\Controllers\News</span></code> 컨트롤러가 있으면 해당 컨트롤러가 우선적으로 적용됩니다. URI 세그먼트는 순차적으로 검색되며 발견된 첫 번째 컨트롤러가 사용됩니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>메서드 매개 변수보다 URI에 매개 변수가 더 많은 경우 자동 라우팅(향상)이 메서드를 실행하지 않고 404 찾을 수 없음이 발생합니다.</p>
+</div>
+</section>
+</section>
+<section id="organizing-your-controllers-into-sub-directories">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">컨트롤러를 하위 디렉터리로 구성하기</a><a class="headerlink" href="#organizing-your-controllers-into-sub-directories" title="Link to this heading"></a></h2>
+<p>대규모 애플리케이션을 구축하는 경우 컨트롤러를 하위 디렉터리로 계층적으로 구성하거나 구성할 수 있습니다. CodeIgniter를 사용하면 이를 수행할 수 있습니다.</p>
+<p>기본 <strong>app/Controllers</strong> 아래에 하위 디렉터리를 만들고 그 안에 컨트롤러 클래스를 배치하기만 하면 됩니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>디렉토리 이름은 대문자로 시작해야 하며 CamelCase여야 합니다.</p>
+</div>
+<p>이 기능을 사용할 때 URI의 첫 번째 세그먼트는 디렉터리를 지정해야 합니다. 예를 들어, 다음 위치에 컨트롤러가 있다고 가정해 보겠습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span><span class="o">/</span><span class="nx">Controllers</span><span class="o">/</span><span class="nx">Products</span><span class="o">/</span><span class="nx">Shoes</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p>위 컨트롤러를 호출하기 위한 URI는 다음과 같습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">products</span><span class="o">/</span><span class="nx">shoes</span><span class="o">/</span><span class="nx">show</span><span class="o">/</span><span class="mi">123</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><strong>app/Controllers</strong> 및 <strong>public</strong>에는 동일한 이름의 디렉터리가 있을 수 없습니다. 디렉토리가 있으면 웹 서버가 이를 검색하고 CodeIgniter로 라우팅되지 않기 때문입니다.</p>
+</div>
+<p>각 하위 디렉터리에는 URL에 하위 디렉터리만 <em>만</em> 포함되어 있는 경우 호출되는 기본 컨트롤러가 포함될 수 있습니다. <strong>app/Config/Routing.php</strong> 파일에 지정된 기본 컨트롤러 이름과 일치하는 컨트롤러를 거기에 넣기만 하면 됩니다.</p>
+</section>
+<section id="examples-of-controller-methods-and-uris">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">컨트롤러/메서드와 URI 예시</a><a class="headerlink" href="#examples-of-controller-methods-and-uris" title="Link to this heading"></a></h2>
+<p>기본 구성을 사용하는 <strong>GET</strong> 요청의 경우 컨트롤러/메서드와 URI 간의 매핑은 다음과 같습니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>컨트롤러/메서드</p></th>
+<th class="head"><p>URI</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Home::getIndex()</span></code></p></td>
+<td><p>/</p></td>
+<td><p>기본 컨트롤러와 기본 메서드.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Blog::getIndex()</span></code></p></td>
+<td><p>/블로그</p></td>
+<td><p>기본 방법.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UserProfile::getIndex()</span></code></p></td>
+<td><p>/사용자 프로필</p></td>
+<td><p>기본 방법.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Blog::getTags()</span></code></p></td>
+<td><p>/블로그/태그</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Blog::getNews($id)</span></code></p></td>
+<td><p>/블로그/뉴스/123</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Blog\Home::getIndex()</span></code></p></td>
+<td><p>/블로그</p></td>
+<td><p>하위 디렉터리 <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 및 기본 컨트롤러와 기본 방법. <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 컨트롤러가 있으면 해당 컨트롤러가 우선적으로 적용됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Blog\Tags::getIndex()</span></code></p></td>
+<td><p>/블로그/태그</p></td>
+<td><p>하위 디렉터리 <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 및 기본 방법. <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 컨트롤러가 있으면 해당 컨트롤러가 우선적으로 적용됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Blog\News::getIndex($id)</span></code></p></td>
+<td><p>/블로그/뉴스/123</p></td>
+<td><p>하위 디렉터리 <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 및 기본 메서드 대체. <code class="docutils literal notranslate"><span class="pre">Blog</span></code> 컨트롤러가 있으면 해당 컨트롤러가 우선적으로 적용됩니다.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="applying-filters">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">필터 적용</a><a class="headerlink" href="#applying-filters" title="Link to this heading"></a></h2>
+<p>컨트롤러 필터를 적용하면 컨트롤러 메서드 실행 전후에 처리를 추가할 수 있습니다. 이는 인증이나 API 로깅 중에 특히 유용합니다.</p>
+<p>자동 라우팅을 사용하는 경우 <strong>app/Config/Filters.php</strong>에서 적용할 필터를 설정하세요. 필터 설정에 대한 자세한 내용은 <a class="reference internal" href="filters.html"><span class="doc">Controller Filters</span></a>을 참조하세요.</p>
+</section>
+<section id="configuration-options">
+<span id="routing-auto-routing-improved-configuration-options"></span><h2><a class="toc-backref" href="#id26" role="doc-backlink">설정 옵션</a><a class="headerlink" href="#configuration-options" title="Link to this heading"></a></h2>
+<p>이러한 옵션은 <strong>app/Config/Routing.php</strong> 파일에서 사용할 수 있습니다.</p>
+<section id="id3">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">기본 컨트롤러</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="for-site-root-uri">
+<h4><a class="toc-backref" href="#id28" role="doc-backlink">사이트 루트 URI의 경우</a><a class="headerlink" href="#for-site-root-uri" title="Link to this heading"></a></h4>
+<p>사용자가 사이트의 루트(예: <strong>http://example.com</strong>)를 방문할 때 사용할 컨트롤러는 해당 라우트가 명시적으로 존재하지 않는 한 <code class="docutils literal notranslate"><span class="pre">$defaultController</span></code> 속성에 설정된 값에 따라 결정됩니다.</p>
+<p>이에 대한 기본값은 <strong>app/Controllers/Home.php</strong>의 컨트롤러와 일치하는 <code class="docutils literal notranslate"><span class="pre">Home</span></code>입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultController</span> <span class="o">=</span> <span class="s1">&#39;Home&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="for-directory-uri">
+<h4><a class="toc-backref" href="#id29" role="doc-backlink">디렉터리 URI의 경우</a><a class="headerlink" href="#for-directory-uri" title="Link to this heading"></a></h4>
+<p>기본 컨트롤러는 일치하는 라우트가 발견되지 않은 경우에도 사용되며 URI는 컨트롤러 디렉터리의 디렉터리를 가리킵니다. 예를 들어, 사용자가 <strong>http://example.com/admin</strong>을 방문하는 경우 <strong>app/Controllers/Admin/Home.php</strong>에서 컨트롤러를 찾았다면 해당 컨트롤러가 사용됩니다.</p>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>컨트롤러 이름의 URI로는 기본 컨트롤러에 접근할 수 없습니다. 기본 컨트롤러가 <code class="docutils literal notranslate"><span class="pre">Home</span></code>일 경우 <strong>http://example.com/</strong>에 접근할 수 있지만, <strong>http://example.com/home</strong>에 접근하면 찾을 수 없습니다.</p>
+</div>
+</section>
+</section>
+<section id="routing-auto-routing-improved-default-method">
+<span id="id4"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">기본 메서드</a><a class="headerlink" href="#routing-auto-routing-improved-default-method" title="Link to this heading"></a></h3>
+<p>이는 기본 컨트롤러 설정과 유사하게 작동하지만 URI와 일치하는 컨트롤러가 발견되었지만 메서드에 대한 세그먼트가 없을 때 사용되는 기본 메서드를 결정하는 데 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">index</span></code>입니다.</p>
+<p>이 예에서 사용자가 <strong>example.com/products</strong>를 방문하고 <code class="docutils literal notranslate"><span class="pre">Products</span></code> 컨트롤러가 존재하는 경우 <code class="docutils literal notranslate"><span class="pre">Products::getListAll()</span></code> 메서드가 실행됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultMethod</span> <span class="o">=</span> <span class="s1">&#39;listAll&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>기본 메서드 이름의 URI로는 컨트롤러에 접근할 수 없습니다. 위 예시에서는 <strong>example.com/products</strong>에 접근할 수 있지만, <strong>example.com/products/listall</strong>에 접근하면 찾을 수 없습니다.</p>
+</div>
+</section>
+<section id="translate-uri-to-camelcase">
+<span id="id5"></span><h3><a class="toc-backref" href="#id31" role="doc-backlink">URI를 CamelCase로 변환</a><a class="headerlink" href="#translate-uri-to-camelcase" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.5.0.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.6.0부터 <code class="docutils literal notranslate"><span class="pre">$translateUriToCamelCase</span></code> 옵션이 기본적으로 활성화되어 있습니다.</p>
+</div>
+<p>v4.5.0부터 현재 CodeIgniter의 코딩 표준에 잘 맞는 <code class="docutils literal notranslate"><span class="pre">$translateUriToCamelCase</span></code> 옵션이 구현되었습니다.</p>
+<p>이 옵션을 사용하면 컨트롤러 및 메서드 URI 세그먼트에서 대시(<code class="docutils literal notranslate"><span class="pre">-</span></code>)가 포함된 URI를 CamelCase로 자동 변환할 수 있습니다.</p>
+<p>예를 들어, URI <code class="docutils literal notranslate"><span class="pre">sub-dir/hello-controller/some-method</span></code>은 <code class="docutils literal notranslate"><span class="pre">SubDir\HelloController::getSomeMethod()</span></code> 메서드를 실행합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 옵션이 활성화되면 <code class="docutils literal notranslate"><span class="pre">$translateURIDashes</span></code> 옵션이 무시됩니다.</p>
+</div>
+<section id="disable-translate-uri-to-camelcase">
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">URI를 CamelCase로 변환 비활성화</a><a class="headerlink" href="#disable-translate-uri-to-camelcase" title="Link to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>“URI를 CamelCase로 변환”을 비활성화하는 옵션은 이전 버전과의 호환성을 위해서만 존재합니다. 비활성화하지 않는 것이 좋습니다.</p>
+</div>
+<p>이를 비활성화하려면 <strong>app/Config/Routing.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$translateUriToCamelCase</span></code> 옵션 설정을 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 변경해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$translateUriToCamelCase</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="module-routing">
+<span id="auto-routing-improved-module-routing"></span><h2><a class="toc-backref" href="#id33" role="doc-backlink">모듈 라우팅</a><a class="headerlink" href="#module-routing" title="Link to this heading"></a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p><a class="reference internal" href="../general/modules.html"><span class="doc">코드 모듈</span></a>을 사용하고 컨트롤러를 다른 네임스페이스에 배치하는 경우에도 자동 라우팅을 사용할 수 있습니다.</p>
+<p>모듈로 라우팅하려면 <strong>app/Config/Routing.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$moduleRoutes</span></code> 속성을 설정해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">array</span> <span class="nv">$moduleRoutes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;blog&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Acme\Blog\Controllers&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>키는 모듈의 첫 번째 URI 세그먼트이고 값은 컨트롤러 네임스페이스입니다. 위 구성에서 <strong>http://localhost:8080/blog/foo/bar</strong>는 <code class="docutils literal notranslate"><span class="pre">Acme\Blog\Controllers\Foo::getBar()</span></code>로 라우팅됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$moduleRoutes</span></code>을 정의하면 모듈의 라우팅이 우선적으로 적용됩니다. 위의 예에서 <code class="docutils literal notranslate"><span class="pre">App\Controllers\Blog</span></code> 컨트롤러가 있더라도 <strong>http://localhost:8080/blog</strong>는 기본 컨트롤러 <code class="docutils literal notranslate"><span class="pre">Acme\Blog\Controllers\Home</span></code>로 라우팅됩니다.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controller_attributes.html" class="btn btn-neutral float-left" title="컨트롤러 속성" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="message.html" class="btn btn-neutral float-right" title="HTTP 메시지" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CURLRequest 클래스 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="이메일 클래스" href="email.html" />
+    <link rel="prev" title="교차 출처 리소스 공유 (CORS)" href="cors.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리 레퍼런스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">테스트</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/debugging.html">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">라이브러리 레퍼런스</a></li>
+      <li class="breadcrumb-item active">CURLRequest 클래스</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="curlrequest-class">
+<h1>CURLRequest 클래스<a class="headerlink" href="#curlrequest-class" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">CURLRequest</span></code> 클래스는 CURL 기반의 경량 HTTP 클라이언트로, 다른 웹사이트 및 서버와 통신할 수 있게 해줍니다. Google 검색 결과를 가져오거나, 웹 페이지 또는 이미지를 가져오거나, API와 통신하는 등 다양한 용도로 사용할 수 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#config-for-curlrequest" id="id2">CURLRequest 설정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sharing-connection" id="id3">연결 공유</a></p></li>
+<li><p><a class="reference internal" href="#sharing-options" id="id4">옵션 공유</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#loading-the-library" id="id5">라이브러리 로딩</a></p></li>
+<li><p><a class="reference internal" href="#working-with-the-library" id="id6">라이브러리 사용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#making-requests" id="id7">요청 보내기</a></p></li>
+<li><p><a class="reference internal" href="#using-responses" id="id8">응답 사용</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#request-options" id="id9">요청 옵션</a></p>
+<ul>
+<li><p><a class="reference internal" href="#allow-redirects" id="id10">allow_redirects</a></p></li>
+<li><p><a class="reference internal" href="#auth" id="id11">auth</a></p></li>
+<li><p><a class="reference internal" href="#body" id="id12">body</a></p></li>
+<li><p><a class="reference internal" href="#cert" id="id13">cert</a></p></li>
+<li><p><a class="reference internal" href="#connect-timeout" id="id14">connect_timeout</a></p></li>
+<li><p><a class="reference internal" href="#cookie" id="id15">cookie</a></p></li>
+<li><p><a class="reference internal" href="#debug" id="id16">debug</a></p></li>
+<li><p><a class="reference internal" href="#delay" id="id17">delay</a></p></li>
+<li><p><a class="reference internal" href="#dns-cache-timeout" id="id18">dns_cache_timeout</a></p></li>
+<li><p><a class="reference internal" href="#form-params" id="id19">form_params</a></p></li>
+<li><p><a class="reference internal" href="#fresh-connect" id="id20">fresh_connect</a></p></li>
+<li><p><a class="reference internal" href="#headers" id="id21">headers</a></p></li>
+<li><p><a class="reference internal" href="#http-errors" id="id22">http_errors</a></p></li>
+<li><p><a class="reference internal" href="#json" id="id23">json</a></p></li>
+<li><p><a class="reference internal" href="#multipart" id="id24">multipart</a></p></li>
+<li><p><a class="reference internal" href="#proxy" id="id25">proxy</a></p></li>
+<li><p><a class="reference internal" href="#query" id="id26">query</a></p></li>
+<li><p><a class="reference internal" href="#timeout" id="id27">timeout</a></p></li>
+<li><p><a class="reference internal" href="#user-agent" id="id28">user_agent</a></p></li>
+<li><p><a class="reference internal" href="#verify" id="id29">verify</a></p></li>
+<li><p><a class="reference internal" href="#force-ip-resolve" id="id30">force_ip_resolve</a></p></li>
+<li><p><a class="reference internal" href="#version" id="id31">version</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>이 클래스는 널리 사용되는 라이브러리 중 하나인 <a class="reference external" href="http://docs.guzzlephp.org/en/latest/">Guzzle HTTP Client</a>를 모델로 하고 있습니다. 가능한 한 동일한 문법을 유지하도록 설계되어, 이 라이브러리가 제공하는 것보다 더 강력한 기능이 필요한 경우 Guzzle로 마이그레이션하는 데 최소한의 변경만 필요합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 클래스를 사용하려면 PHP에 <a class="reference external" href="https://www.php.net/manual/en/book.curl.php">cURL 라이브러리</a>가 설치되어 있어야 합니다. 일반적으로 널리 제공되는 라이브러리이지만, 모든 호스팅 환경에서 제공되는 것은 아니므로 문제가 발생하면 호스팅 업체에 확인하세요.</p>
+</div>
+<section id="config-for-curlrequest">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">CURLRequest 설정</a><a class="headerlink" href="#config-for-curlrequest" title="Link to this heading"></a></h2>
+<section id="sharing-connection">
+<span id="curlrequest-sharing-connection"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">연결 공유</a><a class="headerlink" href="#sharing-connection" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>기본적으로 이 옵션은 <code class="docutils literal notranslate"><span class="pre">CURL_LOCK_DATA_CONNECT</span></code>와 <code class="docutils literal notranslate"><span class="pre">CURL_LOCK_DATA_DNS</span></code> 상수로 활성화되어 있습니다.</p>
+<p>요청 간에 연결을 공유하려면 <strong>app/Config/CURLRequest.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$shareConnectionOptions</span></code>에 배열 상수 <a class="reference external" href="https://www.php.net/manual/en/curl.constants.php#constant.curl-lock-data-connect">CURL_LOCK_DATA_*</a>를 설정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CURLRequest</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * --------------------------------------------------------------------------</span>
+<span class="sd">     * CURLRequest Share Connection Options</span>
+<span class="sd">     * --------------------------------------------------------------------------</span>
+<span class="sd">     *</span>
+<span class="sd">     * Share connection options between requests.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @var list&lt;int&gt;</span>
+<span class="sd">     *</span>
+<span class="sd">     * @see https://www.php.net/manual/en/curl.constants.php#constant.curl-lock-data-connect</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$shareConnection</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nx">CURL_LOCK_DATA_CONNECT</span><span class="p">,</span>
+        <span class="nx">CURL_LOCK_DATA_DNS</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>비활성화하려면 빈 배열로 변경하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CURLRequest</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * --------------------------------------------------------------------------</span>
+<span class="sd">     * CURLRequest Share Connection Options</span>
+<span class="sd">     * --------------------------------------------------------------------------</span>
+<span class="sd">     *</span>
+<span class="sd">     * Share connection options between requests.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @var list&lt;int&gt;</span>
+<span class="sd">     *</span>
+<span class="sd">     * @see https://www.php.net/manual/en/curl.constants.php#constant.curl-lock-data-connect</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">array</span> <span class="nv">$shareConnection</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="sharing-options">
+<span id="curlrequest-sharing-options"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">옵션 공유</a><a class="headerlink" href="#sharing-options" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>이 설정은 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마세요. 이미 사용 중이더라도 비활성화하는 것을 권장합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.4.0부터 기본값이 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 변경되었습니다.</p>
+</div>
+<p>요청 간에 모든 옵션을 공유하려면 <strong>app/Config/CURLRequest.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CURLRequest</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$shareOptions</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>클래스 인스턴스로 두 개 이상의 요청을 보내는 경우, 이 동작으로 인해 불필요한 헤더와 본문이 포함된 오류 요청이 발생할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.2.0 이전에는 버그로 인해 <code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>가 false여도 요청 본문이 초기화되지 않았습니다.</p>
+</div>
+</section>
+</section>
+<section id="loading-the-library">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">라이브러리 로딩</a><a class="headerlink" href="#loading-the-library" title="Link to this heading"></a></h2>
+<p>라이브러리는 수동으로 또는 <a class="reference internal" href="../concepts/services.html"><span class="doc">Services 클래스</span></a>를 통해 로드할 수 있습니다.</p>
+<p>Services 클래스로 로드하려면 <code class="docutils literal notranslate"><span class="pre">curlrequest()</span></code> 메서드나 전역 함수 <code class="docutils literal notranslate"><span class="pre">service()</span></code>를 호출하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;curlrequest&#39;</span><span class="p">);</span> <span class="c1">// Since v4.5.0, this code is recommended due to performance improvements</span>
+
+<span class="c1">// The code above is the same as the code below.</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">\Config\Services</span><span class="o">::</span><span class="na">curlrequest</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>첫 번째 매개변수로 기본 옵션 배열을 전달하여 cURL이 요청을 처리하는 방식을 수정할 수 있습니다. 옵션에 대한 설명은 이 문서의 뒷부분에서 다룹니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;baseURI&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://example.com/api/v1/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">];</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;curlrequest&#39;</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>가 false이면, 클래스 생성자에 전달된 기본 옵션이 모든 요청에 사용됩니다. 다른 옵션들은 요청을 보낸 후 초기화됩니다.</p>
+</div>
+<p>클래스를 수동으로 생성할 때는 몇 가지 의존성을 전달해야 합니다. 첫 번째 매개변수는 <code class="docutils literal notranslate"><span class="pre">Config\App</span></code> 클래스의 인스턴스이고, 두 번째 매개변수는 URI 인스턴스이며, 세 번째 매개변수는 Response 객체입니다. 네 번째 매개변수는 선택적 기본 <code class="docutils literal notranslate"><span class="pre">$options</span></code> 배열입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Config\App</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\CURLRequest</span><span class="p">(</span>
+    <span class="nx">config</span><span class="p">(</span><span class="nx">App</span><span class="o">::</span><span class="na">class</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\URI</span><span class="p">(),</span>
+    <span class="k">new</span> <span class="nx">\CodeIgniter\HTTP\Response</span><span class="p">(</span><span class="nx">config</span><span class="p">(</span><span class="nx">App</span><span class="o">::</span><span class="na">class</span><span class="p">)),</span>
+    <span class="nv">$options</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-the-library">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">라이브러리 사용</a><a class="headerlink" href="#working-with-the-library" title="Link to this heading"></a></h2>
+<p>CURL 요청 작업은 단순히 Request를 생성하고 <a class="reference internal" href="../outgoing/response.html"><span class="doc">Response 객체</span></a>를 반환받는 것입니다. 통신을 처리하기 위한 것이며, 이후에는 정보 처리 방법을 완전히 제어할 수 있습니다.</p>
+<section id="making-requests">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">요청 보내기</a><a class="headerlink" href="#making-requests" title="Link to this heading"></a></h3>
+<p>대부분의 통신은 <code class="docutils literal notranslate"><span class="pre">request()</span></code> 메서드를 통해 이루어지며, 이 메서드는 요청을 실행하고 Response 인스턴스를 반환합니다. HTTP 메서드, URL, 옵션 배열을 매개변수로 받습니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;curlrequest&#39;</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;https://api.github.com/user&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;auth&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>기본적으로 CURLRequest는 반환된 HTTP 코드가 400 이상이면 <code class="docutils literal notranslate"><span class="pre">HTTPException</span></code>을 발생시킵니다. 응답을 받으려면 <a class="reference internal" href="#http-errors">http_errors</a> 옵션을 참조하세요.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>가 false이면, 메서드에 전달된 옵션이 해당 요청에만 사용됩니다. 요청을 보낸 후 초기화됩니다. 모든 요청에 옵션을 적용하려면 생성자에서 옵션을 전달하세요.</p>
+</div>
+<p>응답은 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Response</span></code>의 인스턴스이므로 모든 일반 정보를 사용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatusCode</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">);</span>
+<span class="nv">$language</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">negotiateLanguage</span><span class="p">([</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;fr&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">request()</span></code> 메서드가 가장 유연하지만, 다음과 같은 단축 메서드도 사용할 수 있습니다. 각각 URL을 첫 번째 매개변수로, 옵션 배열을 두 번째 매개변수로 받습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">head</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">patch</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="base-uri">
+<h4>기본 URI<a class="headerlink" href="#base-uri" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">baseURI</span></code>는 클래스 인스턴스화 시 옵션 중 하나로 설정할 수 있습니다. 기본 URI를 설정하면 해당 클라이언트로 보내는 모든 요청에 상대 URL을 사용할 수 있습니다. API 작업 시 특히 유용합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;curlrequest&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;baseURI&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://example.com/api/v1/&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="c1">// GET http:example.com/api/v1/photos</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">);</span>
+
+<span class="c1">// GET http:example.com/api/v1/photos/13</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;photos/13&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">request()</span></code> 메서드나 단축 메서드에 상대 URI를 제공하면, <a class="reference external" href="https://tools.ietf.org/html/rfc3986#section-5.2">RFC 2986, 섹션 2</a>에 설명된 규칙에 따라 baseURI와 결합됩니다. 다음은 조합이 어떻게 해결되는지 보여주는 몇 가지 예시입니다.</p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>baseURI</p></th>
+<th class="head"><p>URI</p></th>
+<th class="head"><p>결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>http://foo.com</p></td>
+<td><p>/bar</p></td>
+<td><p>http://foo.com/bar</p></td>
+</tr>
+<tr class="row-odd"><td><p>http://foo.com/foo</p></td>
+<td><p>/bar</p></td>
+<td><p>http://foo.com/bar</p></td>
+</tr>
+<tr class="row-even"><td><p>http://foo.com/foo</p></td>
+<td><p>bar</p></td>
+<td><p>http://foo.com/bar</p></td>
+</tr>
+<tr class="row-odd"><td><p>http://foo.com/foo/</p></td>
+<td><p>bar</p></td>
+<td><p>http://foo.com/foo/bar</p></td>
+</tr>
+<tr class="row-even"><td><p>http://foo.com</p></td>
+<td><p>http://baz.com</p></td>
+<td><p>http://baz.com</p></td>
+</tr>
+<tr class="row-odd"><td><p>http://foo.com/?bar</p></td>
+<td><p>bar</p></td>
+<td><p>http://foo.com/bar</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</section>
+</section>
+<section id="using-responses">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">응답 사용</a><a class="headerlink" href="#using-responses" title="Link to this heading"></a></h3>
+<p>각 <code class="docutils literal notranslate"><span class="pre">request()</span></code> 호출은 유용한 정보와 편리한 메서드를 포함하는 Response 객체를 반환합니다. 가장 자주 사용되는 메서드는 응답 자체를 확인하는 데 사용됩니다.</p>
+<p>응답의 상태 코드와 이유 문구를 가져올 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$code</span>   <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatusCode</span><span class="p">();</span>   <span class="c1">// 200</span>
+<span class="nv">$reason</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getReasonPhrase</span><span class="p">();</span> <span class="c1">// OK</span>
+</pre></div>
+</div>
+<p>응답에서 헤더를 가져올 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Get a header line</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">);</span>
+
+<span class="c1">// Get all headers</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$name</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$name</span> <span class="o">.</span> <span class="s1">&#39;: &#39;</span> <span class="o">.</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>본문은 <code class="docutils literal notranslate"><span class="pre">getBody()</span></code> 메서드를 사용하여 가져올 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$body</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>본문은 원격 서버에서 제공하는 원시 본문입니다. 콘텐츠 타입에 형식화가 필요한 경우, 스크립트에서 이를 처리해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">str_contains</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">),</span> <span class="s1">&#39;application/json&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$body</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$body</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="request-options">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">요청 옵션</a><a class="headerlink" href="#request-options" title="Link to this heading"></a></h2>
+<p>이 섹션에서는 생성자, <code class="docutils literal notranslate"><span class="pre">request()</span></code> 메서드 또는 단축 메서드에 전달할 수 있는 모든 옵션에 대해 설명합니다.</p>
+<section id="allow-redirects">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">allow_redirects</a><a class="headerlink" href="#allow-redirects" title="Link to this heading"></a></h3>
+<p>기본적으로 cURL은 원격 서버에서 반환하는 “Location:” 헤더를 따르지 않습니다. <code class="docutils literal notranslate"><span class="pre">allow_redirects</span></code> 옵션을 사용하면 이 동작을 수정할 수 있습니다.</p>
+<p>값을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하면 리다이렉트를 따릅니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;allow_redirects&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="cm">/*</span>
+<span class="cm"> * Sets the following defaults:</span>
+<span class="cm"> *   &#39;max&#39;       =&gt; 5,                // Maximum number of redirects to follow before stopping</span>
+<span class="cm"> *   &#39;strict&#39;    =&gt; true,             // Ensure POST requests stay POST requests through redirects</span>
+<span class="cm"> *   &#39;protocols&#39; =&gt; [&#39;http&#39;, &#39;https&#39;] // Restrict redirects to one or more protocols</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>리다이렉트를 활성화하면 예상하지 못한 URL로 리다이렉트될 수 있으며 SSRF 공격이 가능해질 수 있습니다.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하면 요청에 기본 설정이 적용됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;allow_redirects&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">allow_redirects</span></code> 옵션의 값으로 배열을 전달하여 기본값 대신 새 설정을 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;allow_redirects&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;max&#39;</span>       <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;protocols&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;https&#39;</span><span class="p">],</span> <span class="c1">// Force HTTPS domains only.</span>
+<span class="p">]]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>PHP가 safe_mode 모드이거나 open_basedir이 활성화된 경우 리다이렉트 따르기가 작동하지 않습니다.</p>
+</div>
+</section>
+<section id="auth">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">auth</a><a class="headerlink" href="#auth" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://www.ietf.org/rfc/rfc2069.txt">HTTP Basic</a>과 <a class="reference external" href="https://www.ietf.org/rfc/rfc2069.txt">Digest</a> 인증 세부 정보를 제공할 수 있습니다. Digest 인증을 지원하기 위해 스크립트에 추가 작업이 필요할 수 있습니다. 이 옵션은 사용자 이름과 비밀번호를 전달하기만 합니다. 값은 첫 번째 요소가 사용자 이름이고 두 번째 요소가 비밀번호인 배열이어야 합니다. 세 번째 매개변수는 <code class="docutils literal notranslate"><span class="pre">basic</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">digest</span></code> 중 사용할 인증 유형이어야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;auth&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;digest&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+<section id="body">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">body</a><a class="headerlink" href="#body" title="Link to this heading"></a></h3>
+<p>PUT, POST 등 본문을 지원하는 요청 유형에 대해 요청 본문을 설정하는 두 가지 방법이 있습니다. 첫 번째 방법은 <code class="docutils literal notranslate"><span class="pre">setBody()</span></code> 메서드를 사용하는 것입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBody</span><span class="p">(</span><span class="nv">$body</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>두 번째 방법은 <code class="docutils literal notranslate"><span class="pre">body</span></code> 옵션을 전달하는 것입니다. 이는 Guzzle API 호환성을 유지하기 위해 제공되며, 앞의 예제와 동일하게 동작합니다. 값은 문자열이어야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="nv">$body</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="cert">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">cert</a><a class="headerlink" href="#cert" title="Link to this heading"></a></h3>
+<p>PEM 형식의 클라이언트 측 인증서 위치를 지정하려면 <code class="docutils literal notranslate"><span class="pre">cert</span></code> 옵션으로 파일의 전체 경로를 문자열로 전달하세요. 비밀번호가 필요한 경우 값을 첫 번째 요소가 인증서 경로이고 두 번째 요소가 비밀번호인 배열로 설정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cert&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;/path/server.pem&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+<section id="connect-timeout">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">connect_timeout</a><a class="headerlink" href="#connect-timeout" title="Link to this heading"></a></h3>
+<p>기본적으로 CodeIgniter는 cURL이 웹사이트에 연결을 시도하는 시간에 제한을 두지 않습니다. 이 값을 수정하려면 <code class="docutils literal notranslate"><span class="pre">connect_timeout</span></code> 옵션으로 초 단위 시간을 전달하세요. 무제한 대기하려면 0을 전달하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;connect_timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="cookie">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">cookie</a><a class="headerlink" href="#cookie" title="Link to this heading"></a></h3>
+<p>CURL이 쿠키 값을 읽고 저장할 파일명을 지정합니다. <code class="docutils literal notranslate"><span class="pre">CURL_COOKIEJAR</span></code>와 <code class="docutils literal notranslate"><span class="pre">CURL_COOKIEFILE</span></code> 옵션을 사용하여 처리됩니다. 예시:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cookie&#39;</span> <span class="o">=&gt;</span> <span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;CookieSaver.txt&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="debug">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">debug</a><a class="headerlink" href="#debug" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">debug</span></code>가 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정되면 스크립트 실행 중에 STDERR에 추가 디버그 출력을 활성화합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CURLOPT_VERBOSE</span></code>를 전달하고 출력을 에코하는 방식으로 처리됩니다. <code class="docutils literal notranslate"><span class="pre">spark</span> <span class="pre">serve</span></code>로 내장 서버를 실행 중이면 콘솔에서 출력을 볼 수 있으며, 그렇지 않으면 서버의 오류 로그에 기록됩니다.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>debug 값으로 파일명을 전달하면 출력이 파일에 기록됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/usr/local/curl_log.txt&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="delay">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">delay</a><a class="headerlink" href="#delay" title="Link to this heading"></a></h3>
+<p>요청을 보내기 전에 지정한 밀리초만큼 일시 중지할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Delay for 2 seconds</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;delay&#39;</span> <span class="o">=&gt;</span> <span class="mi">2000</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="dns-cache-timeout">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">dns_cache_timeout</a><a class="headerlink" href="#dns-cache-timeout" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>기본적으로 CodeIgniter는 DNS 캐시 타임아웃 값(<code class="docutils literal notranslate"><span class="pre">120``초)을</span> <span class="pre">변경하지</span> <span class="pre">않습니다.</span> <span class="pre">이</span> <span class="pre">값을</span> <span class="pre">수정하려면</span> <span class="pre">``dns_cache_timeout</span></code> 옵션으로 초 단위 시간을 전달하세요.</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Modify default DNS Cache Timeout</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dns_cache_timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">360</span><span class="p">]);</span> <span class="c1">// seconds</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a class="reference external" href="https://curl.se/libcurl/c/CURLOPT_DNS_CACHE_TIMEOUT.html">libcurl</a> 문서에 따르면, <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 설정하면 캐싱을 완전히 비활성화하고, <code class="docutils literal notranslate"><span class="pre">-1</span></code>로 설정하면 캐시 항목이 영원히 유지됩니다.</p>
+</div>
+</section>
+<section id="form-params">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">form_params</a><a class="headerlink" href="#form-params" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">form_params</span></code> 옵션에 연관 배열을 전달하여 application/x-www-form-urlencoded POST 요청으로 폼 데이터를 보낼 수 있습니다. 아직 설정되지 않은 경우 <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> 헤더를 <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code>로 설정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;form_params&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;baz&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;there&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">form_params</span></code>는 <a class="reference internal" href="#multipart">multipart</a> 옵션과 함께 사용할 수 없습니다. 둘 중 하나를 선택해야 합니다. <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code> 요청에는 <code class="docutils literal notranslate"><span class="pre">form_params</span></code>를 사용하고, <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> 요청에는 <code class="docutils literal notranslate"><span class="pre">multipart</span></code>를 사용하세요.</p>
+</div>
+</section>
+<section id="fresh-connect">
+<span id="curlrequest-request-options-headers"></span><h3><a class="toc-backref" href="#id20" role="doc-backlink">fresh_connect</a><a class="headerlink" href="#fresh-connect" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.0.</span></p>
+</div>
+<p>기본적으로 요청은 새 연결을 사용하여 전송됩니다. <code class="docutils literal notranslate"><span class="pre">fresh_connect</span></code> 옵션을 사용하여 이 동작을 비활성화할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;fresh_connect&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;fresh_connect&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="headers">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">headers</a><a class="headerlink" href="#headers" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">setHeader()</span></code> 메서드를 사용하여 요청에 필요한 헤더를 설정할 수도 있지만, 옵션으로 헤더의 연관 배열을 전달할 수도 있습니다. 각 키는 헤더 이름이고, 각 값은 헤더 필드 값을 나타내는 문자열 또는 문자열 배열입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;headers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;User-Agent&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;testing/1.0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Accept&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;X-Foo&#39;</span>      <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Baz&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>헤더가 생성자에 전달된 경우 기본값으로 처리되며, 이후 헤더 배열이나 <code class="docutils literal notranslate"><span class="pre">setHeader()</span></code> 호출로 재정의될 수 있습니다.</p>
+</section>
+<section id="http-errors">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">http_errors</a><a class="headerlink" href="#http-errors" title="Link to this heading"></a></h3>
+<p>기본적으로 CURLRequest는 반환된 HTTP 코드가 400 이상이면 <code class="docutils literal notranslate"><span class="pre">HTTPException</span></code>을 발생시킵니다.</p>
+<p>응답 본문을 확인하려면 <code class="docutils literal notranslate"><span class="pre">http_errors</span></code>를 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하여 대신 콘텐츠를 반환할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/status/500&#39;</span><span class="p">);</span>
+<span class="c1">// If the response code is 500, an HTTPException is thrown,</span>
+<span class="c1">// and a detailed error report is displayed if in development mode.</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/status/500&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;http_errors&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatusCode</span><span class="p">();</span> <span class="c1">// 500</span>
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>       <span class="c1">// You can see the response body.</span>
+</pre></div>
+</div>
+</section>
+<section id="json">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">json</a><a class="headerlink" href="#json" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">json</span></code> 옵션은 JSON 인코딩된 데이터를 요청 본문으로 쉽게 업로드하는 데 사용됩니다. <code class="docutils literal notranslate"><span class="pre">application/json</span></code>의 Content-Type 헤더가 추가되어 기존에 설정된 Content-Type을 덮어씁니다. 이 옵션에 제공되는 데이터는 <code class="docutils literal notranslate"><span class="pre">json_encode()</span></code>가 허용하는 모든 값일 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;/put&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이 옵션은 <code class="docutils literal notranslate"><span class="pre">json_encode()</span></code> 함수나 Content-Type 헤더를 커스터마이즈하는 것을 허용하지 않습니다. 그 기능이 필요하면 데이터를 직접 인코딩하여 CURLRequest의 <code class="docutils literal notranslate"><span class="pre">setBody()</span></code> 메서드로 전달하고, <code class="docutils literal notranslate"><span class="pre">setHeader()</span></code> 메서드로 Content-Type 헤더를 설정해야 합니다.</p>
+</div>
+</section>
+<section id="multipart">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">multipart</a><a class="headerlink" href="#multipart" title="Link to this heading"></a></h3>
+<p>POST 요청으로 파일과 다른 데이터를 보내야 할 때 <code class="docutils literal notranslate"><span class="pre">multipart</span></code> 옵션을 <a class="reference external" href="https://www.php.net/manual/en/class.curlfile.php">CURLFile 클래스</a>와 함께 사용할 수 있습니다.</p>
+<p>값은 전송할 POST 데이터의 연관 배열이어야 합니다. 보다 안전한 사용을 위해 파일 이름 앞에 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>를 붙이는 레거시 파일 업로드 방식은 비활성화되었습니다. 전송할 파일은 CURLFile 인스턴스로 전달해야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;multipart&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;userfile&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\CURLFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file.txt&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">multipart</span></code>는 <a class="reference internal" href="#form-params">form_params</a> 옵션과 함께 사용할 수 없습니다. 둘 중 하나만 사용할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code> 요청에는 <code class="docutils literal notranslate"><span class="pre">form_params</span></code>를, <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> 요청에는 <code class="docutils literal notranslate"><span class="pre">multipart</span></code>를 사용하세요.</p>
+</div>
+</section>
+<section id="proxy">
+<span id="curlrequest-request-options-proxy"></span><h3><a class="toc-backref" href="#id25" role="doc-backlink">proxy</a><a class="headerlink" href="#proxy" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">proxy</span></code> 옵션으로 연관 배열을 전달하여 프록시를 설정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span>
+    <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;proxy&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://localhost:3128&#39;</span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="query">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">query</a><a class="headerlink" href="#query" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">query</span></code> 옵션으로 연관 배열을 전달하여 쿼리 문자열 변수로 데이터를 전송할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Send a GET request to /get?foo=bar</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/get&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</section>
+<section id="timeout">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">timeout</a><a class="headerlink" href="#timeout" title="Link to this heading"></a></h3>
+<p>기본적으로 cURL 함수는 시간 제한 없이 실행됩니다. <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 옵션으로 이를 수정할 수 있습니다. 값은 함수가 실행될 초 단위 시간이어야 합니다. 무제한 대기하려면 0을 사용하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="user-agent">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">user_agent</a><a class="headerlink" href="#user-agent" title="Link to this heading"></a></h3>
+<p>요청에 사용할 User Agent를 지정할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;user_agent&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CodeIgniter Framework v4&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="verify">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">verify</a><a class="headerlink" href="#verify" title="Link to this heading"></a></h3>
+<p>이 옵션은 SSL 인증서 검증 동작을 설명합니다. <code class="docutils literal notranslate"><span class="pre">verify</span></code> 옵션이 <code class="docutils literal notranslate"><span class="pre">true</span></code>이면 SSL 인증서 검증을 활성화하고 운영 체제가 제공하는 기본 CA 번들을 사용합니다. <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정하면 인증서 검증을 비활성화합니다(이는 보안에 취약하며 중간자 공격을 허용합니다!). CA 번들 경로를 포함하는 문자열로 설정하여 사용자 정의 인증서로 검증을 활성화할 수 있습니다. 기본값은 true입니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Use the system&#39;s CA bundle (this is the default setting)</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;verify&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+
+<span class="c1">// Use a custom SSL certificate on disk.</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;verify&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/cert.pem&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Disable validation entirely. (Insecure!)</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;verify&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="force-ip-resolve">
+<span id="curlrequest-version"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">force_ip_resolve</a><a class="headerlink" href="#force-ip-resolve" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.6.0.</span></p>
+</div>
+<p>HTTP 핸들러가 IPv4 프로토콜만 사용하려면 <code class="docutils literal notranslate"><span class="pre">v4</span></code>를, IPv6 프로토콜을 사용하려면 <code class="docutils literal notranslate"><span class="pre">v6</span></code>을 설정합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Force ipv4 resolve</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;force_ip_resolve&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;v4&#39;</span><span class="p">]);</span> <span class="c1">// v4 or v6</span>
+</pre></div>
+</div>
+</section>
+<section id="version">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">version</a><a class="headerlink" href="#version" title="Link to this heading"></a></h3>
+<p>사용할 HTTP 프로토콜을 설정하려면 버전 번호를 문자열 또는 실수형으로 전달하세요 (일반적으로 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">1.1</span></code>이며, <code class="docutils literal notranslate"><span class="pre">2.0</span></code>은 v4.3.0부터 지원됩니다):</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Force HTTP/1.0</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;version&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cors.html" class="btn btn-neutral float-left" title="교차 출처 리소스 공유 (CORS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="email.html" class="btn btn-neutral float-right" title="이메일 클래스" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

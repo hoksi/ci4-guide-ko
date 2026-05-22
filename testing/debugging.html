@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ko" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>애플리케이션 디버깅 &mdash; CodeIgniter 4.7.2 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=afa94a99"></script>
+      <script src="../_static/js/citheme.js?v=e0bcfc84"></script>
+      <script src="../_static/js/carbon.js?v=b287325f"></script>
+      <script src="../_static/js/version_switcher.js?v=124a45e9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="세션 테스트" href="session_testing.html" />
+    <link rel="prev" title="벤치마킹" href="benchmark.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ci-logo-text.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html">CodeIgniter4에 오신 것을 환영합니다</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/requirements.html">서버 요구 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/credits.html">크레딧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/psr.html">PSR 준수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">라이선스 계약</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_composer.html">Composer 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/installing_manual.html">수동 설치</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/running.html">앱 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/worker_mode.html">워커 모드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/deployment.html">배포</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelogs/index.html">변경 로그</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/repositories.html">CodeIgniter 저장소</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/first-app/index.html">첫 번째 애플리케이션 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/api/index.html">REST API 시작하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">CodeIgniter4 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/structure.html">애플리케이션 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/mvc.html">모델, 뷰, 컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/autoloader.html">파일 오토로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/services.html">서비스(Services)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/factories.html">팩토리(Factories)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/http.html">HTTP 요청 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/security.html">보안 가이드라인</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/goals.html">설계 및 아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/logging.html">로깅 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">오류 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">웹 페이지 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ajax.html">AJAX 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/modules.html">코드 모듈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../incoming/index.html">컨트롤러와 라우팅</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/filters.html">컨트롤러 필터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/controller_attributes.html">컨트롤러 속성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/auto_routing_improved.html">자동 라우팅(향상)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/message.html">HTTP 메시지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/request.html">Request 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/incomingrequest.html">IncomingRequest 클래스”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/content_negotiation.html">콘텐츠 협상</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/methodspoofing.html">HTTP 메서드 스푸핑</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../incoming/restful.html">RESTful 리소스 처리</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../outgoing/index.html">응답 빌드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/views.html">뷰(Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_renderer.html">렌더러 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_layouts.html">레이아웃 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_cells.html">셀 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_parser.html">파서 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/view_decorators.html">뷰 데코레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/response.html">HTTP 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_responses.html">API 응답</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/api_transformers.html">API 리소스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/csp.html">콘텐츠 보안 정책</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/localization.html">현지화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outgoing/alternative_php.html">뷰 파일의 대체 PHP 구문</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dbmgmt/index.html">데이터베이스 관리</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/forge.html">데이터베이스 Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/migration.html">데이터베이스 마이그레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/seeds.html">데이터베이스 시딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dbmgmt/db_commands.html">데이터베이스 명령어</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">라이브러리 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cookies.html">쿠키</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cors.html">교차 출처 리소스 공유 (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/curlrequest.html">CURLRequest 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">이메일 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">암호화 서비스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/files.html">파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_collections.html">파일 컬렉션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/honeypot.html">허니팟 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/images.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">페이지네이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/publisher.html">퍼블리셔</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">세션 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/throttler.html">스로틀러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/time.html">시간과 날짜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">타이포그래피</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uploaded_files.html">업로드된 파일 다루기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 작업하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">사용자 에이전트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/validation.html">유효성 검사</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼(Helpers)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">쿠키 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/filesystem_helper.html">파일시스템 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">폼 헬퍼(Form Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼(HTML Helper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">인플렉터(Inflector) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자(Number) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안(Security) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/test_helper.html">테스트(Test) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트(Text) 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">테스트</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">데이터베이스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabricator.html">데이터 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">컨트롤러 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature.html">HTTP 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="response.html">응답 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">CLI 명령 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mocking.html">모킹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">애플리케이션 디버깅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session_testing.html">세션 테스트</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">명령줄 사용법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_overview.html">CLI 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_controllers.html">CLI를 통한 컨트롤러 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/spark_commands.html">Spark 명령</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_commands.html">Spark 명령 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_generators.html">CLI 생성기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_library.html">CLI 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_signals.html">CLI 시그널</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/cli_request.html">CLIRequest 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extending/index.html">CodeIgniter 확장</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extending/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/common.html">공통 함수 교체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/events.html">이벤트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/basecontroller.html">컨트롤러 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/authentication.html">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/composer_packages.html">Composer 패키지 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending/contributing.html">CodeIgniter에 기여하기</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/official_packages.html">공식 패키지</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">테스트</a></li>
+      <li class="breadcrumb-item active">애플리케이션 디버깅</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debugging-your-application">
+<h1>애플리케이션 디버깅<a class="headerlink" href="#debugging-your-application" title="Link to this heading"></a></h1>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#checking-logs" id="id4">로그 확인</a></p>
+<ul>
+<li><p><a class="reference internal" href="#codeigniter-error-logs" id="id5">CodeIgniter 오류 로그</a></p></li>
+<li><p><a class="reference internal" href="#logging-all-sql-queries" id="id6">모든 SQL 쿼리 로깅</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#replacing-var-dump" id="id7">var_dump() 대체</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-kint" id="id8">Kint 활성화</a></p></li>
+<li><p><a class="reference internal" href="#using-kint" id="id9">Kint 사용</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-debug-toolbar" id="id10">디버그 툴바</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-the-toolbar" id="id11">툴바 활성화</a></p></li>
+<li><p><a class="reference internal" href="#setting-benchmark-points" id="id12">벤치마크 지점 설정</a></p></li>
+<li><p><a class="reference internal" href="#creating-custom-collectors" id="id13">커스텀 Collector 생성</a></p></li>
+<li><p><a class="reference internal" href="#hot-reloading" id="id14">핫 리로딩</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="checking-logs">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">로그 확인</a><a class="headerlink" href="#checking-logs" title="Link to this heading"></a></h2>
+<section id="codeigniter-error-logs">
+<span id="id2"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">CodeIgniter 오류 로그</a><a class="headerlink" href="#codeigniter-error-logs" title="Link to this heading"></a></h3>
+<p>CodeIgniter는 <strong>app/Config/Logger.php</strong>의 설정에 따라 오류 메시지를 기록합니다.</p>
+<p>기본 설정에서는 일별 로그 파일이 <strong>writable/logs</strong>에 저장됩니다. 예상대로 동작하지 않는 경우 확인해 보는 것이 좋습니다!</p>
+<p>더 많거나 더 적은 메시지를 보기 위해 오류 임계값을 조정할 수 있습니다. 자세한 내용은 <a class="reference internal" href="../general/logging.html#logging-configuration"><span class="std std-ref">로깅</span></a>을 참조하십시오.</p>
+</section>
+<section id="logging-all-sql-queries">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">모든 SQL 쿼리 로깅</a><a class="headerlink" href="#logging-all-sql-queries" title="Link to this heading"></a></h3>
+<p>CodeIgniter가 발행하는 모든 SQL 쿼리를 기록할 수 있습니다. 자세한 내용은 <a class="reference internal" href="../database/events.html#database-events-dbquery"><span class="std std-ref">데이터베이스 이벤트</span></a>를 참조하십시오.</p>
+</section>
+</section>
+<section id="replacing-var-dump">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">var_dump() 대체</a><a class="headerlink" href="#replacing-var-dump" title="Link to this heading"></a></h2>
+<p>Xdebug와 좋은 IDE를 사용하는 것이 애플리케이션 디버깅에 필수적일 수 있지만, 때로는 빠른 <code class="docutils literal notranslate"><span class="pre">var_dump()</span></code>만으로도 충분합니다. CodeIgniter는 PHP용 탁월한 <a class="reference external" href="https://kint-php.github.io/kint/">Kint</a> 디버깅 도구를 번들로 제공하여 더욱 편리하게 만들었습니다.</p>
+<p>이는 일반적인 도구를 훨씬 뛰어넘어, 타임스탬프를 인식 가능한 날짜로 포맷하거나, 16진수 코드를 색상으로 표시하거나, 배열 데이터를 테이블 형태로 표시하는 등 다양한 추가 데이터를 제공합니다.</p>
+<section id="enabling-kint">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Kint 활성화</a><a class="headerlink" href="#enabling-kint" title="Link to this heading"></a></h3>
+<p>기본적으로 Kint는 <strong>development</strong>와 <strong>testing</strong> <a class="reference internal" href="../general/environments.html"><span class="doc">환경</span></a>에서만 활성화됩니다. 상수 <code class="docutils literal notranslate"><span class="pre">CI_DEBUG</span></code>가 정의되고 그 값이 참일 때마다 활성화됩니다. 이는 부트 파일(예: <strong>app/Config/Boot/development.php</strong>)에 정의되어 있습니다.</p>
+</section>
+<section id="using-kint">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Kint 사용</a><a class="headerlink" href="#using-kint" title="Link to this heading"></a></h3>
+<section id="d">
+<h4>d()<a class="headerlink" href="#d" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">d()</span></code> 메서드는 유일한 매개변수로 전달된 내용에 대해 알고 있는 모든 데이터를 화면에 덤프하고, 스크립트가 계속 실행되도록 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">d</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="dd">
+<h4>dd()<a class="headerlink" href="#dd" title="Link to this heading"></a></h4>
+<p>이 메서드는 <code class="docutils literal notranslate"><span class="pre">d()</span></code>와 동일하지만, <code class="docutils literal notranslate"><span class="pre">die()</span></code>도 호출하여 해당 요청에서 더 이상의 코드가 실행되지 않습니다.</p>
+</section>
+<section id="trace">
+<h4>trace()<a class="headerlink" href="#trace" title="Link to this heading"></a></h4>
+<p>현재 실행 지점까지의 백트레이스를 Kint 고유의 방식으로 제공합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">trace</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>자세한 내용은 <a class="reference external" href="https://kint-php.github.io/kint//">Kint 페이지</a>를 참조하십시오.</p>
+</section>
+</section>
+</section>
+<section id="the-debug-toolbar">
+<span id="id3"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">디버그 툴바</a><a class="headerlink" href="#the-debug-toolbar" title="Link to this heading"></a></h2>
+<p>디버그 툴바는 벤치마크 결과, 실행한 쿼리, 요청 및 응답 데이터 등 현재 페이지 요청에 대한 정보를 한눈에 제공합니다. 이 모든 것이 디버그 및 최적화에 매우 유용합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>디버그 툴바는 아직 개발 중이며 계획된 여러 기능이 아직 구현되지 않았습니다.</p>
+</div>
+<section id="enabling-the-toolbar">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">툴바 활성화</a><a class="headerlink" href="#enabling-the-toolbar" title="Link to this heading"></a></h3>
+<p>툴바는 <strong>production</strong>을 <em>제외한</em> 모든 <a class="reference internal" href="../general/environments.html"><span class="doc">환경</span></a>에서 기본적으로 활성화됩니다. 상수 <code class="docutils literal notranslate"><span class="pre">CI_DEBUG</span></code>가 정의되고 그 값이 참일 때마다 표시됩니다. 이는 부트 파일(예: <strong>app/Config/Boot/development.php</strong>)에 정의되어 있으며, 표시할 환경을 결정하기 위해 그곳에서 수정할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">baseURL</span></code> 설정(<strong>app/Config/App.php</strong>의 값 또는 <strong>.env</strong>의 <code class="docutils literal notranslate"><span class="pre">app.baseURL</span></code>)이 실제 URL과 일치하지 않으면 디버그 툴바가 표시되지 않습니다.</p>
+</div>
+<p>툴바 자체는 <a class="reference internal" href="../incoming/filters.html"><span class="doc">After 필터</span></a>로 표시됩니다. <strong>app/Config/Filters.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$required</span></code> (또는 <code class="docutils literal notranslate"><span class="pre">$globals</span></code>) 속성에서 <code class="docutils literal notranslate"><span class="pre">'toolbar'</span></code>를 제거하면 실행을 중단할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>v4.5.0 이전에는 툴바가 기본적으로 <code class="docutils literal notranslate"><span class="pre">$globals</span></code>로 설정되었습니다.</p>
+</div>
+<section id="choosing-what-to-show">
+<h4>표시할 내용 선택<a class="headerlink" href="#choosing-what-to-show" title="Link to this heading"></a></h4>
+<p>CodeIgniter에는 이름에서 알 수 있듯이 툴바에 표시할 데이터를 수집하는 여러 Collector가 포함되어 있습니다. 툴바를 커스터마이즈하기 위해 직접 만들 수도 있습니다. 어떤 collector가 표시될지 결정하려면 <strong>app/Config/Toolbar.php</strong> 설정 파일로 이동하십시오:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\BaseConfig</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Toolbar</span> <span class="k">extends</span> <span class="nx">BaseConfig</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$collectors</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Timers</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Database</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Logs</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Views</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Cache</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Files</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Routes</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">\CodeIgniter\Debug\Toolbar\Collectors\Events</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>표시하지 않으려는 collector는 주석 처리하십시오. 완전한 정규화 클래스명을 제공하여 여기에 커스텀 Collector를 추가하십시오. 여기에 나타나는 정확한 collector는 어떤 탭이 표시될지와 타임라인에 어떤 정보가 표시될지에 영향을 미칩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>데이터베이스나 로그와 같은 일부 탭은 표시할 내용이 있을 때만 표시됩니다. 그렇지 않으면 작은 화면에서의 공간을 위해 제거됩니다.</p>
+</div>
+<p>CodeIgniter에 포함된 Collector는 다음과 같습니다:</p>
+<ul class="simple">
+<li><p><strong>Timers</strong>는 시스템과 애플리케이션 모두의 벤치마크 데이터를 수집합니다.</p></li>
+<li><p><strong>Database</strong>는 모든 데이터베이스 연결이 수행한 쿼리 목록과 그 실행 시간을 표시합니다.</p></li>
+<li><p><strong>Logs</strong>는 기록된 모든 정보가 여기에 표시됩니다. 오래 실행되는 시스템이나 많은 항목이 기록되는 시스템에서는 메모리 문제를 일으킬 수 있으므로 비활성화해야 합니다.</p></li>
+<li><p><strong>Views</strong>는 타임라인에 뷰의 렌더링 시간을 표시하고, 뷰에 전달된 데이터를 별도의 탭에 표시합니다.</p></li>
+<li><p><strong>Cache</strong>는 캐시 적중 및 미적중에 대한 정보와 실행 시간을 표시합니다.</p></li>
+<li><p><strong>Files</strong>는 이 요청 중에 로드된 모든 파일의 목록을 표시합니다.</p></li>
+<li><p><strong>Routes</strong>는 현재 라우트와 시스템에 정의된 모든 라우트에 대한 정보를 표시합니다.</p></li>
+<li><p><strong>Events</strong>는 이 요청 중에 로드된 모든 이벤트의 목록을 표시합니다.</p></li>
+</ul>
+</section>
+</section>
+<section id="setting-benchmark-points">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">벤치마크 지점 설정</a><a class="headerlink" href="#setting-benchmark-points" title="Link to this heading"></a></h3>
+<p>프로파일러가 벤치마크 데이터를 컴파일하고 표시하려면 특정 구문을 사용하여 마크 지점에 이름을 지정해야 합니다.</p>
+<p><a class="reference internal" href="benchmark.html"><span class="doc">벤치마크 라이브러리</span></a> 페이지에서 벤치마크 지점 설정에 대한 정보를 읽어보십시오.</p>
+</section>
+<section id="creating-custom-collectors">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">커스텀 Collector 생성</a><a class="headerlink" href="#creating-custom-collectors" title="Link to this heading"></a></h3>
+<p>커스텀 collector 생성은 간단한 작업입니다. 오토로더가 찾을 수 있도록 완전한 네임스페이스를 포함하여 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Debug\Toolbar\Collectors\BaseCollector</span></code>를 확장하는 새 클래스를 만듭니다. 이는 오버라이드할 수 있는 여러 메서드를 제공하며, Collector가 동작하는 방식에 따라 올바르게 설정해야 하는 네 가지 필수 클래스 속성이 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">MyNamespace</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Debug\Toolbar\Collectors\BaseCollector</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyCollector</span> <span class="k">extends</span> <span class="nx">BaseCollector</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$hasTimeline</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$hasTabContent</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$hasVarData</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>$hasTimeline</strong>은 툴바의 타임라인에 정보를 표시하려는 Collector에 대해 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정해야 합니다. 이 값이 true이면 표시를 위한 데이터를 포맷하고 반환하는 <code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 메서드를 구현해야 합니다.</p>
+<p><strong>$hasTabContent</strong>은 Collector가 커스텀 내용이 있는 자체 탭을 표시하려는 경우 <code class="docutils literal notranslate"><span class="pre">true</span></code>여야 합니다. 이 값이 true이면 <code class="docutils literal notranslate"><span class="pre">$title</span></code>을 제공하고, 탭 내용을 렌더링하는 <code class="docutils literal notranslate"><span class="pre">display()</span></code> 메서드를 구현해야 하며, 탭 내용 제목 바로 오른쪽에 추가 정보를 표시하려면 <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 메서드도 구현해야 할 수 있습니다.</p>
+<p><strong>$hasVarData</strong>는 이 Collector가 <code class="docutils literal notranslate"><span class="pre">Vars</span></code> 탭에 추가 데이터를 추가하려는 경우 <code class="docutils literal notranslate"><span class="pre">true</span></code>여야 합니다. 이 값이 true이면 <code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 메서드를 구현해야 합니다.</p>
+<p><strong>$title</strong>은 열린 탭에 표시됩니다.</p>
+<section id="displaying-a-toolbar-tab">
+<h4>툴바 탭 표시<a class="headerlink" href="#displaying-a-toolbar-tab" title="Link to this heading"></a></h4>
+<p>툴바 탭을 표시하려면 다음을 수행해야 합니다:</p>
+<ol class="arabic simple">
+<li><p>툴바 제목과 탭 헤더 모두에 표시되는 텍스트로 <code class="docutils literal notranslate"><span class="pre">$title</span></code>을 채우십시오.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$hasTabContent</span></code>를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하십시오.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">display()</span></code> 메서드를 구현하십시오.</p></li>
+<li><p>선택적으로 <code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 메서드를 구현하십시오.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">display()</span></code>는 탭 자체 내에 표시되는 HTML을 생성합니다. 탭의 제목은 툴바에 의해 자동으로 처리되므로 걱정할 필요가 없습니다. HTML 문자열을 반환해야 합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">getTitleDetails()</span></code> 메서드는 탭 제목 바로 오른쪽에 표시되는 문자열을 반환해야 합니다. 추가적인 개요 정보를 제공하는 데 사용할 수 있습니다. 예를 들어, 데이터베이스 탭은 모든 연결에 걸친 총 쿼리 수를 표시하고, 파일 탭은 총 파일 수를 표시합니다.</p>
+</section>
+<section id="providing-timeline-data">
+<h4>타임라인 데이터 제공<a class="headerlink" href="#providing-timeline-data" title="Link to this heading"></a></h4>
+<p>타임라인에 표시될 정보를 제공하려면 다음을 수행해야 합니다:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$hasTimeline</span></code>을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하십시오.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 메서드를 구현하십시오.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">formatTimelineData()</span></code> 메서드는 타임라인이 올바르게 정렬하고 정보를 표시하는 데 사용할 수 있는 방식으로 포맷된 배열의 배열을 반환해야 합니다. 내부 배열에는 다음 정보가 포함되어야 합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// Name displayed on the left of the timeline</span>
+    <span class="s1">&#39;component&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="c1">// Name of the Component listed in the middle of timeline</span>
+    <span class="s1">&#39;start&#39;</span>     <span class="o">=&gt;</span> <span class="mf">0.00</span><span class="p">,</span>   <span class="c1">// start time, like microtime(true)</span>
+    <span class="s1">&#39;duration&#39;</span>  <span class="o">=&gt;</span> <span class="mf">0.00</span><span class="p">,</span>   <span class="c1">// duration, like mircrotime(true) - microtime(true)</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="providing-vars">
+<h4>Vars 제공<a class="headerlink" href="#providing-vars" title="Link to this heading"></a></h4>
+<p>Vars 탭에 데이터를 추가하려면 다음을 수행해야 합니다:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$hasVarData</span></code>를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하십시오</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 메서드를 구현하십시오.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">getVarData()</span></code> 메서드는 표시할 키/값 쌍의 배열을 포함하는 배열을 반환해야 합니다. 외부 배열의 키 이름이 Vars 탭의 섹션 이름이 됩니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;section 1&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;section 2&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bar&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hot-reloading">
+<span id="debug-toolbar-hot-reload"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">핫 리로딩</a><a class="headerlink" href="#hot-reloading" title="Link to this heading"></a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.4.0.</span></p>
+</div>
+<p>디버그 툴바에는 핫 리로딩(Hot Reloading)이라는 기능이 포함되어 있습니다. 이 기능을 사용하면 애플리케이션 코드를 변경하면 페이지를 새로 고침하지 않고도 브라우저에서 자동으로 다시 로드됩니다. 개발 중에 시간을 크게 절약해 줍니다.</p>
+<p>개발 중에 핫 리로딩을 활성화하려면 툴바 왼쪽에 있는 새로 고침 아이콘처럼 생긴 버튼을 클릭하면 됩니다. 비활성화할 때까지 모든 페이지에 대해 핫 리로딩이 활성화됩니다.</p>
+<p>핫 리로딩은 <strong>app</strong> 디렉터리 내의 파일을 매초 스캔하여 변경 사항을 찾습니다. 변경 사항이 발견되면 브라우저에 페이지를 다시 로드하라는 메시지를 보냅니다. 다른 디렉터리는 스캔하지 않으므로, <strong>app</strong> 디렉터리 외부의 파일을 변경하는 경우 수동으로 페이지를 새로 고침해야 합니다.</p>
+<p><strong>app</strong> 디렉터리 외부의 파일을 감시해야 하거나 프로젝트 크기로 인해 느리다고 느끼는 경우, <strong>app/Config/Toolbar.php</strong> 설정 파일의 <code class="docutils literal notranslate"><span class="pre">$watchedDirectories</span></code>와 <code class="docutils literal notranslate"><span class="pre">$watchedExtensions</span></code> 속성에서 스캔할 디렉터리와 파일 확장자를 지정할 수 있습니다.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="benchmark.html" class="btn btn-neutral float-left" title="벤치마킹" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="session_testing.html" class="btn btn-neutral float-right" title="세션 테스트" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
+      <span class="lastupdated">최종 업데이트: 5월 22, 2026
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
