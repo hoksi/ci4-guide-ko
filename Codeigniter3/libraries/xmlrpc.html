@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XML-RPC 및 XML-RPC 서버 클래스 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="라이브러리" href="index.html"/>
+        <link rel="next" title="Zip 인코딩 클래스" href="zip.html"/>
+        <link rel="prev" title="User Agent 클래스" href="user_agent.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">라이브러리</a> &raquo;</li>
+      
+    <li>XML-RPC 및 XML-RPC 서버 클래스</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="xml-rpc-xml-rpc">
+<h1>XML-RPC 및 XML-RPC 서버 클래스<a class="headerlink" href="#xml-rpc-xml-rpc" title="Link to this heading">¶</a></h1>
+<p>CodeIgniter의 XML-RPC 클래스를 사용하면 다른 서버로 요청을 전송하거나, 자체
+XML-RPC 서버를 설정하여 요청을 받을 수 있습니다.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#xml-rpc" id="id23">XML-RPC란?</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id24">XML-RPC 클래스 사용</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id25">클래스 초기화</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id26">XML-RPC 요청 전송</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id27">설명</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id28">요청 구조</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id29">XML-RPC 서버 만들기</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id30">서버 요청 처리</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id31">참고:</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id12" id="id32">응답 형식 지정</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id33">오류 응답 전송</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id34">클라이언트와 서버 직접 만들기</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id16" id="id35">클라이언트</a></p></li>
+<li><p><a class="reference internal" href="#id17" id="id36">서버</a></p></li>
+<li><p><a class="reference internal" href="#id18" id="id37">실습!</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id19" id="id38">요청 매개변수에 연관 배열 사용</a></p></li>
+<li><p><a class="reference internal" href="#id20" id="id39">데이터 타입</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id22" id="id40">클래스 레퍼런스</a></p></li>
+</ul>
+</nav>
+<div class="custom-index container"></div><section id="xml-rpc">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">XML-RPC란?</a><a class="headerlink" href="#xml-rpc" title="Link to this heading">¶</a></h2>
+<p>간단히 말하면, 두 컴퓨터가 XML을 사용하여 인터넷을 통해 통신하는 방법입니다.
+클라이언트라고 부를 한 컴퓨터가 서버라고 부를 다른 컴퓨터에 XML-RPC <strong>요청</strong>을
+전송합니다. 서버가 요청을 수신하고 처리하면 클라이언트에게 <strong>응답</strong>을 보냅니다.</p>
+<p>예를 들어, MetaWeblog API를 사용하면 XML-RPC 클라이언트(일반적으로 데스크톱
+퍼블리싱 도구)가 사이트에서 실행되는 XML-RPC 서버에 요청을 전송합니다. 이 요청은
+게시할 새 웹로그 항목이거나 편집을 위한 기존 항목에 대한 요청일 수 있습니다.
+XML-RPC 서버가 이 요청을 수신하면 요청을 처리할 클래스/메소드를 결정합니다.
+처리 후 서버는 응답 메시지를 보냅니다.</p>
+<p>자세한 사양은 <a class="reference external" href="http://www.xmlrpc.com/">XML-RPC</a> 사이트를 방문하세요.</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">XML-RPC 클래스 사용</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">클래스 초기화</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>CodeIgniter의 대부분의 클래스와 마찬가지로 XML-RPC 및 XML-RPCS 클래스는
+컨트롤러에서 $this-&gt;load-&gt;library 함수를 사용하여 초기화합니다.</p>
+<p>XML-RPC 클래스를 로드하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>로드되면 xml-rpc 라이브러리 객체는 $this-&gt;xmlrpc를 사용하여 접근할 수 있습니다.</p>
+<p>XML-RPC 서버 클래스를 로드하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>로드되면 xml-rpcs 라이브러리 객체는 $this-&gt;xmlrpcs를 사용하여 접근할 수 있습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>XML-RPC 서버 클래스를 사용할 때는 XML-RPC 클래스와 XML-RPC 서버 클래스
+<strong>모두</strong> 로드해야 합니다.</p>
+</div>
+<section id="id5">
+<h4><a class="toc-backref" href="#id26" role="doc-backlink">XML-RPC 요청 전송</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<p>XML-RPC 서버에 요청을 전송하려면 다음 정보를 지정해야 합니다:</p>
+<ul class="simple">
+<li><p>서버의 URL</p></li>
+<li><p>호출할 서버의 메소드</p></li>
+<li><p><em>요청</em> 데이터(아래 설명)</p></li>
+</ul>
+<p>다음은 <a class="reference external" href="https://pingomatic.com/">Ping-o-Matic</a>에 간단한 Weblogs.com ping을
+전송하는 기본 예시입니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://rpc.pingomatic.com/&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;weblogUpdates.ping&#39;</span><span class="p">);</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;My Photoblog&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.my-site.com/photoblog/&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_request</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id6">
+<h5><a class="toc-backref" href="#id27" role="doc-backlink">설명</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h5>
+<p>위 코드는 XML-RPC 클래스를 초기화하고, 서버 URL과 호출할 메소드(weblogUpdates.ping)를
+설정합니다. 요청(이 경우 사이트의 제목과 URL)은 전송을 위해 배열에 배치되며
+request() 함수를 사용하여 컴파일됩니다. 마지막으로 전체 요청이 전송됩니다.
+send_request() 메소드가 false를 반환하면 XML-RPC 서버에서 보낸 오류 메시지를
+표시합니다.</p>
+</section>
+</section>
+<section id="id7">
+<h4><a class="toc-backref" href="#id28" role="doc-backlink">요청 구조</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<p>XML-RPC 요청은 단순히 XML-RPC 서버에 전송하는 데이터입니다. 요청의 각 데이터
+조각을 요청 매개변수라고 합니다. 위 예시에는 두 가지 매개변수인 사이트의 URL과
+제목이 있습니다. XML-RPC 서버가 요청을 수신하면 필요한 매개변수를 찾습니다.</p>
+<p>요청 매개변수는 전송을 위해 배열에 배치해야 하며, 각 매개변수는 7가지 데이터
+타입(문자열, 숫자, 날짜 등) 중 하나가 될 수 있습니다. 매개변수가 문자열이 아닌
+경우 요청 배열에 데이터 타입을 포함해야 합니다.</p>
+<p>다음은 세 가지 매개변수가 있는 간단한 배열 예시입니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;www.some-site.com&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>문자열 이외의 데이터 타입을 사용하거나 여러 다른 데이터 타입이 있는 경우 각
+매개변수를 자체 배열에 넣고 두 번째 위치에 데이터 타입을 지정합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="k">FALSE</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>아래 <a class="reference external" href="#datatypes">데이터 타입</a> 섹션에서 데이터 타입의 전체 목록을 확인할
+수 있습니다.</p>
+</section>
+<section id="id9">
+<h4><a class="toc-backref" href="#id29" role="doc-backlink">XML-RPC 서버 만들기</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<p>XML-RPC 서버는 일종의 교통 경찰 역할을 하며, 들어오는 요청을 기다리다가 처리를
+위해 적절한 함수로 리디렉션합니다.</p>
+<p>자체 XML-RPC 서버를 만들려면 들어오는 요청이 나타날 것으로 예상되는 컨트롤러에서
+XML-RPC 서버 클래스를 초기화한 다음 들어오는 요청을 처리를 위한 적절한 클래스와
+메소드로 전송할 수 있도록 매핑 지침이 포함된 배열을 설정합니다.</p>
+<p>다음은 예시를 통해 설명합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;new_post&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My_blog.new_entry&#39;</span><span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;update_post&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My_blog.update_entry&#39;</span><span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$this</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">serve</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>위 예시에는 서버가 허용하는 두 가지 메소드 요청을 지정하는 배열이 포함되어
+있습니다. 허용되는 메소드는 배열의 왼쪽에 있습니다. 둘 중 하나가 수신되면
+오른쪽의 클래스와 메소드로 매핑됩니다.</p>
+<p>‘object’ 키는 인스턴스화된 클래스 객체를 전달하는 특수 키로, 매핑하는 메소드가
+CodeIgniter 슈퍼 객체의 일부가 아닌 경우 필요합니다.</p>
+<p>즉, XML-RPC 클라이언트가 new_post 메소드에 대한 요청을 전송하면 서버는 My_blog
+클래스를 로드하고 new_entry 함수를 호출합니다. update_post 메소드에 대한 요청인
+경우 서버는 My_blog 클래스를 로드하고 <code class="docutils literal notranslate"><span class="pre">update_entry()</span></code> 메소드를 호출합니다.</p>
+<p>위 예시의 함수 이름은 임의적입니다. 서버에서 어떻게 불러야 할지 결정하거나,
+Blogger 또는 MetaWeblog API와 같은 표준화된 API를 사용하는 경우 해당 API의 함수
+이름을 사용합니다.</p>
+<p>서버 클래스를 초기화할 때 사용할 수 있는 두 가지 추가 설정 키가 있습니다: debug를
+TRUE로 설정하면 디버깅을 활성화하고, xss_clean을 FALSE로 설정하면 Security
+라이브러리의 <code class="docutils literal notranslate"><span class="pre">xss_clean()</span></code> 메소드를 통해 데이터를 전송하지 않습니다.</p>
+</section>
+<section id="id10">
+<h4><a class="toc-backref" href="#id30" role="doc-backlink">서버 요청 처리</a><a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<p>XML-RPC 서버가 요청을 수신하고 처리를 위한 클래스/메소드를 로드하면, 클라이언트가
+전송한 데이터를 포함하는 객체를 해당 메소드에 전달합니다.</p>
+<p>위 예시를 사용하면, new_post 메소드가 요청되면 서버는 다음 프로토타입으로 클래스가
+존재하기를 기대합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">My_blog</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">new_post</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+        <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>$request 변수는 서버에 의해 컴파일된 객체로, XML-RPC 클라이언트가 전송한 데이터를
+포함합니다. 이 객체를 사용하면 요청을 처리할 수 있는 <em>요청 매개변수</em>에 접근할
+수 있습니다. 완료되면 응답을 클라이언트에게 보냅니다.</p>
+<p>다음은 Blogger API를 사용하는 실제 예시입니다. Blogger API의 메소드 중 하나는
+<code class="docutils literal notranslate"><span class="pre">getUserInfo()</span></code>입니다. 이 메소드를 사용하면 XML-RPC 클라이언트가 서버에
+사용자 이름과 비밀번호를 전송하고, 서버는 해당 특정 사용자에 대한 정보(닉네임,
+사용자 ID, 이메일 주소 등)를 다시 보냅니다. 처리 함수는 다음과 같습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">My_blog</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">getUserInfo</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="nv">$username</span> <span class="o">=</span> <span class="s1">&#39;smitty&#39;</span><span class="p">;</span>
+                <span class="nv">$password</span> <span class="o">=</span> <span class="s1">&#39;secretsmittypass&#39;</span><span class="p">;</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+                <span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nv">$username</span> <span class="o">&amp;&amp;</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="nv">$password</span><span class="p">)</span>
+                <span class="p">{</span>
+                        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;Invalid Access&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+                        <span class="k">array</span><span class="p">(</span>
+                                <span class="s1">&#39;nickname&#39;</span>  <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Smitty&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;userid&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;99&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;url&#39;</span>       <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;http://yoursite.com&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;email&#39;</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;jsmith@yoursite.com&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;lastname&#39;</span>  <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                                <span class="s1">&#39;firstname&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+                        <span class="p">),</span>
+                         <span class="s1">&#39;struct&#39;</span>
+                <span class="p">);</span>
+
+                <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_response</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id11">
+<h5><a class="toc-backref" href="#id31" role="doc-backlink">참고:</a><a class="headerlink" href="#id11" title="Link to this heading">¶</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">output_parameters()</span></code> 메소드는 클라이언트가 전송한 요청 매개변수에 해당하는
+인덱스 배열을 검색합니다. 위 예시에서 출력 매개변수는 사용자 이름과 비밀번호입니다.</p>
+<p>클라이언트가 전송한 사용자 이름과 비밀번호가 유효하지 않으면 <code class="docutils literal notranslate"><span class="pre">send_error_message()</span></code>를
+사용하여 오류 메시지가 반환됩니다.</p>
+<p>작업이 성공하면 클라이언트에게 사용자 정보가 포함된 응답 배열이 전송됩니다.</p>
+</section>
+</section>
+<section id="id12">
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">응답 형식 지정</a><a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<p><em>요청</em>과 유사하게, <em>응답</em>도 배열로 형식을 지정해야 합니다. 그러나 요청과
+달리 응답은 <strong>단일 항목을 포함하는</strong> 배열입니다. 이 항목은 여러 추가 배열이
+있는 배열일 수 있지만 하나의 기본 배열 인덱스만 있을 수 있습니다. 즉, 기본
+프로토타입은 다음과 같습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Response data&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>그러나 응답에는 일반적으로 여러 정보가 포함됩니다. 이를 위해 기본 배열이 계속
+단일 데이터를 포함할 수 있도록 응답을 자체 배열에 넣어야 합니다. 다음은 이를
+수행하는 방법의 예시입니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;last_name&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;member_id&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="mi">123435</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;todo_list&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;clean house&#39;</span><span class="p">,</span> <span class="s1">&#39;call mom&#39;</span><span class="p">,</span> <span class="s1">&#39;water plants&#39;</span><span class="p">),</span> <span class="s1">&#39;array&#39;</span><span class="p">),</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;struct&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>위 배열은 struct로 형식화되어 있음에 주의하세요. 이것이 응답에 가장 일반적인
+데이터 타입입니다.</p>
+<p>요청과 마찬가지로 응답은 <a class="reference external" href="#datatypes">데이터 타입</a> 섹션에 나열된 7가지 데이터
+타입 중 하나가 될 수 있습니다.</p>
+</section>
+<section id="id14">
+<h4><a class="toc-backref" href="#id33" role="doc-backlink">오류 응답 전송</a><a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
+<p>클라이언트에게 오류 응답을 전송해야 하는 경우 다음을 사용합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;Requested data not available&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>첫 번째 매개변수는 오류 번호이고 두 번째 매개변수는 오류 메시지입니다.</p>
+</section>
+<section id="id15">
+<h4><a class="toc-backref" href="#id34" role="doc-backlink">클라이언트와 서버 직접 만들기</a><a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
+<p>지금까지 다룬 모든 내용을 이해하는 데 도움이 되도록, XML-RPC 클라이언트와 서버로
+작동하는 컨트롤러 한 쌍을 만들어 보겠습니다. 클라이언트를 사용하여 서버에 요청을
+전송하고 응답을 수신합니다.</p>
+<section id="id16">
+<h5><a class="toc-backref" href="#id35" role="doc-backlink">클라이언트</a><a class="headerlink" href="#id16" title="Link to this heading">¶</a></h5>
+<p>텍스트 편집기를 사용하여 Xmlrpc_client.php라는 컨트롤러를 만듭니다. 다음 코드를
+넣고 application/controllers/ 폴더에 저장합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Xmlrpc_client</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+                <span class="nv">$server_url</span> <span class="o">=</span> <span class="nx">site_url</span><span class="p">(</span><span class="s1">&#39;xmlrpc_server&#39;</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="nv">$server_url</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;Greetings&#39;</span><span class="p">);</span>
+
+                <span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;How is it going?&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_request</span><span class="p">())</span>
+                <span class="p">{</span>
+                        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                        <span class="k">echo</span> <span class="s1">&#39;&lt;pre&gt;&#39;</span><span class="p">;</span>
+                        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_response</span><span class="p">());</span>
+                        <span class="k">echo</span> <span class="s1">&#39;&lt;/pre&gt;&#39;</span><span class="p">;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>위 코드에서 “url helper”를 사용합니다. <a class="reference internal" href="../general/helpers.html"><span class="doc">헬퍼 함수</span></a>
+페이지에서 자세한 정보를 찾을 수 있습니다.</p>
+</div>
+</section>
+<section id="id17">
+<h5><a class="toc-backref" href="#id36" role="doc-backlink">서버</a><a class="headerlink" href="#id17" title="Link to this heading">¶</a></h5>
+<p>텍스트 편집기를 사용하여 Xmlrpc_server.php라는 컨트롤러를 만듭니다. 다음 코드를
+넣고 application/controllers/ 폴더에 저장합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Xmlrpc_server</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+
+                <span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;Greetings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Xmlrpc_server.process&#39;</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">serve</span><span class="p">();</span>
+        <span class="p">}</span>
+
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+
+                <span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+                        <span class="k">array</span><span class="p">(</span>
+                                <span class="s1">&#39;you_said&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s1">&#39;i_respond&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Not bad at all.&#39;</span>
+                        <span class="p">),</span>
+                        <span class="s1">&#39;struct&#39;</span>
+                <span class="p">);</span>
+
+                <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_response</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h5><a class="toc-backref" href="#id37" role="doc-backlink">실습!</a><a class="headerlink" href="#id18" title="Link to this heading">¶</a></h5>
+<p>이제 다음과 유사한 URL을 사용하여 사이트를 방문하세요:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">xmlrpc_client</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>이제 서버에 전송한 메시지와 서버의 응답을 볼 수 있습니다.</p>
+<p>생성한 클라이언트는 메시지(“How’s is going?”)를 서버에 전송하고 “Greetings” 메소드에
+대한 요청을 함께 보냅니다. 서버는 요청을 수신하고 <code class="docutils literal notranslate"><span class="pre">process()</span></code> 메소드로 매핑하여
+응답이 전송됩니다.</p>
+</section>
+</section>
+<section id="id19">
+<h4><a class="toc-backref" href="#id38" role="doc-backlink">요청 매개변수에 연관 배열 사용</a><a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
+<p>메소드 매개변수에 연관 배열을 사용하려면 struct 데이터 타입을 사용해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="c1">// Param 0</span>
+                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;struct&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+                <span class="c1">// Param 1</span>
+                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">&#39;size&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;shape&#39;</span><span class="o">=&gt;</span><span class="s1">&#39;round&#39;</span>
+                <span class="p">),</span>
+                <span class="s1">&#39;struct&#39;</span>
+        <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>서버에서 요청을 처리할 때 연관 배열을 검색할 수 있습니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+<span class="nv">$size</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;size&#39;</span><span class="p">];</span>
+<span class="nv">$shape</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;shape&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h4><a class="toc-backref" href="#id39" role="doc-backlink">데이터 타입</a><a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
+<p><a class="reference external" href="http://www.xmlrpc.com/spec">XML-RPC 사양</a>에 따르면 XML-RPC를 통해 전송할
+수 있는 7가지 타입의 값이 있습니다:</p>
+<ul class="simple">
+<li><p><em>int</em> 또는 <em>i4</em></p></li>
+<li><p><em>boolean</em></p></li>
+<li><p><em>string</em></p></li>
+<li><p><em>double</em></p></li>
+<li><p><em>dateTime.iso8601</em></p></li>
+<li><p><em>base64</em></p></li>
+<li><p><em>struct</em> (값 배열 포함)</p></li>
+<li><p><em>array</em> (값 배열 포함)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id22">
+<h2><a class="toc-backref" href="#id40" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#id22" title="Link to this heading">¶</a></h2>
+<dl class="php class">
+<dt class="sig sig-object php" id="CI_Xmlrpc">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CI_Xmlrpc</span></span><a class="headerlink" href="#CI_Xmlrpc" title="Link to this definition">¶</a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$config</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::initialize" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$config</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 설정 데이터</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>XML-RPC 라이브러리를 초기화합니다. 설정이 포함된 연관 배열을 허용합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::server">
+<span class="sig-name descname"><span class="pre">server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$url</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$port</span> <span class="pre">=</span> <span class="pre">80</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$proxy</span> <span class="pre">=</span> <span class="pre">FALSE</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$proxy_port</span> <span class="pre">=</span> <span class="pre">8080</span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::server" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$url</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – XML-RPC 서버 URL</p></li>
+<li><p><strong>$port</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 서버 포트</p></li>
+<li><p><strong>$proxy</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 선택적 프록시</p></li>
+<li><p><strong>$proxy_port</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 프록시 수신 포트</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>요청을 전송할 서버의 URL과 포트 번호를 설정합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://www.sometimes.com/pings.php&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>기본 HTTP 인증도 지원됩니다. 서버 URL에 추가하기만 하면 됩니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://user:pass@localhost/&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$seconds</span> <span class="pre">=</span> <span class="pre">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::timeout" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$seconds</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 제한 시간(초)</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>요청이 취소되는 제한 시간(초)을 설정합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">timeout</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 제한 시간은 원격 서버에 대한 초기 연결과 응답 가져오기 모두에 사용됩니다.
+<code class="docutils literal notranslate"><span class="pre">send_request()</span></code>를 호출하기 전에 제한 시간을 설정하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::method">
+<span class="sig-name descname"><span class="pre">method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$function</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::method" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$function</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 메소드 이름</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>XML-RPC 서버에서 요청할 메소드를 설정합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>여기서 method는 메소드의 이름입니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$incoming</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::request" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$incoming</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 요청 데이터</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>데이터 배열을 받아 XML-RPC 서버에 전송할 요청을 만듭니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;My Photoblog&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span> <span class="s1">&#39;http://www.yoursite.com/photoblog/&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::send_request" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>성공 시 TRUE, 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>요청 전송 메소드입니다. 성공 또는 실패를 기반으로 불리언 TRUE 또는 FALSE를
+반환하여 조건부로 사용할 수 있습니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::display_error">
+<span class="sig-name descname"><span class="pre">display_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::display_error" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>오류 메시지 문자열</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>어떤 이유로 요청이 실패한 경우 오류 메시지를 문자열로 반환합니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::display_response">
+<span class="sig-name descname"><span class="pre">display_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::display_response" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>응답</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+<p>요청이 수신된 후 원격 서버의 응답을 반환합니다. 응답은 일반적으로
+연관 배열입니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_response</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Xmlrpc::send_error_message">
+<span class="sig-name descname"><span class="pre">send_error_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">$number</span></em>, <em class="sig-param"><span class="pre">$message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Xmlrpc::send_error_message" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$number</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 오류 번호</p></li>
+<li><p><strong>$message</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>XML_RPC_Response 인스턴스</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">XML_RPC_Response</span></code></span></p>
+</dd>
+</dl>
+<p>이 메소드를 사용하면 서버에서 클라이언트로 오류 메시지를 전송할 수 있습니다.
+첫 번째 매개변수는 오류 번호이고 두 번째 매개변수는 오류 메시지입니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;Requested data not available&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="zip.html" class="btn btn-neutral float-right" title="Zip 인코딩 클래스">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_agent.html" class="btn btn-neutral" title="User Agent 클래스"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1160 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>이미지 조작 클래스 &mdash; CodeIgniter 3.1.14-dev 문서</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+        <link rel="index" title="색인"
+              href="../genindex.html"/>
+        <link rel="search" title="검색" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.14-dev 문서" href="../index.html"/>
+        <link rel="up" title="라이브러리" href="index.html"/>
+        <link rel="next" title="Input 클래스" href="input.html"/>
+        <link rel="prev" title="FTP 클래스" href="ftp.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" integrity="sha384-vEQs6vKzb8v6+GpGDCnXUQ6aa2DYtn5LTi/tA/85iEZfXN0nAYj0shvYo8ldQQ7m" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">CodeIgniter에 오신 것을 환영합니다</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">설치 방법</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">CodeIgniter 다운로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">설치 방법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">이전 버전에서 업그레이드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">문제 해결</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 개요</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">시작하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 한눈에 보기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">지원 기능</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">애플리케이션 흐름도</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">아키텍처 목표</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">정적 페이지</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">뉴스 섹션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">뉴스 항목 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">결론</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer’s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">일반 주제</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">컨트롤러</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">예약된 이름</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">뷰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">모델</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">CodeIgniter 라이브러리 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">라이브러리 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">CodeIgniter 드라이버 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">드라이버 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">코어 시스템 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">보조 클래스 만들기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">훅 - 프레임워크 코어 확장</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">리소스 자동 로드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">공통 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">호환성 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 라우팅</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">에러 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">애플리케이션 프로파일링</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">CLI를 통한 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">애플리케이션 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">여러 환경 처리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">뷰 파일을 위한 PHP 대안 구문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 스타일 가이드</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">라이브러리</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">벤치마킹 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">캐싱 드라이버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">캘린더링 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">암호화 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">파일 업로드 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">폼 유효성 검사</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 클래스</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">이미지 조작 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">마이그레이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">페이지네이션 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">템플릿 파서 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 라이브러리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 테이블 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">단위 테스트 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 및 XML-RPC 서버 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 인코딩 클래스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 레퍼런스</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예시</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">쿼리 캐싱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Forge를 이용한 데이터베이스 조작</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티 클래스</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">데이터베이스 드라이버 레퍼런스</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">헬퍼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">배열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">날짜 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">디렉터리 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">다운로드 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">파일 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">언어 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">숫자 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">경로 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">보안 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">문자열 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">텍스트 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 헬퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 헬퍼</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">라이브러리</a> &raquo;</li>
+      
+    <li>이미지 조작 클래스</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="id1">
+<h1>이미지 조작 클래스<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>CodeIgniter의 이미지 조작 클래스를 사용하면 다음 작업을 수행할 수 있습니다:</p>
+<ul class="simple">
+<li><p>이미지 크기 조정</p></li>
+<li><p>썸네일 생성</p></li>
+<li><p>이미지 자르기</p></li>
+<li><p>이미지 회전</p></li>
+<li><p>이미지 워터마크</p></li>
+</ul>
+<p>지원되는 세 가지 주요 이미지 라이브러리: GD/GD2, NetPBM, ImageMagick</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>워터마킹은 GD/GD2 라이브러리를 사용할 때만 가능합니다. 또한 다른
+라이브러리가 지원되더라도 스크립트가 이미지 속성을 계산하기 위해 GD가
+필요합니다. 그러나 이미지 처리는 지정한 라이브러리로 수행됩니다.</p>
+</div>
+<nav class="contents local" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id3" id="id15">클래스 초기화</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id16">이미지 처리</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id17">처리 방법</a></p></li>
+<li><p><a class="reference internal" href="#processing-preferences" id="id18">설정</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id19">설정 파일에서 설정</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id20">이미지 워터마킹</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id21">워터마킹의 두 가지 유형</a></p></li>
+<li><p><a class="reference internal" href="#watermarking" id="id22">이미지 워터마킹</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id23">워터마킹 설정</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id12" id="id24">텍스트 설정</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id25">오버레이 설정</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id14" id="id26">클래스 레퍼런스</a></p></li>
+</ul>
+</nav>
+<div class="custom-index container"></div><section id="id3">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">클래스 초기화</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>CodeIgniter의 대부분의 클래스와 마찬가지로 이미지 클래스는 컨트롤러에서
+$this-&gt;load-&gt;library 함수를 사용하여 초기화합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;image_lib&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>라이브러리가 로드되면 바로 사용할 수 있습니다. 모든 함수를 호출하는 데
+사용할 이미지 라이브러리 객체는 <code class="docutils literal notranslate"><span class="pre">$this-&gt;image_lib</span></code>입니다.</p>
+<section id="id4">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">이미지 처리</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>수행하려는 처리 유형(크기 조정, 자르기, 회전, 워터마크)에 관계없이 일반적인
+과정은 동일합니다. 수행하려는 작업에 맞는 설정을 지정한 다음 사용 가능한
+네 가지 처리 함수 중 하나를 호출합니다. 예를 들어 이미지 썸네일을 생성하려면:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gd2&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;create_thumb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;maintain_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>         <span class="o">=</span> <span class="mi">75</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>       <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;image_lib&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">resize</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>위 코드는 image_resize 함수에 source_image 폴더에 있는 <em>mypic.jpg</em>라는 이미지를
+찾아 GD2 image_library를 사용하여 75 X 50 픽셀의 썸네일을 생성하도록 지시합니다.
+maintain_ratio 옵션이 활성화되어 있으므로 원본 가로세로 비율을 유지하면서 목표
+너비와 높이에 최대한 가깝게 조정됩니다. 썸네일은 <em>mypic_thumb.jpg</em>라고 명명되며
+<em>source_image</em>와 같은 위치에 저장됩니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이미지 클래스가 처리 작업을 수행하려면 이미지 파일이 있는 폴더에
+쓰기 권한이 있어야 합니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이미지 처리는 일부 작업에서 상당한 양의 서버 메모리를 필요로 할 수
+있습니다. 이미지를 처리하는 동안 메모리 부족 오류가 발생하면 최대 크기를
+제한하거나 PHP 메모리 제한을 조정해야 할 수 있습니다.</p>
+</div>
+</section>
+<section id="id5">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">처리 방법</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p>사용 가능한 네 가지 처리 방법이 있습니다:</p>
+<ul class="simple">
+<li><p>$this-&gt;image_lib-&gt;resize()</p></li>
+<li><p>$this-&gt;image_lib-&gt;crop()</p></li>
+<li><p>$this-&gt;image_lib-&gt;rotate()</p></li>
+<li><p>$this-&gt;image_lib-&gt;watermark()</p></li>
+</ul>
+<p>이 메소드들은 성공 시 boolean TRUE, 실패 시 FALSE를 반환합니다.
+실패한 경우 다음 함수를 사용하여 오류 메시지를 가져올 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>좋은 방법은 처리 함수를 조건부로 사용하여 실패 시 오류를 표시하는 것입니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">resize</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>다음과 같이 함수에 열기/닫기 태그를 전달하여 오류에 적용할 HTML
+서식을 선택적으로 지정할 수 있습니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="processing-preferences">
+<span id="id6"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">설정</a><a class="headerlink" href="#processing-preferences" title="Link to this heading">¶</a></h3>
+<p>아래에 설명된 설정을 통해 이미지 처리를 필요에 맞게 조정할 수 있습니다.</p>
+<p>모든 설정이 모든 함수에 적용되는 것은 아닙니다. 예를 들어 x/y 축 설정은
+이미지 자르기에만 사용할 수 있습니다. 마찬가지로 너비와 높이 설정은 자르기에
+영향을 미치지 않습니다. “가용성” 열은 어떤 함수가 해당 설정을 지원하는지
+나타냅니다.</p>
+<p>가용성 범례:</p>
+<ul class="simple">
+<li><p>R - 이미지 크기 조정</p></li>
+<li><p>C - 이미지 자르기</p></li>
+<li><p>X - 이미지 회전</p></li>
+<li><p>W - 이미지 워터마크</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>설정</p></th>
+<th class="head"><p>기본값</p></th>
+<th class="head"><p>옵션</p></th>
+<th class="head"><p>설명</p></th>
+<th class="head"><p>가용성</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>image_library</strong></p></td>
+<td><p>GD2</p></td>
+<td><p>GD, GD2, ImageMagick, NetPBM</p></td>
+<td><p>사용할 이미지 라이브러리를 설정합니다.</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>library_path</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>ImageMagick 또는 NetPBM 라이브러리의 서버 경로를 설정합니다. 해당
+라이브러리 중 하나를 사용하는 경우 경로를 제공해야 합니다.</p></td>
+<td><p>R, C, X</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>source_image</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>소스 이미지 이름/경로를 설정합니다. 경로는 URL이 아닌 상대 경로 또는
+절대 서버 경로여야 합니다.</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>dynamic_output</strong></p></td>
+<td><p>FALSE</p></td>
+<td><p>TRUE/FALSE (boolean)</p></td>
+<td><p>새 이미지 파일을 디스크에 저장할지 동적으로 생성할지 결정합니다.
+참고: 동적 설정을 선택하면 한 번에 하나의 이미지만 표시할 수 있으며
+페이지에서 위치를 지정할 수 없습니다. 이미지 헤더와 함께 브라우저에
+원시 이미지를 동적으로 출력합니다.</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>file_permissions</strong></p></td>
+<td><p>0644</p></td>
+<td><p>(정수)</p></td>
+<td><p>결과 이미지 파일에 적용할 파일 시스템 권한입니다. 경고: 8진수 정수
+표기법을 사용하세요!</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>quality</strong></p></td>
+<td><p>90%</p></td>
+<td><p>1 - 100%</p></td>
+<td><p>이미지 품질을 설정합니다. 품질이 높을수록 파일 크기가 커집니다.</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>new_image</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>대상 이미지 이름/경로를 설정합니다. 이미지 복사본을 만들 때 사용합니다.
+경로는 URL이 아닌 상대 경로 또는 절대 서버 경로여야 합니다.</p></td>
+<td><p>R, C, X, W</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>width</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>이미지를 설정할 너비를 지정합니다.</p></td>
+<td><p>R, C</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>height</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>이미지를 설정할 높이를 지정합니다.</p></td>
+<td><p>R, C</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>create_thumb</strong></p></td>
+<td><p>FALSE</p></td>
+<td><p>TRUE/FALSE (boolean)</p></td>
+<td><p>이미지 처리 함수에 썸네일을 생성하도록 지시합니다.</p></td>
+<td><p>R</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>thumb_marker</strong></p></td>
+<td><p>_thumb</p></td>
+<td><p>없음</p></td>
+<td><p>썸네일 표시자를 지정합니다. 파일 확장자 바로 앞에 삽입되어
+mypic.jpg는 mypic_thumb.jpg가 됩니다.</p></td>
+<td><p>R</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>maintain_ratio</strong></p></td>
+<td><p>TRUE</p></td>
+<td><p>TRUE/FALSE (boolean)</p></td>
+<td><p>크기 조정 또는 하드 값 사용 시 원본 가로세로 비율을 유지할지 여부를
+지정합니다.</p></td>
+<td><p>R, C</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>master_dim</strong></p></td>
+<td><p>auto</p></td>
+<td><p>auto, width, height</p></td>
+<td><p>크기 조정 또는 썸네일 생성 시 기준 축으로 사용할 항목을 지정합니다.
+예를 들어 이미지를 100 X 75 픽셀로 크기 조정하려는 경우, 소스 이미지
+크기가 해당 치수에 완벽하게 맞지 않으면 이 설정이 어느 축을 하드 값으로
+사용할지 결정합니다. “auto”는 이미지가 더 높은지 더 넓은지에 따라 자동으로
+축을 설정합니다.</p></td>
+<td><p>R</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>rotation_angle</strong></p></td>
+<td><p>없음</p></td>
+<td><p>90, 180, 270, vrt, hor</p></td>
+<td><p>이미지 회전 시 회전 각도를 지정합니다. PHP는 반시계 방향으로 회전하므로
+오른쪽으로 90도 회전은 270으로 지정해야 합니다.</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>x_axis</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>이미지 자르기를 위한 X 좌표(픽셀)를 설정합니다. 예를 들어 30으로 설정하면
+왼쪽에서 30픽셀만큼 이미지를 자릅니다.</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>y_axis</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>이미지 자르기를 위한 Y 좌표(픽셀)를 설정합니다. 예를 들어 30으로 설정하면
+위쪽에서 30픽셀만큼 이미지를 자릅니다.</p></td>
+<td><p>C</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">설정 파일에서 설정</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>위의 방법으로 설정을 지정하지 않으려면 설정 파일에 넣을 수 있습니다. image_lib.php라는
+새 파일을 만들고 해당 파일에 $config 배열을 추가하세요. 그런 다음 파일을
+<em>config/image_lib.php</em>에 저장하면 자동으로 사용됩니다. 설정 파일에 설정을 저장하면
+<code class="docutils literal notranslate"><span class="pre">$this-&gt;image_lib-&gt;initialize()</span></code> 메소드를 사용할 필요가 없습니다.</p>
+</section>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">이미지 워터마킹</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<p>워터마킹 기능은 GD/GD2 라이브러리가 필요합니다.</p>
+<section id="id9">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">워터마킹의 두 가지 유형</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>사용할 수 있는 두 가지 유형의 워터마킹이 있습니다:</p>
+<ul class="simple">
+<li><p><strong>텍스트</strong>: 워터마크 메시지는 지정한 True Type 폰트 또는 GD 라이브러리가
+지원하는 기본 텍스트 출력을 사용하여 텍스트로 생성됩니다. True Type 버전을
+사용하는 경우 GD 설치에 True Type 지원이 컴파일되어 있어야 합니다(대부분은
+지원하지만 모두는 아닙니다).</p></li>
+<li><p><strong>오버레이</strong>: 워터마크 메시지는 소스 이미지 위에 워터마크가 포함된 이미지
+(일반적으로 투명 PNG 또는 GIF)를 오버레이하여 생성됩니다.</p></li>
+</ul>
+</section>
+<section id="watermarking">
+<span id="id10"></span><h3><a class="toc-backref" href="#id22" role="doc-backlink">이미지 워터마킹</a><a class="headerlink" href="#watermarking" title="Link to this heading">¶</a></h3>
+<p>다른 메소드(크기 조정, 자르기, 회전)와 마찬가지로 워터마킹의 일반적인 과정은
+수행하려는 작업에 맞는 설정을 지정한 다음 watermark 함수를 호출합니다. 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2006 - John Doe&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;./system/fonts/texb.ttf&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;16&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ffffff&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_vrt_alignment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_hor_alignment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">watermark</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>위 예시는 16픽셀 True Type 폰트를 사용하여 “Copyright 2006 - John Doe” 텍스트를
+생성합니다. 워터마크는 이미지 하단 중앙, 이미지 하단에서 20픽셀 위에 위치합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>이미지 클래스가 처리 작업을 수행하려면 이미지 파일에 “쓰기” 파일 권한이
+있어야 합니다. 예를 들어 777.</p>
+</div>
+</section>
+<section id="id11">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">워터마킹 설정</a><a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<p>이 표는 두 가지 유형의 워터마킹(텍스트 또는 오버레이) 모두에 사용 가능한 설정을
+보여줍니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>설정</p></th>
+<th class="head"><p>기본값</p></th>
+<th class="head"><p>옵션</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>wm_type</strong></p></td>
+<td><p>text</p></td>
+<td><p>text, overlay</p></td>
+<td><p>사용할 워터마킹 유형을 설정합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>source_image</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>소스 이미지 이름/경로를 설정합니다. 경로는 URL이 아닌 상대 경로 또는
+절대 서버 경로여야 합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>dynamic_output</strong></p></td>
+<td><p>FALSE</p></td>
+<td><p>TRUE/FALSE (boolean)</p></td>
+<td><p>새 이미지 파일을 디스크에 저장할지 동적으로 생성할지 결정합니다.
+참고: 동적 설정을 선택하면 한 번에 하나의 이미지만 표시할 수 있으며
+페이지에서 위치를 지정할 수 없습니다. 이미지 헤더와 함께 브라우저에
+원시 이미지를 동적으로 출력합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>quality</strong></p></td>
+<td><p>90%</p></td>
+<td><p>1 - 100%</p></td>
+<td><p>이미지 품질을 설정합니다. 품질이 높을수록 파일 크기가 커집니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_padding</strong></p></td>
+<td><p>없음</p></td>
+<td><p>숫자</p></td>
+<td><p>워터마크를 이미지 가장자리에서 떨어뜨리기 위해 픽셀 단위로 설정되는
+패딩 양입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_vrt_alignment</strong></p></td>
+<td><p>bottom</p></td>
+<td><p>top, middle, bottom</p></td>
+<td><p>워터마크 이미지의 수직 정렬을 설정합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_hor_alignment</strong></p></td>
+<td><p>center</p></td>
+<td><p>left, center, right</p></td>
+<td><p>워터마크 이미지의 수평 정렬을 설정합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_hor_offset</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>워터마크 위치에 적용할 수평 오프셋(픽셀)을 지정할 수 있습니다. 오프셋은
+일반적으로 워터마크를 오른쪽으로 이동시키지만, 정렬이 “right”로 설정된
+경우 오프셋 값이 워터마크를 이미지 왼쪽으로 이동시킵니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_vrt_offset</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>워터마크 위치에 적용할 수직 오프셋(픽셀)을 지정할 수 있습니다. 오프셋은
+일반적으로 워터마크를 아래로 이동시키지만, 정렬이 “bottom”으로 설정된
+경우 오프셋 값이 워터마크를 이미지 위쪽으로 이동시킵니다.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id12">
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">텍스트 설정</a><a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<p>이 표는 텍스트 유형 워터마킹에 사용 가능한 설정을 보여줍니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>설정</p></th>
+<th class="head"><p>기본값</p></th>
+<th class="head"><p>옵션</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>wm_text</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>워터마크로 표시할 텍스트입니다. 일반적으로 저작권 고지입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_font_path</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>사용할 True Type 폰트의 서버 경로입니다. 이 옵션을 사용하지 않으면
+기본 GD 폰트가 사용됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_font_size</strong></p></td>
+<td><p>16</p></td>
+<td><p>없음</p></td>
+<td><p>텍스트 크기입니다. 참고: True Type 옵션을 사용하지 않는 경우 숫자는
+1-5 범위로 설정됩니다. 그렇지 않으면 사용 중인 폰트에 유효한 픽셀 크기를
+사용할 수 있습니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_font_color</strong></p></td>
+<td><p>ffffff</p></td>
+<td><p>없음</p></td>
+<td><p>16진수로 지정된 폰트 색상입니다. 전체 6자리(예: 993300)와 축약된 3자리
+버전(예: fff) 모두 지원됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_shadow_color</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>16진수로 지정된 드롭 섀도우 색상입니다. 비워두면 드롭 섀도우가 사용되지
+않습니다. 전체 6자리(예: 993300)와 축약된 3자리 버전(예: fff) 모두
+지원됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_shadow_distance</strong></p></td>
+<td><p>2</p></td>
+<td><p>없음</p></td>
+<td><p>드롭 섀도우가 표시될 폰트로부터의 거리(픽셀)입니다.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id13">
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">오버레이 설정</a><a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<p>이 표는 오버레이 유형 워터마킹에 사용 가능한 설정을 보여줍니다.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>설정</p></th>
+<th class="head"><p>기본값</p></th>
+<th class="head"><p>옵션</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>wm_overlay_path</strong></p></td>
+<td><p>없음</p></td>
+<td><p>없음</p></td>
+<td><p>워터마크로 사용할 이미지의 서버 경로입니다. 오버레이 방법을 사용하는
+경우에만 필요합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_opacity</strong></p></td>
+<td><p>50</p></td>
+<td><p>1 - 100</p></td>
+<td><p>이미지 불투명도입니다. 워터마크 이미지의 불투명도(즉, 투명도)를 지정할
+수 있습니다. 이를 통해 워터마크가 희미하게 보이고 뒤에 있는 원본 이미지의
+세부 정보를 완전히 가리지 않도록 할 수 있습니다. 일반적으로 50% 불투명도가
+사용됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>wm_x_transp</strong></p></td>
+<td><p>4</p></td>
+<td><p>숫자</p></td>
+<td><p>워터마크 이미지가 PNG 또는 GIF 이미지인 경우 이미지의 특정 색상을
+“투명”으로 지정할 수 있습니다. 이 설정(및 다음 설정)을 통해 해당 색상을
+지정할 수 있습니다. 투명하게 만들 색상에 해당하는 픽셀의 이미지 내
+“X” 및 “Y” 좌표(왼쪽 상단에서 측정)를 지정하여 작동합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>wm_y_transp</strong></p></td>
+<td><p>4</p></td>
+<td><p>숫자</p></td>
+<td><p>이전 설정과 함께 투명하게 만들 색상에 해당하는 픽셀의 좌표를 지정할
+수 있습니다.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<dl class="php class">
+<dt class="sig sig-object php" id="CI_Image_lib">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CI_Image_lib</span></span><a class="headerlink" href="#CI_Image_lib" title="Link to this definition">¶</a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$props</span> <span class="pre">=</span> <span class="pre">array()</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::initialize" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$props</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 이미지 처리 설정</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>성공 시 TRUE, 잘못된 설정의 경우 FALSE</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>이미지 처리를 위해 클래스를 초기화합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::resize">
+<span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::resize" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>성공 시 TRUE, 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>이미지 크기 조정 메소드를 사용하면 원본 이미지의 크기를 조정하거나,
+복사본을 만들거나(크기 조정 여부 관계없이), 썸네일 이미지를 만들 수 있습니다.</p>
+<p>실용적인 목적에서 복사본 만들기와 썸네일 만들기의 차이점은 썸네일에는
+이름의 일부로 썸네일 표시자(예: mypic_thumb.jpg)가 포함된다는 것입니다.</p>
+<p><a class="reference internal" href="#processing-preferences"><span class="std std-ref">설정</span></a> 표에 나열된 모든 설정이 이 메소드에서
+사용 가능하지만 <em>rotation_angle</em>, <em>x_axis</em>, <em>y_axis</em>는 제외됩니다.</p>
+<p><strong>썸네일 만들기</strong></p>
+<p>이 설정을 TRUE로 설정하면 크기 조정 메소드가 썸네일 파일을 만듭니다
+(원본을 보존합니다):</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;create_thumb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>이 단일 설정이 썸네일을 만들지 여부를 결정합니다.</p>
+<p><strong>복사본 만들기</strong></p>
+<p>이 설정을 사용하여 경로 및/또는 새 파일 이름을 설정하면 크기 조정 메소드가
+이미지 파일의 복사본을 만듭니다(원본을 보존합니다):</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;new_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/new_image.jpg&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>이 설정에 관한 참고 사항:</p>
+<ul class="simple">
+<li><p>새 이미지 이름만 지정하면 원본과 같은 폴더에 배치됩니다.</p></li>
+<li><p>경로만 지정하면 새 이미지가 원본과 같은 이름으로 대상에 배치됩니다.</p></li>
+<li><p>경로와 이미지 이름을 모두 지정하면 새 이름으로 대상 경로에 배치됩니다.</p></li>
+</ul>
+<p><strong>원본 이미지 크기 조정</strong></p>
+<p>위의 두 설정(create_thumb, new_image) 중 어느 것도 사용하지 않으면
+크기 조정 메소드가 처리 대상으로 원본 이미지를 사용합니다.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::crop">
+<span class="sig-name descname"><span class="pre">crop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::crop" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>성공 시 TRUE, 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>자르기 메소드는 크기 조정 함수와 거의 동일하게 작동하지만 다음과 같이
+자를 위치를 지정하는 X 및 Y 축(픽셀) 설정이 필요합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;x_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;y_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#processing-preferences"><span class="std std-ref">설정</span></a> 표에 나열된 모든 설정이 이 메소드에서
+사용 가능하지만 <em>rotation_angle</em>, <em>create_thumb</em>, <em>new_image</em>는 제외됩니다.</p>
+<p>이미지를 자르는 방법의 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;imagemagick&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;library_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/usr/X11R6/bin/&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;x_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;y_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">crop</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>시각적 인터페이스 없이는 이미지를 자르기 어렵기 때문에 그러한
+인터페이스를 만들려는 의도가 없으면 이 메소드는 그다지 유용하지 않습니다.
+저희가 개발한 CMS인 ExpressionEngine의 사진 갤러리 모듈에 정확히 이런
+기능을 추가했습니다. 자르기 영역을 선택할 수 있는 JavaScript UI를
+추가했습니다. (EllisLab 제공)</p>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::rotate" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>성공 시 TRUE, 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>이미지 회전 메소드는 설정을 통해 회전 각도를 설정해야 합니다:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;rotation_angle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;90&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>5가지 회전 옵션이 있습니다:</p>
+<ol class="arabic simple">
+<li><p>90 - 반시계 방향으로 90도 회전합니다.</p></li>
+<li><p>180 - 반시계 방향으로 180도 회전합니다.</p></li>
+<li><p>270 - 반시계 방향으로 270도 회전합니다.</p></li>
+<li><p>hor - 이미지를 수평으로 뒤집습니다.</p></li>
+<li><p>vrt - 이미지를 수직으로 뒤집습니다.</p></li>
+</ol>
+<p>이미지를 회전하는 방법의 예시:</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;netpbm&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;library_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;rotation_angle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hor&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">rotate</span><span class="p">())</span>
+<span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::watermark">
+<span class="sig-name descname"><span class="pre">watermark</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::watermark" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환<span class="colon">:</span></dt>
+<dd class="field-odd"><p>성공 시 TRUE, 실패 시 FALSE</p>
+</dd>
+<dt class="field-even">반환 형식<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<p>이미지 위에 워터마크를 만듭니다. 자세한 내용은 <a class="reference internal" href="#watermarking"><span class="std std-ref">이미지 워터마킹</span></a>
+섹션을 참조하세요.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::clear" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+<p>clear 메소드는 이미지를 처리할 때 사용된 모든 값을 초기화합니다.
+반복문에서 이미지를 처리하는 경우 이 메소드를 호출해야 합니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="CI_Image_lib::display_errors">
+<span class="sig-name descname"><span class="pre">display_errors</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">$open</span> <span class="pre">=</span> <span class="pre">'&lt;p&gt;</span></em><span class="optional">[</span>, <em class="sig-param"><span class="pre">$close</span> <span class="pre">=</span> <span class="pre">'&lt;/p&gt;'</span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Image_lib::display_errors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">매개변수<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$open</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 시작 태그</p></li>
+<li><p><strong>$close</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 오류 메시지 닫기 태그</p></li>
+</ul>
+</dd>
+<dt class="field-even">반환<span class="colon">:</span></dt>
+<dd class="field-even"><p>오류 메시지</p>
+</dd>
+<dt class="field-odd">반환 형식<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+<p>감지된 모든 오류를 문자열 형식으로 반환합니다.</p>
+<div class="highlight-ci notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="input.html" class="btn btn-neutral float-right" title="Input 클래스">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ftp.html" class="btn btn-neutral" title="FTP 클래스"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 - 2022, CodeIgniter Foundation.
+      최종 업데이트: 5월 22, 2026
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.14-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
