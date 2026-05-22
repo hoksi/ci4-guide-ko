@@ -95,10 +95,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">설정</a></li>
 <li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼 함수</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수와 상수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">로깅 정보</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errors.html">오류 처리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">웹 페이지 캐싱</a></li>
@@ -293,7 +293,7 @@
 <h1>AJAX 요청<a class="headerlink" href="#ajax-requests" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">IncomingRequest::isAJAX()</span></code> 메서드는 요청이 XHR인지 일반 요청인지 판단하기 위해 <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> 헤더를 사용합니다. 그러나 최신 JavaScript 구현(예: fetch)은 더 이상 이 헤더를 요청과 함께 전송하지 않으므로, 이 헤더가 없으면 요청이 XHR인지 아닌지 판단할 수 없어 <code class="docutils literal notranslate"><span class="pre">IncomingRequest::isAJAX()</span></code> 사용의 신뢰성이 낮아집니다.</p>
 <p>이 문제를 해결하는 가장 효율적인 방법(현재까지)은 요청 헤더를 수동으로 정의하여 해당 정보를 서버로 강제로 전송하는 것이며, 그러면 서버가 그 요청이 XHR임을 식별할 수 있습니다.</p>
-<p>Here are common ways to send the <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> header in the Fetch API and other JavaScript libraries.</p>
+<p>다음은 Fetch API와 다른 JavaScript 라이브러리에서 <code class="docutils literal notranslate"><span class="pre">X-Requested-With</span></code> 헤더를 전송하는 일반적인 방법입니다.</p>
 <nav class="contents local" id="id1">
 <ul class="simple">
 <li><p><a class="reference internal" href="#fetch-api" id="id2">Fetch API</a></p></li>

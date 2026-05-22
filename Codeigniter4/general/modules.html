@@ -95,10 +95,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">일반 주제</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">설정</a></li>
 <li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpers.html">헬퍼 함수</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수 및 상수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">전역 함수와 상수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">로깅 정보</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errors.html">오류 처리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">웹 페이지 캐싱</a></li>
@@ -292,7 +292,7 @@
   <section id="code-modules">
 <h1>코드 모듈<a class="headerlink" href="#code-modules" title="Link to this heading"></a></h1>
 <p>CodeIgniter는 재사용 가능한 코드를 생성하는 데 도움이 되는 코드 모듈화 형식을 지원합니다. 모듈은 일반적으로 특정 주제를 중심으로 하며 대규모 애플리케이션 내의 미니 애플리케이션으로 생각할 수 있습니다.</p>
-<p>컨트롤러, 모델, 보기, 구성 파일, 도우미, 언어 파일 등과 같은 프레임워크 내의 모든 표준 파일 형식이 지원됩니다. 모듈에는 원하는 만큼 이러한 파일 형식이 포함될 수 있습니다.</p>
+<p>컨트롤러, 모델, 보기, 설정 파일, 헬퍼, 언어 파일 등과 같은 프레임워크 내의 모든 표준 파일 형식이 지원됩니다. 모듈에는 원하는 만큼 이러한 파일 형식이 포함될 수 있습니다.</p>
 <p>모듈을 Composer 패키지로 생성하려면 <a class="reference internal" href="../extending/composer_packages.html"><span class="doc">Composer 패키지 만들기</span></a>도 참조하세요.</p>
 <nav class="contents local" id="id1">
 <ul class="simple">
@@ -302,20 +302,20 @@
 <ul>
 <li><p><a class="reference internal" href="#enable-disable-discover" id="id6">검색 활성화/비활성화</a></p></li>
 <li><p><a class="reference internal" href="#specify-discovery-items" id="id7">검색 항목 지정</a></p></li>
-<li><p><a class="reference internal" href="#discovery-and-composer" id="id8">발견과 작곡가</a></p></li>
+<li><p><a class="reference internal" href="#discovery-and-composer" id="id8">검색과 Composer</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#working-with-files" id="id9">파일 작업</a></p>
 <ul>
-<li><p><a class="reference internal" href="#routes" id="id10">노선</a></p></li>
+<li><p><a class="reference internal" href="#routes" id="id10">라우트</a></p></li>
 <li><p><a class="reference internal" href="#filters" id="id11">필터</a></p></li>
 <li><p><a class="reference internal" href="#controllers" id="id12">컨트롤러</a></p></li>
-<li><p><a class="reference internal" href="#config-files" id="id13">구성 파일</a></p></li>
+<li><p><a class="reference internal" href="#config-files" id="id13">설정 파일</a></p></li>
 <li><p><a class="reference internal" href="#migrations" id="id14">마이그레이션</a></p></li>
-<li><p><a class="reference internal" href="#seeds" id="id15">씨앗</a></p></li>
+<li><p><a class="reference internal" href="#seeds" id="id15">시드</a></p></li>
 <li><p><a class="reference internal" href="#helpers" id="id16">헬퍼(Helpers)</a></p></li>
 <li><p><a class="reference internal" href="#language-files" id="id17">언어 파일</a></p></li>
-<li><p><a class="reference internal" href="#libraries" id="id18">도서관</a></p></li>
+<li><p><a class="reference internal" href="#libraries" id="id18">라이브러리</a></p></li>
 <li><p><a class="reference internal" href="#models" id="id19">모델(Models)</a></p></li>
 <li><p><a class="reference internal" href="#views" id="id20">뷰(Views)</a></p></li>
 </ul>
@@ -324,7 +324,7 @@
 </nav>
 <section id="namespaces">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">네임스페이스</a><a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
-<p>모듈 기능의 핵심 요소는 CodeIgniter가 사용하는 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR-4 compatible autoloading</span></a>에서 나옵니다. 모든 코드에서 PSR-4 자동 로더와 네임스페이스를 사용할 수 있지만 모듈을 최대한 활용하는 기본 방법은 코드에 네임스페이스를 지정하고 이를 <code class="docutils literal notranslate"><span class="pre">$psr4</span></code> 속성의 <strong>app/Config/Autoload.php</strong>에 추가하는 것입니다.</p>
+<p>모듈 기능의 핵심 요소는 CodeIgniter가 사용하는 <a class="reference internal" href="../concepts/autoloader.html"><span class="doc">PSR-4 compatible autoloading</span></a>에서 나옵니다. 모든 코드에서 PSR-4 오토로더와 네임스페이스를 사용할 수 있지만 모듈을 최대한 활용하는 기본 방법은 코드에 네임스페이스를 지정하고 이를 <code class="docutils literal notranslate"><span class="pre">$psr4</span></code> 속성의 <strong>app/Config/Autoload.php</strong>에 추가하는 것입니다.</p>
 <p>예를 들어, 애플리케이션 간에 재사용할 수 있는 간단한 블로그 모듈을 유지하고 싶다고 가정해 보겠습니다. 회사 이름이 Acme인 폴더를 만들어 모든 모듈을 저장할 수 있습니다. 기본 프로젝트 루트의 <strong>app</strong> 디렉터리 바로 옆에 배치하겠습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">acme</span><span class="o">/</span>        <span class="c1">// New modules directory</span>
 <span class="nx">app</span><span class="o">/</span>
@@ -403,7 +403,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../extending/events.html"><span class="doc">Events</span></a></p></li>
 <li><p><a class="reference internal" href="../incoming/filters.html"><span class="doc">Filters</span></a></p></li>
-<li><p><a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">등록기관</span></a></p></li>
+<li><p><a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">Registrar</span></a></p></li>
 <li><p><a class="reference internal" href="../incoming/routing.html"><span class="doc">Route files</span></a></p></li>
 <li><p><a class="reference internal" href="../concepts/services.html"><span class="doc">Services</span></a></p></li>
 </ul>
@@ -419,7 +419,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">$aliases</span></code> 옵션을 사용하면 자동으로 검색되는 항목을 지정할 수 있습니다. 항목이 없으면 해당 항목에 대한 자동 검색이 수행되지 않지만 배열의 다른 항목은 계속 검색됩니다.</p>
 </section>
 <section id="discovery-and-composer">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">발견과 작곡가</a><a class="headerlink" href="#discovery-and-composer" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">검색과 Composer</a><a class="headerlink" href="#discovery-and-composer" title="Link to this heading"></a></h3>
 <p>PSR-4 네임스페이스를 사용하여 Composer를 통해 설치된 패키지도 기본적으로 검색됩니다. PSR-0 네임스페이스 패키지는 감지되지 않습니다.</p>
 <section id="specify-composer-packages">
 <span id="modules-specify-composer-packages"></span><h4>Composer 패키지 지정<a class="headerlink" href="#specify-composer-packages" title="Link to this heading"></a></h4>
@@ -495,8 +495,8 @@
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">파일 작업</a><a class="headerlink" href="#working-with-files" title="Link to this heading"></a></h2>
 <p>이 섹션에서는 각 파일 유형(컨트롤러, 뷰, 언어 파일 등)을 살펴보고 모듈 내에서 이를 사용하는 방법을 살펴보겠습니다. 이 정보 중 일부는 사용자 가이드의 관련 위치에 더 자세히 설명되어 있지만, 모든 정보가 어떻게 결합되는지 더 쉽게 이해할 수 있도록 여기에 재현되어 있습니다.</p>
 <section id="routes">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">노선</a><a class="headerlink" href="#routes" title="Link to this heading"></a></h3>
-<p>기본적으로 <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 구성 파일에서 끌 수 있습니다.</p>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">라우트</a><a class="headerlink" href="#routes" title="Link to this heading"></a></h3>
+<p>기본적으로 <a class="reference internal" href="../incoming/routing.html"><span class="doc">routes</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 설정 파일에서 끌 수 있습니다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
 <p>파일이 현재 범위에 포함되므로 <code class="docutils literal notranslate"><span class="pre">$routes</span></code> 인스턴스가 이미 정의되어 있습니다. 해당 클래스를 재정의하려고 하면 오류가 발생합니다.</p>
@@ -510,7 +510,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>이 기능은 더 이상 사용되지 않습니다. 대신 다음과 같이 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">등록기관</span></a>을 사용하세요.</p>
+<p>이 기능은 더 이상 사용되지 않습니다. 대신 다음과 같이 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">Registrar</span></a>을 사용하세요.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">CodeIgniter\Shield\Config</span><span class="p">;</span>
@@ -536,7 +536,7 @@
 </pre></div>
 </div>
 </div>
-<p>기본적으로 <a class="reference internal" href="../incoming/filters.html"><span class="doc">filters</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 구성 파일에서 끌 수 있습니다.</p>
+<p>기본적으로 <a class="reference internal" href="../incoming/filters.html"><span class="doc">filters</span></a>은 모듈 내에서 자동으로 검색됩니다. 위에서 설명한 대로 <strong>Modules</strong> 설정 파일에서 끌 수 있습니다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
 <p>파일이 현재 범위에 포함되므로 <code class="docutils literal notranslate"><span class="pre">$filters</span></code> 인스턴스가 이미 정의되어 있습니다. 해당 클래스를 재정의하려고 하면 오류가 발생합니다.</p>
@@ -567,17 +567,17 @@
 </div>
 </section>
 <section id="config-files">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">구성 파일</a><a class="headerlink" href="#config-files" title="Link to this heading"></a></h3>
-<p>구성 파일 작업 시 특별한 변경이 필요하지 않습니다. 이들은 여전히 ​​네임스페이스 클래스이며 <code class="docutils literal notranslate"><span class="pre">new</span></code> 명령으로 로드됩니다.</p>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">설정 파일</a><a class="headerlink" href="#config-files" title="Link to this heading"></a></h3>
+<p>설정 파일 작업 시 특별한 변경이 필요하지 않습니다. 이들은 여전히 ​​네임스페이스 클래스이며 <code class="docutils literal notranslate"><span class="pre">new</span></code> 명령으로 로드됩니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Acme\Blog\Config\Blog</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>구성 파일은 항상 사용 가능한 <a class="reference internal" href="common_functions.html#config" title="config"><code class="xref php php-func docutils literal notranslate"><span class="pre">config()</span></code></a> 함수를 사용할 때마다 자동으로 검색되며 짧은 클래스 이름을 전달합니다.</p>
+<p>설정 파일은 항상 사용 가능한 <a class="reference internal" href="common_functions.html#config" title="config"><code class="xref php php-func docutils literal notranslate"><span class="pre">config()</span></code></a> 함수를 사용할 때마다 자동으로 검색되며 짧은 클래스 이름을 전달합니다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>모듈에서 동일한 짧은 클래스 이름을 사용하지 않는 것이 좋습니다. <strong>app/Config/</strong>의 알려진 구성을 재정의하거나 추가해야 하는 모듈은 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">Implicit Registrars</span></a>을 사용해야 합니다.</p>
+<p>모듈에서 동일한 짧은 클래스 이름을 사용하지 않는 것이 좋습니다. <strong>app/Config/</strong>의 알려진 설정을 재정의하거나 추가해야 하는 모듈은 <a class="reference internal" href="configuration.html#registrars"><span class="std std-ref">Implicit Registrars</span></a>을 사용해야 합니다.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
@@ -589,7 +589,7 @@
 <p>마이그레이션 파일은 정의된 네임스페이스 내에서 자동으로 검색됩니다. 모든 네임스페이스에서 발견된 모든 마이그레이션은 매번 실행됩니다.</p>
 </section>
 <section id="seeds">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">씨앗</a><a class="headerlink" href="#seeds" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">시드</a><a class="headerlink" href="#seeds" title="Link to this heading"></a></h3>
 <p>시드 파일은 전체 네임스페이스가 제공되는 한 CLI에서 사용하거나 다른 시드 파일 내에서 호출할 수 있습니다. CLI를 호출하는 경우 이중 백슬래시를 제공해야 합니다.</p>
 <p>유닉스의 경우:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark db:seed Acme\\Blog\\Database\\Seeds\\TestPostSeeder</span>
@@ -602,7 +602,7 @@
 </section>
 <section id="helpers">
 <h3><a class="toc-backref" href="#id16" role="doc-backlink">헬퍼(Helpers)</a><a class="headerlink" href="#helpers" title="Link to this heading"></a></h3>
-<p>도우미는 네임스페이스 <strong>Helpers</strong> 디렉터리 내에 있는 한 <a class="reference internal" href="common_functions.html#helper" title="helper"><code class="xref php php-func docutils literal notranslate"><span class="pre">helper()</span></code></a> 함수를 사용할 때 정의된 네임스페이스 내에서 자동으로 검색됩니다.</p>
+<p>헬퍼는 네임스페이스 <strong>Helpers</strong> 디렉터리 내에 있는 한 <a class="reference internal" href="common_functions.html#helper" title="helper"><code class="xref php php-func docutils literal notranslate"><span class="pre">helper()</span></code></a> 함수를 사용할 때 정의된 네임스페이스 내에서 자동으로 검색됩니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
@@ -612,10 +612,10 @@
 </section>
 <section id="language-files">
 <h3><a class="toc-backref" href="#id17" role="doc-backlink">언어 파일</a><a class="headerlink" href="#language-files" title="Link to this heading"></a></h3>
-<p>언어 파일은 기본 응용 프로그램 디렉터리와 동일한 디렉터리 구조를 따르는 한 <a class="reference internal" href="common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 함수를 사용할 때 정의된 네임스페이스에서 자동으로 찾습니다.</p>
+<p>언어 파일은 기본 애플리케이션 디렉터리와 동일한 디렉터리 구조를 따르는 한 <a class="reference internal" href="common_functions.html#lang" title="lang"><code class="xref php php-func docutils literal notranslate"><span class="pre">lang()</span></code></a> 함수를 사용할 때 정의된 네임스페이스에서 자동으로 찾습니다.</p>
 </section>
 <section id="libraries">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">도서관</a><a class="headerlink" href="#libraries" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">라이브러리</a><a class="headerlink" href="#libraries" title="Link to this heading"></a></h3>
 <p>라이브러리는 항상 정규화된 클래스 이름으로 인스턴스화되므로 특별한 액세스가 제공되지 않습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
