@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI Korea — CodeIgniter 한국사용자포럼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --fire-red:    #dd3c1f;
+      --fire-orange: #f07030;
+      --fire-amber:  #f5a623;
+      --dark-bg:     #0d0d0d;
+      --dark-card:   #161616;
+      --dark-border: #2a2a2a;
+      --text-main:   #e8e2d9;
+      --text-muted:  #6b6560;
+      --text-code:   #f5a623;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── 노이즈 오버레이 ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── 배경 그래디언트 글로우 ── */
+    .bg-glow {
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(221,60,31,0.12) 0%, transparent 70%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+      50%       { opacity: 0.6; transform: translateX(-50%) scale(1.15); }
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 3.5rem 2rem 0;
+      text-align: center;
+    }
+
+    .flame-icon {
+      display: inline-block;
+      font-size: 3.2rem;
+      line-height: 1;
+      animation: flicker 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px var(--fire-orange));
+    }
+    @keyframes flicker {
+      0%, 100% { transform: scaleY(1)   rotate(-1deg); filter: drop-shadow(0 0 18px var(--fire-orange)); }
+      25%       { transform: scaleY(1.06) rotate( 1deg); filter: drop-shadow(0 0 28px var(--fire-amber)); }
+      50%       { transform: scaleY(0.96) rotate(-1deg); filter: drop-shadow(0 0 14px var(--fire-red));  }
+      75%       { transform: scaleY(1.04) rotate( 1deg); filter: drop-shadow(0 0 24px var(--fire-orange)); }
+    }
+
+    .site-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      margin-top: 0.4rem;
+      background: linear-gradient(135deg, var(--fire-amber) 0%, var(--fire-orange) 45%, var(--fire-red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+    }
+
+    .site-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.9rem;
+    }
+
+    .site-sub span {
+      color: var(--fire-orange);
+    }
+
+    /* ── 수평 분리선 ── */
+    .divider {
+      position: relative;
+      z-index: 10;
+      height: 1px;
+      margin: 2.8rem auto;
+      max-width: 860px;
+      background: linear-gradient(to right, transparent, var(--dark-border), transparent);
+    }
+
+    /* ── HERO 텍스트 ── */
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+      animation: fadeUp 0.9s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #a09890;
+    }
+
+    .hero-text strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      max-width: 960px;
+      margin: 3.5rem auto 0;
+      padding: 0 1.5rem;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1.8rem 1.6rem;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(240,112,48,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--fire-orange);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(221,60,31,0.18);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-arrow {
+      align-self: flex-end;
+      font-size: 0.85rem;
+      color: var(--fire-orange);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── MAIL SECTION ── */
+    .mail-section {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin: 3.5rem auto 0;
+      padding: 0 1.5rem;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+
+    .mail-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .mail-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--fire-amber);
+      text-decoration: none;
+      border: 1px solid var(--dark-border);
+      border-radius: 2px;
+      padding: 0.75rem 1.6rem;
+      background: var(--dark-card);
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .mail-link:hover {
+      border-color: var(--fire-amber);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(245,166,35,0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--dark-border);
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .footer-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    .footer-code .kw  { color: var(--fire-red); }
+    .footer-code .cls { color: var(--fire-amber); }
+    .footer-code .str { color: #8ec07c; }
+    .footer-code .fn  { color: #83a598; }
+    .footer-code .cm  { color: #504945; }
+
+    .footer-note {
+      margin-top: 1.4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── 스크롤바 ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--fire-red); }
+  </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="flame-icon">🔥</div>
+  <h1 class="site-title">CI Korea</h1>
+  <p class="site-sub">CodeIgniter <span>//</span> 한국사용자포럼</p>
+</header>
+
+<div class="divider"></div>
+
+<!-- HERO -->
+<section class="hero-text">
+  <p>
+    <strong>CI Korea</strong>는 PHP 프레임워크
+    <strong>CodeIgniter</strong>를 사용하는 국내 개발자들의 커뮤니티입니다.<br />
+    가볍고 빠른 CI의 철학처럼, 군더더기 없이 개발에만 집중합니다.
+  </p>
+</section>
+
+<!-- CARDS -->
+<div class="cards">
+
+  <a class="card" href="https://cikorea.net/docs/ci4-guide-ko/Codeigniter4/index.html" target="_blank" rel="noopener">
+    <div class="card-icon">📘</div>
+    <div class="card-label">Documentation</div>
+    <div class="card-title">CodeIgniter 4 매뉴얼</div>
+    <div class="card-desc">CI4 공식 문서 한국어 번역본. 설치부터 고급 활용까지 모든 레퍼런스.</div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="card" href="https://cikorea.net/docs/ci4-guide-ko/Codeigniter3/index.html" target="_blank" rel="noopener">
+    <div class="card-icon">📗</div>
+    <div class="card-label">Documentation</div>
+    <div class="card-title">CodeIgniter 3 매뉴얼</div>
+    <div class="card-desc">CI3 레거시 프로젝트를 위한 한국어 공식 문서. 안정화된 3.x 레퍼런스.</div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLScIbqjCFCFCP_XLx6ZUEq033thpKvtMGUOf7uL6oEFjgzARJA/viewform?usp=publish-editor" target="_blank" rel="noopener">
+    <div class="card-icon">📋</div>
+    <div class="card-label">Survey</div>
+    <div class="card-title">포럼 회비 정리 설문조사</div>
+    <div class="card-desc">포럼 회비 정리 설문입니다. 참여해 주세요.</div>
+    <div class="card-arrow">→</div>
+  </a>
+
+</div>
+
+<!-- MAIL -->
+<div class="mail-section">
+  <div class="mail-label">// Contact</div>
+  <a class="mail-link" href="mailto:info@cikorea.net">
+    <span>✉</span> info@cikorea.net
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-code">
+    <span class="cm">// CI Korea — built with ❤ and zero bloat</span><br />
+    <span class="kw">$</span><span class="cls">ci</span> <span class="kw">=</span>
+    <span class="kw">new</span> <span class="cls">Community</span>(<br />
+    &nbsp;&nbsp;<span class="str">'CodeIgniter'</span>,
+    <span class="str">'Korea'</span>,
+    <span class="fn">since</span>: <span class="str">'2009'</span><br />
+    );
+  </div>
+  <p class="footer-note">© CI Korea. PHP &amp; CodeIgniter 한국사용자포럼.</p>
+</footer>
+
+</body>
+</html>
+
