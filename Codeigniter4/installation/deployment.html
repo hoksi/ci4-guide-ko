@@ -314,7 +314,7 @@
 </li>
 <li><p><a class="reference internal" href="#deployment-to-shared-hosting-services" id="id14">공유 호스팅 서비스에 배포</a></p>
 <ul>
-<li><p><a class="reference internal" href="#specifying-the-document-root" id="id15">문서 루트 지정</a></p></li>
+<li><p><a class="reference internal" href="#specifying-the-document-root" id="id15">웹 루트 지정</a></p></li>
 <li><p><a class="reference internal" href="#using-two-directories" id="id16">두 디렉터리 사용</a></p></li>
 <li><p><a class="reference internal" href="#adding-htaccess" id="id17">.htaccess 추가</a></p></li>
 </ul>
@@ -427,18 +427,18 @@
 <p>이는 웹 서버가 프로젝트 루트가 아닌 프로젝트의 <strong>public</strong> 폴더를 “가리키도록” 설정해야 함을 의미합니다.</p>
 </div>
 <section id="specifying-the-document-root">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">문서 루트 지정</a><a class="headerlink" href="#specifying-the-document-root" title="Link to this heading"></a></h3>
-<p>가장 좋은 방법은 서버 설정에서 문서 루트를 <strong>public</strong> 폴더로 설정하는 것입니다:</p>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">웹 루트 지정</a><a class="headerlink" href="#specifying-the-document-root" title="Link to this heading"></a></h3>
+<p>가장 좋은 방법은 서버 설정에서 웹 루트를 <strong>public</strong> 폴더로 설정하는 것입니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">└──</span> <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span> <span class="p">(</span><span class="nx">project</span> <span class="nx">folder</span><span class="p">)</span>
     <span class="nx">└──</span> <span class="k">public</span><span class="o">/</span>  <span class="p">(</span><span class="nx">document</span> <span class="nx">root</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>호스팅 서비스 제공업체에 문서 루트를 변경할 수 있는지 확인하세요. 아쉽게도 문서 루트를 변경할 수 없는 경우 다음 방법으로 진행하세요.</p>
+<p>호스팅 서비스 제공업체에 웹 루트를 변경할 수 있는지 확인하세요. 아쉽게도 웹 루트를 변경할 수 없는 경우 다음 방법으로 진행하세요.</p>
 </section>
 <section id="using-two-directories">
 <h3><a class="toc-backref" href="#id16" role="doc-backlink">두 디렉터리 사용</a><a class="headerlink" href="#using-two-directories" title="Link to this heading"></a></h3>
-<p>두 번째 방법은 두 개의 디렉터리를 사용하고 경로를 조정하는 것입니다. 하나는 애플리케이션용이고 다른 하나는 기본 문서 루트용입니다.</p>
-<p><strong>public</strong> 폴더의 내용을 <strong>public_html</strong>(기본 문서 루트)에 업로드하고 나머지 파일은 애플리케이션 디렉터리에 업로드하세요:</p>
+<p>두 번째 방법은 두 개의 디렉터리를 사용하고 경로를 조정하는 것입니다. 하나는 애플리케이션용이고 다른 하나는 기본 웹 루트용입니다.</p>
+<p><strong>public</strong> 폴더의 내용을 <strong>public_html</strong> (기본 웹 루트)에 업로드하고 나머지 파일은 애플리케이션 디렉터리에 업로드하세요:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">├──</span> <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span> <span class="p">(</span><span class="k">for</span> <span class="nx">the</span> <span class="nx">application</span><span class="p">)</span>
 <span class="nx">│</span>       <span class="nx">├──</span> <span class="nx">app</span><span class="o">/</span>
 <span class="nx">│</span>       <span class="nx">├──</span> <span class="nx">vendor</span><span class="o">/</span> <span class="p">(</span><span class="k">or</span> <span class="nb">system</span><span class="o">/</span><span class="p">)</span>
@@ -455,8 +455,8 @@
 <section id="adding-htaccess">
 <h3><a class="toc-backref" href="#id17" role="doc-backlink">.htaccess 추가</a><a class="headerlink" href="#adding-htaccess" title="Link to this heading"></a></h3>
 <p>마지막 방법은 프로젝트 루트에 <strong>.htaccess</strong>를 추가하는 것입니다.</p>
-<p>프로젝트 폴더를 문서 루트에 두는 것은 권장되지 않습니다. 하지만 다른 선택지가 없다면 이 방법을 사용할 수 있습니다.</p>
-<p><strong>public_html</strong>이 문서 루트인 상황에서 프로젝트 폴더를 다음과 같이 배치하고 <strong>.htaccess</strong> 파일을 생성하세요:</p>
+<p>프로젝트 폴더를 웹 루트에 두는 것은 권장되지 않습니다. 하지만 다른 선택지가 없다면 이 방법을 사용할 수 있습니다.</p>
+<p><strong>public_html</strong>이 웹 루트인 상황에서 프로젝트 폴더를 다음과 같이 배치하고 <strong>.htaccess</strong> 파일을 생성하세요:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">└──</span> <span class="nx">public_html</span><span class="o">/</span>     <span class="p">(</span><span class="nx">the</span> <span class="k">default</span> <span class="nx">document</span> <span class="nx">root</span><span class="p">)</span>
     <span class="nx">└──</span> <span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span> <span class="p">(</span><span class="nx">project</span> <span class="nx">folder</span><span class="p">)</span>
         <span class="nx">├──</span> <span class="o">.</span><span class="nx">htaccess</span>
@@ -513,7 +513,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 5월 23, 2026
+      <span class="lastupdated">최종 업데이트: 6월 02, 2026
       </span></p>
   </div>
 
