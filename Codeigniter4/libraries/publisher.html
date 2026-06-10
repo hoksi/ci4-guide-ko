@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>퍼블리셔 &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>퍼블리셔 &mdash; CodeIgniter 4.7.3 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -146,15 +146,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스에\ 연결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">사용자 정의 함수 호출</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용하기</a></li>
 </ul>
 </li>
 </ul>
@@ -294,7 +294,7 @@
 <p>퍼블리셔 라이브러리는 강력한 감지 및 오류 검사를 사용하여 프로젝트 내에서 파일을 복사하는 수단을 제공합니다.</p>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#loading-the-library" id="id3">라이브러리 로드하기</a></p></li>
+<li><p><a class="reference internal" href="#loading-the-library" id="id3">라이브러리 로딩</a></p></li>
 <li><p><a class="reference internal" href="#concept-and-usage" id="id4">개념 및 사용법</a></p>
 <ul>
 <li><p><a class="reference internal" href="#on-demand" id="id5">온 디맨드</a></p></li>
@@ -319,7 +319,7 @@
 </ul>
 </nav>
 <section id="loading-the-library">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">라이브러리 로드하기</a><a class="headerlink" href="#loading-the-library" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">라이브러리 로딩</a><a class="headerlink" href="#loading-the-library" title="Link to this heading"></a></h2>
 <p>퍼블리셔 인스턴스는 소스와 목적지에 특화되어 있으므로 이 라이브러리는 <code class="docutils literal notranslate"><span class="pre">Services</span></code>를 통해 사용할 수 없으며, 직접 인스턴스화하거나 확장해야 합니다. 예:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -704,7 +704,7 @@
 <section id="merge-bool-replace-true-bool">
 <h4>merge(bool $replace = true): bool<a class="headerlink" href="#merge-bool-replace-true-bool" title="Link to this heading"></a></h4>
 <p>모든 파일을 적절한 상대 하위 디렉토리에 맞게 <code class="docutils literal notranslate"><span class="pre">$destination</span></code>에 복사합니다. <code class="docutils literal notranslate"><span class="pre">$source</span></code>와 일치하는 파일은 <code class="docutils literal notranslate"><span class="pre">$destination</span></code>의 동일한 디렉토리에 배치되어 효과적으로 “미러” 또는 “rsync” 작업을 수행합니다. <code class="docutils literal notranslate"><span class="pre">$replace</span></code>를 사용하면 이미 파일이 존재하는 경우 덮어쓰며, 디렉토리가 병합되므로 목적지의 다른 파일에는 영향을 미치지 않습니다. 성공 또는 실패를 반환하며, 실패 문제 해결을 위해 <code class="docutils literal notranslate"><span class="pre">getPublished()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">getErrors()</span></code>를 사용하세요.</p>
-<p>예제:</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">use</span> <span class="nx">CodeIgniter\Publisher\Publisher</span><span class="p">;</span>
@@ -810,7 +810,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 02, 2026
+      <span class="lastupdated">최종 업데이트: 6월 10, 2026
       </span></p>
   </div>
 

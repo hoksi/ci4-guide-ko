@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HTML 헬퍼(HTML Helper) &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>HTML 헬퍼(HTML Helper) &mdash; CodeIgniter 4.7.3 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -146,15 +146,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스에\ 연결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">사용자 정의 함수 호출</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용하기</a></li>
 </ul>
 </li>
 </ul>
@@ -295,7 +295,7 @@
 <nav class="contents local" id="id1">
 <ul class="simple">
 <li><p><a class="reference internal" href="#configuration" id="id2">설정</a></p></li>
-<li><p><a class="reference internal" href="#loading-this-helper" id="id3">헬퍼 로드하기</a></p></li>
+<li><p><a class="reference internal" href="#loading-this-helper" id="id3">헬퍼 로드</a></p></li>
 <li><p><a class="reference internal" href="#available-functions" id="id4">사용 가능한 함수</a></p></li>
 </ul>
 </nav>
@@ -304,7 +304,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">v4.3.0</span></code>부터 <code class="docutils literal notranslate"><span class="pre">html_helper</span></code> 함수의 void HTML 요소(예: <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code>)는 기본적으로 HTML5 호환으로 변경되었습니다. XHTML과 호환되어야 하는 경우 <strong>app/Config/DocTypes.php</strong>의 <code class="docutils literal notranslate"><span class="pre">$html5</span></code> 속성을 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정해야 합니다.</p>
 </section>
 <section id="loading-this-helper">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">헬퍼 로드하기</a><a class="headerlink" href="#loading-this-helper" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">헬퍼 로드</a><a class="headerlink" href="#loading-this-helper" title="Link to this heading"></a></h2>
 <p>이 헬퍼는 다음 코드를 사용하여 로드합니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -348,7 +348,7 @@
 </pre></div>
 </div>
 <p>또한 첫 번째 매개변수로 연관 배열을 전달하면 모든 속성과 값을 완전히 제어할 수 있습니다. <em>alt</em> 속성이 제공되지 않으면 CodeIgniter가 빈 문자열로 자동 생성합니다.</p>
-<p>예제:</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="nv">$imageProperties</span> <span class="o">=</span> <span class="p">[</span>
@@ -424,7 +424,7 @@
 </dl>
 <p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;link&gt;</span></code> 요소를 생성할 수 있습니다. 스타일시트 링크 및 다른 링크에 유용합니다. 매개변수는 <em>href</em>이며, 선택적으로 <em>rel</em>, <em>type</em>, <em>title</em>, <em>media</em>, <em>indexPage</em>, <em>hreflang</em>을 사용할 수 있습니다.</p>
 <p><em>indexPage</em>는 생성되는 주소에 <code class="docutils literal notranslate"><span class="pre">$config['indexPage']</span></code>로 지정된 페이지를 <em>href</em>에 추가할지 여부를 지정하는 불리언 값입니다.</p>
-<p>예제:</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">echo</span> <span class="nx">link_tag</span><span class="p">(</span><span class="s1">&#39;css/mystyles.css&#39;</span><span class="p">);</span>
@@ -476,7 +476,7 @@
 </dl>
 <p>HTML <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> 요소를 생성할 수 있습니다. 매개변수는 <em>src</em>와 선택적 <em>indexPage</em>입니다.</p>
 <p><em>indexPage</em>는 생성되는 주소에 <code class="docutils literal notranslate"><span class="pre">$config['indexPage']</span></code>로 지정된 페이지를 <em>src</em>에 추가할지 여부를 지정하는 불리언 값입니다.</p>
-<p>예제:</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">echo</span> <span class="nx">script_tag</span><span class="p">(</span><span class="s1">&#39;js/mystyles.js&#39;</span><span class="p">);</span>
@@ -916,7 +916,7 @@
 </dd>
 </dl>
 <p>문서 타입 선언(DTD)을 생성하는 데 도움을 줍니다. 기본적으로 HTML 5가 사용되지만, 다양한 doctype을 사용할 수 있습니다.</p>
-<p>예제:</p>
+<p>예시:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">echo</span> <span class="nx">doctype</span><span class="p">();</span>
@@ -1030,7 +1030,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 02, 2026
+      <span class="lastupdated">최종 업데이트: 6월 10, 2026
       </span></p>
   </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>URI 라우팅 &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>URI 라우팅 &mdash; CodeIgniter 4.7.3 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -146,15 +146,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스에\ 연결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">사용자 정의 함수 호출</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용하기</a></li>
 </ul>
 </li>
 </ul>
@@ -365,14 +365,14 @@
 <li><p><a class="reference internal" href="#multiple-uri-segments-as-one-parameter" id="id60">하나의 매개변수로서의 여러 URI 세그먼트</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#auto-routing-improved" id="id61">Auto Routing (Improved)</a></p></li>
-<li><p><a class="reference internal" href="#auto-routing-legacy" id="id62">Auto Routing (Legacy)</a></p>
+<li><p><a class="reference internal" href="#auto-routing-improved" id="id61">자동 라우팅(향상)</a></p></li>
+<li><p><a class="reference internal" href="#auto-routing-legacy" id="id62">자동 라우팅 (레거시)</a></p>
 <ul>
 <li><p><a class="reference internal" href="#enable-auto-routing-legacy" id="id63">Auto Routing (Legacy) 활성화</a></p></li>
 <li><p><a class="reference internal" href="#uri-segments-legacy" id="id64">URI 세그먼트 (Legacy)</a></p></li>
 <li><p><a class="reference internal" href="#configuration-options-legacy" id="id65">구성 옵션 (Legacy)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#default-controller-legacy" id="id66">기본 컨트롤러 (Legacy)</a></p></li>
+<li><p><a class="reference internal" href="#default-controller-legacy" id="id66">기본 컨트롤러 (레거시)</a></p></li>
 <li><p><a class="reference internal" href="#default-method-legacy" id="id67">기본 메서드 (Legacy)</a></p></li>
 </ul>
 </li>
@@ -382,8 +382,8 @@
 <ul>
 <li><p><a class="reference internal" href="#spark-routes" id="id69">spark routes</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id14" id="id70">Auto Routing (Improved)</a></p></li>
-<li><p><a class="reference internal" href="#id15" id="id71">Auto Routing (Legacy)</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id70">자동 라우팅(향상)</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id71">자동 라우팅 (레거시)</a></p></li>
 <li><p><a class="reference internal" href="#sort-by-handler" id="id72">핸들러별 정렬</a></p></li>
 <li><p><a class="reference internal" href="#specify-host" id="id73">호스트 지정</a></p></li>
 </ul>
@@ -768,7 +768,7 @@
 <h3><a class="toc-backref" href="#id31" role="doc-backlink">모든 HTTP 동사의 라우트</a><a class="headerlink" href="#routes-with-any-http-verbs" title="Link to this heading"></a></h3>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 더 적절한 다른 메서드를 사용하는 것이 좋습니다.</p>
+<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 신규 프로젝트에서는 사용하지 마세요. 이미 사용 중이라면 더 적합한 다른 메서드로 교체하는 것을 권장합니다.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
@@ -789,7 +789,7 @@
 <h3><a class="toc-backref" href="#id32" role="doc-backlink">여러 라우트 매핑</a><a class="headerlink" href="#mapping-multiple-routes" title="Link to this heading"></a></h3>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 더 적절한 다른 메서드를 사용하는 것이 좋습니다.</p>
+<p>이 메서드는 하위 호환성을 위해서만 존재합니다. 신규 프로젝트에서는 사용하지 마세요. 이미 사용 중이라면 더 적합한 다른 메서드로 교체하는 것을 권장합니다.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
@@ -822,7 +822,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
-<p><a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">Auto Routing (Legacy)</span></a>를 활성화하고 명령 파일을 <strong>app/Controllers</strong>에 두면, 누구나 HTTP를 통해 Auto Routing (Legacy)의 도움으로 해당 명령에 접근할 수 있습니다.</p>
+<p><a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">자동 라우팅 (레거시)</span></a>를 활성화하고 명령 파일을 <strong>app/Controllers</strong>에 두면, 누구나 HTTP를 통해 Auto Routing (Legacy)의 도움으로 해당 명령에 접근할 수 있습니다.</p>
 </div>
 </section>
 </section>
@@ -856,7 +856,7 @@
 <p>별칭 정의에 대한 자세한 내용은 <a class="reference internal" href="filters.html#filters-aliases"><span class="std std-ref">Controller Filters</span></a>를 참조하십시오.</p>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
-<p>필터를 <strong>app/Config/Routes.php</strong>에서 라우트에 지정한 경우(<strong>app/Config/Filters.php</strong>가 아님), Auto Routing (Legacy)를 비활성화하는 것이 좋습니다. <a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">Auto Routing (Legacy)</span></a>가 활성화되어 있으면 컨트롤러가 설정된 라우트와 다른 URL로 접근될 수 있으며, 이 경우 라우트에 지정한 필터가 적용되지 않을 수 있습니다. 자동 라우팅을 비활성화하려면 <a class="reference internal" href="#use-defined-routes-only"><span class="std std-ref">정의된 라우트만 사용</span></a>를 참조하십시오.</p>
+<p>필터를 <strong>app/Config/Routes.php</strong>에서 라우트에 지정한 경우(<strong>app/Config/Filters.php</strong>가 아님), Auto Routing (Legacy)를 비활성화하는 것이 좋습니다. <a class="reference internal" href="#auto-routing-legacy"><span class="std std-ref">자동 라우팅 (레거시)</span></a>가 활성화되어 있으면 컨트롤러가 설정된 라우트와 다른 URL로 접근될 수 있으며, 이 경우 라우트에 지정한 필터가 적용되지 않을 수 있습니다. 자동 라우팅을 비활성화하려면 <a class="reference internal" href="#use-defined-routes-only"><span class="std std-ref">정의된 라우트만 사용</span></a>를 참조하십시오.</p>
 </div>
 <section id="alias-filter">
 <h4><a class="toc-backref" href="#id36" role="doc-backlink">별칭 필터</a><a class="headerlink" href="#alias-filter" title="Link to this heading"></a></h4>
@@ -1093,7 +1093,7 @@
 <p>바깥쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 <code class="docutils literal notranslate"><span class="pre">filter</span></code> 옵션은 안쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>의 필터 옵션과 병합됩니다. 위 코드는 <code class="docutils literal notranslate"><span class="pre">admin</span></code> 라우트에 <code class="docutils literal notranslate"><span class="pre">myfilter1:config</span></code>를 실행하고, <code class="docutils literal notranslate"><span class="pre">admin/users/list</span></code> 라우트에 <code class="docutils literal notranslate"><span class="pre">myfilter1:config</span></code>와 <code class="docutils literal notranslate"><span class="pre">myfilter2:region</span></code>을 실행합니다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>v4.6.0 이전에는 동일한 필터를 서로 다른 인수로 여러 번 실행할 수 없었습니다.</p>
+<p>v4.6.0 이전에는 동일한 필터를 다른 인수로 여러 번 실행할 수 없었습니다.</p>
 </div>
 <p>안쪽 <code class="docutils literal notranslate"><span class="pre">group()</span></code>에 전달된 다른 겹치는 옵션은 해당 값으로 덮어씌워집니다.</p>
 <div class="admonition note">
@@ -1350,18 +1350,18 @@
 </section>
 </section>
 <section id="auto-routing-improved">
-<h2><a class="toc-backref" href="#id61" role="doc-backlink">Auto Routing (Improved)</a><a class="headerlink" href="#auto-routing-improved" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id61" role="doc-backlink">자동 라우팅(향상)</a><a class="headerlink" href="#auto-routing-improved" title="Link to this heading"></a></h2>
 <div class="versionadded">
 <p><span class="versionmodified added">Added in version 4.2.0.</span></p>
 </div>
-<p>Auto Routing (Improved)는 더 안전한 새로운 자동 라우팅 시스템입니다.</p>
-<p><a class="reference internal" href="auto_routing_improved.html"><span class="doc">자동 라우팅(향상)</span></a>에 대한 자세한 내용은 해당 문서를 참조하십시오.</p>
+<p>자동 라우팅 (개선됨)은 새롭고 더 안전한 자동 라우팅 시스템입니다.</p>
+<p>자세한 내용은 <a class="reference internal" href="auto_routing_improved.html"><span class="doc">자동 라우팅(향상)</span></a>를 참조하십시오.</p>
 </section>
 <section id="auto-routing-legacy">
-<span id="id13"></span><h2><a class="toc-backref" href="#id62" role="doc-backlink">Auto Routing (Legacy)</a><a class="headerlink" href="#auto-routing-legacy" title="Link to this heading"></a></h2>
+<span id="id13"></span><h2><a class="toc-backref" href="#id62" role="doc-backlink">자동 라우팅 (레거시)</a><a class="headerlink" href="#auto-routing-legacy" title="Link to this heading"></a></h2>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p>이 기능은 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>를 사용하는 것이 좋습니다.</p>
+<p>이 기능은 하위 호환성을 위해서만 존재합니다. 새 프로젝트에서는 사용하지 마십시오. 이미 사용 중이더라도 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>로 전환할 것을 권장합니다.</p>
 </div>
 <p>Auto Routing (Legacy)는 CodeIgniter 3의 라우팅 시스템입니다. 규칙에 따라 HTTP 요청을 자동으로 라우팅하고 해당 컨트롤러 메서드를 실행할 수 있습니다.</p>
 <p>모든 라우트는 <strong>app/Config/Routes.php</strong> 파일에서 정의하거나 <a class="reference internal" href="auto_routing_improved.html#auto-routing-improved"><span class="std std-ref">자동 라우팅(향상)</span></a>를 사용하도록 권장합니다.</p>
@@ -1371,12 +1371,12 @@
 </div>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p>Auto Routing (Legacy)는 <strong>모든</strong> HTTP 메서드의 HTTP 요청을 컨트롤러 메서드로 라우팅합니다.</p>
+<p>자동 라우팅 (레거시)은 <strong>모든</strong> HTTP 메서드의 요청을 컨트롤러 메서드로 라우팅합니다.</p>
 </div>
 <section id="enable-auto-routing-legacy">
 <h3><a class="toc-backref" href="#id63" role="doc-backlink">Auto Routing (Legacy) 활성화</a><a class="headerlink" href="#enable-auto-routing-legacy" title="Link to this heading"></a></h3>
 <p>v4.2.0부터 자동 라우팅은 기본적으로 비활성화되어 있습니다.</p>
-<p>사용하려면 <strong>app/Config/Routing.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoute</span></code> 옵션을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경해야 합니다:</p>
+<p>이를 사용하려면 <strong>app/Config/Routing.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$autoRoute</span></code> 옵션 설정을 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 변경해야 합니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">bool</span> <span class="nv">$autoRoute</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1387,7 +1387,7 @@
 </section>
 <section id="uri-segments-legacy">
 <h3><a class="toc-backref" href="#id64" role="doc-backlink">URI 세그먼트 (Legacy)</a><a class="headerlink" href="#uri-segments-legacy" title="Link to this heading"></a></h3>
-<p>Model-View-Controller 접근 방식에서 URL의 세그먼트는 보통 다음을 나타냅니다:</p>
+<p>Model-View-Controller 접근 방식을 따르는 URL의 세그먼트는 일반적으로 다음을 나타냅니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">class</span><span class="o">/</span><span class="nx">method</span><span class="o">/</span><span class="nx">ID</span>
 </pre></div>
 </div>
@@ -1396,7 +1396,7 @@
 <li><p>두 번째 세그먼트는 호출되어야 하는 클래스 <strong>메서드</strong>를 나타냅니다.</p></li>
 <li><p>세 번째 및 그 이후의 세그먼트는 컨트롤러에 전달될 ID와 기타 변수를 나타냅니다.</p></li>
 </ol>
-<p>다음 URI를 생각해 보십시오:</p>
+<p>다음 URI를 고려하세요:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">helloworld</span><span class="o">/</span><span class="nx">index</span><span class="o">/</span><span class="mi">1</span>
 </pre></div>
 </div>
@@ -1405,13 +1405,13 @@
 </section>
 <section id="configuration-options-legacy">
 <span id="routing-auto-routing-legacy-configuration-options"></span><h3><a class="toc-backref" href="#id65" role="doc-backlink">구성 옵션 (Legacy)</a><a class="headerlink" href="#configuration-options-legacy" title="Link to this heading"></a></h3>
-<p>이 옵션들은 <strong>app/Config/Routing.php</strong> 파일에서 사용할 수 있습니다.</p>
+<p>이러한 옵션은 <strong>app/Config/Routing.php</strong> 파일에서 사용할 수 있습니다.</p>
 <section id="default-controller-legacy">
-<h4><a class="toc-backref" href="#id66" role="doc-backlink">기본 컨트롤러 (Legacy)</a><a class="headerlink" href="#default-controller-legacy" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id66" role="doc-backlink">기본 컨트롤러 (레거시)</a><a class="headerlink" href="#default-controller-legacy" title="Link to this heading"></a></h4>
 <section id="for-site-root-uri-legacy">
 <h5>사이트 루트 URI용 (Legacy)<a class="headerlink" href="#for-site-root-uri-legacy" title="Link to this heading"></a></h5>
 <p>사용자가 사이트의 루트(예: <strong>example.com</strong>)를 방문하면, 사용할 컨트롤러는 명시적으로 해당 라우트가 존재하지 않는 한 <code class="docutils literal notranslate"><span class="pre">$defaultController</span></code> 속성에 설정된 값으로 결정됩니다.</p>
-<p>이 값의 기본값은 <code class="docutils literal notranslate"><span class="pre">Home</span></code>이며, <strong>app/Controllers/Home.php</strong>에 있는 컨트롤러와 일치합니다:</p>
+<p>이에 대한 기본값은 <strong>app/Controllers/Home.php</strong>의 컨트롤러와 일치하는 <code class="docutils literal notranslate"><span class="pre">Home</span></code>입니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultController</span> <span class="o">=</span> <span class="s1">&#39;Home&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1424,7 +1424,7 @@
 </section>
 <section id="default-method-legacy">
 <span id="routing-auto-routing-legacy-default-method"></span><h4><a class="toc-backref" href="#id67" role="doc-backlink">기본 메서드 (Legacy)</a><a class="headerlink" href="#default-method-legacy" title="Link to this heading"></a></h4>
-<p>이는 기본 컨트롤러 설정과 비슷하게 동작하지만, URI와 일치하는 컨트롤러를 찾았으나 메서드에 해당하는 세그먼트가 없을 때 사용할 기본 메서드를 결정하는 데 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">index</span></code>입니다.</p>
+<p>이는 기본 컨트롤러 설정과 유사하게 작동하지만 URI와 일치하는 컨트롤러가 발견되었지만 메서드에 대한 세그먼트가 없을 때 사용되는 기본 메서드를 결정하는 데 사용됩니다. 기본값은 <code class="docutils literal notranslate"><span class="pre">index</span></code>입니다.</p>
 <p>이 예에서 사용자가 <strong>example.com/products</strong>를 방문하고 <code class="docutils literal notranslate"><span class="pre">Products</span></code> 컨트롤러가 존재하면 <code class="docutils literal notranslate"><span class="pre">Products::listAll()</span></code> 메서드가 실행됩니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultMethod</span> <span class="o">=</span> <span class="s1">&#39;listAll&#39;</span><span class="p">;</span>
 </pre></div>
@@ -1459,7 +1459,7 @@
 <p><a class="reference internal" href="filters.html#spark-filter-check"><span class="std std-ref">spark filter:check</span></a> 명령을 사용하면 100% 정확한 필터를 확인할 수 있습니다.</p>
 </div>
 <section id="id14">
-<h4><a class="toc-backref" href="#id70" role="doc-backlink">Auto Routing (Improved)</a><a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id70" role="doc-backlink">자동 라우팅(향상)</a><a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
 <p>Auto Routing (Improved)를 사용할 때 출력은 다음과 같습니다:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-----------+-------------------------+---------------+-----------------------------------+----------------+---------------+
 | Method    | Route                   | Name          | Handler                           | Before Filters | After Filters |
@@ -1489,7 +1489,7 @@
 </div>
 </section>
 <section id="id15">
-<h4><a class="toc-backref" href="#id71" role="doc-backlink">Auto Routing (Legacy)</a><a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id71" role="doc-backlink">자동 라우팅 (레거시)</a><a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
 <p>Auto Routing (Legacy)를 사용할 때 출력은 다음과 같습니다:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+---------------+-----------------------------------+----------------+---------------+
 | Method | Route              | Name          | Handler                           | Before Filters | After Filters |
@@ -1615,7 +1615,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 02, 2026
+      <span class="lastupdated">최종 업데이트: 6월 10, 2026
       </span></p>
   </div>
 

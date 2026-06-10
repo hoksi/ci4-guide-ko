@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>버전 4.7.3 &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>버전 4.7.3 &mdash; CodeIgniter 4.7.3 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -146,15 +146,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스에\ 연결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">사용자 정의 함수 호출</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../models/index.html">데이터 모델링</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../models/model.html">CodeIgniter 모델 사용</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../models/entities.html">엔티티 클래스 사용하기</a></li>
 </ul>
 </li>
 </ul>
@@ -292,19 +292,21 @@
              
   <section id="version-4-7-3">
 <h1>버전 4.7.3<a class="headerlink" href="#version-4-7-3" title="Link to this heading"></a></h1>
-<p>릴리스 날짜: 미정</p>
+<p>릴리스 날짜: 2026년 5월 22일</p>
 <p><strong>CodeIgniter4 4.7.3 릴리스</strong></p>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#breaking" id="id2">주요 변경사항</a></p></li>
+<li><p><a class="reference internal" href="#security" id="id2">보안</a></p></li>
 <li><p><a class="reference internal" href="#message-changes" id="id3">메시지 변경사항</a></p></li>
-<li><p><a class="reference internal" href="#changes" id="id4">변경사항</a></p></li>
-<li><p><a class="reference internal" href="#deprecations" id="id5">사용 중단</a></p></li>
-<li><p><a class="reference internal" href="#bugs-fixed" id="id6">버그 수정</a></p></li>
+<li><p><a class="reference internal" href="#changes" id="id4">변경 사항</a></p></li>
+<li><p><a class="reference internal" href="#bugs-fixed" id="id5">버그 수정</a></p></li>
 </ul>
 </nav>
-<section id="breaking">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">주요 변경사항</a><a class="headerlink" href="#breaking" title="Link to this heading"></a></h2>
+<section id="security">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">보안</a><a class="headerlink" href="#security" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Validation:</strong> <code class="docutils literal notranslate"><span class="pre">ext_in</span></code> 파일 업로드 유효성 검사 규칙이 이제 클라이언트 파일명 확장자를 검증하고 감지된 MIME 타입과 일치하는지 확인합니다. 이전에는 <code class="docutils literal notranslate"><span class="pre">ext_in</span></code>이 MIME 유래 추정 확장자만 확인했기 때문에 클라이언트 확장자가 일치하지 않는 파일이 유효성 검사를 통과할 수 있었습니다. 자세한 내용은 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4/security/advisories/GHSA-2gr4-ppc7-7mhx">보안 권고 GHSA-2gr4-ppc7-7mhx</a>를 참조하십시오.</p></li>
+</ul>
 </section>
 <section id="message-changes">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">메시지 변경사항</a><a class="headerlink" href="#message-changes" title="Link to this heading"></a></h2>
@@ -313,26 +315,25 @@
 </ul>
 </section>
 <section id="changes">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">변경사항</a><a class="headerlink" href="#changes" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">변경 사항</a><a class="headerlink" href="#changes" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Commands:</strong> <code class="docutils literal notranslate"><span class="pre">routes</span></code> 커맨드의 <code class="docutils literal notranslate"><span class="pre">-h</span></code> 옵션이 <code class="docutils literal notranslate"><span class="pre">--help</span></code>의 단축키로 <code class="docutils literal notranslate"><span class="pre">-h</span></code>를 일반적으로 사용하는 것과의 충돌을 피하기 위해 <code class="docutils literal notranslate"><span class="pre">--sort-by-handler</span></code>로 이름이 변경되었습니다. 기존 <code class="docutils literal notranslate"><span class="pre">-h</span></code> 옵션은 v4.8.0까지는 계속 작동하며, 그 시점에 제거되고 <code class="docutils literal notranslate"><span class="pre">--help</span></code>의 단축키로 용도가 변경됩니다. 사용자가 새 <code class="docutils literal notranslate"><span class="pre">--sort-by-handler</span></code> 옵션으로 전환하도록 권장하기 위해 기존 <code class="docutils literal notranslate"><span class="pre">-h</span></code> 옵션 사용 시 경고 메시지가 표시됩니다.</p></li>
 </ul>
 </section>
-<section id="deprecations">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">사용 중단</a><a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
-</section>
 <section id="bugs-fixed">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">버그 수정</a><a class="headerlink" href="#bugs-fixed" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">버그 수정</a><a class="headerlink" href="#bugs-fixed" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Autoloader:</strong> 테스트 중 사용되는 <code class="docutils literal notranslate"><span class="pre">Autoloader::unregister()</span></code>가 SPL 자동 로드 스택에서 핸들러를 자동으로 제거하는 데 실패하여 클로저가 영구적으로 누적되는 버그가 수정되었습니다.</p></li>
 <li><p><strong>CLI:</strong> stdin이 TTY가 아닐 때 <code class="docutils literal notranslate"><span class="pre">CLI::generateDimensions()</span></code>가 <code class="docutils literal notranslate"><span class="pre">stty</span></code> 오류 출력 (예: <code class="docutils literal notranslate"><span class="pre">stty:</span> <span class="pre">'standard</span> <span class="pre">input':</span> <span class="pre">Inappropriate</span> <span class="pre">ioctl</span> <span class="pre">for</span> <span class="pre">device</span></code>)을 stderr에 누출하는 버그가 수정되었습니다.</p></li>
 <li><p><strong>CLI:</strong> <code class="docutils literal notranslate"><span class="pre">stty</span></code> 폴백에 도달했을 때 <code class="docutils literal notranslate"><span class="pre">TERM</span></code> 환경 변수가 설정되지 않은 경우 <code class="docutils literal notranslate"><span class="pre">CLI::generateDimensions()</span></code>가 <code class="docutils literal notranslate"><span class="pre">tput</span></code> 오류 출력 (<code class="docutils literal notranslate"><span class="pre">tput:</span> <span class="pre">No</span> <span class="pre">value</span> <span class="pre">for</span> <span class="pre">$TERM</span> <span class="pre">and</span> <span class="pre">no</span> <span class="pre">-T</span> <span class="pre">specified</span></code>)을 stderr에 누출하는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Commands:</strong> <code class="docutils literal notranslate"><span class="pre">env</span></code> 커맨드에서 옵션만 전달할 때 현재 환경을 표시하는 대신 <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>를 발생시키는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Commands:</strong> <code class="docutils literal notranslate"><span class="pre">key:generate</span></code> 커맨드에서 <code class="docutils literal notranslate"><span class="pre">encryption.key</span></code> 줄을 찾는 데 사용되는 정규식이 해당 하위 문자열을 포함하는 주석에 속아 아무것도 작성하지 않으며, DotEnv의 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">encryption.key</span> <span class="pre">=</span> <span class="pre">...</span></code> 구문을 처리하지 못하는 버그가 수정되었습니다.</p></li>
+<li><p><strong>Commands:</strong> <code class="docutils literal notranslate"><span class="pre">serve</span></code> 명령에서 <code class="docutils literal notranslate"><span class="pre">--host</span></code> 옵션이 <code class="docutils literal notranslate"><span class="pre">escapeshellarg()</span></code> 없이 <code class="docutils literal notranslate"><span class="pre">passthru()</span></code> 호출에 연결되어, 로컬에서 제공한 인수의 쉘 메타 문자가 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code>에 의해 해석될 수 있는 버그를 수정했습니다.</p></li>
 <li><p><strong>Common:</strong> <code class="docutils literal notranslate"><span class="pre">command()</span></code> 헬퍼 함수가 출력 버퍼를 제대로 정리하지 않아 예외가 발생할 때 위험한 테스트로 이어질 수 있는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Database:</strong> 테이블이 삭제된 후 캐시된 테이블 이름을 사용할 때 <code class="docutils literal notranslate"><span class="pre">BaseConnection::listTables()</span></code>가 희소 배열을 반환할 수 있는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Database:</strong> PostgreSQL 드라이버의 <code class="docutils literal notranslate"><span class="pre">increment()</span></code>와 <code class="docutils literal notranslate"><span class="pre">decrement()</span></code> 메서드가 숫자형 컬럼에 대해 작동하지 않는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Database:</strong> <code class="docutils literal notranslate"><span class="pre">$castTextToInt</span></code>가 false일 때 SQLSRV 드라이버의 decrement 메서드가 감소 값을 빼는 대신 더하는 버그가 수정되었습니다.</p></li>
+<li><p><strong>Config:</strong> 앱 스타터의 <code class="docutils literal notranslate"><span class="pre">zlib.output_compression</span></code> 가드가 유효한 비활성화 값 <code class="docutils literal notranslate"><span class="pre">Off</span></code>를 거부하는 버그를 수정했습니다.</p></li>
 <li><p><strong>Entity:</strong> <code class="docutils literal notranslate"><span class="pre">Entity::normalizeValue()</span></code>가 <code class="docutils literal notranslate"><span class="pre">toArray()</span></code> 확인 전에 <code class="docutils literal notranslate"><span class="pre">UnitEnum</span></code>을 처리하지 않아, <code class="docutils literal notranslate"><span class="pre">toArray()</span></code>를 구현하는 열거형이 열거형 대신 일반 객체로 잘못 정규화되는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Kint:</strong> 워커 모드에서 오래된 Content Security Policy 논스가 재사용되어 디버그 툴바 에셋에 대한 브라우저 CSP 위반이 발생하는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Language:</strong> 요청된 키가 세 단계 이상 깊은 중간 배열로 해석될 때 <code class="docutils literal notranslate"><span class="pre">Language::getLine()</span></code>이 중첩 배열 값 대신 리터럴 점 표기 키를 반환하는 버그가 수정되었습니다.</p></li>
@@ -341,7 +342,7 @@
 <li><p><strong>Validation:</strong> 유효성 검사된 값이 명시적으로 <code class="docutils literal notranslate"><span class="pre">null</span></code>인 필드를 <code class="docutils literal notranslate"><span class="pre">Validation::getValidated()</span></code>가 삭제하는 버그가 수정되었습니다.</p></li>
 <li><p><strong>Worker Mode:</strong> 감시된 파일이 변경된 후 FrankenPHP의 감시자가 워커 스크립트를 재실행할 때 <code class="docutils literal notranslate"><span class="pre">frankenphp-worker.php</span></code> 템플릿이 <code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">redeclare</span> <span class="pre">class</span> <span class="pre">Config\Paths</span></code> 치명적 오류를 유발하는 버그가 수정되었습니다.</p></li>
 </ul>
-<p>수정된 버그의 전체 목록은 저장소의 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4/blob/develop/CHANGELOG.md">CHANGELOG.md</a>를 참조하세요.</p>
+<p>수정된 버그의 전체 목록은 저장소의 <a class="reference external" href="https://github.com/codeigniter4/CodeIgniter4/blob/develop/CHANGELOG.md">CHANGELOG.md</a>를 참고하세요.</p>
 </section>
 </section>
 
@@ -357,7 +358,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 02, 2026
+      <span class="lastupdated">최종 업데이트: 6월 10, 2026
       </span></p>
   </div>
 

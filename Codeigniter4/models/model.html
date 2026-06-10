@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeIgniter 모델 사용하기 &mdash; CodeIgniter 4.7.2 문서</title>
+  <title>CodeIgniter 모델 사용 &mdash; CodeIgniter 4.7.3 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e50fcaf"></script>
+      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -146,15 +146,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">데이터베이스 다루기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../database/examples.html">빠른 시작: 사용 예제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 설정</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스 연결</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">데이터베이스 구성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">데이터베이스에\ 연결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/queries.html">쿼리 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/results.html">쿼리 결과 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">쿼리 헬퍼 메서드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">쿼리 빌더 클래스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">트랜잭션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">메타데이터 가져오기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">커스텀 함수 호출</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">사용자 정의 함수 호출</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/events.html">데이터베이스 이벤트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">데이터베이스 유틸리티</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">데이터 모델링</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">CodeIgniter 모델 사용</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entities.html">엔티티 클래스 사용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">엔티티 클래스 사용하기</a></li>
 </ul>
 </li>
 </ul>
@@ -280,7 +280,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">데이터 모델링</a></li>
-      <li class="breadcrumb-item active">CodeIgniter 모델 사용하기</li>
+      <li class="breadcrumb-item active">CodeIgniter 모델 사용</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -290,7 +290,7 @@
            <div itemprop="articleBody">
              
   <section id="using-codeigniter-s-model">
-<h1>CodeIgniter 모델 사용하기<a class="headerlink" href="#using-codeigniter-s-model" title="Link to this heading"></a></h1>
+<h1>CodeIgniter 모델 사용<a class="headerlink" href="#using-codeigniter-s-model" title="Link to this heading"></a></h1>
 <nav class="contents local" id="id1">
 <ul class="simple">
 <li><p><a class="reference internal" href="#models" id="id7">모델</a></p></li>
@@ -333,7 +333,7 @@
 <ul>
 <li><p><a class="reference internal" href="#creating-custom-handlers" id="id34">커스텀 핸들러 생성하기</a></p></li>
 <li><p><a class="reference internal" href="#registering-custom-handlers" id="id35">커스텀 핸들러 등록하기</a></p></li>
-<li><p><a class="reference internal" href="#parameters" id="id36">매개변수</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id36">파라미터</a></p></li>
 </ul>
 </li>
 </ul>
@@ -861,7 +861,7 @@
 <p>Enum 캐스팅은 다음을 지원합니다:</p>
 <ul class="simple">
 <li><p><strong>Backed enum</strong> (string 또는 int) - 백킹 값이 데이터베이스에 저장됩니다</p></li>
-<li><p><strong>Unit enum</strong> - case 이름이 문자열로 데이터베이스에 저장됩니다</p></li>
+<li><p><strong>Unit enum</strong> - 케이스 이름이 문자열로 데이터베이스에 저장됩니다</p></li>
 </ul>
 </section>
 </section>
@@ -913,7 +913,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>값을 가져오거나 설정할 때 값을 변경할 필요가 없다면 해당 메소드를 구현하지 않으면 됩니다:</p>
+<p>값을 가져오거나 설정할 때 값을 변경할 필요가 없다면, 해당 메서드를 구현하지 않으면 됩니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models\Cast</span><span class="p">;</span>
@@ -974,8 +974,8 @@
 </div>
 </section>
 <section id="parameters">
-<h4><a class="toc-backref" href="#id36" role="doc-backlink">매개변수</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
-<p>경우에 따라 하나의 타입으로는 충분하지 않을 수 있습니다. 이런 경우 추가 매개변수를 사용할 수 있습니다. 추가 매개변수는 대괄호 안에 <code class="docutils literal notranslate"><span class="pre">type[param1,</span> <span class="pre">param2]</span></code>처럼 쉼표로 구분하여 나열합니다.</p>
+<h4><a class="toc-backref" href="#id36" role="doc-backlink">파라미터</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
+<p>경우에 따라 하나의 타입으로는 충분하지 않을 수 있습니다. 이런 상황에서는 추가 파라미터를 사용할 수 있습니다. 추가 파라미터는 대괄호 안에 <code class="docutils literal notranslate"><span class="pre">type[param1,</span> <span class="pre">param2]</span></code>처럼 쉼표로 구분하여 나열합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -1032,7 +1032,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>캐스팅 타입이 <code class="docutils literal notranslate"><span class="pre">?bool</span></code>처럼 nullable로 표시되고 전달된 값이 null이 아닌 경우, <code class="docutils literal notranslate"><span class="pre">nullable</span></code> 값을 가진 매개변수가 캐스팅 타입 핸들러에 전달됩니다. 캐스팅 타입에 미리 정의된 매개변수가 있으면 <code class="docutils literal notranslate"><span class="pre">nullable</span></code>이 목록 끝에 추가됩니다.</p>
+<p>캐스팅 타입이 <code class="docutils literal notranslate"><span class="pre">?bool</span></code>처럼 nullable로 표시되고 전달된 값이 null이 아닌 경우, <code class="docutils literal notranslate"><span class="pre">nullable</span></code> 값을 가진 파라미터가 캐스팅 타입 핸들러에 전달됩니다. 캐스팅 타입에 미리 정의된 파라미터가 있으면 <code class="docutils literal notranslate"><span class="pre">nullable</span></code>은 목록의 끝에 추가됩니다.</p>
 </div>
 </section>
 </section>
@@ -1980,7 +1980,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 02, 2026
+      <span class="lastupdated">최종 업데이트: 6월 10, 2026
       </span></p>
   </div>
 
