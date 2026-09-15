@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>업로드된 파일 다루기 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>업로드된 파일 다루기 &mdash; CodeIgniter 4.7.4 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=8f811b76"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -728,7 +728,7 @@
 <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nx">WRITEPATH</span> <span class="o">.</span> <span class="s1">&#39;uploads&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>기본적으로 원래 파일 이름이 사용됩니다.</p>
+<p>기본적으로 클라이언트가 제공한 파일 이름을 살균(sanitize)하여 사용합니다.</p>
 </section>
 <section id="with-new-filename">
 <h4>새 파일 이름으로<a class="headerlink" href="#with-new-filename" title="Link to this heading"></a></h4>
@@ -812,7 +812,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 9월 15, 2026
       </span></p>
   </div>
 

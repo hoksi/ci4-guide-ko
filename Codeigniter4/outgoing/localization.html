@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>현지화 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>현지화 &mdash; CodeIgniter 4.7.4 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=8f811b76"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -718,6 +718,10 @@
 <p><span class="versionmodified added">Added in version 4.5.0.</span></p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">app</span></code> 폴더에서 번역 파일을 자동으로 생성하고 업데이트할 수 있습니다. 이 명령은 <code class="docutils literal notranslate"><span class="pre">lang()</span></code> 함수의 사용을 검색하고 <code class="docutils literal notranslate"><span class="pre">Config\App</span></code>에서 로케일 <code class="docutils literal notranslate"><span class="pre">defaultLocale``을</span> <span class="pre">정의하여</span> <span class="pre">``app/Language</span></code>의 현재 번역 키를 결합합니다. 수술 후에는 언어 키를 직접 번역해야 합니다. 이 명령은 일반적으로 <code class="docutils literal notranslate"><span class="pre">File.array.nested.text</span></code> 중첩된 키를 인식할 수 있습니다. 이전에 저장된 키는 변경되지 않습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><code class="docutils literal notranslate"><span class="pre">lang()</span></code>이 이미 해석할 수 있는 키(예: <strong>system/Language</strong>의 <code class="docutils literal notranslate"><span class="pre">Errors.*</span></code>)는 이미 번역된 것으로 취급되어, <code class="docutils literal notranslate"><span class="pre">--show-new</span></code>에도 나열되지 않고 <strong>app/Language</strong>에도 기록되지 않습니다.</p>
+</div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark lang:find</span>
 </pre></div>
 </div>
@@ -809,7 +813,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 9월 15, 2026
       </span></p>
   </div>
 

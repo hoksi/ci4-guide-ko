@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IncomingRequest 클래스 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>IncomingRequest 클래스 &mdash; CodeIgniter 4.7.4 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=8f811b76"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -440,6 +440,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>와 <code class="docutils literal notranslate"><span class="pre">Front-End-Https</span></code> 헤더는 요청이 <code class="docutils literal notranslate"><span class="pre">Config\\App::$proxyIPs</span></code>에 설정된 신뢰할 수 있는 프록시로부터 온 경우에만 고려됩니다. 그렇지 않으면 클라이언트가 임의로 지정한 값이므로 위조될 수 있습니다.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>듀얼 스택(dual-stack) 서버에서는 프록시의 IPv4 주소가 IPv4-매핑 IPv6 주소(예: <code class="docutils literal notranslate"><span class="pre">::ffff:192.168.5.21</span></code>)로 표시될 수 있는데, 이는 <code class="docutils literal notranslate"><span class="pre">192.168.5.0/24</span></code>와 같은 IPv4 항목과 일치하지 않습니다. 이 경우 <code class="docutils literal notranslate"><span class="pre">Config\\App::$proxyIPs</span></code>에 IPv4-매핑 형식(예: <code class="docutils literal notranslate"><span class="pre">::ffff:192.168.5.21</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">::ffff:192.168.5.0/120</span></code>)을 추가로 등록하세요.</p>
+</div>
 </section>
 </section>
 <section id="retrieving-input">
@@ -831,6 +839,10 @@
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p><code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>와 <code class="docutils literal notranslate"><span class="pre">Front-End-Https</span></code> 헤더는 요청이 <code class="docutils literal notranslate"><span class="pre">Config\App::$proxyIPs</span></code>에 설정된 신뢰할 수 있는 프록시로부터 온 경우에만 고려됩니다.</p>
+</div>
 </dd></dl>
 
 <dl class="php method">
@@ -864,7 +876,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 찾을 변수/키의 이름입니다.</p></li>
+<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – 찾을 변수/키의 이름이며, 이름의 배열일 수도 있습니다.</p></li>
 <li><p><strong>$filter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 필터 유형입니다. 필터 목록은 <a class="reference external" href="https://www.php.net/manual/en/filters.php">Types of filters</a>에서 확인할 수 있습니다.</p></li>
 <li><p><strong>$flags</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 플래그입니다. 플래그 목록은 <a class="reference external" href="https://www.php.net/manual/en/filter.constants.php#filter.constants.flags.generic">Filter flags</a>에서 확인할 수 있습니다.</p></li>
 </ul>
@@ -917,7 +929,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 찾을 변수/키의 이름입니다.</p></li>
+<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – 찾을 변수/키의 이름이며, 이름의 배열일 수도 있습니다.</p></li>
 <li><p><strong>$filter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 필터 유형입니다. 필터 목록은 <a class="reference external" href="https://www.php.net/manual/en/filters.php">여기</a>에서 확인할 수 있습니다.</p></li>
 <li><p><strong>$flags</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 플래그입니다. 플래그 목록은 <a class="reference external" href="https://www.php.net/manual/en/filter.constants.php#filter.constants.flags.generic">여기</a>에서 확인할 수 있습니다.</p></li>
 </ul>
@@ -938,7 +950,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 찾을 변수/키의 이름입니다.</p></li>
+<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – 찾을 변수/키의 이름이며, 이름의 배열일 수도 있습니다.</p></li>
 <li><p><strong>$filter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 필터 유형입니다. 필터 목록은 <a class="reference external" href="https://www.php.net/manual/en/filters.php">Types of filters</a>에서 확인할 수 있습니다.</p></li>
 <li><p><strong>$flags</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 플래그입니다. 플래그 목록은 <a class="reference external" href="https://www.php.net/manual/en/filter.constants.php#filter.constants.flags.generic">Filter flags</a>에서 확인할 수 있습니다.</p></li>
 </ul>
@@ -956,6 +968,7 @@
 <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getPostGet</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>인덱스 배열을 지정하면 이 메서드는 연관 배열(associative array)을 반환하며, 각 인덱스에 POST 우선(POST-then-GET) 조회 순서를 적용합니다.</p>
 <p>인덱스를 지정하지 않으면 POST와 GET 스트림을 합쳐 반환합니다. 이름이 충돌하는 경우 POST 데이터가 우선합니다.</p>
 </dd></dl>
 
@@ -965,7 +978,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 찾을 변수/키의 이름입니다.</p></li>
+<li><p><strong>$index</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – 찾을 변수/키의 이름이며, 이름의 배열일 수도 있습니다.</p></li>
 <li><p><strong>$filter</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 필터 유형입니다. 필터 목록은 <a class="reference external" href="https://www.php.net/manual/en/filters.php">Types of filters</a>에서 확인할 수 있습니다.</p></li>
 <li><p><strong>$flags</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – 적용할 플래그입니다. 플래그 목록은 <a class="reference external" href="https://www.php.net/manual/en/filter.constants.php#filter.constants.flags.generic">Filter flags</a>에서 확인할 수 있습니다.</p></li>
 </ul>
@@ -983,6 +996,7 @@
 <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getGetPost</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>인덱스 배열을 지정하면 이 메서드는 연관 배열(associative array)을 반환하며, 각 인덱스에 GET 우선(GET-then-POST) 조회 순서를 적용합니다.</p>
 <p>인덱스를 지정하지 않으면 GET과 POST 스트림을 합쳐 반환합니다. 이름이 충돌하는 경우 GET 데이터가 우선합니다.</p>
 </dd></dl>
 
@@ -1109,7 +1123,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 9월 15, 2026
       </span></p>
   </div>
 
