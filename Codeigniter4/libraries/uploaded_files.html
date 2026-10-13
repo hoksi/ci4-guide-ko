@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>업로드된 파일 다루기 &mdash; CodeIgniter 4.7.4 문서</title>
+  <title>업로드된 파일 다루기 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8f811b76"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -719,7 +719,13 @@
 </section>
 </section>
 <section id="moving-files">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">파일 이동</a><a class="headerlink" href="#moving-files" title="Link to this heading"></a></h3>
+<span id="uploaded-files-moving-files"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">파일 이동</a><a class="headerlink" href="#moving-files" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>사용자 입력이 대상 디렉터리를 직접 결정하도록 두지 마십시오. <code class="docutils literal notranslate"><span class="pre">move()</span></code>의 <code class="docutils literal notranslate"><span class="pre">$targetPath</span></code> 인자와 <code class="docutils literal notranslate"><span class="pre">store()</span></code>의 <code class="docutils literal notranslate"><span class="pre">$folderName</span></code> 인자는 전혀 살균(sanitize)되지 않으므로, <code class="docutils literal notranslate"><span class="pre">../</span></code>가 포함된 공격자 제어 값이 업로드된 파일을 의도한 디렉터리 밖으로 이동시킬 수 있습니다. 애플리케이션이 제어하는 디렉터리를 사용하십시오.</p>
+<p>파일명은 기본적으로만 살균됩니다: <code class="docutils literal notranslate"><span class="pre">move()</span></code>는 <code class="docutils literal notranslate"><span class="pre">$name</span></code> 인자를 생략했을 때 클라이언트가 제공한 이름을 살균하고, <code class="docutils literal notranslate"><span class="pre">store()</span></code>는 <code class="docutils literal notranslate"><span class="pre">$fileName</span></code>을 생략했을 때 무작위 이름을 생성합니다. 호출자가 전달한 <code class="docutils literal notranslate"><span class="pre">$name</span></code>이나 <code class="docutils literal notranslate"><span class="pre">$fileName</span></code>은 살균되지 <strong>않으므로</strong>, 직접 전달할 경우 스스로 생성하거나 <a class="reference internal" href="../helpers/security_helper.html#sanitize_filename" title="sanitize_filename"><code class="xref php php-func docutils literal notranslate"><span class="pre">sanitize_filename</span></code></a>으로 살균하십시오.</p>
+<p>클라이언트가 제공한 파일명을 살균한다고 해서 스크립트가 실행될 수 있는 웹 접근 가능 디렉터리에 그대로 보관해도 안전해지는 것은 아닙니다. 일부 웹 서버는 파일명의 어떤 확장자로든(마지막 확장자 앞의 확장자 포함) 핸들러를 선택합니다. 가능하면 <code class="docutils literal notranslate"><span class="pre">store()</span></code>로 업로드 파일을 공개(public) 디렉터리 밖에 보관하십시오. 공개해야 한다면 업로드 디렉터리의 스크립트 실행을 비활성화하고, <code class="docutils literal notranslate"><span class="pre">move()</span></code>의 두 번째 인자로 <code class="docutils literal notranslate"><span class="pre">$file-&gt;getRandomName()</span></code>을 전달하십시오.</p>
+</div>
 <section id="with-original-filename">
 <h4>원래 파일 이름으로<a class="headerlink" href="#with-original-filename" title="Link to this heading"></a></h4>
 <p>각 파일은 <code class="docutils literal notranslate"><span class="pre">move()</span></code> 메서드를 사용하여 새 위치로 이동할 수 있습니다. 첫 번째 매개변수로 파일을 이동할 디렉터리를 전달합니다:</p>
@@ -812,7 +818,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 9월 28, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 

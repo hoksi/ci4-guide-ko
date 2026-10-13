@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>세션 라이브러리 &mdash; CodeIgniter 4.7.4 문서</title>
+  <title>세션 라이브러리 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8f811b76"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -1007,7 +1007,11 @@ CodeIgniter\Session\Handlers\ArrayHandler</p></td>
 <span class="go">php spark migrate</span>
 </pre></div>
 </div>
-<p>이 명령은 코드를 생성할 때 <code class="docutils literal notranslate"><span class="pre">$savePath</span></code>와 <code class="docutils literal notranslate"><span class="pre">$matchIP</span></code> 설정을 반영합니다.</p>
+<p>이 명령은 기본 키를 결정하기 위해 <code class="docutils literal notranslate"><span class="pre">$matchIP</span></code> 설정을 읽습니다. 테이블 이름과 데이터베이스 그룹은 <strong>app/Config/Session.php</strong>에서 읽지 않으므로, <code class="docutils literal notranslate"><span class="pre">ci_sessions</span></code>와 <code class="docutils literal notranslate"><span class="pre">default</span></code>와 다르다면 <code class="docutils literal notranslate"><span class="pre">--table</span></code>과 <code class="docutils literal notranslate"><span class="pre">--dbgroup</span></code>을 전달하세요:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">php spark make:migration --session --table my_sessions --dbgroup sessions</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--table</span></code> 값은 <code class="docutils literal notranslate"><span class="pre">$savePath</span></code>와, <code class="docutils literal notranslate"><span class="pre">--dbgroup</span></code> 값은 <code class="docutils literal notranslate"><span class="pre">$DBGroup</span></code>과 일치해야 합니다.</p>
 </section>
 </section>
 </section>
@@ -1131,7 +1135,7 @@ CodeIgniter\Session\Handlers\ArrayHandler</p></td>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 9월 28, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 

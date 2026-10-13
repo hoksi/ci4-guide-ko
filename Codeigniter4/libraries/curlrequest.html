@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CURLRequest 클래스 &mdash; CodeIgniter 4.7.4 문서</title>
+  <title>CURLRequest 클래스 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8f811b76"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -496,7 +496,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p><code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>가 false이면, 메서드에 전달된 옵션이 해당 요청에만 사용됩니다. 요청을 보낸 후 초기화됩니다. 모든 요청에 옵션을 적용하려면 생성자에서 옵션을 전달하세요.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$shareOptions</span></code>가 false이면, 메서드에 전달된 옵션은 해당 요청에만 사용됩니다. 요청이 성공하거나 예외를 던진 뒤에는 요청별 <code class="docutils literal notranslate"><span class="pre">baseURI</span></code>와 <code class="docutils literal notranslate"><span class="pre">delay</span></code> 값을 포함해 모두 초기화되며, 생성자의 기본값으로 복원됩니다. 실패한 요청을 재시도하려면 옵션을 다시 전달하고 <code class="docutils literal notranslate"><span class="pre">setAuth()</span></code>, <code class="docutils literal notranslate"><span class="pre">setBody()</span></code>, <code class="docutils literal notranslate"><span class="pre">setForm()</span></code>, <code class="docutils literal notranslate"><span class="pre">setJSON()</span></code>으로 설정한 값도 다시 적용하세요. 모든 요청에 옵션을 적용하고 싶다면 생성자에서 옵션을 전달하세요.</p>
 </div>
 <p>응답은 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Response</span></code>의 인스턴스이므로 모든 일반 정보를 사용할 수 있습니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
@@ -941,7 +941,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 9월 28, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 
