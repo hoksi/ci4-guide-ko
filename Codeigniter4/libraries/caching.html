@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>캐싱 드라이버 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>캐싱 드라이버 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -607,6 +607,10 @@
 <span class="nv">$cache</span><span class="o">-&gt;</span><span class="na">decrement</span><span class="p">(</span><span class="s1">&#39;iterator&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// &#39;iterator&#39; is now 3</span>
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>Memcached 카운터는 부호가 없어(unsigned) 음수로 내려가지 않고 <code class="docutils literal notranslate"><span class="pre">0</span></code>에서 포화(saturate)됩니다. 아직 존재하지 않는 키를 감소시키면 (File, Redis, Predis 핸들러처럼 <code class="docutils literal notranslate"><span class="pre">-$offset</span></code>이 아니라) <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 초기화되며, 기존 카운터를 <code class="docutils literal notranslate"><span class="pre">0</span></code> 미만으로 감소시키면 <code class="docutils literal notranslate"><span class="pre">0</span></code>으로 고정됩니다.</p>
+</div>
 </dd></dl>
 
 <dl class="php method">
@@ -813,7 +817,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 

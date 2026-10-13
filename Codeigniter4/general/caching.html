@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>웹 페이지 캐싱 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>웹 페이지 캐싱 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -314,6 +314,10 @@
 <p class="admonition-title">참고</p>
 <p>페이지별은 URI별을 의미합니다. v4.5.0부터는 요청의 HTTP 메서드도 함께 고려합니다. 즉, 같은 URI라도 HTTP 메서드가 다르면 별도로 캐시됩니다.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">경고</p>
+<p>웹 페이지 캐싱은 동일한 HTTP 메서드와 URI를 가진 요청들 사이에서 공유됩니다. 캐시 키는 인증된 사용자, 쿠키, 인가(authorization) 헤더, <code class="docutils literal notranslate"><span class="pre">Cache-Control</span></code>, <code class="docutils literal notranslate"><span class="pre">Vary</span></code>에 따라 달라지지 않습니다. 인증·인가 필터가 실행되기 전에 캐시된 응답이 반환될 수 있으므로, 보호되거나 개인화된 응답에는 사용하지 마십시오.</p>
+</div>
 <p>페이지가 처음 로드되면 현재 설정된 캐시 엔진을 사용해 해당 페이지가 캐시됩니다. 이후 페이지 로드에서는 캐시를 가져와 요청한 사용자의 브라우저로 전송합니다.</p>
 <p>캐시가 만료되었으면 삭제 후 갱신되어 브라우저로 전송됩니다.</p>
 <div class="admonition note">
@@ -402,7 +406,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 

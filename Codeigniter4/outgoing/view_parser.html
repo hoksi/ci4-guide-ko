@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>파서 보기 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>파서 보기 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -361,12 +361,11 @@
 <p>그런 다음 제공되는 세 가지 표준 렌더링 방법인 <code class="docutils literal notranslate"><span class="pre">render()</span></code>, <code class="docutils literal notranslate"><span class="pre">setVar()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">setData()</span></code> 중 하나를 사용할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">setDelimiters()</span></code> 메소드를 통해 구분 기호를 직접 지정할 수도 있습니다.</p>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
-<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code>을 사용하면 뷰 템플릿은 파서 자체에 의해서만 처리되며 기존 뷰 PHP 스크립트와는 다릅니다. 이러한 스크립트의 PHP 코드는 파서에서 무시되며 대체만 수행됩니다.</p>
-<p>이것은 목적이 있습니다: PHP 없이 파일을 봅니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code>는 뷰 템플릿 안의 리터럴 PHP 태그를 실행하지 않고 이스케이프합니다. 다만 <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">...}</span></code>와 <code class="docutils literal notranslate"><span class="pre">{elseif</span> <span class="pre">...}</span></code> 태그 안의 표현식은 PHP로 평가됩니다. 템플릿 원본은 신뢰할 수 있는 코드로 취급하거나, 신뢰도가 낮은 사용자가 템플릿을 편집할 수 있는 경우 <a class="reference internal" href="#parser-restricting-conditionals"><span class="std std-ref">조건문 제한</span></a>을 사용하세요.</p>
 </div>
 <section id="what-it-does">
 <h3><a class="toc-backref" href="#id3" role="doc-backlink">그것이 하는 일</a><a class="headerlink" href="#what-it-does" title="Link to this heading"></a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code> 클래스는 애플리케이션의 보기 경로에 저장된 “PHP/HTML 스크립트”를 처리합니다. 이 스크립트에는 PHP가 포함될 수 없습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code> 클래스는 애플리케이션의 뷰 경로에 저장된 템플릿을 처리합니다. 리터럴 PHP 태그는 지원되지 않습니다.</p>
 <p>각 보기 매개변수(의사 변수라고 함)는 제공한 값 유형에 따라 대체를 트리거합니다. 의사 변수는 PHP 변수로 추출되지 않습니다. 대신 해당 값은 의사 변수 구문을 통해 액세스되며 해당 이름은 중괄호 안에서 참조됩니다.</p>
 <p>Parser 클래스는 내부적으로 연관 배열을 사용하여 <code class="docutils literal notranslate"><span class="pre">render()</span></code>을 호출할 때까지 의사 변수 설정을 축적합니다. 이는 의사 변수 이름이 고유해야 함을 의미합니다. 그렇지 않으면 이후 매개변수 설정이 이전 매개변수 설정을 재정의합니다.</p>
 <p>이는 스크립트 내부의 다양한 컨텍스트에 대한 이스케이프 매개변수 값에도 영향을 미칩니다. 이스케이프된 각 값에 고유한 매개변수 이름을 지정해야 합니다.</p>
@@ -400,6 +399,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">cache_name</span></code> - 캐시된 보기 결과를 저장/검색하는 데 사용되는 ID입니다. 기본값은 뷰 경로입니다. renderString()에서는 무시됩니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">saveData</span></code> - 후속 호출을 위해 뷰 데이터 매개변수를 유지해야 하는 경우 true입니다. 기본값은 <strong>true</strong>입니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cascadeData</span></code> - 의사 변수 설정을 중첩된 대체 항목에 전달해야 하는 경우 true입니다. 기본값은 <strong>true</strong>입니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">restrictConditionals</span></code> - 조건문에서 단순한 표현식만 허용하려면 true로 설정합니다. <a class="reference internal" href="#parser-restricting-conditionals"><span class="std std-ref">조건문 제한하기</span></a>를 참조하세요. 기본값은 <code class="docutils literal notranslate"><span class="pre">Config\\View::$restrictParserConditionals</span></code> 값(<strong>false</strong>)을 따릅니다</p></li>
 </ul>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -424,6 +424,7 @@
 <span class="c1">// Result: &lt;head&gt;&lt;title&gt;My ramblings&lt;/title&gt;&lt;/head&gt;</span>
 </pre></div>
 </div>
+<p>대체되는 값은 템플릿 코드가 아니라 데이터로 취급됩니다. 값 안에 Parser 구문이 있어도 그대로 출력되며, 이후 대체 과정에서 다시 처리되지 않습니다. 이는 변수 쌍(variable pair) 안에서 사용되는 값에도 동일하게 적용되며, 쌍 자체는 템플릿에 정의되어 있어야 합니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Parser</span></code>은 중첩된 대체 또는 루핑에 사용되는 “변수 쌍”과 조건부 대체를 위한 일부 고급 구성을 사용하여 훨씬 더 많은 대체를 수행합니다.</p>
 <p>파서가 실행되면 일반적으로</p>
 <ul class="simple">
@@ -597,7 +598,7 @@
 <span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
-<p>if 문 내에서 사용되는 모든 변수는 이전에 동일한 이름으로 설정되어 있어야 합니다. 그 외에는 표준 PHP 조건부와 똑같이 처리되며 모든 표준 PHP 규칙이 여기에 적용됩니다. <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">===</span></code>, <code class="docutils literal notranslate"><span class="pre">!==</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 등과 같이 일반적으로 사용하는 비교 연산자를 사용할 수 있습니다.</p>
+<p>비교 연산자 <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">===</span></code>, <code class="docutils literal notranslate"><span class="pre">!==</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
     <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
 <span class="p">{</span><span class="k">elseif</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;moderator&#39;</span><span class="p">}</span>
@@ -607,10 +608,70 @@
 <span class="p">{</span><span class="k">endif</span><span class="p">}</span>
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">setData()</span></code>를 통해 전달된 값은 신뢰할 수 있는 템플릿에서 조건문을 제어할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;role&#39;</span> <span class="o">=&gt;</span> <span class="nv">$userData</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]]);</span>
+
+<span class="k">echo</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;{if $role === &quot;admin&quot;}Admin{endif}&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$role</span></code>의 값은 조건문에 의해 검사될 뿐, PHP 소스로 파싱되지 않습니다.</p>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
-<p>백그라운드에서 조건문은 <code class="docutils literal notranslate"><span class="pre">eval()</span></code>을 사용하여 구문 분석되므로 조건문 내에서 사용되는 사용자 데이터를 주의 깊게 다루어야 합니다. 그렇지 않으면 애플리케이션이 보안 위험에 노출될 수 있습니다.</p>
+<p>조건문은 <code class="docutils literal notranslate"><span class="pre">eval()</span></code>을 사용해 PHP 표현식으로 평가됩니다. 템플릿 원본을 편집할 수 있는 사람은 누구나 <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">...}</span></code>나 <code class="docutils literal notranslate"><span class="pre">{elseif</span> <span class="pre">...}</span></code> 태그를 통해 PHP 코드를 실행할 수 있습니다. 리터럴 PHP 태그를 이스케이프한다고 해서 신뢰할 수 없는 템플릿을 안전하게 렌더링할 수 있는 것은 아닙니다. 애플리케이션에서 작성하는 이메일 템플릿처럼 신뢰도가 낮은 사용자가 템플릿을 편집할 수 있는 경우 <a class="reference internal" href="#parser-restricting-conditionals"><span class="std std-ref">제한된 조건문</span></a>을 활성화하세요.</p>
 </div>
+<section id="restricting-conditionals">
+<span id="parser-restricting-conditionals"></span><h4>조건문 제한하기<a class="headerlink" href="#restricting-conditionals" title="Link to this heading"></a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.7.5.</span></p>
+</div>
+<p>조건문은 기본적으로 제한되지 않습니다. 신뢰도가 낮은 사용자가 템플릿 원본을 편집할 수 있는 경우에는 항상 제한 기능을 활성화하세요. 제한이 활성화되면 조건문에는 다음만 포함될 수 있습니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$this</span></code>를 제외한 변수</p></li>
+<li><p>문자열 및 숫자 리터럴, 그리고 <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code>, <code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+<li><p>산술 연산자 <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">**</span></code> (단항 <code class="docutils literal notranslate"><span class="pre">+</span></code>와 <code class="docutils literal notranslate"><span class="pre">-</span></code> 포함)</p></li>
+<li><p>비교 연산자 <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">===</span></code>, <code class="docutils literal notranslate"><span class="pre">!==</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></li>
+<li><p>논리 연산자 <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">!</span></code></p></li>
+<li><p>그룹화를 위한 괄호</p></li>
+</ul>
+<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">$vip}</span></code>, <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">$role</span> <span class="pre">==</span> <span class="pre">'admin'}</span></code>, <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">$total</span> <span class="pre">&gt;</span> <span class="pre">100</span> <span class="pre">&amp;&amp;</span> <span class="pre">($country</span> <span class="pre">==</span> <span class="pre">'GB'</span> <span class="pre">||</span> <span class="pre">!$guest)}</span></code>는 허용됩니다. <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">$balance</span> <span class="pre">&lt;</span> <span class="pre">-10}</span></code>이나 <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">$total</span> <span class="pre">+</span> <span class="pre">5</span> <span class="pre">&gt;=</span> <span class="pre">100}</span></code>처럼 음수나 단순 산술 연산도 허용됩니다. 그 외의 것들 - 함수 호출, 상수, 프로퍼티·배열 접근, 할당, 문자열 연결, 문자열 보간 등 - 은 템플릿이 평가되기 전에 <code class="docutils literal notranslate"><span class="pre">ViewException</span></code>을 발생시킵니다.</p>
+<p>호출 한 번에 대해서만 조건문을 제한하려면 <code class="docutils literal notranslate"><span class="pre">restrictConditionals</span></code> 옵션을 전달하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="nv">$html</span> <span class="o">=</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first_name</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="nv">$emailTemplate</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;restrictConditionals&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>기본적으로 조건문을 제한하려면 <strong>app/Config/View.php</strong>에서 <code class="docutils literal notranslate"><span class="pre">$restrictParserConditionals</span></code>를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeIgniter\Config\View</span> <span class="k">as</span> <span class="nx">BaseView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="k">extends</span> <span class="nx">BaseView</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$restrictParserConditionals</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이후 신뢰할 수 있는 템플릿에 한해 완전한 PHP 조건문을 허용할 수 있습니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;dashboard&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;restrictConditionals&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>플러그인이나 필터가 동일한 Parser 인스턴스를 사용해 다른 템플릿을 렌더링하면, 중첩된 렌더링은 활성화된 제한을 그대로 물려받습니다. <code class="docutils literal notranslate"><span class="pre">restrictConditionals</span></code>를 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 지정하더라도 바깥쪽 렌더링의 제한을 해제할 수는 없습니다. 제한 상태는 렌더링이 끝나거나 예외가 발생하면 이전 상태로 복원되므로, 이후의 독립적인 렌더링에는 영향을 주지 않습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>조건문 제한은 <code class="docutils literal notranslate"><span class="pre">{if</span> <span class="pre">...}</span></code>와 <code class="docutils literal notranslate"><span class="pre">{elseif</span> <span class="pre">...}</span></code> 태그에만 적용됩니다. 신뢰도가 낮은 템플릿의 의사 변수(pseudo-variable)는 여전히 모든 뷰 데이터를 참조할 수 있고, <code class="docutils literal notranslate"><span class="pre">{!</span> <span class="pre">!}</span></code> 태그는 이스케이프 없이 데이터를 출력합니다. 템플릿 작성자가 봐도 되는 데이터만 전달하세요.</p>
+</div>
+</section>
 <section id="changing-the-conditional-delimiters">
 <h4>조건부 구분 기호 변경<a class="headerlink" href="#changing-the-conditional-delimiters" title="Link to this heading"></a></h4>
 <p>템플릿에 다음과 같은 JavaScript 코드가 있는 경우 conditional::으로 해석될 수 있는 문자열이 있기 때문에 구문 분석기는 구문 오류를 발생시킵니다.</p>
@@ -641,12 +702,18 @@
 </section>
 <section id="escaping-data">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">데이터 이스케이프</a><a class="headerlink" href="#escaping-data" title="Link to this heading"></a></h3>
-<p>기본적으로 페이지에 대한 XSS 공격을 방지하기 위해 모든 변수 대체가 이스케이프됩니다. CodeIgniter의 <code class="docutils literal notranslate"><span class="pre">esc()</span></code> 메서드는 HTML <code class="docutils literal notranslate"><span class="pre">attr</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code> 등에 있을 때 일반 <code class="docutils literal notranslate"><span class="pre">html</span></code>과 같은 여러 가지 다른 컨텍스트를 지원합니다. 다른 항목이 지정되지 않으면 데이터가 HTML 컨텍스트에 있는 것으로 간주됩니다. <code class="docutils literal notranslate"><span class="pre">esc()</span></code> filter::를 사용하여 사용되는 컨텍스트를 지정할 수 있습니다.</p>
+<p>필터가 없는 변수 대체는 페이지에 대한 XSS 공격을 방지하기 위해 기본적으로 이스케이프됩니다. CodeIgniter의 <code class="docutils literal notranslate"><span class="pre">esc()</span></code> 메서드는 <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">attr</span></code>, <code class="docutils literal notranslate"><span class="pre">css</span></code> 등 여러 컨텍스트를 지원합니다. 컨텍스트를 지정하지 않으면 Parser는 <code class="docutils literal notranslate"><span class="pre">html</span></code>을 사용합니다. <code class="docutils literal notranslate"><span class="pre">esc</span></code> 필터로 컨텍스트를 지정할 수 있습니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">user_styles</span> <span class="o">|</span> <span class="nx">esc</span><span class="p">(</span><span class="nx">css</span><span class="p">)</span> <span class="p">}</span>
 <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;{ user_link | esc(attr) }&quot;</span><span class="o">&gt;</span><span class="p">{</span> <span class="nx">title</span> <span class="p">}</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>탈출하지 않고 사용해야 할 것이 절대적으로 필요한 때가 있을 것입니다. braces:: 열기 및 닫기에 느낌표를 추가하면 됩니다.</p>
+<p>대체 시 필터를 하나 이상 사용하면, Parser는 <code class="docutils literal notranslate"><span class="pre">esc</span></code> 필터를 자동으로 추가하지 않습니다. 이는 <code class="docutils literal notranslate"><span class="pre">setData()</span></code>나 <code class="docutils literal notranslate"><span class="pre">setVar()</span></code>로 컨텍스트를 지정한 경우에도 마찬가지입니다. 신뢰할 수 없는 데이터를 필터링할 때는 <code class="docutils literal notranslate"><span class="pre">esc</span></code>를 명시적으로 추가하세요. 필터는 왼쪽에서 오른쪽 순서로 실행되므로 위치가 중요합니다:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">title</span><span class="o">|</span><span class="nx">capitalize</span><span class="o">|</span><span class="nx">esc</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nx">body</span><span class="o">|</span><span class="nx">esc</span><span class="o">|</span><span class="nb">nl2br</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>두 번째 예시에서는 <code class="docutils literal notranslate"><span class="pre">nl2br</span></code>이 HTML <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> 태그를 추가하기 전에 <code class="docutils literal notranslate"><span class="pre">esc</span></code>가 입력을 이스케이프합니다. <code class="docutils literal notranslate"><span class="pre">nl2br</span></code>이후에 이스케이프하면 그 태그들이 텍스트로 그대로 표시됩니다. 알 수 없는 필터 이름은 무시되지만, 그래도 자동 이스케이프는 막아버리므로 필터 이름을 주의 깊게 확인하세요.</p>
+<p>필터가 없는 대체에서 자동 이스케이프를 비활성화하려면, 구분 기호에 느낌표를 추가하세요:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">!</span> <span class="nx">unescaped_var</span> <span class="o">!</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -808,6 +875,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>클로저(Closure)도 지원됩니다. <strong>app/Config/View.php</strong>에서 클로저를 설정할 때는 생성자에서 할당하세요.</p>
 </section>
 </section>
 <section id="parser-plugins">
@@ -817,6 +885,7 @@
 </pre></div>
 </div>
 <p>이 예에서는 <strong>foo</strong>라는 플러그인을 보여줍니다. 여는 태그와 닫는 태그 사이의 모든 내용을 조작할 수 있습니다. 이 예에서는 “inner content”라는 텍스트로 작업할 수 있습니다. 플러그인은 의사 변수 교체가 발생하기 전에 처리됩니다.</p>
+<p>내장 플러그인의 출력은 렌더링된 데이터로 취급됩니다. 그 출력 안에 Parser 구문이 있어도 이후의 플러그인이나 변수 대체 과정에서 다시 처리되지 않습니다. 커스텀 플러그인은 여전히 추가 처리를 위한 템플릿 코드를 반환할 수 있지만, 신뢰할 수 없는 데이터를 Parser 구문으로 끌어들여서는 안 됩니다.</p>
 <p>플러그인은 위에 표시된 것처럼 태그 쌍으로 구성되는 경우가 많지만 닫는 tag:: 없이 단일 태그일 수도 있습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">+</span> <span class="nx">foo</span> <span class="o">+</span><span class="p">}</span>
 </pre></div>
@@ -1130,7 +1199,7 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">매개변수<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$template</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 문자열로 제공되는 소스 보기</p></li>
+<li><p><strong>$template</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – 문자열로 제공되는 신뢰할 수 있는 뷰 원본</p></li>
 <li><p><strong>$options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – 키/값 쌍으로 구성된 옵션 배열</p></li>
 <li><p><strong>$saveData</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">boolean</span></code></span>) – true인 경우 다른 호출에 사용할 데이터를 저장하고, false인 경우 뷰를 렌더링한 후 데이터를 정리합니다.</p></li>
 </ul>
@@ -1146,6 +1215,16 @@
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">return</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>사용자가 제공한 콘텐츠로 템플릿 원본을 구성하지 마세요. 대신 <code class="docutils literal notranslate"><span class="pre">setData()</span></code>를 통해 데이터로 전달하거나, 사용자가 템플릿을 편집하도록 할 경우 <a class="reference internal" href="#parser-restricting-conditionals"><span class="std std-ref">조건문 제한</span></a>을 사용하세요:</p>
+<div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="c1">// Unsafe: $name becomes part of the template source.</span>
+<span class="k">echo</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">.</span> <span class="nv">$name</span><span class="p">);</span>
+
+<span class="c1">// Safe: $name is passed as data.</span>
+<span class="k">echo</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">renderString</span><span class="p">(</span><span class="s1">&#39;Hello {name}&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>지원되는 옵션 및 동작은 위와 같습니다.</p>
@@ -1271,7 +1350,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 

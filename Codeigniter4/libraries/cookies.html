@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>쿠키 &mdash; CodeIgniter 4.7.3 문서</title>
+  <title>쿠키 &mdash; CodeIgniter 4.7.5 문서</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=34bb78ad" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme.css?v=eacb1234" />
       <link rel="stylesheet" type="text/css" href="../_static/css/citheme_dark.css?v=2b70fae9" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6a9f2ceb"></script>
+      <script src="../_static/documentation_options.js?v=eb4ecb32"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/translations.js?v=afa94a99"></script>
@@ -301,37 +301,40 @@
 <p>브라우저에 쿠키를 효율적으로 전송할 수 있도록 CodeIgniter는 쿠키 상호 작용을 추상화한 <code class="docutils literal notranslate"><span class="pre">CodeIgniter\Cookie\Cookie</span></code>클래스를 제공합니다.</p>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#creating-cookies" id="id2">쿠키 생성</a></p>
+<li><p><a class="reference internal" href="#creating-cookies" id="id9">쿠키 생성</a></p>
 <ul>
-<li><p><a class="reference internal" href="#overriding-defaults" id="id3">기본값 재정의</a></p></li>
+<li><p><a class="reference internal" href="#overriding-defaults" id="id10">기본값 재정의</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#accessing-cookie-s-attributes" id="id4">쿠키 속성 접근</a></p></li>
-<li><p><a class="reference internal" href="#immutable-cookies" id="id5">불변 쿠키</a></p></li>
-<li><p><a class="reference internal" href="#validating-a-cookie-s-attributes" id="id6">쿠키 속성 유효성 검사</a></p>
+<li><p><a class="reference internal" href="#accessing-cookie-s-attributes" id="id11">쿠키 속성 접근</a></p></li>
+<li><p><a class="reference internal" href="#immutable-cookies" id="id12">불변 쿠키</a></p></li>
+<li><p><a class="reference internal" href="#validating-a-cookie-s-attributes" id="id13">쿠키 속성 유효성 검사</a></p>
 <ul>
-<li><p><a class="reference internal" href="#validating-the-name-attribute" id="id7">이름 속성 유효성 검사</a></p></li>
-<li><p><a class="reference internal" href="#validating-the-prefix-attribute" id="id8">접두사 속성 유효성 검사</a></p></li>
-<li><p><a class="reference internal" href="#validating-the-samesite-attribute" id="id9">SameSite 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-name-attribute" id="id14">이름 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-value-attribute" id="id15">Value 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-path-attribute" id="id16">Path 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-domain-attribute" id="id17">Domain 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-prefix-attribute" id="id18">접두사 속성 유효성 검사</a></p></li>
+<li><p><a class="reference internal" href="#validating-the-samesite-attribute" id="id19">SameSite 속성 유효성 검사</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#sending-cookies" id="id10">쿠키 전송</a></p></li>
-<li><p><a class="reference internal" href="#using-the-cookie-store" id="id11">쿠키 저장소 사용</a></p>
+<li><p><a class="reference internal" href="#sending-cookies" id="id20">쿠키 전송</a></p></li>
+<li><p><a class="reference internal" href="#using-the-cookie-store" id="id21">쿠키 저장소 사용</a></p>
 <ul>
-<li><p><a class="reference internal" href="#getting-the-store-from-response" id="id12">Response에서 저장소 가져오기</a></p></li>
-<li><p><a class="reference internal" href="#creating-cookiestore" id="id13">CookieStore 생성</a></p></li>
-<li><p><a class="reference internal" href="#checking-cookies-in-store" id="id14">저장소의 쿠키 확인</a></p></li>
-<li><p><a class="reference internal" href="#getting-cookies-in-store" id="id15">저장소의 쿠키 가져오기</a></p></li>
-<li><p><a class="reference internal" href="#adding-removing-cookies-in-store" id="id16">저장소에서 쿠키 추가/제거</a></p></li>
-<li><p><a class="reference internal" href="#dispatching-cookies-in-store" id="id17">저장소의 쿠키 디스패치</a></p></li>
+<li><p><a class="reference internal" href="#getting-the-store-from-response" id="id22">Response에서 저장소 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#creating-cookiestore" id="id23">CookieStore 생성</a></p></li>
+<li><p><a class="reference internal" href="#checking-cookies-in-store" id="id24">저장소의 쿠키 확인</a></p></li>
+<li><p><a class="reference internal" href="#getting-cookies-in-store" id="id25">저장소의 쿠키 가져오기</a></p></li>
+<li><p><a class="reference internal" href="#adding-removing-cookies-in-store" id="id26">저장소에서 쿠키 추가/제거</a></p></li>
+<li><p><a class="reference internal" href="#dispatching-cookies-in-store" id="id27">저장소의 쿠키 디스패치</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#cookie-personalization" id="id18">쿠키 개인화</a></p></li>
-<li><p><a class="reference internal" href="#class-reference" id="id19">클래스 레퍼런스</a></p></li>
+<li><p><a class="reference internal" href="#cookie-personalization" id="id28">쿠키 개인화</a></p></li>
+<li><p><a class="reference internal" href="#class-reference" id="id29">클래스 레퍼런스</a></p></li>
 </ul>
 </nav>
 <section id="creating-cookies">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">쿠키 생성</a><a class="headerlink" href="#creating-cookies" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">쿠키 생성</a><a class="headerlink" href="#creating-cookies" title="Link to this heading"></a></h2>
 <p>현재 새로운 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 값 객체를 생성하는 방법은 네 가지가 있습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -377,7 +380,7 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 객체를 생성할 때 <code class="docutils literal notranslate"><span class="pre">name</span></code> 속성만 필수입니다. 나머지는 모두 선택 사항입니다. 선택적 속성을 수정하지 않으면 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code>클래스에 저장된 기본값으로 채워집니다.</p>
 <section id="overriding-defaults">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">기본값 재정의</a><a class="headerlink" href="#overriding-defaults" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">기본값 재정의</a><a class="headerlink" href="#overriding-defaults" title="Link to this heading"></a></h3>
 <p>클래스에 현재 저장된 기본값을 재정의하려면 <code class="docutils literal notranslate"><span class="pre">Config\Cookie</span></code> 인스턴스나 기본값 배열을 정적 메서드 <code class="docutils literal notranslate"><span class="pre">Cookie::setDefaults()</span></code>에 전달하면 됩니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -417,7 +420,7 @@
 </section>
 </section>
 <section id="accessing-cookie-s-attributes">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">쿠키 속성 접근</a><a class="headerlink" href="#accessing-cookie-s-attributes" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">쿠키 속성 접근</a><a class="headerlink" href="#accessing-cookie-s-attributes" title="Link to this heading"></a></h2>
 <p>인스턴스를 생성한 후에는 getter 메서드를 사용하여 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code>의 속성에 쉽게 접근할 수 있습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -465,7 +468,7 @@
 </div>
 </section>
 <section id="immutable-cookies">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">불변 쿠키</a><a class="headerlink" href="#immutable-cookies" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">불변 쿠키</a><a class="headerlink" href="#immutable-cookies" title="Link to this heading"></a></h2>
 <p>새로운 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 인스턴스는 HTTP 쿠키의 불변 값 객체 표현입니다. 불변이기 때문에 인스턴스의 속성을 수정해도 원본 인스턴스에는 영향을 주지 않습니다. 수정은 <strong>항상</strong> 새로운 인스턴스를 반환합니다. 이를 사용하려면 새로운 인스턴스를 저장해야 합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -483,11 +486,11 @@
 </div>
 </section>
 <section id="validating-a-cookie-s-attributes">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">쿠키 속성 유효성 검사</a><a class="headerlink" href="#validating-a-cookie-s-attributes" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">쿠키 속성 유효성 검사</a><a class="headerlink" href="#validating-a-cookie-s-attributes" title="Link to this heading"></a></h2>
 <p>HTTP 쿠키는 브라우저에서 수락되기 위해 따라야 하는 여러 사양에 의해 규제됩니다. 따라서 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code>의 특정 속성을 생성하거나 수정할 때 사양을 준수하는지 확인하기 위해 유효성 검사가 수행됩니다.</p>
 <p>위반 사항이 발견되면 <code class="docutils literal notranslate"><span class="pre">CookieException</span></code>이 발생합니다.</p>
 <section id="validating-the-name-attribute">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">이름 속성 유효성 검사</a><a class="headerlink" href="#validating-the-name-attribute" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">이름 속성 유효성 검사</a><a class="headerlink" href="#validating-the-name-attribute" title="Link to this heading"></a></h3>
 <p>쿠키 이름은 다음을 제외한 모든 US-ASCII 문자를 사용할 수 있습니다:</p>
 <ul class="simple">
 <li><p>제어 문자;</p></li>
@@ -496,8 +499,21 @@
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">$raw</span></code> 매개변수를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하면 이 유효성 검사가 엄격하게 수행됩니다. PHP의 <a class="reference external" href="https://www.php.net/manual/en/function.setcookie.php">setcookie()</a>와 <a class="reference external" href="https://www.php.net/manual/en/function.setrawcookie.php">setrawcookie()</a>는 유효하지 않은 이름의 쿠키를 거부하기 때문입니다. 또한 쿠키 이름은 빈 문자열이 될 수 없습니다.</p>
 </section>
+<section id="validating-the-value-attribute">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Value 속성 유효성 검사</a><a class="headerlink" href="#validating-the-value-attribute" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">$raw</span></code> 매개변수를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정하면 쿠키 값도 유효성 검사를 받습니다. <a class="reference external" href="https://www.php.net/manual/en/function.setrawcookie.php">setrawcookie()</a>가 거부하므로, 제어 문자·공백·탭·구분 문자(<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">;</span></code>)를 포함할 수 없습니다.</p>
+</section>
+<section id="validating-the-path-attribute">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Path 속성 유효성 검사</a><a class="headerlink" href="#validating-the-path-attribute" title="Link to this heading"></a></h3>
+<p>쿠키 path는 <a class="reference external" href="https://www.php.net/manual/en/function.setcookie.php">setcookie()</a>와 <a class="reference external" href="https://www.php.net/manual/en/function.setrawcookie.php">setrawcookie()</a>가 거부하므로, 제어 문자·공백·탭·구분 문자(<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">;</span></code>)를 포함할 수 없습니다.</p>
+</section>
+<section id="validating-the-domain-attribute">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Domain 속성 유효성 검사</a><a class="headerlink" href="#validating-the-domain-attribute" title="Link to this heading"></a></h3>
+<p>쿠키 domain은 <a class="reference external" href="https://www.php.net/manual/en/function.setcookie.php">setcookie()</a>와 <a class="reference external" href="https://www.php.net/manual/en/function.setrawcookie.php">setrawcookie()</a>가 거부하므로, 제어 문자·공백·탭·구분 문자(<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">;</span></code>)를 포함할 수 없습니다.</p>
+</section>
 <section id="validating-the-prefix-attribute">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">접두사 속성 유효성 검사</a><a class="headerlink" href="#validating-the-prefix-attribute" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">접두사 속성 유효성 검사</a><a class="headerlink" href="#validating-the-prefix-attribute" title="Link to this heading"></a></h3>
+<p>쿠키 prefix는 <a class="reference external" href="https://www.php.net/manual/en/function.setcookie.php">setcookie()</a>와 <a class="reference external" href="https://www.php.net/manual/en/function.setrawcookie.php">setrawcookie()</a>가 거부하므로, 제어 문자·공백·탭·구분 문자(<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">,</span> <span class="pre">;</span> <span class="pre">\\t</span> <span class="pre">\\r</span> <span class="pre">\\n</span> <span class="pre">\\v</span> <span class="pre">\\f</span> <span class="pre">\\0</span></code>)를 포함할 수 없습니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">__Secure-</span></code> 접두사를 사용할 때는 쿠키의 <code class="docutils literal notranslate"><span class="pre">$secure</span></code> 플래그를 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정해야 합니다. <code class="docutils literal notranslate"><span class="pre">__Host-</span></code> 접두사를 사용할 경우 쿠키는 다음 조건을 충족해야 합니다:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$secure</span></code> 플래그가 <code class="docutils literal notranslate"><span class="pre">true</span></code>로 설정되어 있어야 함</p></li>
@@ -506,7 +522,7 @@
 </ul>
 </section>
 <section id="validating-the-samesite-attribute">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">SameSite 속성 유효성 검사</a><a class="headerlink" href="#validating-the-samesite-attribute" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">SameSite 속성 유효성 검사</a><a class="headerlink" href="#validating-the-samesite-attribute" title="Link to this heading"></a></h3>
 <p>SameSite 속성은 세 가지 값을 허용합니다:</p>
 <ul class="simple">
 <li><p><strong>Lax</strong>: 일반적인 크로스 사이트 서브요청(예: 제3자 사이트에 이미지나 프레임을 로드하는 경우)에는 쿠키가 전송되지 않지만, 사용자가 원본 사이트로 이동할 때(<em>즉</em> 링크를 따라갈 때)는 전송됩니다.</p></li>
@@ -529,7 +545,7 @@
 </section>
 </section>
 <section id="sending-cookies">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">쿠키 전송</a><a class="headerlink" href="#sending-cookies" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">쿠키 전송</a><a class="headerlink" href="#sending-cookies" title="Link to this heading"></a></h2>
 <p>Response 객체의 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code>에 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 객체를 설정하면 프레임워크가 자동으로 쿠키를 전송합니다.</p>
 <p><a class="reference internal" href="../outgoing/response.html#CodeIgniter\HTTP\Response::setCookie" title="CodeIgniter\HTTP\Response::setCookie"><code class="xref php php-meth docutils literal notranslate"><span class="pre">CodeIgniter\HTTP\Response::setCookie()</span></code></a>를 사용하여 설정합니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
@@ -569,14 +585,14 @@
 </div>
 </section>
 <section id="using-the-cookie-store">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">쿠키 저장소 사용</a><a class="headerlink" href="#using-the-cookie-store" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">쿠키 저장소 사용</a><a class="headerlink" href="#using-the-cookie-store" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
 <p>일반적으로 CookieStore를 직접 사용할 필요는 없습니다.</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">CookieStore</span></code>클래스는 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 객체의 불변 컬렉션을 나타냅니다.</p>
 <section id="getting-the-store-from-response">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Response에서 저장소 가져오기</a><a class="headerlink" href="#getting-the-store-from-response" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Response에서 저장소 가져오기</a><a class="headerlink" href="#getting-the-store-from-response" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 인스턴스는 현재 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 객체에서 접근할 수 있습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -585,7 +601,7 @@
 </div>
 </section>
 <section id="creating-cookiestore">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">CookieStore 생성</a><a class="headerlink" href="#creating-cookiestore" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">CookieStore 생성</a><a class="headerlink" href="#creating-cookiestore" title="Link to this heading"></a></h3>
 <p>CodeIgniter는 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code>의 새 인스턴스를 생성하는 세 가지 다른 방법을 제공합니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -617,7 +633,7 @@
 </div>
 </section>
 <section id="checking-cookies-in-store">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">저장소의 쿠키 확인</a><a class="headerlink" href="#checking-cookies-in-store" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">저장소의 쿠키 확인</a><a class="headerlink" href="#checking-cookies-in-store" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 인스턴스에 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 객체가 존재하는지 확인하려면 여러 방법을 사용할 수 있습니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -643,7 +659,7 @@
 </div>
 </section>
 <section id="getting-cookies-in-store">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">저장소의 쿠키 가져오기</a><a class="headerlink" href="#getting-cookies-in-store" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">저장소의 쿠키 가져오기</a><a class="headerlink" href="#getting-cookies-in-store" title="Link to this heading"></a></h3>
 <p>쿠키 컬렉션에서 <code class="docutils literal notranslate"><span class="pre">Cookie</span></code> 인스턴스를 가져오는 것은 매우 간단합니다:</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -695,7 +711,7 @@
 </div>
 </section>
 <section id="adding-removing-cookies-in-store">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">저장소에서 쿠키 추가/제거</a><a class="headerlink" href="#adding-removing-cookies-in-store" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">저장소에서 쿠키 추가/제거</a><a class="headerlink" href="#adding-removing-cookies-in-store" title="Link to this heading"></a></h3>
 <p>앞서 언급했듯이 <code class="docutils literal notranslate"><span class="pre">CookieStore</span></code> 객체는 불변입니다. 수정된 인스턴스를 사용하려면 저장해야 합니다. 원본 인스턴스는 변경되지 않습니다.</p>
 <div class="highlight-html+php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -732,7 +748,7 @@
 </div>
 </section>
 <section id="dispatching-cookies-in-store">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">저장소의 쿠키 디스패치</a><a class="headerlink" href="#dispatching-cookies-in-store" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">저장소의 쿠키 디스패치</a><a class="headerlink" href="#dispatching-cookies-in-store" title="Link to this heading"></a></h3>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
 <p>이 메서드는 버전 4.1.6부터 더 이상 사용되지 않으며 4.6.0에서 제거되었습니다.</p>
@@ -754,7 +770,7 @@
 </section>
 </section>
 <section id="cookie-personalization">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">쿠키 개인화</a><a class="headerlink" href="#cookie-personalization" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">쿠키 개인화</a><a class="headerlink" href="#cookie-personalization" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Cookie</span></code>클래스 내부에는 쿠키 객체를 원활하게 생성할 수 있도록 적절한 기본값이 설정되어 있습니다. 그러나 <strong>app/Config/Cookie.php</strong> 파일의 <code class="docutils literal notranslate"><span class="pre">Config\Cookie</span></code>클래스에서 다음 설정을 변경하여 자신만의 설정을 정의할 수도 있습니다.</p>
 <table class="docutils align-default">
 <thead>
@@ -810,7 +826,7 @@
 <p>런타임에는 <code class="docutils literal notranslate"><span class="pre">Cookie::setDefaults()</span></code> 메서드를 사용하여 새 기본값을 수동으로 지정할 수 있습니다.</p>
 </section>
 <section id="class-reference">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">클래스 레퍼런스</a><a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
 <dl class="php class" id="namespace-CodeIgniter\Cookie">
 <dt class="sig sig-object php" id="CodeIgniter\Cookie\Cookie">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CodeIgniter\Cookie\</span></span><span class="sig-name descname"><span class="pre">Cookie</span></span><a class="headerlink" href="#CodeIgniter\Cookie\Cookie" title="Link to this definition"></a></dt>
@@ -1407,7 +1423,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-2026 CodeIgniter Foundation.
-      <span class="lastupdated">최종 업데이트: 6월 10, 2026
+      <span class="lastupdated">최종 업데이트: 10월 12, 2026
       </span></p>
   </div>
 
